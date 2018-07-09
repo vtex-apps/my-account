@@ -1,0 +1,13 @@
+{
+  "pages": {
+    "hello-react": {
+      "path": "/hello-react",
+      "theme": "theme"
+    }
+  },
+  "extensions": {
+    "hello-react": {
+      "component": "index"
+    }
+  }
+}
