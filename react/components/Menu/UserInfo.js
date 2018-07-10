@@ -4,7 +4,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import Plus from '@vtex/styleguide/lib/icon/Plus'
 import userPlaceholder from '../../images/user-placeholder.svg'
 
-const UserInfo = ({ intl }) => {
+const UserInfo = ({ userName, intl }) => {
   return (
     <div className="flex items-end mb7">
       <div className="mr5 relative user-picture">
@@ -17,7 +17,7 @@ const UserInfo = ({ intl }) => {
         <div className="f5 fw3 helvetica mid-gray mb2">
           {intl.formatMessage({ id: 'userInfo.greeting' })},
         </div>
-        <div className="f4 fw3 helvetica">Gustavo!</div>
+        <div className="f4 fw3 helvetica">{userName}!</div>
       </div>
     </div>
   )
