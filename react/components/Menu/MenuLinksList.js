@@ -2,29 +2,24 @@ import React from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 import MenuLink from './MenuLink';
 
+const links = [
+    {code: 'pages.orders', path: '#'},
+    {code: 'pages.addresses', path: '/addresses'},
+    {code: 'pages.personalData', path: '/personal_data'},
+    {code: 'pages.paymentData', path: '/payment_data'}
+]
+
 const MenuLinksList = ({ intl }) => {
     return (
         <nav>
-            <MenuLink 
-                className="pv6" 
-                path="#" 
-                name={intl.formatMessage({id: 'menuLink.orders'})} 
-            />
-            <MenuLink 
-                className="pv6" 
-                path="/addresses" 
-                name={intl.formatMessage({id: 'menuLink.addresses'})} 
-            />
-            <MenuLink 
-                className="pv6" 
-                path="/personal_data" 
-                name={intl.formatMessage({id: 'menuLink.personalData'})} 
-            />
-            <MenuLink 
-                className="pv6" 
-                path="/payment_data" 
-                name={intl.formatMessage({id: 'menuLink.paymentData'})} 
-            />
+            {links.map((link) => (
+                <MenuLink
+                    className="pv6"
+                    path={link.path}
+                    name={intl.formatMessage({id: link.code})}
+                    key={link.code}
+                />
+            ))}
         </nav>
     )
 }
