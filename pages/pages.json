@@ -1,0 +1,13 @@
+{
+  "pages": {
+    "my-account": {
+      "path": "/my-account",
+      "theme": "theme"
+    }
+  },
+  "extensions": {
+    "my-account": {
+      "component": "index"
+    }
+  }
+}

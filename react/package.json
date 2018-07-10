@@ -1,0 +1,11 @@
+{
+  "name": "my-account",
+  "dependencies": {
+    "@vtex/styleguide": "5.2.3",
+    "classname": "0.0.0",
+    "exenv": "^1.2.2",
+    "react-intl": "^2.4.0",
+    "react-media": "^1.8.0",
+    "react-router-dom": "^4.3.1"
+  }
+}

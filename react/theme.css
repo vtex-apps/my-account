@@ -1,0 +1,9 @@
+/* Complementing Tachyons */
+.helvetica {
+  font-family: 'helvetica neue', helvetica, sans-serif;
+}
+
+/* Required to make parent element fit to icon size */
+.plus-sign svg {
+  display: block;
+}
