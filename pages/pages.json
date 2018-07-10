@@ -1,12 +1,12 @@
 {
   "pages": {
-    "hello-react": {
-      "path": "/hello-react",
+    "my-account": {
+      "path": "/my-account",
       "theme": "theme"
     }
   },
   "extensions": {
-    "hello-react": {
+    "my-account": {
       "component": "index"
     }
   }
