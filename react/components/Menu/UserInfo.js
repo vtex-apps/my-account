@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
-import classnames from 'classnames'
 import Plus from '@vtex/styleguide/lib/icon/Plus'
 import userPlaceholder from '../../images/user-placeholder.svg'
 
-const UserInfo = ({ className, intl }) => {
+const UserInfo = ({ intl }) => {
   return (
-    <div className={classnames('flex items-end', className)}>
+    <div className="flex items-end mb7">
       <div className="mr5 relative user-picture">
         <img className="br-100 w3" src={userPlaceholder} alt="User picture" />
         <span className="absolute bottom-0 right-0 blue">
@@ -25,7 +24,6 @@ const UserInfo = ({ className, intl }) => {
 }
 
 UserInfo.propTypes = {
-  className: PropTypes.string,
   intl: intlShape.isRequired,
 }
 

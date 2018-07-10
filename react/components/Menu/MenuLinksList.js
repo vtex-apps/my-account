@@ -27,7 +27,6 @@ const MenuLinksList = ({ intl }) => {
       {' '}
       {links.map(link => (
         <MenuLink
-          className="pv6"
           path={link.path}
           name={intl.formatMessage({
             id: link.code,

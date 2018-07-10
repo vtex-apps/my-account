@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { Link, withRouter } from 'react-router-dom'
 
-const MenuLink = ({ className, path, name, location }) => {
+const MenuLink = ({ path, name, location }) => {
   return (
     <Link
       to={path}
       className={classnames(
-        className,
-        'f6 no-underline helvetica db hover-near-black',
+        'f6 no-underline helvetica db hover-near-black pv6',
         { 'mid-gray': location.pathname !== path },
         { 'near-black': location.pathname === path },
       )}
@@ -20,7 +19,6 @@ const MenuLink = ({ className, path, name, location }) => {
 }
 
 MenuLink.propTypes = {
-  className: PropTypes.string,
   path: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 }
