@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
-import UserInfo from './components/menu/user-info';
+import React from 'react'
+import AppRouter from './components/AppRouter'
+import ClientSide from './components/ClientSide'
 
-export default class Menu extends Component {
-  state = {};
-
-  render() { 
+const bootstrap = () => {
     return ( 
-      <nav className="ma8">
-        <UserInfo></UserInfo>
-      </nav>
-    );
-  }
+        <ClientSide>
+            <AppRouter />
+        </ClientSide>
+    )
 }
+
+export default bootstrap
