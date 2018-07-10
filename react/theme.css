@@ -3,8 +3,7 @@
   font-family: 'helvetica neue', helvetica, sans-serif;
 }
 
-/* As of 07/2018, @vtex/styleguide icons can't receive tachyon classes */
-.user-picture svg {
-  background-color: white;
-  border-radius: 100%;
+/* Required to make parent element fit to icon size */
+.plus-sign svg {
+  display: block;
 }
