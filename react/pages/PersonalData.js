@@ -1,10 +1,17 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
+import Header from '../components/shared/Header'
 
 const PersonalData = ({ intl }) => {
+    
+    const pageTitle = intl.formatMessage({id: 'pages.personalData'})
+    
     return (
-        <h1> personal data works </h1>
+        <div>
+            <div className="flex flex-column flex-row-ns items-center-ns justify-between-ns">
+                <Header title={pageTitle} />
+            </div>
+        </div>
     )
 }
 
