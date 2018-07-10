@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import { canUseDOM } from 'exenv'
 import PropTypes from 'prop-types'
 
