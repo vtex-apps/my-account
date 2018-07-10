@@ -24,7 +24,6 @@ const links = [
 const MenuLinksList = ({ intl }) => {
   return (
     <nav>
-      {' '}
       {links.map(link => (
         <MenuLink
           path={link.path}
@@ -33,7 +32,7 @@ const MenuLinksList = ({ intl }) => {
           })}
           key={link.id}
         />
-      ))}{' '}
+      ))}
     </nav>
   )
 }
