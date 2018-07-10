@@ -1,8 +1,9 @@
 {
-    "userInfo.greeting": "Bonjour",
+    "userInfo.greeting": "Olá",
 
-    "menuLink.orders": "Meus pedidos",
-    "menuLink.addresses": "Endereços",
-    "menuLink.personalData": "Dados pessoais",
-    "menuLink.paymentData": "Métodos de pagamento"
+    "pages.orders": "Meus pedidos",
+    "pages.addresses": "Endereços",
+    "pages.personalData": "Dados pessoais",
+    "pages.paymentData": "Métodos de pagamento",
+    "pages.myAccount": "Minha conta"
 }
