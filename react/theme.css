@@ -3,3 +3,9 @@
 .helvetica {
     font-family: 'helvetica neue', helvetica, sans-serif;
 }
+
+/* As of 07/2018, @vtex/styleguide icons can't receive tachyon classes */
+.user-picture svg{
+    background-color: white;
+    border-radius: 100%;
+}
