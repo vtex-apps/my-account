@@ -21,6 +21,9 @@ const MenuLink = ({ path, name, location }) => {
 MenuLink.propTypes = {
   path: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 export default withRouter(MenuLink)

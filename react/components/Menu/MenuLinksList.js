@@ -29,9 +29,9 @@ const MenuLinksList = ({ intl }) => {
         <MenuLink
           path={link.path}
           name={intl.formatMessage({
-            id: link.code,
+            id: link.id,
           })}
-          key={link.code}
+          key={link.id}
         />
       ))}{' '}
     </nav>
