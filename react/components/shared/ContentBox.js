@@ -2,20 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ClearButton from './ClearButton'
 
-const ContentBox = ({
-  children,
-  upperButton,
-  onUpperButtonClick,
-  lowerButton,
-  onLowerButtonClick,
-}) => {
+const ContentBox = ({ children, width, lowerButton, onLowerButtonClick }) => {
+  const widthClass = width ? 'w-' + width + '-ns' : null
+
   return (
-    <div className="ba bw1 b--light-gray br2 ph7 pv6">
-      {upperButton ? (
-        <header className="flex justify-end mb6">
-          <ClearButton onClick={onUpperButtonClick}>{upperButton}</ClearButton>
-        </header>
-      ) : null}
+    <div
+      className={'ba bw1 b--light-gray br2 ph7 pv6 mb6 mr5-ns ' + widthClass}
+    >
       {children}
       {lowerButton ? (
         <footer className="flex justify-end mt6">
@@ -28,8 +21,7 @@ const ContentBox = ({
 
 ContentBox.propTypes = {
   children: PropTypes.any,
-  upperButton: PropTypes.string,
-  onUpperButtonClick: PropTypes.func,
+  width: PropTypes.number,
   lowerButton: PropTypes.string,
   onLowerButtonClick: PropTypes.func,
 }
