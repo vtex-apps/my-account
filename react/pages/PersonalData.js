@@ -10,7 +10,7 @@ const PersonalData = ({ intl }) => {
   return (
     <section>
       <Header title={pageTitle} />
-      <main className="mt6 flex-ns">
+      <main className="mt6 flex-ns items-start-ns">
         <PersonalDataBox />
         <PasswordBox />
       </main>

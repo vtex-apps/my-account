@@ -27,7 +27,7 @@ const AppRouter = () => {
           ) : (
             <div className="flex pl7 pr9 pv9">
               <Menu />
-              <main className="flex-auto pt6">
+              <main className="flex-auto pt8">
                 <Switch>
                   {mainRoutes}
                   <Redirect from="/" to="/addresses" />
