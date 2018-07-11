@@ -8,7 +8,7 @@ const MenuLink = ({ path, name, location }) => {
     <Link
       to={path}
       className={classnames(
-        'f6 no-underline helvetica db hover-near-black pv6',
+        'f6 no-underline db hover-near-black pv6',
         { 'mid-gray': location.pathname !== path },
         { 'near-black': location.pathname === path },
       )}

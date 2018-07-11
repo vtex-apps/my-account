@@ -12,7 +12,7 @@ const Header = ({ title, intl, history }) => {
 
   return (
     <header>
-      <div class="dn-ns">
+      <div className="dn-ns">
         <ClearButton onClick={navigateHome}>
           <ArrowBack size={12} color="currentColor" />
           <span className="ml2">
@@ -20,7 +20,7 @@ const Header = ({ title, intl, history }) => {
           </span>
         </ClearButton>
       </div>
-      <h1 className="helvetica normal near-black f3 mb0 mt4">{title}</h1>
+      <h1 className="normal near-black f3 mb0 mt4">{title}</h1>
     </header>
   )
 }
