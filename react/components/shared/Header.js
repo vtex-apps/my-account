@@ -12,12 +12,14 @@ const Header = ({ title, intl, history }) => {
 
   return (
     <header>
-      <ClearButton onClick={navigateHome}>
-        <ArrowBack size={12} color="currentColor" />
-        <span className="ml2">
-          {intl.formatMessage({ id: 'pages.myAccount' })}
-        </span>
-      </ClearButton>
+      <div class="dn-ns">
+        <ClearButton onClick={navigateHome}>
+          <ArrowBack size={12} color="currentColor" />
+          <span className="ml2">
+            {intl.formatMessage({ id: 'pages.myAccount' })}
+          </span>
+        </ClearButton>
+      </div>
       <h1 className="helvetica normal near-black f3 mb0 mt4">{title}</h1>
     </header>
   )
