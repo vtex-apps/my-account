@@ -17,6 +17,9 @@
   "personalData.document": "CPF",
   "personalData.birthDate": "Data de nascimento",
   "personalData.mainPhone": "Telefone principal",
+  "personalData.newPassword": "Nova senha",
+  "personalData.confirmPassword": "Confirmar senha",
+  "personalData.savePassword": "Salvar senha",
 
   "commons.edit": "Editar"
 }
