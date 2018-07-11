@@ -1,16 +1,20 @@
 import React from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 import Header from '../components/shared/Header'
+import PersonalDataBox from '../components/PersonalData/PersonalDataBox'
+import PasswordBox from '../components/PersonalData/PasswordBox'
 
 const PersonalData = ({ intl }) => {
   const pageTitle = intl.formatMessage({ id: 'pages.personalData' })
 
   return (
-    <div>
-      <div className="flex flex-column flex-row-ns items-center-ns justify-between-ns">
-        <Header title={pageTitle} />
-      </div>
-    </div>
+    <section>
+      <Header title={pageTitle} />
+      <main className="mt6 flex-ns">
+        <PersonalDataBox />
+        <PasswordBox />
+      </main>
+    </section>
   )
 }
 
