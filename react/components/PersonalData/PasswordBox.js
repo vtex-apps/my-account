@@ -4,12 +4,12 @@ import { injectIntl, intlShape } from 'react-intl'
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
 
-const PasswordBox = ({ intl }) => {
+const PasswordBox = ({ onEditClick, intl }) => {
   return (
     <ContentBox
       width={40}
       lowerButton={intl.formatMessage({ id: 'personalData.redefinePassword' })}
-      onLowerButtonClick={e => console.log('hi')}
+      onLowerButtonClick={onEditClick}
     >
       <DataEntry label="Senha" content="*******************" />
     </ContentBox>
@@ -17,6 +17,7 @@ const PasswordBox = ({ intl }) => {
 }
 
 PasswordBox.propTypes = {
+  onEditClick: PropTypes.func,
   intl: intlShape.isRequired,
 }
 
