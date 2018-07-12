@@ -20,9 +20,8 @@ class EditingPasswordBox extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    const { newPassword, confirmPassword } = this.state
     // validation and submission logic goes here
-    this.props.passwordChanged()
+    this.props.onPasswordChange()
   }
 
   render() {
@@ -60,7 +59,7 @@ class EditingPasswordBox extends Component {
 
 EditingPasswordBox.propTypes = {
   intl: intlShape.isRequired,
-  passwordChanged: PropTypes.func,
+  onPasswordChange: PropTypes.func,
 }
 
 export default injectIntl(EditingPasswordBox)
