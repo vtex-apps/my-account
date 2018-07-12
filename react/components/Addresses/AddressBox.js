@@ -3,12 +3,14 @@ import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import ContentBox from '../shared/ContentBox'
 
-const AddressBox = ({ intl }) => {
+const AddressBox = ({ onEditClick, onDefaultClick, intl }) => {
   return (
     <ContentBox
       width="third"
       isCentered={true}
       lowerButton={intl.formatMessage({ id: 'commons.edit' })}
+      onLowerButtonClick={onEditClick}
+      onUpperButtonClick={onDefaultClick}
       upperButton={intl.formatMessage({ id: 'addresses.setDefault' })}
     >
       <div className="lighter black-40 flex flex-column items-center lh-copy pv4">
@@ -24,6 +26,8 @@ const AddressBox = ({ intl }) => {
 }
 
 AddressBox.propTypes = {
+  onEditClick: PropTypes.func,
+  onDefaultClick: PropTypes.func,
   intl: intlShape.isRequired,
 }
 
