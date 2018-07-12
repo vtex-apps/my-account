@@ -23,5 +23,9 @@
   "personalData.confirmPassword": "Confirmar senha",
   "personalData.savePassword": "Salvar senha",
 
+  "addresses.addAddress": "Adicionar Endereço",
+  "addresses.setDefault": "Definir padrão",
+  "addresses.defaultAddress": "Endereço padrão",
+
   "commons.edit": "Editar"
 }
