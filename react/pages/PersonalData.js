@@ -4,14 +4,22 @@ import Header from '../components/shared/Header'
 import PersonalDataBox from '../components/PersonalData/PersonalDataBox'
 import PasswordBox from '../components/PersonalData/PasswordBox'
 import EditingPasswordBox from '../components/PersonalData/EditingPasswordBox'
+import EditingPersonalDataBox from '../components/PersonalData/EditingPersonalDataBox'
 
 class PersonalData extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      isEditingData: true,
       isEditingPassword: false,
-      isEditingData: false,
     }
+  }
+
+  toggleEditingData = () => {
+    const { isEditingData } = this.state
+    this.setState({
+      isEditingData: !isEditingData,
+    })
   }
 
   toggleEditingPassword = () => {
@@ -23,16 +31,20 @@ class PersonalData extends Component {
 
   render() {
     const { intl } = this.props
-    const { isEditingPassword } = this.state
+    const { isEditingData, isEditingPassword } = this.state
     const pageTitle = intl.formatMessage({ id: 'pages.personalData' })
 
     return (
       <section>
         <Header title={pageTitle} />
         <main className="mt6 flex-ns items-start-ns">
-          <PersonalDataBox />
+          {isEditingData ? (
+            <EditingPersonalDataBox onDataSave={this.toggleEditingData} />
+          ) : (
+            <PersonalDataBox onEditClick={this.toggleEditingData} />
+          )}
           {isEditingPassword ? (
-            <EditingPasswordBox passwordChanged={this.toggleEditingPassword} />
+            <EditingPasswordBox onPasswordChange={this.toggleEditingPassword} />
           ) : (
             <PasswordBox onEditClick={this.toggleEditingPassword} />
           )}

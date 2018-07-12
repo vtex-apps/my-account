@@ -4,7 +4,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
 
-const PersonalDataBox = ({ intl }) => {
+const PersonalDataBox = ({ onEditClick, intl }) => {
   const genders = {
     male: intl.formatMessage({ id: 'personalData.genders.male' }),
     female: intl.formatMessage({ id: 'personalData.genders.female' }),
@@ -15,7 +15,7 @@ const PersonalDataBox = ({ intl }) => {
     <ContentBox
       width={60}
       lowerButton={intl.formatMessage({ id: 'commons.edit' })}
-      onLowerButtonClick={e => console.log('hi')}
+      onLowerButtonClick={onEditClick}
     >
       <div className="mb8">
         <DataEntry
@@ -62,6 +62,7 @@ const PersonalDataBox = ({ intl }) => {
 }
 
 PersonalDataBox.propTypes = {
+  onEditClick: PropTypes.func,
   intl: intlShape.isRequired,
 }
 
