@@ -10,7 +10,7 @@ class PersonalData extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isEditingData: true,
+      isEditingData: false,
       isEditingPassword: false,
     }
   }
