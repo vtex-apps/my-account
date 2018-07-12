@@ -1,0 +1,14 @@
+type Car {
+  model: String!
+  year: Int!
+  maker: String!
+}
+
+type Query {
+  allCars: [Car!]!
+  carsByYear(year: Int!): [Car]!
+}
+
+type Mutation {
+  addCar(model: String!, year: Int!, maker: String!): Car
+}
