@@ -14,10 +14,10 @@ const UserInfo = ({ userName, intl }) => {
         </div>
       </div>
       <div>
-        <div className="f5 fw3 helvetica mid-gray mb2">
+        <div className="f5 fw3 mid-gray mb2">
           {intl.formatMessage({ id: 'userInfo.greeting' })},
         </div>
-        <div className="f4 fw3 helvetica">{userName}!</div>
+        <div className="f4 fw3">{userName}!</div>
       </div>
     </div>
   )

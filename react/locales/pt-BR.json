@@ -5,5 +5,23 @@
   "pages.addresses": "Endereços",
   "pages.personalData": "Dados pessoais",
   "pages.paymentData": "Métodos de pagamento",
-  "pages.myAccount": "Minha conta"
+  "pages.myAccount": "Minha conta",
+
+  "personalData.redefinePassword": "Redefinir senha",
+  "personalData.name": "Nome",
+  "personalData.email": "E-mail",
+  "personalData.gender": "Gênero",
+  "personalData.genders.male": "Masculino",
+  "personalData.genders.female": "Feminino",
+  "personalData.genders.others": "Outros",
+  "personalData.document": "CPF",
+  "personalData.birthDate": "Data de nascimento",
+  "personalData.mainPhone": "Telefone principal",
+  "personalData.saveData": "Salvar alterações",
+  "personalData.password": "Senha",
+  "personalData.newPassword": "Nova senha",
+  "personalData.confirmPassword": "Confirmar senha",
+  "personalData.savePassword": "Salvar senha",
+
+  "commons.edit": "Editar"
 }

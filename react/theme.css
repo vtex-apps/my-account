@@ -1,5 +1,10 @@
-/* Complementing Tachyons */
-.helvetica {
+/* Setting systemwide font to Helvetica */
+body,
+button,
+input,
+optgroup,
+select,
+textarea {
   font-family: 'helvetica neue', helvetica, sans-serif;
 }
 
