@@ -13,7 +13,7 @@ const PersonalDataBox = ({ onEditClick, intl }) => {
 
   return (
     <ContentBox
-      width={60}
+      width={'60'}
       lowerButton={intl.formatMessage({ id: 'commons.edit' })}
       onLowerButtonClick={onEditClick}
     >

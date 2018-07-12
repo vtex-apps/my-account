@@ -41,7 +41,7 @@ const ContentBox = ({
 ContentBox.propTypes = {
   children: PropTypes.any,
   header: PropTypes.string,
-  width: PropTypes.number,
+  width: PropTypes.string,
   lowerButton: PropTypes.string,
   onLowerButtonClick: PropTypes.func,
   upperButton: PropTypes.string,
