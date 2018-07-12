@@ -10,11 +10,11 @@ const ContentBox = ({ children, width, lowerButton, onLowerButtonClick }) => {
       className={'ba bw1 b--light-gray br2 ph7 pv6 mb6 mr5-ns ' + widthClass}
     >
       {children}
-      {lowerButton ? (
+      {lowerButton && (
         <footer className="flex justify-end mt6">
           <ClearButton onClick={onLowerButtonClick}>{lowerButton}</ClearButton>
         </footer>
-      ) : null}
+      )}
     </div>
   )
 }
