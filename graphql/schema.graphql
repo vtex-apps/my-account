@@ -1,14 +1,57 @@
-type Car {
-  model: String!
-  year: Int!
-  maker: String!
+type PersonalData {
+  firstName: String!
+  lastName: String!
+  email: String!
+  homePhone: String!
+  birthDate: String!
+  document: String!
+  password: String!
+}
+
+type Password {
+  password: String!
+}
+
+type Address {
+  addressId: ID!
+  addressType: String!
+  city: String!
+  complement: String
+  country: String!
+  geoCoordinates: [Float!]
+  neighborhood: String
+  number: String!
+  postalCode: String!
+  receiverName: String
+  reference: String
+  state: String
+  street: String!
+}
+
+input AddressInput {
+  addressType: String!
+  city: String!
+  complement: String
+  country: String!
+  geoCoordinates: [Float!]
+  neighborhood: String
+  number: String!
+  postalCode: String!
+  receiverName: String
+  reference: String
+  state: String
+  street: String!
 }
 
 type Query {
-  allCars: [Car!]!
-  carsByYear(year: Int!): [Car]!
+  personalData: PersonalData!
+  addresses: [Address]!
 }
 
 type Mutation {
-  addCar(model: String!, year: Int!, maker: String!): Car
+  updatePersonalData(input: PersonalData): PersonalData!
+  updatePassword(newPassword: String!): PersonalData!
+  addAddress(input: AddressInput): Address!
+  updateAddress(addressName: ID!, address: AddressInput): Address!
+  updateDefaultAddress(addressName: ID!): Address!
 }
