@@ -10,7 +10,9 @@
     "smartcheckout"
   ],
   "settingsSchema": {},
-  "dependencies": {},
+  "dependencies": {
+    "vtex.store-graphql": "2.x"
+  },
   "builders": {
     "graphql": "1.x",
     "react": "2.x",
