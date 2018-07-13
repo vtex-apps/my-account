@@ -1,22 +1,43 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
-import Header from '../components/shared/Header'
+import { graphql } from 'react-apollo'
+import { compose, branch, renderComponent } from 'recompose'
 import Button from '@vtex/styleguide/lib/Button'
+import Header from '../components/shared/Header'
 import AddressBox from '../components/Addresses/AddressBox'
 import DefaultAddressBox from '../components/Addresses/DefaultAddressBox'
 import EditingAddressBox from '../components/Addresses/EditingAddressBox'
+import Loading from '../pages/Loading'
+import GetAddresses from '../graphql/GetAddresses.gql'
 
 class Addresses extends Component {
   constructor(props) {
     super(props)
     this.state = {
       isAddingNew: false,
-      addresses: [
-        { isEditing: false, isDefault: true },
-        { isEditing: false, isDefault: false },
-        { isEditing: false, isDefault: false },
-      ],
+      rules: {},
+      numCountries: 0,
+    }
+  }
+
+  componentDidMount() {
+    const { addresses } = this.props.addressesQuery
+    const countryCodes = new Set()
+    addresses.forEach(address => countryCodes.add(address.country))
+    this.setState(prevState => ({
+      numCountries: countryCodes.size,
+    }))
+    this.fetchCountryRules(countryCodes)
+  }
+
+  fetchCountryRules = countryCodes => {
+    for (let country of countryCodes) {
+      import('@vtex/address-form/lib/country/' + country).then(rules => {
+        this.setState(prevState => ({
+          rules: { ...prevState.rules, [country]: rules },
+        }))
+      })
     }
   }
 
@@ -44,8 +65,11 @@ class Addresses extends Component {
   }
 
   render() {
-    const { intl } = this.props
-    const { addresses, isAddingNew } = this.state
+    const { intl, addressesQuery } = this.props
+    const { addresses } = addressesQuery
+    const { isAddingNew, rules, numCountries } = this.state
+    const numRules = Object.keys(rules).length
+    if (numRules === 0 || numRules != numCountries) return <Loading />
     const pageTitle = intl.formatMessage({ id: 'pages.addresses' })
 
     const addressBoxes = addresses.map((address, index) => {
@@ -61,6 +85,8 @@ class Addresses extends Component {
         return (
           <AddressBox
             key={index}
+            address={address}
+            rules={rules['USA']}
             onEditClick={() => this.startEditing(index)}
             onDefaultClick={() => this.makeDefault(index)}
           />
@@ -93,6 +119,15 @@ class Addresses extends Component {
 
 Addresses.propTypes = {
   intl: intlShape.isRequired,
+  addressesQuery: PropTypes.any,
 }
 
-export default injectIntl(Addresses)
+const enhance = compose(
+  graphql(GetAddresses, { name: 'addressesQuery' }),
+  branch(
+    ({ addressesQuery }) => addressesQuery.loading,
+    renderComponent(Loading),
+  ),
+  injectIntl,
+)
+export default enhance(Addresses)

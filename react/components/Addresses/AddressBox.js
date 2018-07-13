@@ -1,9 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
+import AddressSummary from '@vtex/address-form/lib/AddressSummary'
 import ContentBox from '../shared/ContentBox'
 
-const AddressBox = ({ onEditClick, onDefaultClick, intl }) => {
+const AddressBox = ({ address, rules, onEditClick, onDefaultClick, intl }) => {
+  console.log(rules)
+  console.log(address)
   return (
     <ContentBox
       width="third"
@@ -14,18 +17,15 @@ const AddressBox = ({ onEditClick, onDefaultClick, intl }) => {
       upperButton={intl.formatMessage({ id: 'addresses.setDefault' })}
     >
       <div className="lighter black-40 flex flex-column items-center lh-copy pv4">
-        <div>
-          <div>223 W Boundary St</div>
-          <div>The Terrace 6214B</div>
-          <div>Savannah, GA 31401-2207</div>
-          <div>United States of America</div>
-        </div>
+        <AddressSummary address={address} rules={rules} />
       </div>
     </ContentBox>
   )
 }
 
 AddressBox.propTypes = {
+  address: PropTypes.object,
+  rules: PropTypes.object,
   onEditClick: PropTypes.func,
   onDefaultClick: PropTypes.func,
   intl: intlShape.isRequired,
