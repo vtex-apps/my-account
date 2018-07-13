@@ -14,9 +14,7 @@
     "vtex.store-graphql": "2.x"
   },
   "builders": {
-    "graphql": "1.x",
     "react": "2.x",
-    "pages": "0.x",
-    "node": "3.x"
+    "pages": "0.x"
   }
 }
