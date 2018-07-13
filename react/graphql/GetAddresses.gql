@@ -1,0 +1,18 @@
+query Addresses {
+  addresses {
+    addressId
+    addressType
+    city
+    complement
+    country
+    geoCoordinates
+    neighborhood
+    number
+    postalCode
+    receiverName
+    reference
+    state
+    street
+    isDefault
+  }
+}

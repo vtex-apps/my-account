@@ -8,8 +8,13 @@ type PersonalData {
   password: String!
 }
 
-type Password {
-  password: String!
+input PersonalDataInput {
+  firstName: String!
+  lastName: String!
+  email: String!
+  homePhone: String!
+  birthDate: String!
+  document: String!
 }
 
 type Address {
@@ -26,6 +31,7 @@ type Address {
   reference: String
   state: String
   street: String!
+  isDefault: Boolean
 }
 
 input AddressInput {
@@ -49,7 +55,7 @@ type Query {
 }
 
 type Mutation {
-  updatePersonalData(input: PersonalData): PersonalData!
+  updatePersonalData(input: PersonalDataInput): PersonalData!
   updatePassword(newPassword: String!): PersonalData!
   addAddress(input: AddressInput): Address!
   updateAddress(addressName: ID!, address: AddressInput): Address!

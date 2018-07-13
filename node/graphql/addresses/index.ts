@@ -14,6 +14,7 @@ const addresses = [
     reference: null,
     state: 'SP',
     street: 'R. Coronel Meireles',
+    isDefault: true,
   },
   {
     addressId: '10',
@@ -29,6 +30,7 @@ const addresses = [
     reference: null,
     state: 'SP',
     street: 'Av. Praia de Botafogo',
+    isDefault: false,
   },
   {
     addressId: '10',
@@ -44,6 +46,7 @@ const addresses = [
     reference: null,
     state: 'CA',
     street: 'Infinite Loop',
+    isDefault: false,
   },
 ]
 
