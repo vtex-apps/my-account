@@ -5,7 +5,7 @@ import MenuLink from './MenuLink'
 const links = [
   {
     id: 'pages.orders',
-    path: '#',
+    path: '/my_orders',
   },
   {
     id: 'pages.addresses',
