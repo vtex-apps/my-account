@@ -1,18 +1,19 @@
-query Addresses {
-  addresses {
-    addressId
-    addressType
-    city
-    complement
-    country
-    geoCoordinates
-    neighborhood
-    number
-    postalCode
-    receiverName
-    reference
-    state
-    street
-    isDefault
+query Addresses @context(scope: "private") {
+  profile {
+    addresses: address {
+      id
+      addressType
+      addressName
+      city
+      complement
+      country
+      neighborhood
+      number
+      postalCode
+      receiverName
+      reference
+      state
+      street
+    }
   }
 }
