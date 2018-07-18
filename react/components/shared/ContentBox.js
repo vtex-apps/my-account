@@ -7,7 +7,7 @@ const ContentBox = ({ children, width, lowerButton, onLowerButtonClick }) => {
   return (
     <div className={'pb5 pr5-ns ' + widthClass}>
       <article className={'ba bw1 b--light-gray br2'}>
-        <main className="ph7 pv5">{children}</main>
+        <main className="ph7 pv6">{children}</main>
         {lowerButton && (
           <footer className="flex justify-end ph7 pb5">
             <ClearButton onClick={onLowerButtonClick}>

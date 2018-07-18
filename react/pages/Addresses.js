@@ -6,7 +6,6 @@ import { compose, branch, renderComponent } from 'recompose'
 import Button from '@vtex/styleguide/lib/Button'
 import Header from '../components/shared/Header'
 import AddressBox from '../components/Addresses/AddressBox'
-import DefaultAddressBox from '../components/Addresses/DefaultAddressBox'
 import EditingAddressBox from '../components/Addresses/EditingAddressBox'
 import Loading from '../pages/Loading'
 import GetAddresses from '../graphql/GetAddresses.gql'
@@ -16,15 +15,25 @@ class Addresses extends Component {
     super(props)
     this.state = {
       isAddingNew: false,
+      editingIndex: -1,
       rules: {},
       numCountries: 0,
+      addresses: [],
     }
   }
 
   componentDidMount() {
-    const { addresses } = this.props.addressesQuery
+    const {
+      profile: { addresses },
+    } = this.props.addressesQuery
+
     const countryCodes = new Set()
-    addresses.forEach(address => countryCodes.add(address.country))
+    addresses.forEach(address => {
+      countryCodes.add(address.country || 'default')
+      this.setState(prevState => ({
+        addresses: [...prevState.addresses, address],
+      }))
+    })
     this.setState(prevState => ({
       numCountries: countryCodes.size,
     }))
@@ -44,54 +53,30 @@ class Addresses extends Component {
   startAddingNew = () => {
     this.setState({
       isAddingNew: true,
+      editingIndex: -1,
     })
   }
 
   startEditing = index => {
-    const { addresses } = this.state
-    addresses[index].isEditing = true
     this.setState({
-      addresses: addresses,
-    })
-  }
-
-  makeDefault = index => {
-    const { addresses } = this.state
-    addresses.map(address => (address.isDefault = false))
-    addresses[index].isDefault = true
-    this.setState({
-      addresses: addresses,
+      editingIndex: index,
+      isAddingNew: false,
     })
   }
 
   render() {
-    const { intl, addressesQuery } = this.props
-    const { addresses } = addressesQuery
-    const { isAddingNew, rules, numCountries } = this.state
+    const { intl } = this.props
+    const {
+      isAddingNew,
+      editingIndex,
+      rules,
+      numCountries,
+      addresses,
+    } = this.state
+
     const numRules = Object.keys(rules).length
     if (numRules === 0 || numRules != numCountries) return <Loading />
     const pageTitle = intl.formatMessage({ id: 'pages.addresses' })
-
-    const addressBoxes = addresses.map((address, index) => {
-      if (address.isEditing) return <EditingAddressBox key={index} />
-      else if (address.isDefault)
-        return (
-          <DefaultAddressBox
-            key={index}
-            onEditClick={() => this.startEditing(index)}
-          />
-        )
-      else
-        return (
-          <AddressBox
-            key={index}
-            address={address}
-            rules={rules['USA']}
-            onEditClick={() => this.startEditing(index)}
-            onDefaultClick={() => this.makeDefault(index)}
-          />
-        )
-    })
 
     return (
       <section>
@@ -103,6 +88,7 @@ class Addresses extends Component {
               block
               size="small"
               onClick={this.startAddingNew}
+              disabled={isAddingNew}
             >
               {intl.formatMessage({ id: 'addresses.addAddress' })}
             </Button>
@@ -110,7 +96,19 @@ class Addresses extends Component {
         </div>
         <main className="mt6 flex-ns flex-wrap-ns items-start-ns">
           {isAddingNew && <EditingAddressBox isNew={true} />}
-          {addressBoxes}
+          {addresses.map(
+            (address, index) =>
+              editingIndex === index ? (
+                <EditingAddressBox key={index} />
+              ) : (
+                <AddressBox
+                  key={index}
+                  address={address}
+                  rules={rules[address.country]}
+                  onEditClick={() => this.startEditing(index)}
+                />
+              ),
+          )}
         </main>
       </section>
     )
