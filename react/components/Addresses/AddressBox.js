@@ -4,9 +4,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import AddressSummary from '@vtex/address-form/lib/AddressSummary'
 import ContentBox from '../shared/ContentBox'
 
-const AddressBox = ({ address, rules, onEditClick, onDefaultClick, intl }) => {
-  console.log(rules)
-  console.log(address)
+const AddressBox = ({ address, rules, onEditClick, intl }) => {
   return (
     <ContentBox
       width="third"
