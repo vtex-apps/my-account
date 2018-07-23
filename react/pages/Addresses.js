@@ -15,7 +15,7 @@ class Addresses extends Component {
     super(props)
     this.state = {
       isAddingNew: false,
-      editingIndex: -1,
+      editingIndex: null,
       addresses: [],
     }
   }
@@ -33,7 +33,7 @@ class Addresses extends Component {
   startAddingNew = () => {
     this.setState({
       isAddingNew: true,
-      editingIndex: -1,
+      editingIndex: null,
     })
   }
 
