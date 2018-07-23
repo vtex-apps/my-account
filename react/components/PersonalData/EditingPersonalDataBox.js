@@ -32,7 +32,7 @@ class EditingPersonalDataBox extends Component {
     const { intl } = this.props
     const { name, email, document, gender, birthDate, mainPhone } = this.state
     return (
-      <ContentBox width={60}>
+      <ContentBox width={'60'}>
         <form onSubmit={this.handleSubmit}>
           <div className="mb7">
             <Input

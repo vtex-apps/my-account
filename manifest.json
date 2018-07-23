@@ -1,7 +1,7 @@
 {
   "name": "my-account",
   "vendor": "vtex",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "title": "My Account",
   "description": "",
   "mustUpdateAt": "2019-07-09",
@@ -10,9 +10,11 @@
     "smartcheckout"
   ],
   "settingsSchema": {},
-  "dependencies": {},
+  "dependencies": {
+    "vtex.store-graphql": "2.x"
+  },
   "builders": {
-    "pages": "0.x",
-    "react": "2.x"
+    "react": "2.x",
+    "pages": "0.x"
   }
 }

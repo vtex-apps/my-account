@@ -5,12 +5,14 @@ import Menu from './Menu/Menu'
 import Addresses from '../pages/Addresses'
 import PersonalData from '../pages/PersonalData'
 import PaymentData from '../pages/PaymentData'
+import Loading from '../pages/Loading'
 
 const AppRouter = () => {
   const mainRoutes = [
     <Route key="1" path="/addresses" component={Addresses} />,
-    <Route key="2" path="/personal_data" component={PersonalData} />,
-    <Route key="3" path="/payment_data" component={PaymentData} />,
+    <Route key="2" path="/personal-data" component={PersonalData} />,
+    <Route key="3" path="/payment-data" component={PaymentData} />,
+    <Route key="4" path="/my-orders" component={Loading} />,
   ]
 
   return (
@@ -18,7 +20,7 @@ const AppRouter = () => {
       <Media query="(max-width: 40em)">
         {matches =>
           matches ? (
-            <main className="pa6">
+            <main className="pa6 vh-100">
               <Switch>
                 <Route exact path="/" component={Menu} />
                 {mainRoutes}

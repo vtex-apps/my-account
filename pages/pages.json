@@ -1,8 +1,7 @@
 {
   "pages": {
     "my-account": {
-      "path": "/my-account",
-      "theme": "theme"
+      "path": "/my-account"
     }
   },
   "extensions": {

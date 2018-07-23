@@ -28,7 +28,7 @@ class EditingPasswordBox extends Component {
     const { intl } = this.props
     const { newPassword, confirmPassword } = this.state
     return (
-      <ContentBox width={40}>
+      <ContentBox width={'40'}>
         <form onSubmit={this.handleSubmit}>
           <div className="mb7">
             <Input
