@@ -6,11 +6,6 @@ import Input from '@vtex/styleguide/lib/Input'
 import ContentBox from '../shared/ContentBox'
 
 class EditingAddressBox extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
   render() {
     const { isNew, intl } = this.props
     const intlId = isNew ? 'addresses.addAddress' : 'addresses.saveAddress'
