@@ -1,7 +1,7 @@
 query Addresses @context(scope: "private") {
   profile {
     addresses: address {
-      id
+      addressId: id
       addressType
       addressName
       city
