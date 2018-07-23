@@ -1,7 +1,7 @@
 {
   "name": "my-account",
   "dependencies": {
-    "@vtex/address-form": "^1.7.0",
+    "@vtex/address-form": "^1.7.1",
     "@vtex/styleguide": "5.2.3",
     "classname": "0.0.0",
     "exenv": "^1.2.2",
