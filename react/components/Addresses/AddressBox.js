@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
-import AddressSummary from '@vtex/address-form/lib/AddressSummary'
-import AddressRules from '@vtex/address-form/lib/AddressRules'
+import { AddressSummary, AddressRules } from '@vtex/address-form'
 import ContentBox from '../shared/ContentBox'
 
 const AddressBox = ({ address, onEditClick, intl }) => {
