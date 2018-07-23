@@ -5,7 +5,7 @@ import MenuLink from './MenuLink'
 const links = [
   {
     id: 'pages.orders',
-    path: '/my_orders',
+    path: '/my-orders',
   },
   {
     id: 'pages.addresses',
@@ -13,11 +13,11 @@ const links = [
   },
   {
     id: 'pages.personalData',
-    path: '/personal_data',
+    path: '/personal-data',
   },
   {
     id: 'pages.paymentData',
-    path: '/payment_data',
+    path: '/payment-data',
   },
 ]
 

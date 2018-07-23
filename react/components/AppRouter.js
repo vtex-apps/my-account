@@ -10,9 +10,9 @@ import Loading from '../pages/Loading'
 const AppRouter = () => {
   const mainRoutes = [
     <Route key="1" path="/addresses" component={Addresses} />,
-    <Route key="2" path="/personal_data" component={PersonalData} />,
-    <Route key="3" path="/payment_data" component={PaymentData} />,
-    <Route key="4" path="/my_orders" component={Loading} />,
+    <Route key="2" path="/personal-data" component={PersonalData} />,
+    <Route key="3" path="/payment-data" component={PaymentData} />,
+    <Route key="4" path="/my-orders" component={Loading} />,
   ]
 
   return (
