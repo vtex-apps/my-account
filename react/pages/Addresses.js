@@ -16,8 +16,6 @@ class Addresses extends Component {
     this.state = {
       isAddingNew: false,
       editingIndex: -1,
-      rules: {},
-      numCountries: 0,
       addresses: [],
     }
   }
@@ -27,27 +25,9 @@ class Addresses extends Component {
       profile: { addresses },
     } = this.props.addressesQuery
 
-    const countryCodes = new Set()
-    addresses.forEach(address => {
-      countryCodes.add(address.country || 'default')
-      this.setState(prevState => ({
-        addresses: [...prevState.addresses, address],
-      }))
+    this.setState({
+      addresses: [...addresses],
     })
-    this.setState(prevState => ({
-      numCountries: countryCodes.size,
-    }))
-    this.fetchCountryRules(countryCodes)
-  }
-
-  fetchCountryRules = countryCodes => {
-    for (let country of countryCodes) {
-      import('@vtex/address-form/lib/country/' + country).then(rules => {
-        this.setState(prevState => ({
-          rules: { ...prevState.rules, [country]: rules },
-        }))
-      })
-    }
   }
 
   startAddingNew = () => {
@@ -66,16 +46,8 @@ class Addresses extends Component {
 
   render() {
     const { intl } = this.props
-    const {
-      isAddingNew,
-      editingIndex,
-      rules,
-      numCountries,
-      addresses,
-    } = this.state
+    const { isAddingNew, editingIndex, addresses } = this.state
 
-    const numRules = Object.keys(rules).length
-    if (numRules === 0 || numRules != numCountries) return <Loading />
     const pageTitle = intl.formatMessage({ id: 'pages.addresses' })
 
     return (
@@ -99,12 +71,11 @@ class Addresses extends Component {
           {addresses.map(
             (address, index) =>
               editingIndex === index ? (
-                <EditingAddressBox key={index} />
+                <EditingAddressBox address={address} key={index} />
               ) : (
                 <AddressBox
                   key={index}
                   address={address}
-                  rules={rules[address.country]}
                   onEditClick={() => this.startEditing(index)}
                 />
               ),
