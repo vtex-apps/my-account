@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import { withRouter } from 'react-router-dom'
-import ArrowBack from '@vtex/styleguide/lib/icon/ArrowBack'
+import { IconArrowBack } from 'vtex.styleguide'
 import ClearButton from './ClearButton'
 
 const Header = ({ title, intl, history }) => {
@@ -14,7 +14,7 @@ const Header = ({ title, intl, history }) => {
     <header>
       <div className="dn-ns">
         <ClearButton onClick={navigateHome}>
-          <ArrowBack size={12} color="currentColor" />
+          <IconArrowBack size={12} color="currentColor" />
           <span className="ml2">
             {intl.formatMessage({ id: 'pages.myAccount' })}
           </span>

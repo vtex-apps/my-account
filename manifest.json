@@ -11,7 +11,8 @@
   ],
   "settingsSchema": {},
   "dependencies": {
-    "vtex.store-graphql": "2.x"
+    "vtex.store-graphql": "2.x",
+    "vtex.styleguide": "5.x"
   },
   "builders": {
     "react": "2.x",
