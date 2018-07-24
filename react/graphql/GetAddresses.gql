@@ -2,8 +2,6 @@ query Addresses @context(scope: "private") {
   profile {
     addresses: address {
       addressId: id
-      addressType
-      addressName
       city
       complement
       country
