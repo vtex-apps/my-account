@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
+import { graphql } from 'react-apollo'
+import { compose, branch, renderComponent } from 'recompose'
+import Loading from '../pages/Loading'
 import Header from '../components/shared/Header'
 import PersonalDataBox from '../components/PersonalData/PersonalDataBox'
 import PasswordBox from '../components/PersonalData/PasswordBox'
 import EditingPasswordBox from '../components/PersonalData/EditingPasswordBox'
 import EditingPersonalDataBox from '../components/PersonalData/EditingPersonalDataBox'
+import GetProfile from '../graphql/GetProfile.gql'
 
 class PersonalData extends Component {
   constructor(props) {
@@ -13,6 +17,11 @@ class PersonalData extends Component {
       isEditingData: false,
       isEditingPassword: false,
     }
+  }
+
+  componentDidMount() {
+    const { profile } = this.props.profileQuery
+    this.setState({ profile })
   }
 
   toggleEditingData = () => {
@@ -31,6 +40,7 @@ class PersonalData extends Component {
 
   render() {
     const { intl } = this.props
+    const { profile } = this.state
     const { isEditingData, isEditingPassword } = this.state
     const pageTitle = intl.formatMessage({ id: 'pages.personalData' })
 
@@ -41,7 +51,10 @@ class PersonalData extends Component {
           {isEditingData ? (
             <EditingPersonalDataBox onDataSave={this.toggleEditingData} />
           ) : (
-            <PersonalDataBox onEditClick={this.toggleEditingData} />
+            <PersonalDataBox
+              profile={profile}
+              onEditClick={this.toggleEditingData}
+            />
           )}
           {isEditingPassword ? (
             <EditingPasswordBox onPasswordChange={this.toggleEditingPassword} />
@@ -58,4 +71,9 @@ PersonalData.propTypes = {
   intl: intlShape.isRequired,
 }
 
-export default injectIntl(PersonalData)
+const enhance = compose(
+  graphql(GetProfile, { name: 'profileQuery' }),
+  branch(({ profileQuery }) => profileQuery.loading, renderComponent(Loading)),
+  injectIntl,
+)
+export default enhance(PersonalData)
