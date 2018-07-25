@@ -9,6 +9,7 @@ import PasswordBox from '../components/PersonalData/PasswordBox'
 import EditingPasswordBox from '../components/PersonalData/EditingPasswordBox'
 import EditingPersonalDataBox from '../components/PersonalData/EditingPersonalDataBox'
 import GetProfile from '../graphql/GetProfile.gql'
+import emptyProfile from '../components/PersonalData/emptyProfile'
 
 class PersonalData extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class PersonalData extends Component {
     this.state = {
       isEditingData: false,
       isEditingPassword: false,
+      profile: emptyProfile,
     }
   }
 

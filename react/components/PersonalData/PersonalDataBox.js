@@ -1,19 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
-import { graphql } from 'react-apollo'
-import { compose, branch, renderComponent, withProps } from 'recompose'
 import ContentBox from '../shared/ContentBox'
-import LoadingBox from '../shared/LoadingBox'
 import DataEntry from '../shared/DataEntry'
-import GetProfile from '../../graphql/GetProfile.gql'
 
-const PersonalDataBox = ({ profileQuery, onEditClick, intl }) => {
+const PersonalDataBox = ({ profile, onEditClick, intl }) => {
   const genders = {
     male: intl.formatMessage({ id: 'personalData.genders.male' }),
     female: intl.formatMessage({ id: 'personalData.genders.female' }),
     others: intl.formatMessage({ id: 'personalData.genders.others' }),
   }
+
+  console.log(profile)
 
   return (
     <ContentBox
@@ -24,26 +22,26 @@ const PersonalDataBox = ({ profileQuery, onEditClick, intl }) => {
       <div className="mb8">
         <DataEntry
           label={intl.formatMessage({ id: 'personalData.name' })}
-          content="Claudio Eckardt Shimmit dos Santos Martin"
+          content={`${profile.firstName} ${profile.lastName}`}
         />
       </div>
       <div className="mb8">
         <DataEntry
           label={intl.formatMessage({ id: 'personalData.email' })}
-          content="gustavo.faustino@vtex.com.br"
+          content={profile.email}
         />
       </div>
       <div className="mb8-ns flex-ns">
         <div className="mb8 mb0-ns w-50-ns">
           <DataEntry
             label={intl.formatMessage({ id: 'personalData.document' })}
-            content="353.264.248-21"
+            content={profile.document}
           />
         </div>
         <div className="mb8 mb0-ns w-50-ns">
           <DataEntry
             label={intl.formatMessage({ id: 'personalData.gender' })}
-            content={genders.male}
+            content={profile.gender}
           />
         </div>
       </div>
@@ -51,13 +49,13 @@ const PersonalDataBox = ({ profileQuery, onEditClick, intl }) => {
         <div className="mb8 mb0-ns w-50-ns">
           <DataEntry
             label={intl.formatMessage({ id: 'personalData.birthDate' })}
-            content="08/09/1996"
+            content={profile.birthDate}
           />
         </div>
         <div className="mb8 mb0-ns w-50-ns">
           <DataEntry
             label={intl.formatMessage({ id: 'personalData.mainPhone' })}
-            content="(11) 96486-5052"
+            content={profile.homePhone}
           />
         </div>
       </div>
@@ -70,13 +68,4 @@ PersonalDataBox.propTypes = {
   intl: intlShape.isRequired,
 }
 
-const SizedLoadingBox = withProps({ width: '60' })(LoadingBox)
-const enhance = compose(
-  graphql(GetProfile, { name: 'profileQuery' }),
-  branch(
-    ({ profileQuery }) => profileQuery.loading,
-    renderComponent(SizedLoadingBox),
-  ),
-  injectIntl,
-)
-export default enhance(PersonalDataBox)
+export default injectIntl(PersonalDataBox)
