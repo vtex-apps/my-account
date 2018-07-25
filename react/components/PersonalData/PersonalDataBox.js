@@ -4,7 +4,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
 
-const PersonalDataBox = ({ onEditClick, intl }) => {
+const PersonalDataBox = ({ profile, onEditClick, intl }) => {
   const genders = {
     male: intl.formatMessage({ id: 'personalData.genders.male' }),
     female: intl.formatMessage({ id: 'personalData.genders.female' }),
@@ -20,26 +20,26 @@ const PersonalDataBox = ({ onEditClick, intl }) => {
       <div className="mb8">
         <DataEntry
           label={intl.formatMessage({ id: 'personalData.name' })}
-          content="Claudio Eckhardt Shimmit dos Santos Martin"
+          content={`${profile.firstName} ${profile.lastName}`}
         />
       </div>
       <div className="mb8">
         <DataEntry
           label={intl.formatMessage({ id: 'personalData.email' })}
-          content="gustavo.faustino@vtex.com.br"
+          content={profile.email}
         />
       </div>
       <div className="mb8-ns flex-ns">
         <div className="mb8 mb0-ns w-50-ns">
           <DataEntry
             label={intl.formatMessage({ id: 'personalData.document' })}
-            content="353.264.248-21"
+            content={profile.document}
           />
         </div>
         <div className="mb8 mb0-ns w-50-ns">
           <DataEntry
             label={intl.formatMessage({ id: 'personalData.gender' })}
-            content={genders.male}
+            content={profile.gender}
           />
         </div>
       </div>
@@ -47,13 +47,13 @@ const PersonalDataBox = ({ onEditClick, intl }) => {
         <div className="mb8 mb0-ns w-50-ns">
           <DataEntry
             label={intl.formatMessage({ id: 'personalData.birthDate' })}
-            content="08/09/1996"
+            content={profile.birthDate}
           />
         </div>
         <div className="mb8 mb0-ns w-50-ns">
           <DataEntry
             label={intl.formatMessage({ id: 'personalData.mainPhone' })}
-            content="(11) 96486-5052"
+            content={profile.homePhone}
           />
         </div>
       </div>

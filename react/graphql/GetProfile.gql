@@ -1,0 +1,16 @@
+query Profile @context(scope: "private") {
+  profile {
+    firstName
+    lastName
+    birthDate
+    gender
+    homePhone
+    businessPhone
+    document
+    email
+    tradeName
+    corporateName
+    corporateDocument
+    stateRegistration
+  }
+}
