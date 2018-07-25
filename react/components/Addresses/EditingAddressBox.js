@@ -18,6 +18,13 @@ class EditingAddressBox extends Component {
           <Button type="submit" variation="secondary" block size="small">
             {intl.formatMessage({ id: intlId })}
           </Button>
+          {!isNew && (
+            <div className="mt5">
+              <Button type="button" variation="danger" block size="small">
+                {intl.formatMessage({ id: 'addresses.deleteAddress' })}
+              </Button>
+            </div>
+          )}
         </form>
       </ContentBox>
     )
