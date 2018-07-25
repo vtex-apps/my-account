@@ -1,10 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
+import { graphql } from 'react-apollo'
+import { compose, branch, renderComponent, withProps } from 'recompose'
 import ContentBox from '../shared/ContentBox'
+import LoadingBox from '../shared/LoadingBox'
 import DataEntry from '../shared/DataEntry'
+import GetProfile from '../../graphql/GetProfile.gql'
 
-const PersonalDataBox = ({ onEditClick, intl }) => {
+const PersonalDataBox = ({ profileQuery, onEditClick, intl }) => {
   const genders = {
     male: intl.formatMessage({ id: 'personalData.genders.male' }),
     female: intl.formatMessage({ id: 'personalData.genders.female' }),
@@ -20,7 +24,7 @@ const PersonalDataBox = ({ onEditClick, intl }) => {
       <div className="mb8">
         <DataEntry
           label={intl.formatMessage({ id: 'personalData.name' })}
-          content="Claudio Eckhardt Shimmit dos Santos Martin"
+          content="Claudio Eckardt Shimmit dos Santos Martin"
         />
       </div>
       <div className="mb8">
@@ -66,4 +70,13 @@ PersonalDataBox.propTypes = {
   intl: intlShape.isRequired,
 }
 
-export default injectIntl(PersonalDataBox)
+const SizedLoadingBox = withProps({ width: '60' })(LoadingBox)
+const enhance = compose(
+  graphql(GetProfile, { name: 'profileQuery' }),
+  branch(
+    ({ profileQuery }) => profileQuery.loading,
+    renderComponent(SizedLoadingBox),
+  ),
+  injectIntl,
+)
+export default enhance(PersonalDataBox)
