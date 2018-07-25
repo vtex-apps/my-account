@@ -1,10 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { graphql } from 'react-apollo'
+import { compose, branch, renderComponent } from 'recompose'
 import { injectIntl, intlShape } from 'react-intl'
 import Plus from '@vtex/styleguide/lib/icon/Plus'
 import UserPlaceholderPicture from './UserPlaceholderPicture'
+import GetName from '../../graphql/GetName.gql'
 
-const UserInfo = ({ userName, intl }) => {
+const UserInfo = ({ nameQuery, intl }) => {
   return (
     <div className="flex items-end mb7">
       <div className="mr5 relative">
@@ -14,18 +16,25 @@ const UserInfo = ({ userName, intl }) => {
         </div>
       </div>
       <div>
-        <div className="f5 fw3 mid-gray mb2">
-          {intl.formatMessage({ id: 'userInfo.greeting' })},
-        </div>
-        <div className="f4 fw3">{userName}!</div>
+        {nameQuery.profile && (
+          <div>
+            <div className="f5 fw3 mid-gray mb2">
+              {intl.formatMessage({ id: 'userInfo.greeting' })},
+            </div>
+            <div className="f4 fw3">{nameQuery.profile.firstName}!</div>
+          </div>
+        )}
       </div>
     </div>
   )
 }
 
 UserInfo.propTypes = {
-  userName: PropTypes.string.isRequired,
   intl: intlShape.isRequired,
 }
 
-export default injectIntl(UserInfo)
+const enhance = compose(
+  graphql(GetName, { name: 'nameQuery' }),
+  injectIntl,
+)
+export default enhance(UserInfo)
