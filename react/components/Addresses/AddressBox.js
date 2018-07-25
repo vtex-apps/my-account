@@ -9,7 +9,6 @@ const AddressBox = ({ address, onEditClick, intl }) => {
   return (
     <ContentBox
       width="third"
-      isCentered
       lowerButton={intl.formatMessage({ id: 'commons.edit' })}
       onLowerButtonClick={onEditClick}
     >
