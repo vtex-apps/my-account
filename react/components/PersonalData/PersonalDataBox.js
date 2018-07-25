@@ -11,8 +11,6 @@ const PersonalDataBox = ({ profile, onEditClick, intl }) => {
     others: intl.formatMessage({ id: 'personalData.genders.others' }),
   }
 
-  console.log(profile)
-
   return (
     <ContentBox
       width={'60'}
