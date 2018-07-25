@@ -44,6 +44,16 @@ class Addresses extends Component {
     })
   }
 
+  handleAddressDeleted = index => {
+    const addresses = this.state.addresses.slice()
+    addresses.splice(index, 1)
+
+    this.setState(prevState => ({
+      editingIndex: null,
+      addresses: [...addresses],
+    }))
+  }
+
   render() {
     const { intl } = this.props
     const { isAddingNew, editingIndex, addresses } = this.state
@@ -71,7 +81,11 @@ class Addresses extends Component {
           {addresses.map(
             (address, index) =>
               editingIndex === index ? (
-                <EditingAddressBox address={address} key={index} />
+                <EditingAddressBox
+                  address={address}
+                  onAddressDeleted={() => this.handleAddressDeleted(index)}
+                  key={index}
+                />
               ) : (
                 <AddressBox
                   key={index}
