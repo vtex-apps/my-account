@@ -1,0 +1,5 @@
+query Name @context(scope: "private") {
+  profile {
+    firstName
+  }
+}
