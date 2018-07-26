@@ -88,7 +88,7 @@ class Addresses extends Component {
                 />
               ) : (
                 <AddressBox
-                  key={index}
+                  key={address.addressId}
                   address={address}
                   onEditClick={() => this.startEditing(index)}
                 />
