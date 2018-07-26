@@ -4,48 +4,53 @@ import { intlShape, injectIntl } from 'react-intl'
 import ContentBox from '../shared/ContentBox'
 import Input from '@vtex/styleguide/lib/Input'
 import Button from '@vtex/styleguide/lib/Button'
+import emptyProfile from './emptyProfile'
 
 class EditingPersonalDataBox extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
-      email: '',
-      document: '',
-      gender: '',
-      birthDate: '',
-      mainPhone: '',
+      profile: emptyProfile,
     }
   }
 
+  componentDidMount() {
+    const { profile } = this.props
+    this.setState({ profile })
+  }
+
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
+    e.persist()
+    this.setState(prevState => ({
+      profile: {
+        ...prevState.profile,
+        [e.target.name]: e.target.value,
+      },
+    }))
   }
 
   handleSubmit = e => {
+    const { profile } = this.state
     e.preventDefault()
     // validation and submission logic goes here
-    this.props.onDataSave()
+    console.log(profile)
+
+    //this.props.onDataSave()
   }
 
   render() {
     const { intl } = this.props
-    const {
-      firstName,
-      lastName,
-      email,
-      document,
-      gender,
-      birthDate,
-      mainPhone,
-    } = this.state
+    const { profile } = this.state
+
+    if (!profile) return null
+
     return (
       <ContentBox width={'60'}>
         <form onSubmit={this.handleSubmit}>
           <div className="mb7">
             <Input
               name="firstName"
-              value={firstName}
+              value={profile.firstName || ''}
               onChange={this.handleChange}
               label={intl.formatMessage({ id: 'personalData.firstName' })}
             />
@@ -53,7 +58,7 @@ class EditingPersonalDataBox extends Component {
           <div className="mb7">
             <Input
               name="lastName"
-              value={lastName}
+              value={profile.lastName || ''}
               onChange={this.handleChange}
               label={intl.formatMessage({ id: 'personalData.lastName' })}
             />
@@ -61,7 +66,7 @@ class EditingPersonalDataBox extends Component {
           <div className="mb7">
             <Input
               name="email"
-              value={email}
+              value={profile.email || ''}
               onChange={this.handleChange}
               label={intl.formatMessage({ id: 'personalData.email' })}
             />
@@ -69,7 +74,7 @@ class EditingPersonalDataBox extends Component {
           <div className="mb7">
             <Input
               name="document"
-              value={document}
+              value={profile.document || ''}
               onChange={this.handleChange}
               label={intl.formatMessage({ id: 'personalData.document' })}
             />
@@ -77,7 +82,7 @@ class EditingPersonalDataBox extends Component {
           <div className="mb7">
             <Input
               name="gender"
-              value={gender}
+              value={profile.gender || ''}
               onChange={this.handleChange}
               label={intl.formatMessage({ id: 'personalData.gender' })}
             />
@@ -85,7 +90,7 @@ class EditingPersonalDataBox extends Component {
           <div className="mb7">
             <Input
               name="birthDate"
-              value={birthDate}
+              value={profile.birthDate || ''}
               onChange={this.handleChange}
               label={intl.formatMessage({ id: 'personalData.birthDate' })}
             />
@@ -93,7 +98,7 @@ class EditingPersonalDataBox extends Component {
           <div className="mb7">
             <Input
               name="mainPhone"
-              value={mainPhone}
+              value={profile.homePhone || ''}
               onChange={this.handleChange}
               label={intl.formatMessage({ id: 'personalData.mainPhone' })}
             />

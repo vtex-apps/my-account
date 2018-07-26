@@ -51,7 +51,10 @@ class PersonalData extends Component {
         <Header title={pageTitle} />
         <main className="mt6 flex-ns items-start-ns">
           {isEditingData ? (
-            <EditingPersonalDataBox onDataSave={this.toggleEditingData} />
+            <EditingPersonalDataBox
+              profile={profile}
+              onDataSave={this.toggleEditingData}
+            />
           ) : (
             <PersonalDataBox
               profile={profile}
