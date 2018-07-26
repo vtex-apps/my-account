@@ -9,7 +9,7 @@ import ContentBox from '../shared/ContentBox'
 import DeleteAddress from '../../graphql/DeleteAddress.gql'
 import AddressShape from '../../node_modules/@vtex/address-form/lib/propTypes/AddressShape'
 
-class EditingAddressBox extends Component {
+class FormAddressBox extends Component {
   constructor(props) {
     super(props)
 
@@ -66,7 +66,7 @@ class EditingAddressBox extends Component {
   }
 }
 
-EditingAddressBox.propTypes = {
+FormAddressBox.propTypes = {
   isNew: PropTypes.bool,
   onAddressDeleted: PropTypes.func,
   address: AddressShape,
@@ -85,4 +85,4 @@ const enhance = compose(
   graphql(DeleteAddress, deleteAddressMutation),
   injectIntl,
 )
-export default enhance(EditingAddressBox)
+export default enhance(FormAddressBox)

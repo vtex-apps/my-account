@@ -6,7 +6,7 @@ import { compose, branch, renderComponent } from 'recompose'
 import Button from '@vtex/styleguide/lib/Button'
 import Header from '../components/shared/Header'
 import AddressBox from '../components/Addresses/AddressBox'
-import EditingAddressBox from '../components/Addresses/EditingAddressBox'
+import FormAddressBox from '../components/Addresses/FormAddressBox'
 import Loading from '../pages/Loading'
 import GetAddresses from '../graphql/GetAddresses.gql'
 
@@ -77,11 +77,11 @@ class Addresses extends Component {
           </div>
         </div>
         <main className="mt6 flex-ns flex-wrap-ns items-start-ns">
-          {isAddingNew && <EditingAddressBox isNew={true} />}
+          {isAddingNew && <FormAddressBox isNew={true} />}
           {addresses.map(
             (address, index) =>
               editingIndex === index ? (
-                <EditingAddressBox
+                <FormAddressBox
                   address={address}
                   onAddressDeleted={() => this.handleAddressDeleted(index)}
                   key={index}
