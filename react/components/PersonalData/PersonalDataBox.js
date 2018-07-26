@@ -17,11 +17,19 @@ const PersonalDataBox = ({ profile, onEditClick, intl }) => {
       lowerButton={intl.formatMessage({ id: 'commons.edit' })}
       onLowerButtonClick={onEditClick}
     >
-      <div className="mb8">
-        <DataEntry
-          label={intl.formatMessage({ id: 'personalData.name' })}
-          content={`${profile.firstName} ${profile.lastName}`}
-        />
+      <div className="mb8-ns flex-ns">
+        <div className="mb8 mb0-ns w-50-ns">
+          <DataEntry
+            label={intl.formatMessage({ id: 'personalData.firstName' })}
+            content={profile.firstName}
+          />
+        </div>
+        <div className="mb8 mb0-ns w-50-ns">
+          <DataEntry
+            label={intl.formatMessage({ id: 'personalData.lastName' })}
+            content={profile.lastName}
+          />
+        </div>
       </div>
       <div className="mb8">
         <DataEntry

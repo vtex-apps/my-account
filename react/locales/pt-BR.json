@@ -8,7 +8,8 @@
   "pages.myAccount": "Minha conta",
 
   "personalData.redefinePassword": "Redefinir senha",
-  "personalData.name": "Nome",
+  "personalData.firstName": "Nome",
+  "personalData.lastName": "Sobrenome",
   "personalData.email": "E-mail",
   "personalData.gender": "Gênero",
   "personalData.genders.male": "Masculino",

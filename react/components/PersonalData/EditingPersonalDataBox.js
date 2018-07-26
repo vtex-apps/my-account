@@ -30,16 +30,32 @@ class EditingPersonalDataBox extends Component {
 
   render() {
     const { intl } = this.props
-    const { name, email, document, gender, birthDate, mainPhone } = this.state
+    const {
+      firstName,
+      lastName,
+      email,
+      document,
+      gender,
+      birthDate,
+      mainPhone,
+    } = this.state
     return (
       <ContentBox width={'60'}>
         <form onSubmit={this.handleSubmit}>
           <div className="mb7">
             <Input
-              name="name"
-              value={name}
+              name="firstName"
+              value={firstName}
               onChange={this.handleChange}
-              label={intl.formatMessage({ id: 'personalData.name' })}
+              label={intl.formatMessage({ id: 'personalData.firstName' })}
+            />
+          </div>
+          <div className="mb7">
+            <Input
+              name="lastName"
+              value={lastName}
+              onChange={this.handleChange}
+              label={intl.formatMessage({ id: 'personalData.lastName' })}
             />
           </div>
           <div className="mb7">
