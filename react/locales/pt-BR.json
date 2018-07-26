@@ -25,6 +25,7 @@
 
   "addresses.addAddress": "Adicionar endereço",
   "addresses.saveAddress": "Salvar endereço",
+  "addresses.deleteAddress": "Remover endereço",
   "addresses.setDefault": "Definir padrão",
   "addresses.defaultAddress": "Endereço padrão",
 
