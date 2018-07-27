@@ -1,5 +1,16 @@
 mutation UpdateProfile($profile: ProfileInput) {
   updateProfile(fields: $profile) {
     firstName
+    lastName
+    birthDate
+    gender
+    homePhone
+    businessPhone
+    document
+    email
+    tradeName
+    corporateName
+    corporateDocument
+    stateRegistration
   }
 }
