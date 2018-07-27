@@ -26,11 +26,14 @@ class PersonalData extends Component {
     this.setState({ profile })
   }
 
-  toggleEditingData = () => {
-    const { isEditingData } = this.state
+  startEditingData = () => {
     this.setState({
-      isEditingData: !isEditingData,
+      isEditingData: true,
     })
+  }
+
+  finishEditingData = profile => {
+    this.setState({ profile, isEditingData: false })
   }
 
   toggleEditingPassword = () => {
@@ -42,8 +45,7 @@ class PersonalData extends Component {
 
   render() {
     const { intl } = this.props
-    const { profile } = this.state
-    const { isEditingData, isEditingPassword } = this.state
+    const { profile, isEditingData, isEditingPassword } = this.state
     const pageTitle = intl.formatMessage({ id: 'pages.personalData' })
 
     return (
@@ -51,11 +53,14 @@ class PersonalData extends Component {
         <Header title={pageTitle} />
         <main className="mt6 flex-ns items-start-ns">
           {isEditingData ? (
-            <EditingPersonalDataBox onDataSave={this.toggleEditingData} />
+            <EditingPersonalDataBox
+              profile={profile}
+              onDataSave={this.finishEditingData}
+            />
           ) : (
             <PersonalDataBox
               profile={profile}
-              onEditClick={this.toggleEditingData}
+              onEditClick={this.startEditingData}
             />
           )}
           {isEditingPassword ? (

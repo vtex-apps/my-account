@@ -1,5 +1,6 @@
 query Name @context(scope: "private") {
   profile {
+    cacheId
     firstName
   }
 }

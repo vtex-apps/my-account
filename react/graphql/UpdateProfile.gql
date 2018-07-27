@@ -1,5 +1,5 @@
-query Profile @context(scope: "private") {
-  profile {
+mutation UpdateProfile($profile: ProfileInput) {
+  updateProfile(fields: $profile) {
     cacheId
     firstName
     lastName
