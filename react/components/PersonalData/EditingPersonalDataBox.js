@@ -48,9 +48,7 @@ class EditingPersonalDataBox extends Component {
 
     this.setState({ isLoading: true })
     this.props
-      .updateProfile({
-        variables: { profile },
-      })
+      .updateProfile({ profile })
       .then(({ data: { updateProfile } }) => {
         this.props.onDataSave(updateProfile)
       })

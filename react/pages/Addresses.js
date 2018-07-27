@@ -48,7 +48,7 @@ class Addresses extends Component {
     const addresses = this.state.addresses.slice()
     addresses.splice(index, 1)
 
-    this.setState(prevState => ({
+    this.setState(() => ({
       editingIndex: null,
       addresses: [...addresses],
     }))

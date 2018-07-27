@@ -15,18 +15,13 @@ class AddressDeletter extends Component {
   }
 
   onDeleteClick = () => {
+    const { addressId } = this.props
     if (this.state.isDeleting) return
 
     this.setState({
       isDeleting: true,
     })
-    this.props
-      .deleteAddress({
-        variables: {
-          addressId: this.props.addressId,
-        },
-      })
-      .then(this.props.onAddressDeleted)
+    this.props.deleteAddress({ addressId }).then(this.props.onAddressDeleted)
   }
 
   render() {
