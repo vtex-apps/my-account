@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
+import moment from 'moment'
 import ContentBox from '../shared/ContentBox'
 import Input from '@vtex/styleguide/lib/Input'
 import Button from '@vtex/styleguide/lib/Button'
@@ -19,7 +20,11 @@ class EditingPersonalDataBox extends Component {
   }
 
   componentDidMount() {
-    const { profile } = this.props
+    const { profile: profileData, intl } = this.props
+    const profile = {
+      ...profileData,
+      birthDate: moment(profileData.birthDate).format('L'),
+    }
     this.setState({ profile })
   }
 
@@ -34,15 +39,18 @@ class EditingPersonalDataBox extends Component {
   }
 
   handleSubmit = e => {
-    const { profile } = this.state
-    const { email, ...profileInput } = profile
+    const { email, ...profileInput } = this.state.profile
+    const profile = {
+      ...profileInput,
+      birthDate: moment(profileInput.birthDate, 'L').format('YYYY-MM-DD'),
+    }
 
     e.preventDefault()
 
     this.setState({ isLoading: true })
     this.props
       .updateProfile({
-        variables: { profile: profileInput },
+        variables: { profile },
       })
       .then(({ data: { updateProfile } }) => {
         this.props.onDataSave(updateProfile)

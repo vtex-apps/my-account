@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
+import moment from 'moment'
+import 'moment/locale/pt-br'
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
 
@@ -57,7 +59,7 @@ const PersonalDataBox = ({ profile, onEditClick, intl }) => {
         <div className="mb8 mb0-ns w-50-ns">
           <DataEntry
             label={intl.formatMessage({ id: 'personalData.birthDate' })}
-            content={profile.birthDate}
+            content={moment(profile.birthDate).format('L')}
           />
         </div>
         <div className="mb8 mb0-ns w-50-ns">
