@@ -5,6 +5,7 @@
     "@vtex/styleguide": "5.2.3",
     "classname": "0.0.0",
     "exenv": "^1.2.2",
+    "moment": "^2.22.2",
     "react": "^16.4.1",
     "react-apollo": "^2.1.9",
     "react-intl": "^2.4.0",
