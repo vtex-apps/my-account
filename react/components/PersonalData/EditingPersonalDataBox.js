@@ -39,7 +39,7 @@ class EditingPersonalDataBox extends Component {
   }
 
   handleSubmit = e => {
-    const { email, ...profileInput } = this.state.profile
+    const { email, cacheId, ...profileInput } = this.state.profile
     const profile = {
       ...profileInput,
       birthDate: moment(profileInput.birthDate, 'L').format('YYYY-MM-DD'),
