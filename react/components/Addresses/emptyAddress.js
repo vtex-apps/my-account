@@ -3,6 +3,7 @@ export default {
   city: null,
   complement: null,
   country: 'BRA',
+  geoCoordinates: [],
   neighborhood: null,
   number: null,
   postalCode: null,
