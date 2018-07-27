@@ -1,0 +1,5 @@
+mutation UpdateProfile($profile: ProfileInput) {
+  updateProfile(fields: $profile) {
+    firstName
+  }
+}
