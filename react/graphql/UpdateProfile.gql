@@ -1,5 +1,6 @@
 mutation UpdateProfile($profile: ProfileInput) {
   updateProfile(fields: $profile) {
+    cacheId
     firstName
     lastName
     birthDate
