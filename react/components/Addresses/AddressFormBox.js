@@ -16,13 +16,14 @@ class AddressFormBox extends Component {
     super(props)
     this.state = {
       address: null,
+      isLoading: false,
     }
   }
 
   componentDidMount() {
     const baseAddress = this.props.isNew ? emptyAddress : this.props.address
     const { __typename, ...address } = baseAddress
-    this.setState({ address })
+    this.setState({ address: { ...address, addressQuery: null } })
   }
 
   reshapeAddress(address) {
@@ -39,28 +40,32 @@ class AddressFormBox extends Component {
   }
 
   handleSubmit = (valid, address) => {
-    if (!valid) return
+    if (!valid || this.state.isLoading) return
 
     const { createAddress, updateAddress, isNew, onAddressSaved } = this.props
     const { addressId } = address
     const addressFields = this.reshapeAddress(address)
 
-    console.log(addressFields)
+    this.setState({
+      isLoading: true,
+    })
 
     if (isNew) {
-      createAddress({ addressFields }).then(addresses =>
-        onAddressSaved(addresses),
+      createAddress({ variables: { addressFields } }).then(
+        ({ data: { createAddress } }) =>
+          onAddressSaved(createAddress.addresses),
       )
     } else {
-      updateAddress({ addressId, addressFields }).then(addresses =>
-        onAddressSaved(addresses),
+      updateAddress({ variables: { addressId, addressFields } }).then(
+        ({ data: { updateAddress } }) =>
+          onAddressSaved(updateAddress.addresses),
       )
     }
   }
 
   render() {
     const { onAddressDeleted, isNew } = this.props
-    const { address } = this.state
+    const { address, isLoading } = this.state
 
     if (!address) return null
 
@@ -69,6 +74,7 @@ class AddressFormBox extends Component {
         <AddressEditor
           address={address}
           isNew={isNew}
+          isLoading={isLoading}
           onSubmit={this.handleSubmit}
         />
         {!isNew && (
@@ -85,30 +91,14 @@ class AddressFormBox extends Component {
 AddressFormBox.propTypes = {
   isNew: PropTypes.bool,
   onAddressDeleted: PropTypes.func,
-  createAddress: PropTypes.object.isRequired,
-  updateAddress: PropTypes.object.isRequired,
+  createAddress: PropTypes.func.isRequired,
+  updateAddress: PropTypes.func.isRequired,
   onAddressSaved: PropTypes.func.isRequired,
   address: AddressShape,
 }
 
-const createAddressMutation = {
-  name: 'createAddress',
-  options({ addressFields }) {
-    return {
-      variables: { addressFields },
-    }
-  },
-}
-const updateAddressMutation = {
-  name: 'updateAddress',
-  options({ addressId, addressFields }) {
-    return {
-      variables: { addressId, addressFields },
-    }
-  },
-}
 const enhance = compose(
-  graphql(UpdateAddress, updateAddressMutation),
-  graphql(CreateAddress, createAddressMutation),
+  graphql(UpdateAddress, { name: 'updateAddress' }),
+  graphql(CreateAddress, { name: 'createAddress' }),
 )
 export default enhance(AddressFormBox)

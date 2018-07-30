@@ -86,10 +86,7 @@ class Addresses extends Component {
         </div>
         <main className="mt6 flex-ns flex-wrap-ns items-start-ns">
           {isAddingNew && (
-            <AddressFormBox
-              isNew={true}
-              onAddressSaved={this.handleAddressSaved}
-            />
+            <AddressFormBox isNew onAddressSaved={this.handleAddressSaved} />
           )}
           {addresses.map(
             (address, index) =>

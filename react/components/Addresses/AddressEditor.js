@@ -67,7 +67,7 @@ class AddressEditor extends Component {
   }
 
   render() {
-    const { isNew, onSubmit, intl } = this.props
+    const { isNew, isLoading, onSubmit, intl } = this.props
     const { address, shipsTo } = this.state
     const intlId = isNew ? 'addresses.addAddress' : 'addresses.saveAddress'
 
@@ -98,6 +98,7 @@ class AddressEditor extends Component {
                   variation="secondary"
                   block
                   size="small"
+                  isLoading={isLoading}
                 >
                   {intl.formatMessage({ id: intlId })}
                 </Button>
@@ -111,7 +112,8 @@ class AddressEditor extends Component {
 }
 
 AddressEditor.propTypes = {
-  isNew: PropTypes.bool.isRequired,
+  isNew: PropTypes.bool,
+  isLoading: PropTypes.bool.isRequired,
   address: AddressShape,
   onSubmit: PropTypes.func.isRequired,
   intl: intlShape.isRequired,
