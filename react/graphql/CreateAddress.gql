@@ -1,6 +1,6 @@
-mutation CreateAddress($address: AddressInput) {
-  createAddress(fields: $address) {
-    address {
+mutation CreateAddress($addressFields: AddressInput) {
+  createAddress(fields: $addressFields) {
+    addresses: address {
       addressId: id
       addressType
       city
