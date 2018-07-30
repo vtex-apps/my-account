@@ -1,4 +1,5 @@
 export default {
+  addressId: null,
   addressType: 'residential',
   city: null,
   complement: null,
