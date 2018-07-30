@@ -128,7 +128,7 @@ class EditingPersonalDataBox extends Component {
 
 EditingPersonalDataBox.propTypes = {
   profile: PropTypes.object.isRequired,
-  updateProfile: PropTypes.object.isRequired,
+  updateProfile: PropTypes.func.isRequired,
   intl: intlShape.isRequired,
   onDataSave: PropTypes.func,
 }
