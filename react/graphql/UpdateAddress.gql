@@ -1,0 +1,17 @@
+mutation UpdateAddress($id: String, $address: AddressInput) {
+  updateAddress(id: $id, fields: $address) {
+    addressId: id
+    addressType
+    city
+    complement
+    country
+    neighborhood
+    number
+    postalCode
+    geoCoordinates: geoCoordinate
+    receiverName
+    reference
+    state
+    street
+  }
+}
