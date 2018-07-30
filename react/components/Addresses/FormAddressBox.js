@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
+import { graphql } from 'react-apollo'
+import { compose } from 'recompose'
+
 import { Button } from 'vtex.styleguide'
 import {
   addValidation,
@@ -17,6 +20,8 @@ import AddressShape from '@vtex/address-form/lib/propTypes/AddressShape'
 import ContentBox from '../shared/ContentBox'
 import emptyAddress from './emptyAddress'
 import AddressDeletter from './AddressDeletter'
+import CreateAddress from '../../graphql/CreateAddress.gql'
+import UpdateAddress from '../../graphql/UpdateAddress.gql'
 
 class FormAddressBox extends Component {
   constructor(props) {
@@ -69,9 +74,7 @@ class FormAddressBox extends Component {
   }
 
   handleSubmit = (valid, address) => {
-    console.log('field is being submitted')
-    console.log(valid)
-    console.log(address)
+    if (!valid) return
   }
 
   render() {
@@ -127,8 +130,30 @@ class FormAddressBox extends Component {
 FormAddressBox.propTypes = {
   isNew: PropTypes.bool,
   onAddressDeleted: PropTypes.func,
+  onAddressSaved: PropTypes.func.isRequired,
   address: AddressShape,
   intl: intlShape.isRequired,
 }
 
-export default injectIntl(FormAddressBox)
+const createAddressMutation = {
+  name: 'createAddress',
+  options({ address }) {
+    return {
+      variables: { address },
+    }
+  },
+}
+const updateAddressMutation = {
+  name: 'updateAddress',
+  options({ addressId, address }) {
+    return {
+      variables: { addressId, address },
+    }
+  },
+}
+const enhance = compose(
+  graphql(UpdateAddress, updateAddressMutation),
+  graphql(CreateAddress, createAddressMutation),
+  injectIntl,
+)
+export default enhance(FormAddressBox)

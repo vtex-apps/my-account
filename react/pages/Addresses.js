@@ -54,6 +54,22 @@ class Addresses extends Component {
     }))
   }
 
+  handleAddressSaved = (address, index) => {
+    const addresses = this.state.addresses.slice()
+    addresses[index] = address
+    this.setState(() => ({
+      editingIndex: null,
+      addresses,
+    }))
+  }
+
+  handleAddressCreated = address => {
+    this.setState(prevState => ({
+      isAddingNew: false,
+      addresses: [address, ...prevState.addresses],
+    }))
+  }
+
   render() {
     const { intl } = this.props
     const { isAddingNew, editingIndex, addresses } = this.state
@@ -77,12 +93,20 @@ class Addresses extends Component {
           </div>
         </div>
         <main className="mt6 flex-ns flex-wrap-ns items-start-ns">
-          {isAddingNew && <FormAddressBox isNew={true} />}
+          {isAddingNew && (
+            <FormAddressBox
+              isNew={true}
+              onAddressSaved={this.handleAddressCreated}
+            />
+          )}
           {addresses.map(
             (address, index) =>
               editingIndex === index ? (
                 <FormAddressBox
                   address={address}
+                  onAddressSaved={address =>
+                    this.handleAddressSaved(address, index)
+                  }
                   onAddressDeleted={() => this.handleAddressDeleted(index)}
                   key={index}
                 />

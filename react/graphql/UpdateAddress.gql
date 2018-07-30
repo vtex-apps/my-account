@@ -1,5 +1,5 @@
-mutation UpdateAddress($id: String, $address: AddressInput) {
-  updateAddress(id: $id, fields: $address) {
+mutation UpdateAddress($addressId: String, $address: AddressInput) {
+  updateAddress(id: $addressId, fields: $address) {
     addressId: id
     addressType
     city
