@@ -1,17 +1,19 @@
 mutation CreateAddress($address: AddressInput) {
   createAddress(fields: $address) {
-    addressId: id
-    addressType
-    city
-    complement
-    country
-    neighborhood
-    number
-    postalCode
-    geoCoordinates: geoCoordinate
-    receiverName
-    reference
-    state
-    street
+    address {
+      addressId: id
+      addressType
+      city
+      complement
+      country
+      neighborhood
+      number
+      postalCode
+      geoCoordinates: geoCoordinate
+      receiverName
+      reference
+      state
+      street
+    }
   }
 }
