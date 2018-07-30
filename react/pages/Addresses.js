@@ -6,7 +6,7 @@ import { compose, branch, renderComponent } from 'recompose'
 import { Button } from 'vtex.styleguide'
 import Header from '../components/shared/Header'
 import AddressBox from '../components/Addresses/AddressBox'
-import FormAddressBox from '../components/Addresses/FormAddressBox'
+import AddressFormBox from '../components/Addresses/AddressFormBox'
 import Loading from '../pages/Loading'
 import GetAddresses from '../graphql/GetAddresses.gql'
 
@@ -54,19 +54,11 @@ class Addresses extends Component {
     }))
   }
 
-  handleAddressSaved = (address, index) => {
-    const addresses = this.state.addresses.slice()
-    addresses[index] = address
+  handleAddressSaved = addresses => {
     this.setState(() => ({
       editingIndex: null,
-      addresses,
-    }))
-  }
-
-  handleAddressCreated = address => {
-    this.setState(prevState => ({
       isAddingNew: false,
-      addresses: [address, ...prevState.addresses],
+      addresses: [...addresses],
     }))
   }
 
@@ -94,19 +86,17 @@ class Addresses extends Component {
         </div>
         <main className="mt6 flex-ns flex-wrap-ns items-start-ns">
           {isAddingNew && (
-            <FormAddressBox
+            <AddressFormBox
               isNew={true}
-              onAddressSaved={this.handleAddressCreated}
+              onAddressSaved={this.handleAddressSaved}
             />
           )}
           {addresses.map(
             (address, index) =>
               editingIndex === index ? (
-                <FormAddressBox
+                <AddressFormBox
                   address={address}
-                  onAddressSaved={address =>
-                    this.handleAddressSaved(address, index)
-                  }
+                  onAddressSaved={this.handleAddressSaved}
                   onAddressDeleted={() => this.handleAddressDeleted(index)}
                   key={index}
                 />
