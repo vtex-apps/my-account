@@ -12,6 +12,12 @@ import {
   AddressRules,
   AddressSubmitter,
 } from '@vtex/address-form'
+
+import {
+  GeolocationInput,
+  GoogleMapsContainer,
+  Map,
+} from '@vtex/address-form/lib/geolocation'
 import StyleguideInput from '@vtex/address-form/lib/inputs/StyleguideInput'
 import AddressShape from '@vtex/address-form/lib/propTypes/AddressShape'
 
@@ -67,11 +73,20 @@ class AddressEditor extends Component {
   }
 
   render() {
+    const googleMapsAPIKey = 'AIzaSyAjfT_MsnlHoxFmr7qw6fdTJhDm17e02EI'
     const { isNew, isLoading, onSubmit, intl } = this.props
     const { address, shipsTo } = this.state
     const intlId = isNew ? 'addresses.addAddress' : 'addresses.saveAddress'
 
     if (!address) return null
+
+    const validGeoCoords =
+      address.geoCoordinates.valid &&
+      address.geoCoordinates.geolocationAutoCompleted
+
+    const validPostalCode = isNew
+      ? address.postalCode.valid && !address.postalCode.geolocationAutoCompleted
+      : address.postalCode.value !== null
 
     return (
       <AddressRules
@@ -82,15 +97,55 @@ class AddressEditor extends Component {
           address={address}
           onChangeAddress={this.handleAddressChange}
           Input={StyleguideInput}
-          autoCompletePostalCode={true}
+          autoCompletePostalCode
         >
           <div>
             <CountrySelector shipsTo={shipsTo} />
-            <PostalCodeGetter />
-            <AutoCompletedFields>
-              <a>{intl.formatMessage({ id: 'address-form.edit' })}</a>
-            </AutoCompletedFields>
-            <AddressForm />
+
+            {isNew &&
+              !validPostalCode && (
+                <GoogleMapsContainer apiKey={googleMapsAPIKey} locale="pt-BR">
+                  {({ loading, googleMaps }) => (
+                    <div>
+                      <GeolocationInput
+                        loadingGoogle={loading}
+                        googleMaps={googleMaps}
+                      />
+
+                      {validGeoCoords && (
+                        <Map
+                          loadingGoogle={loading}
+                          googleMaps={googleMaps}
+                          mapProps={{
+                            className: 'mb7 br2',
+                            style: {
+                              height: '120px',
+                            },
+                          }}
+                        />
+                      )}
+                    </div>
+                  )}
+                </GoogleMapsContainer>
+              )}
+
+            {!validGeoCoords && <PostalCodeGetter />}
+
+            {isNew &&
+              (validGeoCoords || validPostalCode) && (
+                <div className="pb7">
+                  <AutoCompletedFields>
+                    <a className="blue pointer">
+                      {intl.formatMessage({ id: 'address-form.edit' })}
+                    </a>
+                  </AutoCompletedFields>
+                </div>
+              )}
+
+            {(validGeoCoords || validPostalCode) && (
+              <AddressForm omitAutoCompletedFields={isNew} />
+            )}
+
             <AddressSubmitter onSubmit={onSubmit}>
               {handleSubmit => (
                 <Button
@@ -99,6 +154,7 @@ class AddressEditor extends Component {
                   block
                   size="small"
                   isLoading={isLoading}
+                  disabled={!(validGeoCoords || validPostalCode)}
                 >
                   {intl.formatMessage({ id: intlId })}
                 </Button>
@@ -112,7 +168,7 @@ class AddressEditor extends Component {
 }
 
 AddressEditor.propTypes = {
-  isNew: PropTypes.bool,
+  isNew: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
   address: AddressShape,
   onSubmit: PropTypes.func.isRequired,

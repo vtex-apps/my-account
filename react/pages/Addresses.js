@@ -92,6 +92,7 @@ class Addresses extends Component {
             (address, index) =>
               editingIndex === index ? (
                 <AddressFormBox
+                  isNew={false}
                   address={address}
                   onAddressSaved={this.handleAddressSaved}
                   onAddressDeleted={() => this.handleAddressDeleted(index)}

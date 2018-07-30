@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
-import { compose } from 'recompose'
+import { compose, renderNothing, branch } from 'recompose'
 import AddressShape from '@vtex/address-form/lib/propTypes/AddressShape'
 import ContentBox from '../shared/ContentBox'
 import emptyAddress from './emptyAddress'
@@ -10,6 +10,7 @@ import AddressEditor from './AddressEditor'
 import AddressDeletter from './AddressDeletter'
 import CreateAddress from '../../graphql/CreateAddress.gql'
 import UpdateAddress from '../../graphql/UpdateAddress.gql'
+import GetName from '../../graphql/GetName.gql'
 
 class AddressFormBox extends Component {
   constructor(props) {
@@ -20,10 +21,24 @@ class AddressFormBox extends Component {
     }
   }
 
+  prepareAddress(address) {
+    const { profile } = this.props.nameQuery
+    const defaultReceiver = profile.firstName + ' ' + profile.lastName
+
+    const { __typename, ...addr } = address
+    return {
+      ...addr,
+      addressQuery: null,
+      receiverName: addr.receiverName || defaultReceiver,
+    }
+  }
+
   componentDidMount() {
     const baseAddress = this.props.isNew ? emptyAddress : this.props.address
-    const { __typename, ...address } = baseAddress
-    this.setState({ address: { ...address, addressQuery: null } })
+
+    this.setState({
+      address: this.prepareAddress(baseAddress),
+    })
   }
 
   reshapeAddress(address) {
@@ -89,8 +104,9 @@ class AddressFormBox extends Component {
 }
 
 AddressFormBox.propTypes = {
-  isNew: PropTypes.bool,
+  isNew: PropTypes.bool.isRequired,
   onAddressDeleted: PropTypes.func,
+  nameQuery: PropTypes.object.isRequired,
   createAddress: PropTypes.func.isRequired,
   updateAddress: PropTypes.func.isRequired,
   onAddressSaved: PropTypes.func.isRequired,
@@ -98,6 +114,9 @@ AddressFormBox.propTypes = {
 }
 
 const enhance = compose(
+  graphql(GetName, { name: 'nameQuery' }),
+  branch(({ nameQuery }) => nameQuery.loading, renderNothing()),
+
   graphql(UpdateAddress, { name: 'updateAddress' }),
   graphql(CreateAddress, { name: 'createAddress' }),
 )
