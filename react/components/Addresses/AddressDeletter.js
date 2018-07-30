@@ -21,7 +21,9 @@ class AddressDeletter extends Component {
     this.setState({
       isDeleting: true,
     })
-    this.props.deleteAddress({ addressId }).then(this.props.onAddressDeleted)
+    this.props
+      .deleteAddress({ variables: { addressId } })
+      .then(this.props.onAddressDeleted)
   }
 
   render() {
@@ -51,16 +53,8 @@ AddressDeletter.propTypes = {
   intl: intlShape.isRequired,
 }
 
-const deleteAddressMutation = {
-  name: 'deleteAddress',
-  options({ addressId }) {
-    return {
-      variables: { addressId },
-    }
-  },
-}
 const enhance = compose(
-  graphql(DeleteAddress, deleteAddressMutation),
+  graphql(DeleteAddress, { name: 'deleteAddress' }),
   injectIntl,
 )
 export default enhance(AddressDeletter)

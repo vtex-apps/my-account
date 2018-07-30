@@ -48,7 +48,7 @@ class EditingPersonalDataBox extends Component {
 
     this.setState({ isLoading: true })
     this.props
-      .updateProfile({ profile })
+      .updateProfile({ variables: { profile } })
       .then(({ data: { updateProfile } }) => {
         this.props.onDataSave(updateProfile)
       })
@@ -133,16 +133,8 @@ EditingPersonalDataBox.propTypes = {
   onDataSave: PropTypes.func,
 }
 
-const updateProfileMutation = {
-  name: 'updateProfile',
-  options({ profile }) {
-    return {
-      variables: { profile },
-    }
-  },
-}
 const enhance = compose(
-  graphql(UpdateProfile, updateProfileMutation),
+  graphql(UpdateProfile, { name: 'updateProfile' }),
   injectIntl,
 )
 export default enhance(EditingPersonalDataBox)
