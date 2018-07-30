@@ -126,7 +126,7 @@ class Addresses extends Component {
 
 Addresses.propTypes = {
   intl: intlShape.isRequired,
-  addressesQuery: PropTypes.any,
+  addressesQuery: PropTypes.object.isRequired,
 }
 
 const enhance = compose(

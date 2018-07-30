@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent } from 'recompose'
 import { injectIntl, intlShape } from 'react-intl'
@@ -30,6 +31,7 @@ const UserInfo = ({ nameQuery, intl }) => {
 }
 
 UserInfo.propTypes = {
+  nameQuery: PropTypes.object.isRequired,
   intl: intlShape.isRequired,
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent } from 'recompose'
@@ -75,6 +76,7 @@ class PersonalData extends Component {
 }
 
 PersonalData.propTypes = {
+  profileQuery: PropTypes.object.isRequired,
   intl: intlShape.isRequired,
 }
 

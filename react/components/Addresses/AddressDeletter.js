@@ -45,6 +45,7 @@ class AddressDeletter extends Component {
 }
 
 AddressDeletter.propTypes = {
+  deleteAddress: PropTypes.object.isRequired,
   onAddressDeleted: PropTypes.func.isRequired,
   addressId: PropTypes.number.isRequired,
   intl: intlShape.isRequired,
