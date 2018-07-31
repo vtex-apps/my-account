@@ -14,7 +14,9 @@ const ErrorAlert = ({ onDismiss, intl }) => {
 }
 
 ErrorAlert.propTypes = {
+  /** Callback for dismissing the alert */
   onDismiss: PropTypes.func,
+  /** React-intl utility */
   intl: intlShape.isRequired,
 }
 

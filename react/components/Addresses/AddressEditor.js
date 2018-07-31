@@ -155,10 +155,15 @@ class AddressEditor extends Component {
 }
 
 AddressEditor.propTypes = {
+  /** Whether the form is being used for a new address or an existing one */
   isNew: PropTypes.bool.isRequired,
+  /** Whether the form should display a 'loading' state */
   isLoading: PropTypes.bool.isRequired,
+  /** The address currently being worked on */
   address: AddressShape,
+  /** Callback for form submission */
   onSubmit: PropTypes.func.isRequired,
+  /** React-intl utility */
   intl: intlShape.isRequired,
 }
 

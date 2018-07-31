@@ -52,10 +52,15 @@ class AddressDeletter extends Component {
 }
 
 AddressDeletter.propTypes = {
+  /** Mutation for deleting an address */
   deleteAddress: PropTypes.func.isRequired,
+  /** Callback for address deletion */
   onAddressDeleted: PropTypes.func.isRequired,
+  /** Callback for error during deletion */
   onError: PropTypes.func.isRequired,
+  /** Id of the address to be deleted */
   addressId: PropTypes.string.isRequired,
+  /** React-intl utility */
   intl: intlShape.isRequired,
 }
 
