@@ -96,7 +96,7 @@ class Addresses extends Component {
                   address={address}
                   onAddressSaved={this.handleAddressSaved}
                   onAddressDeleted={() => this.handleAddressDeleted(index)}
-                  key={index}
+                  key={address.addressId}
                 />
               ) : (
                 <AddressBox
