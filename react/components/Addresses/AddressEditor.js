@@ -20,6 +20,7 @@ import {
 } from '@vtex/address-form/lib/geolocation'
 import StyleguideInput from '@vtex/address-form/lib/inputs/StyleguideInput'
 import AddressShape from '@vtex/address-form/lib/propTypes/AddressShape'
+import countryCodes from './countryCodes'
 
 class AddressEditor extends Component {
   constructor(props) {
@@ -40,24 +41,7 @@ class AddressEditor extends Component {
 
   getShippingCountries() {
     const { intl } = this.props
-    return [
-      'ARG',
-      'BOL',
-      'BRA',
-      'CAN',
-      'CHL',
-      'COL',
-      'ECU',
-      'ESP',
-      'GTM',
-      'MEX',
-      'PER',
-      'PRT',
-      'PRY',
-      'URY',
-      'USA',
-      'VEN',
-    ].map(countryCode => ({
+    return countryCodes.map(countryCode => ({
       label: intl.formatMessage({ id: 'country.' + countryCode }),
       value: countryCode,
     }))
