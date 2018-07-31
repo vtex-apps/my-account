@@ -72,7 +72,7 @@ class EditingPersonalDataBox extends Component {
 
   render() {
     const { intl } = this.props
-    const { profile, isLoading } = this.state
+    const { profile, isLoading, shouldShowError } = this.state
 
     if (!profile) return null
 
