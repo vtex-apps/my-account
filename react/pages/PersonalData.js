@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent } from 'recompose'
@@ -8,7 +9,7 @@ import PersonalDataBox from '../components/PersonalData/PersonalDataBox'
 import PasswordBox from '../components/PersonalData/PasswordBox'
 import EditingPasswordBox from '../components/PersonalData/EditingPasswordBox'
 import EditingPersonalDataBox from '../components/PersonalData/EditingPersonalDataBox'
-import GetProfile from '../graphql/GetProfile.gql'
+import GetProfile from '../graphql/getProfile.gql'
 import emptyProfile from '../components/PersonalData/emptyProfile'
 
 class PersonalData extends Component {
@@ -75,6 +76,7 @@ class PersonalData extends Component {
 }
 
 PersonalData.propTypes = {
+  profileQuery: PropTypes.object.isRequired,
   intl: intlShape.isRequired,
 }
 

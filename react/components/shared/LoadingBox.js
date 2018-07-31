@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ContentBox from './ContentBox'
-import Spinner from '@vtex/styleguide/lib/Spinner'
+import { Spinner } from 'vtex.styleguide'
 
 const LoadingBox = ({ width }) => {
   return (

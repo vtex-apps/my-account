@@ -1,10 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent } from 'recompose'
 import { injectIntl, intlShape } from 'react-intl'
-import Plus from '@vtex/styleguide/lib/icon/Plus'
+import { IconPlus } from 'vtex.styleguide'
 import UserPlaceholderPicture from './UserPlaceholderPicture'
-import GetName from '../../graphql/GetName.gql'
+import GetName from '../../graphql/getName.gql'
 
 const UserInfo = ({ nameQuery, intl }) => {
   return (
@@ -12,7 +13,7 @@ const UserInfo = ({ nameQuery, intl }) => {
       <div className="mr5 relative">
         <UserPlaceholderPicture />
         <div className="absolute bottom-0 right-0 blue bg-white br-100 plus-sign">
-          <Plus size={20} color="currentColor" />
+          <IconPlus size={20} color="currentColor" />
         </div>
       </div>
       <div>
@@ -30,6 +31,7 @@ const UserInfo = ({ nameQuery, intl }) => {
 }
 
 UserInfo.propTypes = {
+  nameQuery: PropTypes.object.isRequired,
   intl: intlShape.isRequired,
 }
 

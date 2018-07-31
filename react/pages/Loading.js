@@ -1,5 +1,5 @@
 import React from 'react'
-import Spinner from '@vtex/styleguide/lib/Spinner'
+import { Spinner } from 'vtex.styleguide'
 
 const Loading = () => {
   return (

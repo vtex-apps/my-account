@@ -1,5 +1,5 @@
-query Addresses @context(scope: "private") {
-  profile {
+mutation CreateAddress($addressFields: AddressInput) {
+  createAddress(fields: $addressFields) {
     addresses: address {
       addressId: id
       addressType

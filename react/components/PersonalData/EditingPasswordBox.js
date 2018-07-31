@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import ContentBox from '../shared/ContentBox'
-import Input from '@vtex/styleguide/lib/Input'
-import Button from '@vtex/styleguide/lib/Button'
+import { Input, Button } from 'vtex.styleguide'
 
 class EditingPasswordBox extends Component {
   constructor(props) {

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent } from 'recompose'
-import Button from '@vtex/styleguide/lib/Button'
+import { Button } from 'vtex.styleguide'
 import Header from '../components/shared/Header'
 import AddressBox from '../components/Addresses/AddressBox'
-import FormAddressBox from '../components/Addresses/FormAddressBox'
+import AddressFormBox from '../components/Addresses/AddressFormBox'
 import Loading from '../pages/Loading'
-import GetAddresses from '../graphql/GetAddresses.gql'
+import GetAddresses from '../graphql/getAddresses.gql'
 
 class Addresses extends Component {
   constructor(props) {
@@ -48,8 +48,16 @@ class Addresses extends Component {
     const addresses = this.state.addresses.slice()
     addresses.splice(index, 1)
 
-    this.setState(prevState => ({
+    this.setState(() => ({
       editingIndex: null,
+      addresses: [...addresses],
+    }))
+  }
+
+  handleAddressSaved = addresses => {
+    this.setState(() => ({
+      editingIndex: null,
+      isAddingNew: false,
       addresses: [...addresses],
     }))
   }
@@ -77,14 +85,18 @@ class Addresses extends Component {
           </div>
         </div>
         <main className="mt6 flex-ns flex-wrap-ns items-start-ns">
-          {isAddingNew && <FormAddressBox isNew={true} />}
+          {isAddingNew && (
+            <AddressFormBox isNew onAddressSaved={this.handleAddressSaved} />
+          )}
           {addresses.map(
             (address, index) =>
               editingIndex === index ? (
-                <FormAddressBox
+                <AddressFormBox
+                  isNew={false}
                   address={address}
+                  onAddressSaved={this.handleAddressSaved}
                   onAddressDeleted={() => this.handleAddressDeleted(index)}
-                  key={index}
+                  key={address.addressId}
                 />
               ) : (
                 <AddressBox
@@ -102,7 +114,7 @@ class Addresses extends Component {
 
 Addresses.propTypes = {
   intl: intlShape.isRequired,
-  addressesQuery: PropTypes.any,
+  addressesQuery: PropTypes.object.isRequired,
 }
 
 const enhance = compose(

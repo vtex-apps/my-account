@@ -30,5 +30,6 @@
   "addresses.setDefault": "Definir padrão",
   "addresses.defaultAddress": "Endereço padrão",
 
-  "commons.edit": "Editar"
+  "commons.edit": "Editar",
+  "commons.error-occurred": "Ocorreu um erro inesperado, tente novamente."
 }
