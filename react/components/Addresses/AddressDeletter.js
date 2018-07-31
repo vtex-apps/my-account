@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
-import { graphql } from 'react-apollo'
-import { compose } from 'recompose'
+import { graphql, compose } from 'react-apollo'
 import { Button } from 'vtex.styleguide'
 import DeleteAddress from '../../graphql/DeleteAddress.gql'
 
