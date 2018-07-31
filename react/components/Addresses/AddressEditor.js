@@ -131,20 +131,17 @@ class AddressEditor extends Component {
 
             {!validGeoCoords && <PostalCodeGetter />}
 
-            {isNew &&
-              (validGeoCoords || validPostalCode) && (
-                <div className="pb7">
-                  <AutoCompletedFields>
-                    <a className="blue pointer">
-                      {intl.formatMessage({ id: 'address-form.edit' })}
-                    </a>
-                  </AutoCompletedFields>
-                </div>
-              )}
-
             {(validGeoCoords || validPostalCode) && (
-              <AddressForm omitAutoCompletedFields={isNew} />
+              <div className="pb7">
+                <AutoCompletedFields>
+                  <a className="blue pointer">
+                    {intl.formatMessage({ id: 'address-form.edit' })}
+                  </a>
+                </AutoCompletedFields>
+              </div>
             )}
+
+            {(validGeoCoords || validPostalCode) && <AddressForm />}
 
             <AddressSubmitter onSubmit={onSubmit}>
               {handleSubmit => (
