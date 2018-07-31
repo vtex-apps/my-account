@@ -73,6 +73,8 @@ class AddressEditor extends Component {
       ? address.postalCode.valid && !address.postalCode.geolocationAutoCompleted
       : address.postalCode.value !== null
 
+    const locale = global.__RUNTIME__.culture.locale
+
     return (
       <AddressRules
         country={address.country.value}
@@ -91,7 +93,7 @@ class AddressEditor extends Component {
               !validPostalCode && (
                 <GoogleMapsContainer
                   apiKey={GOOGLE_MAPS_API_KEY}
-                  locale="pt-BR"
+                  locale={locale}
                 >
                   {({ loading, googleMaps }) => (
                     <div>
