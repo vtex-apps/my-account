@@ -9,16 +9,16 @@ class AddressDeletter extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isDeleting: false,
+      isLoading: false,
     }
   }
 
   onDeleteClick = () => {
     const { addressId } = this.props
-    if (this.state.isDeleting) return
+    if (this.state.isLoading) return
 
     this.setState({
-      isDeleting: true,
+      isLoading: true,
     })
     this.props
       .deleteAddress({ variables: { addressId } })
@@ -27,7 +27,7 @@ class AddressDeletter extends Component {
 
   render() {
     const { intl } = this.props
-    const { isDeleting } = this.state
+    const { isLoading } = this.state
     return (
       <div className="mt5">
         <Button
@@ -36,7 +36,7 @@ class AddressDeletter extends Component {
           block
           size="small"
           onClick={this.onDeleteClick}
-          isLoading={isDeleting}
+          isLoading={isLoading}
         >
           {intl.formatMessage({ id: 'addresses.deleteAddress' })}
         </Button>
