@@ -8,7 +8,7 @@ import Header from '../components/shared/Header'
 import AddressBox from '../components/Addresses/AddressBox'
 import AddressFormBox from '../components/Addresses/AddressFormBox'
 import Loading from '../pages/Loading'
-import GetAddresses from '../graphql/GetAddresses.gql'
+import GetAddresses from '../graphql/getAddresses.gql'
 
 class Addresses extends Component {
   constructor(props) {

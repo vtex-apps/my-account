@@ -8,9 +8,9 @@ import ContentBox from '../shared/ContentBox'
 import emptyAddress from './emptyAddress'
 import AddressEditor from './AddressEditor'
 import AddressDeletter from './AddressDeletter'
-import CreateAddress from '../../graphql/CreateAddress.gql'
-import UpdateAddress from '../../graphql/UpdateAddress.gql'
-import GetName from '../../graphql/GetName.gql'
+import CreateAddress from '../../graphql/createAddress.gql'
+import UpdateAddress from '../../graphql/updateAddress.gql'
+import GetName from '../../graphql/getName.gql'
 
 class AddressFormBox extends Component {
   constructor(props) {

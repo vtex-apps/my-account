@@ -9,7 +9,7 @@ import PersonalDataBox from '../components/PersonalData/PersonalDataBox'
 import PasswordBox from '../components/PersonalData/PasswordBox'
 import EditingPasswordBox from '../components/PersonalData/EditingPasswordBox'
 import EditingPersonalDataBox from '../components/PersonalData/EditingPersonalDataBox'
-import GetProfile from '../graphql/GetProfile.gql'
+import GetProfile from '../graphql/getProfile.gql'
 import emptyProfile from '../components/PersonalData/emptyProfile'
 
 class PersonalData extends Component {

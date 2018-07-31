@@ -5,7 +5,7 @@ import { compose, branch, renderComponent } from 'recompose'
 import { injectIntl, intlShape } from 'react-intl'
 import { IconPlus } from 'vtex.styleguide'
 import UserPlaceholderPicture from './UserPlaceholderPicture'
-import GetName from '../../graphql/GetName.gql'
+import GetName from '../../graphql/getName.gql'
 
 const UserInfo = ({ nameQuery, intl }) => {
   return (

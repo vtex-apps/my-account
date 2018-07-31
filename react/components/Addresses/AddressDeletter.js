@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import { graphql, compose } from 'react-apollo'
 import { Button } from 'vtex.styleguide'
-import DeleteAddress from '../../graphql/DeleteAddress.gql'
+import DeleteAddress from '../../graphql/deleteAddress.gql'
 
 class AddressDeletter extends Component {
   constructor(props) {

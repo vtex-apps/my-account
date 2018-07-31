@@ -7,7 +7,7 @@ import { Input, Button } from 'vtex.styleguide'
 import moment from 'moment'
 import ContentBox from '../shared/ContentBox'
 import emptyProfile from './emptyProfile'
-import UpdateProfile from '../../graphql/UpdateProfile.gql'
+import UpdateProfile from '../../graphql/updateProfile.gql'
 
 class EditingPersonalDataBox extends Component {
   constructor(props) {
