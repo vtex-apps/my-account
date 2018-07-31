@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { intlShape, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose, renderNothing, branch } from 'recompose'
 import AddressShape from '@vtex/address-form/lib/propTypes/AddressShape'
 import ContentBox from '../shared/ContentBox'
+import ErrorAlert from '../shared/ErrorAlert'
 import emptyAddress from './emptyAddress'
 import AddressEditor from './AddressEditor'
 import AddressDeletter from './AddressDeletter'
@@ -18,6 +18,7 @@ class AddressFormBox extends Component {
     this.state = {
       address: null,
       isLoading: false,
+      shouldShowError: false,
     }
   }
 
@@ -63,29 +64,47 @@ class AddressFormBox extends Component {
 
     this.setState({
       isLoading: true,
+      shouldShowError: false,
     })
 
     if (isNew) {
-      createAddress({ variables: { addressFields } }).then(
-        ({ data: { createAddress } }) =>
+      createAddress({ variables: { addressFields } })
+        .then(({ data: { createAddress } }) =>
           onAddressSaved(createAddress.addresses),
-      )
+        )
+        .catch(this.showError)
     } else {
-      updateAddress({ variables: { addressId, addressFields } }).then(
-        ({ data: { updateAddress } }) =>
+      updateAddress({ variables: { addressId, addressFields } })
+        .then(({ data: { updateAddress } }) =>
           onAddressSaved(updateAddress.addresses),
-      )
+        )
+        .catch(this.showError)
     }
+  }
+
+  showError = () => {
+    window.scroll(0, 0)
+    this.setState({
+      isLoading: false,
+      shouldShowError: true,
+    })
+  }
+
+  dismissError = () => {
+    this.setState({
+      shouldShowError: false,
+    })
   }
 
   render() {
     const { onAddressDeleted, isNew } = this.props
-    const { address, isLoading } = this.state
+    const { address, isLoading, shouldShowError } = this.state
 
     if (!address) return null
 
     return (
       <ContentBox width={'third'}>
+        {shouldShowError && <ErrorAlert onDismiss={this.dismissError} />}
         <AddressEditor
           address={address}
           isNew={isNew}
@@ -96,6 +115,7 @@ class AddressFormBox extends Component {
           <AddressDeletter
             addressId={address.addressId}
             onAddressDeleted={onAddressDeleted}
+            onError={this.showError}
           />
         )}
       </ContentBox>

@@ -15,6 +15,7 @@ class EditingPersonalDataBox extends Component {
     this.state = {
       profile: emptyProfile,
       isLoading: false,
+      shouldShowError: false,
     }
   }
 
@@ -46,12 +47,27 @@ class EditingPersonalDataBox extends Component {
 
     e.preventDefault()
 
-    this.setState({ isLoading: true })
+    this.setState({ isLoading: true, shouldShowError: false })
     this.props
       .updateProfile({ variables: { profile } })
       .then(({ data: { updateProfile } }) => {
         this.props.onDataSave(updateProfile)
       })
+      .catch(this.showError)
+  }
+
+  showError = () => {
+    window.scroll(0, 0)
+    this.setState({
+      isLoading: false,
+      shouldShowError: true,
+    })
+  }
+
+  dismissError = () => {
+    this.setState({
+      shouldShowError: false,
+    })
   }
 
   render() {
@@ -62,6 +78,7 @@ class EditingPersonalDataBox extends Component {
 
     return (
       <ContentBox width={'60'}>
+        {shouldShowError && <ErrorAlert onDismiss={this.dismissError} />}
         <form onSubmit={this.handleSubmit}>
           <div className="mb7">
             <Input

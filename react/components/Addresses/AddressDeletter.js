@@ -14,7 +14,7 @@ class AddressDeletter extends Component {
   }
 
   onDeleteClick = () => {
-    const { addressId } = this.props
+    const { addressId, onAddressDeleted, onError } = this.props
     if (this.state.isLoading) return
 
     this.setState({
@@ -22,7 +22,13 @@ class AddressDeletter extends Component {
     })
     this.props
       .deleteAddress({ variables: { addressId } })
-      .then(this.props.onAddressDeleted)
+      .then(onAddressDeleted)
+      .catch(error => {
+        this.setState({
+          isLoading: false,
+        })
+        onError(error)
+      })
   }
 
   render() {
@@ -48,6 +54,7 @@ class AddressDeletter extends Component {
 AddressDeletter.propTypes = {
   deleteAddress: PropTypes.func.isRequired,
   onAddressDeleted: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired,
   addressId: PropTypes.string.isRequired,
   intl: intlShape.isRequired,
 }
