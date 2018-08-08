@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
-import moment from 'moment'
-import 'moment/locale/pt-br'
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
 
@@ -17,18 +15,18 @@ const PersonalDataBox = ({ profile, onEditClick, intl }) => {
 
   return (
     <ContentBox
-      width={'60'}
+      shouldAllowGrowing
       lowerButton={intl.formatMessage({ id: 'commons.edit' })}
       onLowerButtonClick={onEditClick}
     >
-      <div className="mb8-ns flex-ns">
-        <div className="mb8 mb0-ns w-50-ns">
+      <div className="flex-ns flex-wrap">
+        <div className="mb8 flex-auto">
           <DataEntry
             label={intl.formatMessage({ id: 'personalData.firstName' })}
             content={profile.firstName}
           />
         </div>
-        <div className="mb8 mb0-ns w-50-ns">
+        <div className="mb8 flex-auto">
           <DataEntry
             label={intl.formatMessage({ id: 'personalData.lastName' })}
             content={profile.lastName}
@@ -41,28 +39,28 @@ const PersonalDataBox = ({ profile, onEditClick, intl }) => {
           content={profile.email}
         />
       </div>
-      <div className="mb8-ns flex-ns">
-        <div className="mb8 mb0-ns w-50-ns">
+      <div className="flex-ns flex-wrap">
+        <div className="mb8 flex-auto">
           <DataEntry
             label={intl.formatMessage({ id: 'personalData.document' })}
             content={profile.document}
           />
         </div>
-        <div className="mb8 mb0-ns w-50-ns">
+        <div className="mb8 w-50-ns">
           <DataEntry
             label={intl.formatMessage({ id: 'personalData.gender' })}
             content={profile.gender}
           />
         </div>
       </div>
-      <div className="mb8-ns flex-ns">
-        <div className="mb8 mb0-ns w-50-ns">
+      <div className="flex-ns flex-wrap">
+        <div className="mb8 flex-auto">
           <DataEntry
             label={intl.formatMessage({ id: 'personalData.birthDate' })}
-            content={moment(profile.birthDate).format('L')}
+            content={profile.birthDate}
           />
         </div>
-        <div className="mb8 mb0-ns w-50-ns">
+        <div className="mb8 w-50-ns">
           <DataEntry
             label={intl.formatMessage({ id: 'personalData.mainPhone' })}
             content={profile.homePhone}

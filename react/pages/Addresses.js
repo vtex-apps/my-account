@@ -70,9 +70,9 @@ class Addresses extends Component {
 
     return (
       <section>
-        <div className="flex flex-column flex-row-ns items-center-ns justify-between-ns">
+        <div className="flex flex-column flex-row-ns flex-wrap items-center-ns justify-between-ns">
           <Header title={pageTitle} />
-          <div className="mt6 mt5-ns mr5-ns">
+          <div className="mt6 mt5-ns mr5-ns flex-shrink-0">
             <Button
               variation="primary"
               block
@@ -84,7 +84,7 @@ class Addresses extends Component {
             </Button>
           </div>
         </div>
-        <main className="mt6 flex-ns flex-wrap-ns items-start-ns">
+        <main className="mt7 flex-ns flex-wrap-ns items-start-ns">
           {isAddingNew && (
             <AddressFormBox isNew onAddressSaved={this.handleAddressSaved} />
           )}

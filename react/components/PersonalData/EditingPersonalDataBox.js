@@ -4,7 +4,6 @@ import { intlShape, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
 import { Input, Button } from 'vtex.styleguide'
-import moment from 'moment'
 import ContentBox from '../shared/ContentBox'
 import emptyProfile from './emptyProfile'
 import UpdateProfile from '../../graphql/updateProfile.gql'
@@ -20,11 +19,7 @@ class EditingPersonalDataBox extends Component {
   }
 
   componentDidMount() {
-    const { profile: profileData, intl } = this.props
-    const profile = {
-      ...profileData,
-      birthDate: moment(profileData.birthDate).format('L'),
-    }
+    const { profile } = this.props
     this.setState({ profile })
   }
 
@@ -42,7 +37,6 @@ class EditingPersonalDataBox extends Component {
     const { email, cacheId, ...profileInput } = this.state.profile
     const profile = {
       ...profileInput,
-      birthDate: moment(profileInput.birthDate, 'L').format('YYYY-MM-DD'),
     }
 
     e.preventDefault()
@@ -77,7 +71,7 @@ class EditingPersonalDataBox extends Component {
     if (!profile) return null
 
     return (
-      <ContentBox width={'60'}>
+      <ContentBox shouldAllowGrowing>
         {shouldShowError && <ErrorAlert onDismiss={this.dismissError} />}
         <form onSubmit={this.handleSubmit}>
           <div className="mb7">

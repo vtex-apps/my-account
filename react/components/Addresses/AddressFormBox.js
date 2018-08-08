@@ -103,7 +103,7 @@ class AddressFormBox extends Component {
     if (!address) return null
 
     return (
-      <ContentBox width={'third'}>
+      <ContentBox shouldAllowGrowing>
         {shouldShowError && <ErrorAlert onDismiss={this.dismissError} />}
         <AddressEditor
           address={address}
