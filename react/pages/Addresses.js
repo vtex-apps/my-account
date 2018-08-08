@@ -72,7 +72,7 @@ class Addresses extends Component {
       <section>
         <div className="flex flex-column flex-row-ns flex-wrap items-center-ns justify-between-ns">
           <Header title={pageTitle} />
-          <div className="mt6 mt5-ns mr5-ns flex-shrink-0">
+          <div className="mt6 mt5-ns mr5-ns flex-none">
             <Button
               variation="primary"
               block
