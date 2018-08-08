@@ -4,7 +4,7 @@ import { intlShape, injectIntl } from 'react-intl'
 import ContentBox from '../shared/ContentBox'
 import { Input, Button } from 'vtex.styleguide'
 
-class EditingPasswordBox extends Component {
+class PasswordFormBox extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -56,9 +56,9 @@ class EditingPasswordBox extends Component {
   }
 }
 
-EditingPasswordBox.propTypes = {
+PasswordFormBox.propTypes = {
   intl: intlShape.isRequired,
   onPasswordChange: PropTypes.func,
 }
 
-export default injectIntl(EditingPasswordBox)
+export default injectIntl(PasswordFormBox)

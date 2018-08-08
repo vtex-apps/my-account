@@ -8,7 +8,7 @@ import ContentBox from '../shared/ContentBox'
 import emptyProfile from './emptyProfile'
 import UpdateProfile from '../../graphql/updateProfile.gql'
 
-class EditingPersonalDataBox extends Component {
+class ProfileFormBox extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -137,7 +137,7 @@ class EditingPersonalDataBox extends Component {
   }
 }
 
-EditingPersonalDataBox.propTypes = {
+ProfileFormBox.propTypes = {
   profile: PropTypes.object.isRequired,
   updateProfile: PropTypes.func.isRequired,
   intl: intlShape.isRequired,
@@ -148,4 +148,4 @@ const enhance = compose(
   graphql(UpdateProfile, { name: 'updateProfile' }),
   injectIntl,
 )
-export default enhance(EditingPersonalDataBox)
+export default enhance(ProfileFormBox)

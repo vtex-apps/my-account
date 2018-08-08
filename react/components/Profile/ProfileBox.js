@@ -4,7 +4,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
 
-const PersonalDataBox = ({ profile, onEditClick, intl }) => {
+const ProfileBox = ({ profile, onEditClick, intl }) => {
   const genders = {
     male: intl.formatMessage({ id: 'personalData.genders.male' }),
     female: intl.formatMessage({ id: 'personalData.genders.female' }),
@@ -71,9 +71,9 @@ const PersonalDataBox = ({ profile, onEditClick, intl }) => {
   )
 }
 
-PersonalDataBox.propTypes = {
+ProfileBox.propTypes = {
   onEditClick: PropTypes.func,
   intl: intlShape.isRequired,
 }
 
-export default injectIntl(PersonalDataBox)
+export default injectIntl(ProfileBox)
