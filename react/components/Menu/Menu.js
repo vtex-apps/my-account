@@ -4,7 +4,7 @@ import MenuLinksList from './MenuLinksList'
 
 const Menu = () => {
   return (
-    <aside className="pv5 ph7 mr8-ns">
+    <aside className="pv5 ph7 mr7-ns">
       <UserInfo />
       <MenuLinksList />
     </aside>
