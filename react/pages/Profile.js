@@ -9,7 +9,6 @@ import ProfileBox from '../components/Profile/ProfileBox'
 import PasswordBox from '../components/Profile/PasswordBox'
 import PasswordFormBox from '../components/Profile/PasswordFormBox'
 import ProfileFormBox from '../components/Profile/ProfileFormBox'
-import emptyProfile from '../components/Profile/emptyProfile'
 import GetProfile from '../graphql/getProfile.gql'
 
 class Profile extends Component {
@@ -18,7 +17,7 @@ class Profile extends Component {
     this.state = {
       isEditingData: false,
       isEditingPassword: false,
-      profile: emptyProfile,
+      profile: null,
     }
   }
 
@@ -48,6 +47,8 @@ class Profile extends Component {
     const { intl } = this.props
     const { profile, isEditingData, isEditingPassword } = this.state
     const pageTitle = intl.formatMessage({ id: 'pages.profile' })
+
+    console.log(JSON.stringify(profile))
 
     return (
       <section>
