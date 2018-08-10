@@ -7,7 +7,7 @@ import DataEntry from '../shared/DataEntry'
 const PasswordBox = ({ onEditClick, intl }) => {
   return (
     <ContentBox
-      width={'40'}
+      shouldAllowGrowing
       lowerButton={intl.formatMessage({ id: 'personalData.redefinePassword' })}
       onLowerButtonClick={onEditClick}
     >

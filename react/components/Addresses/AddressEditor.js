@@ -73,6 +73,12 @@ class AddressEditor extends Component {
       ? address.postalCode.valid && !address.postalCode.geolocationAutoCompleted
       : address.postalCode.value !== null
 
+    const hasAutoCompletedFields = Object.keys(address).some(
+      fieldName =>
+        address[fieldName].geolocationAutoCompleted ||
+        address[fieldName].postalCodeAutoCompleted,
+    )
+
     const locale = global.__RUNTIME__.culture.locale
 
     return (
@@ -107,10 +113,7 @@ class AddressEditor extends Component {
                           loadingGoogle={loading}
                           googleMaps={googleMaps}
                           mapProps={{
-                            className: 'mb7 br2',
-                            style: {
-                              height: '120px',
-                            },
+                            className: 'mb7 br2 h4',
                           }}
                         />
                       )}
@@ -121,7 +124,7 @@ class AddressEditor extends Component {
 
             {!validGeoCoords && <PostalCodeGetter />}
 
-            {(validGeoCoords || validPostalCode) && (
+            {hasAutoCompletedFields && (
               <div className="pb7">
                 <AutoCompletedFields>
                   <a className="blue pointer">

@@ -3,14 +3,14 @@ import { Route, Switch, Redirect, HashRouter } from 'react-router-dom'
 import Media from 'react-media'
 import Menu from './Menu/Menu'
 import Addresses from '../pages/Addresses'
-import PersonalData from '../pages/PersonalData'
+import Profile from '../pages/Profile'
 import PaymentData from '../pages/PaymentData'
 import Loading from '../pages/Loading'
 
 const AppRouter = () => {
   const mainRoutes = [
     <Route key="1" path="/addresses" component={Addresses} />,
-    <Route key="2" path="/personal-data" component={PersonalData} />,
+    <Route key="2" path="/profile" component={Profile} />,
     <Route key="3" path="/payment-data" component={PaymentData} />,
     <Route key="4" path="/my-orders" component={Loading} />,
   ]
@@ -29,7 +29,7 @@ const AppRouter = () => {
           ) : (
             <div className="flex pl7 pr9 pv9">
               <Menu />
-              <main className="flex-auto pt8">
+              <main className="flex-auto pt6">
                 <Switch>
                   {mainRoutes}
                   <Redirect from="/" to="/addresses" />

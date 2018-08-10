@@ -20,7 +20,7 @@ const Header = ({ title, intl, history }) => {
           </span>
         </ClearButton>
       </div>
-      <h1 className="normal near-black f3 mb0 mt4">{title}</h1>
+      <h1 className="b near-black mb0 mt4 f3">{title}</h1>
     </header>
   )
 }

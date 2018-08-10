@@ -7,11 +7,10 @@ import ContentBox from '../shared/ContentBox'
 const AddressBox = ({ address, onEditClick, intl }) => {
   return (
     <ContentBox
-      width="third"
       lowerButton={intl.formatMessage({ id: 'commons.edit' })}
       onLowerButtonClick={onEditClick}
     >
-      <div className="lighter black-40 flex flex-column items-center lh-copy pv4">
+      <div className="lighter black-40 lh-copy pv4 w5 h4">
         <AddressRules
           country={address.country}
           fetch={country => import('@vtex/address-form/lib/country/' + country)}

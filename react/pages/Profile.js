@@ -5,14 +5,14 @@ import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent } from 'recompose'
 import Loading from '../pages/Loading'
 import Header from '../components/shared/Header'
-import PersonalDataBox from '../components/PersonalData/PersonalDataBox'
-import PasswordBox from '../components/PersonalData/PasswordBox'
-import EditingPasswordBox from '../components/PersonalData/EditingPasswordBox'
-import EditingPersonalDataBox from '../components/PersonalData/EditingPersonalDataBox'
+import ProfileBox from '../components/Profile/ProfileBox'
+import PasswordBox from '../components/Profile/PasswordBox'
+import PasswordFormBox from '../components/Profile/PasswordFormBox'
+import ProfileFormBox from '../components/Profile/ProfileFormBox'
+import emptyProfile from '../components/Profile/emptyProfile'
 import GetProfile from '../graphql/getProfile.gql'
-import emptyProfile from '../components/PersonalData/emptyProfile'
 
-class PersonalData extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -47,25 +47,22 @@ class PersonalData extends Component {
   render() {
     const { intl } = this.props
     const { profile, isEditingData, isEditingPassword } = this.state
-    const pageTitle = intl.formatMessage({ id: 'pages.personalData' })
+    const pageTitle = intl.formatMessage({ id: 'pages.profile' })
 
     return (
       <section>
         <Header title={pageTitle} />
-        <main className="mt6 flex-ns items-start-ns">
+        <main className="mt6 flex-ns flex-wrap items-start-ns">
           {isEditingData ? (
-            <EditingPersonalDataBox
+            <ProfileFormBox
               profile={profile}
               onDataSave={this.finishEditingData}
             />
           ) : (
-            <PersonalDataBox
-              profile={profile}
-              onEditClick={this.startEditingData}
-            />
+            <ProfileBox profile={profile} onEditClick={this.startEditingData} />
           )}
           {isEditingPassword ? (
-            <EditingPasswordBox onPasswordChange={this.toggleEditingPassword} />
+            <PasswordFormBox onPasswordChange={this.toggleEditingPassword} />
           ) : (
             <PasswordBox onEditClick={this.toggleEditingPassword} />
           )}
@@ -75,7 +72,7 @@ class PersonalData extends Component {
   }
 }
 
-PersonalData.propTypes = {
+Profile.propTypes = {
   profileQuery: PropTypes.object.isRequired,
   intl: intlShape.isRequired,
 }
@@ -85,4 +82,4 @@ const enhance = compose(
   branch(({ profileQuery }) => profileQuery.loading, renderComponent(Loading)),
   injectIntl,
 )
-export default enhance(PersonalData)
+export default enhance(Profile)
