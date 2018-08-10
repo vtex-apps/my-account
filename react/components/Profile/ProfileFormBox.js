@@ -4,6 +4,7 @@ import { intlShape, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
 import { Input, Button } from 'vtex.styleguide'
+import { ProfileRules, ProfileContainer } from '@vtex/profile-form'
 import ContentBox from '../shared/ContentBox'
 import emptyProfile from './emptyProfile'
 import UpdateProfile from '../../graphql/updateProfile.gql'
@@ -34,6 +35,11 @@ class ProfileFormBox extends Component {
   }
 
   handleSubmit = e => {
+    console.log('batendo aqui')
+    console.log(e)
+
+    return
+
     const { email, cacheId, ...profileInput } = this.state.profile
     const profile = {
       ...profileInput,
@@ -73,65 +79,28 @@ class ProfileFormBox extends Component {
     return (
       <ContentBox shouldAllowGrowing>
         {shouldShowError && <ErrorAlert onDismiss={this.dismissError} />}
-        <form onSubmit={this.handleSubmit}>
-          <div className="mb7">
-            <Input
-              name="firstName"
-              value={profile.firstName || ''}
-              onChange={this.handleChange}
-              label={intl.formatMessage({ id: 'personalData.firstName' })}
-            />
-          </div>
-          <div className="mb7">
-            <Input
-              name="lastName"
-              value={profile.lastName || ''}
-              onChange={this.handleChange}
-              label={intl.formatMessage({ id: 'personalData.lastName' })}
-            />
-          </div>
-          <div className="mb7">
-            <Input
-              name="document"
-              value={profile.document || ''}
-              onChange={this.handleChange}
-              label={intl.formatMessage({ id: 'personalData.document' })}
-            />
-          </div>
-          <div className="mb7">
-            <Input
-              name="gender"
-              value={profile.gender || ''}
-              onChange={this.handleChange}
-              label={intl.formatMessage({ id: 'personalData.gender' })}
-            />
-          </div>
-          <div className="mb7">
-            <Input
-              name="birthDate"
-              value={profile.birthDate || ''}
-              onChange={this.handleChange}
-              label={intl.formatMessage({ id: 'personalData.birthDate' })}
-            />
-          </div>
-          <div className="mb7">
-            <Input
-              name="homePhone"
-              value={profile.homePhone || ''}
-              onChange={this.handleChange}
-              label={intl.formatMessage({ id: 'personalData.mainPhone' })}
-            />
-          </div>
-          <Button
-            type="submit"
-            variation="secondary"
-            block
-            size="small"
-            isLoading={isLoading}
-          >
-            {intl.formatMessage({ id: 'personalData.saveData' })}
-          </Button>
-        </form>
+
+        <ProfileRules
+          country={'BRA'}
+          fetch={country => import('@vtex/profile-form/lib/rules/' + country)}
+        >
+          <ProfileContainer
+            profile={profile}
+            onSubmit={this.handleSubmit}
+            shouldShowExtendedGenders={true}
+            SubmitButton={
+              <Button
+                type="submit"
+                variation="secondary"
+                block
+                size="small"
+                isLoading={isLoading}
+              >
+                {intl.formatMessage({ id: 'profile-form.save-changes' })}
+              </Button>
+            }
+          />
+        </ProfileRules>
       </ContentBox>
     )
   }
