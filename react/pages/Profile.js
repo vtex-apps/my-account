@@ -17,38 +17,24 @@ class Profile extends Component {
     this.state = {
       isEditingData: false,
       isEditingPassword: false,
-      profile: null,
     }
   }
 
-  componentDidMount() {
-    const { profile } = this.props.profileQuery
-    this.setState({ profile })
-  }
-
-  startEditingData = () => {
-    this.setState({
-      isEditingData: true,
-    })
-  }
-
-  finishEditingData = profile => {
-    this.setState({ profile, isEditingData: false })
+  toggleEditingData = () => {
+    this.setState(prevState => ({ isEditingData: !prevState.isEditingData }))
   }
 
   toggleEditingPassword = () => {
-    const { isEditingPassword } = this.state
-    this.setState({
-      isEditingPassword: !isEditingPassword,
-    })
+    this.setState(prevState => ({
+      isEditingPassword: !prevState.isEditingPassword,
+    }))
   }
 
   render() {
-    const { intl } = this.props
-    const { profile, isEditingData, isEditingPassword } = this.state
+    const { intl, profileQuery } = this.props
+    const { profile } = profileQuery
+    const { isEditingData, isEditingPassword } = this.state
     const pageTitle = intl.formatMessage({ id: 'pages.profile' })
-
-    console.log(JSON.stringify(profile))
 
     return (
       <section>
@@ -57,10 +43,13 @@ class Profile extends Component {
           {isEditingData ? (
             <ProfileFormBox
               profile={profile}
-              onDataSave={this.finishEditingData}
+              onDataSave={this.toggleEditingData}
             />
           ) : (
-            <ProfileBox profile={profile} onEditClick={this.startEditingData} />
+            <ProfileBox
+              profile={profile}
+              onEditClick={this.toggleEditingData}
+            />
           )}
           {isEditingPassword ? (
             <PasswordFormBox onPasswordChange={this.toggleEditingPassword} />
