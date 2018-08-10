@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import { graphql } from 'react-apollo'
-import { compose, branch, renderComponent } from 'recompose'
+import { compose, branch, renderComponent, withProps } from 'recompose'
 import Loading from '../pages/Loading'
 import Header from '../components/shared/Header'
 import ProfileBox from '../components/Profile/ProfileBox'
@@ -31,8 +31,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { intl, profileQuery } = this.props
-    const { profile } = profileQuery
+    const { intl, profile } = this.props
     const { isEditingData, isEditingPassword } = this.state
     const pageTitle = intl.formatMessage({ id: 'pages.profile' })
 
@@ -63,13 +62,14 @@ class Profile extends Component {
 }
 
 Profile.propTypes = {
-  profileQuery: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
   intl: intlShape.isRequired,
 }
 
 const enhance = compose(
-  graphql(GetProfile, { name: 'profileQuery' }),
-  branch(({ profileQuery }) => profileQuery.loading, renderComponent(Loading)),
+  graphql(GetProfile),
+  branch(({ data }) => data.loading, renderComponent(Loading)),
+  withProps(({ data }) => ({ profile: data.profile })),
   injectIntl,
 )
 export default enhance(Profile)

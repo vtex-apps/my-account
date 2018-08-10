@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
-import { compose, branch, renderComponent } from 'recompose'
+import { compose, branch, renderComponent, withProps } from 'recompose'
 import { Button } from 'vtex.styleguide'
 import Header from '../components/shared/Header'
 import AddressBox from '../components/Addresses/AddressBox'
@@ -21,10 +21,7 @@ class Addresses extends Component {
   }
 
   componentDidMount() {
-    const {
-      profile: { addresses },
-    } = this.props.addressesQuery
-
+    const { addresses } = this.props
     this.setState({
       addresses: [...addresses],
     })
@@ -114,15 +111,15 @@ class Addresses extends Component {
 
 Addresses.propTypes = {
   intl: intlShape.isRequired,
-  addressesQuery: PropTypes.object.isRequired,
+  addresses: PropTypes.object.isRequired,
 }
 
 const enhance = compose(
-  graphql(GetAddresses, { name: 'addressesQuery' }),
-  branch(
-    ({ addressesQuery }) => addressesQuery.loading,
-    renderComponent(Loading),
-  ),
+  graphql(GetAddresses),
+  branch(({ data }) => data.loading, renderComponent(Loading)),
+  withProps(({ data }) => ({
+    addresses: data.profile.addresses,
+  })),
   injectIntl,
 )
 export default enhance(Addresses)
