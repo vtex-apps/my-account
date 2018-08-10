@@ -55,7 +55,7 @@ class AddressFormBox extends Component {
     return (1 + Math.random()).toString(36).substring(2)
   }
 
-  handleSubmit = (valid, address) => {
+  handleSubmit = async (valid, address) => {
     if (!valid || this.state.isLoading) return
 
     const { createAddress, updateAddress, isNew, onAddressSaved } = this.props
@@ -67,18 +67,18 @@ class AddressFormBox extends Component {
       shouldShowError: false,
     })
 
-    if (isNew) {
-      createAddress({ variables: { addressFields } })
-        .then(({ data: { createAddress } }) =>
-          onAddressSaved(createAddress.addresses),
-        )
-        .catch(this.showError)
-    } else {
-      updateAddress({ variables: { addressId, addressFields } })
-        .then(({ data: { updateAddress } }) =>
-          onAddressSaved(updateAddress.addresses),
-        )
-        .catch(this.showError)
+    try {
+      if (isNew) {
+        const { data } = await createAddress({ variables: { addressFields } })
+        onAddressSaved(data.createAddress.addresses)
+      } else {
+        const { data } = await updateAddress({
+          variables: { addressId, addressFields },
+        })
+        onAddressSaved(data.updateAddress.addresses)
+      }
+    } catch (error) {
+      this.showError()
     }
   }
 

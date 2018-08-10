@@ -13,22 +13,18 @@ class AddressDeletter extends Component {
     }
   }
 
-  onDeleteClick = () => {
-    const { addressId, onAddressDeleted, onError } = this.props
+  onDeleteClick = async () => {
+    const { addressId, onAddressDeleted, deleteAddress, onError } = this.props
     if (this.state.isLoading) return
 
-    this.setState({
-      isLoading: true,
-    })
-    this.props
-      .deleteAddress({ variables: { addressId } })
-      .then(onAddressDeleted)
-      .catch(error => {
-        this.setState({
-          isLoading: false,
-        })
-        onError(error)
-      })
+    try {
+      this.setState({ isLoading: true })
+      await deleteAddress({ variables: { addressId } })
+      onAddressDeleted()
+    } catch (error) {
+      this.setState({ isLoading: false })
+      onError(error)
+    }
   }
 
   render() {
