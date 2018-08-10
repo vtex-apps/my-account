@@ -3,61 +3,40 @@ import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
-import { Input, Button } from 'vtex.styleguide'
+import { Button } from 'vtex.styleguide'
 import { ProfileRules, ProfileContainer } from '@vtex/profile-form'
 import ContentBox from '../shared/ContentBox'
-import emptyProfile from './emptyProfile'
+import ErrorAlert from '../shared/ErrorAlert'
 import UpdateProfile from '../../graphql/updateProfile.gql'
 
 class ProfileFormBox extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      profile: emptyProfile,
       isLoading: false,
       shouldShowError: false,
     }
   }
 
-  componentDidMount() {
-    const { profile } = this.props
-    this.setState({ profile })
-  }
+  handleSubmit = async ({ valid, profile }) => {
+    const { updateProfile, onDataSave } = this.props
 
-  handleChange = e => {
-    e.persist()
-    this.setState(prevState => ({
-      profile: {
-        ...prevState.profile,
-        [e.target.name]: e.target.value,
-      },
-    }))
-  }
+    if (!valid) return
 
-  handleSubmit = e => {
-    console.log('batendo aqui')
-    console.log(e)
-
-    return
-
-    const { email, cacheId, ...profileInput } = this.state.profile
-    const profile = {
-      ...profileInput,
-    }
-
-    e.preventDefault()
-
-    this.setState({ isLoading: true, shouldShowError: false })
-    this.props
-      .updateProfile({ variables: { profile } })
-      .then(({ data: { updateProfile } }) => {
-        this.props.onDataSave(updateProfile)
+    try {
+      this.setState({ isLoading: true, shouldShowError: false })
+      const { data } = await updateProfile({
+        variables: { profile: { ...profile, birthDate: '1996-09-10' } },
       })
-      .catch(this.showError)
+      onDataSave(data.updateProfile)
+    } catch (error) {
+      this.showError()
+    }
   }
 
   showError = () => {
     window.scroll(0, 0)
+
     this.setState({
       isLoading: false,
       shouldShowError: true,
@@ -71,8 +50,8 @@ class ProfileFormBox extends Component {
   }
 
   render() {
-    const { intl } = this.props
-    const { profile, isLoading, shouldShowError } = this.state
+    const { intl, profile } = this.props
+    const { isLoading, shouldShowError } = this.state
 
     if (!profile) return null
 
@@ -85,17 +64,11 @@ class ProfileFormBox extends Component {
           fetch={country => import('@vtex/profile-form/lib/rules/' + country)}
         >
           <ProfileContainer
-            profile={profile}
+            defaultProfile={profile}
             onSubmit={this.handleSubmit}
             shouldShowExtendedGenders={true}
             SubmitButton={
-              <Button
-                type="submit"
-                variation="secondary"
-                block
-                size="small"
-                isLoading={isLoading}
-              >
+              <Button type="submit" block size="small" isLoading={isLoading}>
                 {intl.formatMessage({ id: 'profile-form.save-changes' })}
               </Button>
             }
