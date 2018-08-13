@@ -63,6 +63,7 @@
 
   "profile-form.field.firstName": "Nome",
   "profile-form.field.lastName": "Sobrenome",
+  "profile-form.field.email": "E-mail",
   "profile-form.field.gender": "Gênero",
   "profile-form.field.custom-gender": "Gênero Personalizado",
   "profile-form.field.document": "Documento",
