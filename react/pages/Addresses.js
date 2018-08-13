@@ -9,6 +9,7 @@ import AddressBox from '../components/Addresses/AddressBox'
 import AddressFormBox from '../components/Addresses/AddressFormBox'
 import Loading from '../pages/Loading'
 import GetAddresses from '../graphql/getAddresses.gql'
+import GetName from '../graphql/getName.gql'
 
 class Addresses extends Component {
   constructor(props) {
@@ -16,15 +17,7 @@ class Addresses extends Component {
     this.state = {
       isAddingNew: false,
       editingIndex: null,
-      addresses: [],
     }
-  }
-
-  componentDidMount() {
-    const { addresses } = this.props
-    this.setState({
-      addresses: [...addresses],
-    })
   }
 
   startAddingNew = () => {
@@ -41,27 +34,20 @@ class Addresses extends Component {
     })
   }
 
-  handleAddressDeleted = index => {
-    const addresses = this.state.addresses.slice()
-    addresses.splice(index, 1)
-
-    this.setState(() => ({
-      editingIndex: null,
-      addresses: [...addresses],
-    }))
+  handleAddressDeleted = () => {
+    this.setState({ editingIndex: null })
   }
 
-  handleAddressSaved = addresses => {
-    this.setState(() => ({
+  handleAddressSaved = () => {
+    this.setState({
       editingIndex: null,
       isAddingNew: false,
-      addresses: [...addresses],
-    }))
+    })
   }
 
   render() {
-    const { intl } = this.props
-    const { isAddingNew, editingIndex, addresses } = this.state
+    const { intl, addresses, profile } = this.props
+    const { isAddingNew, editingIndex } = this.state
 
     const pageTitle = intl.formatMessage({ id: 'pages.addresses' })
 
@@ -91,8 +77,9 @@ class Addresses extends Component {
                 <AddressFormBox
                   isNew={false}
                   address={address}
+                  profile={profile}
                   onAddressSaved={this.handleAddressSaved}
-                  onAddressDeleted={() => this.handleAddressDeleted(index)}
+                  onAddressDeleted={this.handleAddressDeleted}
                   key={address.addressId}
                 />
               ) : (
@@ -111,13 +98,19 @@ class Addresses extends Component {
 
 Addresses.propTypes = {
   intl: intlShape.isRequired,
-  addresses: PropTypes.object.isRequired,
+  addresses: PropTypes.array.isRequired,
+  profile: PropTypes.object.isRequired,
 }
 
 const enhance = compose(
   graphql(GetAddresses),
-  branch(({ data }) => data.loading, renderComponent(Loading)),
+  graphql(GetName, { name: 'nameQuery' }),
+  branch(
+    ({ data, nameQuery }) => data.loading || nameQuery.loading,
+    renderComponent(Loading),
+  ),
   withProps(({ data }) => ({
+    profile: data.profile,
     addresses: data.profile.addresses,
   })),
   injectIntl,
