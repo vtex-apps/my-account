@@ -6,10 +6,14 @@ import Addresses from '../pages/Addresses'
 import Profile from '../pages/Profile'
 import PaymentData from '../pages/PaymentData'
 import ProfileEdit from '../pages/ProfileEdit'
+import AddressCreate from '../pages/AddressCreate'
+import AddressEdit from '../pages/AddressEdit'
 
 const AppRouter = () => {
   const routes = [
     { path: '/addresses', component: Addresses },
+    { path: '/addresses/new', component: AddressCreate },
+    { path: '/addresses/edit/:id', component: AddressEdit },
     { path: '/profile', component: Profile },
     { path: '/profile/edit', component: ProfileEdit },
     { path: '/payment-data', component: PaymentData },
