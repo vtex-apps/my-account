@@ -1,5 +1,6 @@
 mutation UpdateAddress($addressId: String, $addressFields: AddressInput) {
   updateAddress(id: $addressId, fields: $addressFields) {
+    cacheId
     addresses: address {
       addressId: id
       addressType
