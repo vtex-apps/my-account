@@ -109,8 +109,8 @@ const enhance = compose(
     ({ data, nameQuery }) => data.loading || nameQuery.loading,
     renderComponent(Loading),
   ),
-  withProps(({ data }) => ({
-    profile: data.profile,
+  withProps(({ data, nameQuery }) => ({
+    profile: nameQuery.profile,
     addresses: data.profile.addresses,
   })),
   injectIntl,
