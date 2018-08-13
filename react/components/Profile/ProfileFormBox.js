@@ -19,7 +19,7 @@ class ProfileFormBox extends Component {
   handleSubmit = async ({ valid, profile: profileInput }) => {
     const { updateProfile, onDataSave, onError } = this.props
     const { email, ...profile } = profileInput
-    if (!valid) return
+    if (!valid || this.state.isLoading) return
 
     try {
       this.setState({ isLoading: true })

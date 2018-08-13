@@ -13,9 +13,10 @@ class ProfileEdit extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      shouldShowError: true,
+      shouldShowError: false,
     }
   }
+
   goBack = () => {
     this.props.history.push('/profile')
   }
