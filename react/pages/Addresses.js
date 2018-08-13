@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
-import { compose, branch, renderComponent } from 'recompose'
+import { compose, branch, renderComponent, withProps } from 'recompose'
 import { Button } from 'vtex.styleguide'
 import Header from '../components/shared/Header'
 import AddressBox from '../components/Addresses/AddressBox'
 import AddressFormBox from '../components/Addresses/AddressFormBox'
 import Loading from '../pages/Loading'
 import GetAddresses from '../graphql/getAddresses.gql'
+import GetName from '../graphql/getName.gql'
 
 class Addresses extends Component {
   constructor(props) {
@@ -16,18 +17,7 @@ class Addresses extends Component {
     this.state = {
       isAddingNew: false,
       editingIndex: null,
-      addresses: [],
     }
-  }
-
-  componentDidMount() {
-    const {
-      profile: { addresses },
-    } = this.props.addressesQuery
-
-    this.setState({
-      addresses: [...addresses],
-    })
   }
 
   startAddingNew = () => {
@@ -44,27 +34,20 @@ class Addresses extends Component {
     })
   }
 
-  handleAddressDeleted = index => {
-    const addresses = this.state.addresses.slice()
-    addresses.splice(index, 1)
-
-    this.setState(() => ({
-      editingIndex: null,
-      addresses: [...addresses],
-    }))
+  handleAddressDeleted = () => {
+    this.setState({ editingIndex: null })
   }
 
-  handleAddressSaved = addresses => {
-    this.setState(() => ({
+  handleAddressSaved = () => {
+    this.setState({
       editingIndex: null,
       isAddingNew: false,
-      addresses: [...addresses],
-    }))
+    })
   }
 
   render() {
-    const { intl } = this.props
-    const { isAddingNew, editingIndex, addresses } = this.state
+    const { intl, addresses, profile } = this.props
+    const { isAddingNew, editingIndex } = this.state
 
     const pageTitle = intl.formatMessage({ id: 'pages.addresses' })
 
@@ -94,8 +77,9 @@ class Addresses extends Component {
                 <AddressFormBox
                   isNew={false}
                   address={address}
+                  profile={profile}
                   onAddressSaved={this.handleAddressSaved}
-                  onAddressDeleted={() => this.handleAddressDeleted(index)}
+                  onAddressDeleted={this.handleAddressDeleted}
                   key={address.addressId}
                 />
               ) : (
@@ -114,15 +98,21 @@ class Addresses extends Component {
 
 Addresses.propTypes = {
   intl: intlShape.isRequired,
-  addressesQuery: PropTypes.object.isRequired,
+  addresses: PropTypes.array.isRequired,
+  profile: PropTypes.object.isRequired,
 }
 
 const enhance = compose(
-  graphql(GetAddresses, { name: 'addressesQuery' }),
+  graphql(GetAddresses),
+  graphql(GetName, { name: 'nameQuery' }),
   branch(
-    ({ addressesQuery }) => addressesQuery.loading,
+    ({ data, nameQuery }) => data.loading || nameQuery.loading,
     renderComponent(Loading),
   ),
+  withProps(({ data, nameQuery }) => ({
+    profile: nameQuery.profile,
+    addresses: data.profile.addresses,
+  })),
   injectIntl,
 )
 export default enhance(Addresses)

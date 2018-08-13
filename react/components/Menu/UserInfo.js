@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
-import { compose, branch, renderComponent } from 'recompose'
+import { compose, branch, renderNothing, withProps } from 'recompose'
 import { injectIntl, intlShape } from 'react-intl'
 import { IconPlus } from 'vtex.styleguide'
 import UserPlaceholderPicture from './UserPlaceholderPicture'
 import GetName from '../../graphql/getName.gql'
 
-const UserInfo = ({ nameQuery, intl }) => {
+const UserInfo = ({ profile, intl }) => {
   return (
     <div className="flex items-end mb7">
       <div className="mr5 relative">
@@ -17,26 +17,24 @@ const UserInfo = ({ nameQuery, intl }) => {
         </div>
       </div>
       <div>
-        {nameQuery.profile && (
-          <div>
-            <div className="f5 fw3 mid-gray mb2">
-              {intl.formatMessage({ id: 'userInfo.greeting' })},
-            </div>
-            <div className="f4 fw3">{nameQuery.profile.firstName}!</div>
-          </div>
-        )}
+        <div className="f5 fw3 mid-gray mb2">
+          {intl.formatMessage({ id: 'userInfo.greeting' })},
+        </div>
+        <div className="f4 fw3">{profile.firstName}!</div>
       </div>
     </div>
   )
 }
 
 UserInfo.propTypes = {
-  nameQuery: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
   intl: intlShape.isRequired,
 }
 
 const enhance = compose(
-  graphql(GetName, { name: 'nameQuery' }),
+  graphql(GetName),
+  branch(({ data }) => data.loading, renderNothing),
+  withProps(({ data }) => ({ profile: data.profile })),
   injectIntl,
 )
 export default enhance(UserInfo)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
-import { compose, renderNothing, branch } from 'recompose'
+import { compose } from 'recompose'
 import AddressShape from '@vtex/address-form/lib/propTypes/AddressShape'
 import ContentBox from '../shared/ContentBox'
 import ErrorAlert from '../shared/ErrorAlert'
@@ -10,7 +10,6 @@ import AddressEditor from './AddressEditor'
 import AddressDeletter from './AddressDeletter'
 import CreateAddress from '../../graphql/createAddress.gql'
 import UpdateAddress from '../../graphql/updateAddress.gql'
-import GetName from '../../graphql/getName.gql'
 
 class AddressFormBox extends Component {
   constructor(props) {
@@ -23,7 +22,7 @@ class AddressFormBox extends Component {
   }
 
   prepareAddress(address) {
-    const { profile } = this.props.nameQuery
+    const { profile } = this.props
     const defaultReceiver = profile.firstName + ' ' + profile.lastName
 
     const { __typename, ...addr } = address
@@ -55,7 +54,7 @@ class AddressFormBox extends Component {
     return (1 + Math.random()).toString(36).substring(2)
   }
 
-  handleSubmit = (valid, address) => {
+  handleSubmit = async (valid, address) => {
     if (!valid || this.state.isLoading) return
 
     const { createAddress, updateAddress, isNew, onAddressSaved } = this.props
@@ -67,18 +66,18 @@ class AddressFormBox extends Component {
       shouldShowError: false,
     })
 
-    if (isNew) {
-      createAddress({ variables: { addressFields } })
-        .then(({ data: { createAddress } }) =>
-          onAddressSaved(createAddress.addresses),
-        )
-        .catch(this.showError)
-    } else {
-      updateAddress({ variables: { addressId, addressFields } })
-        .then(({ data: { updateAddress } }) =>
-          onAddressSaved(updateAddress.addresses),
-        )
-        .catch(this.showError)
+    try {
+      if (isNew) {
+        const { data } = await createAddress({ variables: { addressFields } })
+        onAddressSaved(data.createAddress.addresses)
+      } else {
+        const { data } = await updateAddress({
+          variables: { addressId, addressFields },
+        })
+        onAddressSaved(data.updateAddress.addresses)
+      }
+    } catch (error) {
+      this.showError()
     }
   }
 
@@ -126,17 +125,14 @@ class AddressFormBox extends Component {
 AddressFormBox.propTypes = {
   isNew: PropTypes.bool.isRequired,
   onAddressDeleted: PropTypes.func,
-  nameQuery: PropTypes.object.isRequired,
   createAddress: PropTypes.func.isRequired,
   updateAddress: PropTypes.func.isRequired,
   onAddressSaved: PropTypes.func.isRequired,
   address: AddressShape,
+  profile: PropTypes.object,
 }
 
 const enhance = compose(
-  graphql(GetName, { name: 'nameQuery' }),
-  branch(({ nameQuery }) => nameQuery.loading, renderNothing()),
-
   graphql(UpdateAddress, { name: 'updateAddress' }),
   graphql(CreateAddress, { name: 'createAddress' }),
 )

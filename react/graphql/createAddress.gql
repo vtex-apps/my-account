@@ -1,5 +1,6 @@
 mutation CreateAddress($addressFields: AddressInput) {
   createAddress(fields: $addressFields) {
+    cacheId
     addresses: address {
       addressId: id
       addressType
