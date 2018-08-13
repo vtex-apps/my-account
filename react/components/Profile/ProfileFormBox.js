@@ -25,10 +25,8 @@ class ProfileFormBox extends Component {
 
     try {
       this.setState({ isLoading: true, shouldShowError: false })
-      const { data } = await updateProfile({
-        variables: { profile: { ...profile, birthDate: '1996-09-10' } },
-      })
-      onDataSave(data.updateProfile)
+      await updateProfile({ variables: { profile } })
+      onDataSave()
     } catch (error) {
       this.showError()
     }

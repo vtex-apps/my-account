@@ -135,7 +135,7 @@ AddressFormBox.propTypes = {
 
 const enhance = compose(
   graphql(GetName, { name: 'nameQuery' }),
-  branch(({ nameQuery }) => nameQuery.loading, renderNothing()),
+  branch(({ nameQuery }) => nameQuery.loading, renderNothing),
 
   graphql(UpdateAddress, { name: 'updateAddress' }),
   graphql(CreateAddress, { name: 'createAddress' }),
