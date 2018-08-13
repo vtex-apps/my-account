@@ -2,20 +2,16 @@ import React from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 import Header from '../components/shared/Header'
 
-const PaymentData = ({ intl }) => {
-  const pageTitle = intl.formatMessage({ id: 'pages.paymentData' })
-
+const PaymentData = () => {
   return (
     <div>
       <div className="flex flex-column flex-row-ns items-center-ns justify-between-ns">
-        <Header title={pageTitle} />
+        <Header titleId={'pages.paymentData'} />
       </div>
     </div>
   )
 }
 
-PaymentData.propTypes = {
-  intl: intlShape.isRequired,
-}
+PaymentData.propTypes = {}
 
-export default injectIntl(PaymentData)
+export default PaymentData

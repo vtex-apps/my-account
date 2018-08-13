@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { injectIntl, intlShape } from 'react-intl'
 import { graphql } from 'react-apollo'
+import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import Loading from '../pages/Loading'
 import Header from '../components/shared/Header'
@@ -21,6 +21,7 @@ class Profile extends Component {
   }
 
   toggleEditingData = () => {
+    this.props.history.push('/profile/edit')
     this.setState(prevState => ({ isEditingData: !prevState.isEditingData }))
   }
 
@@ -31,13 +32,12 @@ class Profile extends Component {
   }
 
   render() {
-    const { intl, profile } = this.props
+    const { profile } = this.props
     const { isEditingData, isEditingPassword } = this.state
-    const pageTitle = intl.formatMessage({ id: 'pages.profile' })
 
     return (
       <section>
-        <Header title={pageTitle} />
+        <Header titleId={'pages.profile'} />
         <main className="mt6 flex-ns flex-wrap items-start-ns">
           {isEditingData ? (
             <ProfileFormBox
@@ -63,13 +63,12 @@ class Profile extends Component {
 
 Profile.propTypes = {
   profile: PropTypes.object.isRequired,
-  intl: intlShape.isRequired,
 }
 
 const enhance = compose(
   graphql(GetProfile),
   branch(({ data }) => data.loading, renderComponent(Loading)),
   withProps(({ data }) => ({ profile: data.profile })),
-  injectIntl,
+  withRouter,
 )
 export default enhance(Profile)

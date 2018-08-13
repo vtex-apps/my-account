@@ -49,12 +49,10 @@ class Addresses extends Component {
     const { intl, addresses, profile } = this.props
     const { isAddingNew, editingIndex } = this.state
 
-    const pageTitle = intl.formatMessage({ id: 'pages.addresses' })
-
     return (
       <section>
         <div className="flex flex-column flex-row-ns flex-wrap items-center-ns justify-between-ns">
-          <Header title={pageTitle} />
+          <Header titleId={'pages.addresses'} />
           <div className="mt6 mt5-ns mr5-ns flex-none">
             <Button
               variation="primary"
