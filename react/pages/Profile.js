@@ -15,14 +15,12 @@ class Profile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isEditingData: false,
       isEditingPassword: false,
     }
   }
 
   toggleEditingData = () => {
     this.props.history.push('/profile/edit')
-    this.setState(prevState => ({ isEditingData: !prevState.isEditingData }))
   }
 
   toggleEditingPassword = () => {
@@ -33,23 +31,13 @@ class Profile extends Component {
 
   render() {
     const { profile } = this.props
-    const { isEditingData, isEditingPassword } = this.state
+    const { isEditingPassword } = this.state
 
     return (
       <section>
         <Header titleId={'pages.profile'} />
         <main className="mt6 flex-ns flex-wrap items-start-ns">
-          {isEditingData ? (
-            <ProfileFormBox
-              profile={profile}
-              onDataSave={this.toggleEditingData}
-            />
-          ) : (
-            <ProfileBox
-              profile={profile}
-              onEditClick={this.toggleEditingData}
-            />
-          )}
+          <ProfileBox profile={profile} onEditClick={this.toggleEditingData} />
           {isEditingPassword ? (
             <PasswordFormBox onPasswordChange={this.toggleEditingPassword} />
           ) : (
