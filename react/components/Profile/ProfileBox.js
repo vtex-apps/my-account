@@ -23,6 +23,7 @@ const ProfileBox = ({ profile, onEditClick, intl }) => {
             personalData: {
               firstName,
               lastName,
+              email,
               document,
               gender,
               birthDate,
@@ -47,10 +48,7 @@ const ProfileBox = ({ profile, onEditClick, intl }) => {
                   </div>
                 </div>
                 <div className="mb8">
-                  <DataEntry
-                    label={intl.formatMessage({ id: 'personalData.email' })}
-                    content={profile.email}
-                  />
+                  <DataEntry label={email.label} content={email.value} />
                 </div>
                 <div className="flex-ns flex-wrap">
                   <div className="mb8 flex-auto">

@@ -18,9 +18,9 @@ class ProfileFormBox extends Component {
     }
   }
 
-  handleSubmit = async ({ valid, profile }) => {
+  handleSubmit = async ({ valid, profile: profileInput }) => {
     const { updateProfile, onDataSave } = this.props
-
+    const { email, ...profile } = profileInput
     if (!valid) return
 
     try {
