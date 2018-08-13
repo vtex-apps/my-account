@@ -23,7 +23,7 @@ class AddressDeletter extends Component {
       onAddressDeleted()
     } catch (error) {
       this.setState({ isLoading: false })
-      onError(error)
+      onError()
     }
   }
 

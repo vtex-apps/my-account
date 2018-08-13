@@ -1,20 +1,3 @@
 mutation DeleteAddress($addressId: String) {
-  deleteAddress(id: $addressId) {
-    cacheId
-    addresses: address {
-      addressId: id
-      addressType
-      city
-      complement
-      country
-      neighborhood
-      number
-      postalCode
-      geoCoordinates: geoCoordinate
-      receiverName
-      reference
-      state
-      street
-    }
-  }
+  deleteAddress(id: $addressId)
 }
