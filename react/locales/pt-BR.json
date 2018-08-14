@@ -34,5 +34,7 @@
   "addresses.defaultAddress": "Endereço padrão",
 
   "commons.edit": "Editar",
-  "commons.errorOccurred": "Ocorreu um erro inesperado, tente novamente."
+
+  "error.connection": "Ocorreu um erro na comunicação com o sistema, tente recarregar a página.",
+  "error.reload": "Recarregar"
 }
