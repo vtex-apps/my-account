@@ -8,7 +8,7 @@ const AddressesLoading = ({ data }) => {
 }
 
 AddressesLoading.propTypes = {
-  data: PropTypes.any.isRequired,
+  data: PropTypes.object.isRequired,
 }
 
 export default AddressesLoading

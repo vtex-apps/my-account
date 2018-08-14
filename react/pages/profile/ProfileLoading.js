@@ -8,7 +8,7 @@ const ProfileLoading = ({ data }) => {
 }
 
 ProfileLoading.propTypes = {
-  data: PropTypes.any.isRequired,
+  data: PropTypes.object.isRequired,
 }
 
 export default ProfileLoading

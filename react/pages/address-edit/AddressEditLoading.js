@@ -8,7 +8,7 @@ const AddressEditLoading = ({ data }) => {
 }
 
 AddressEditLoading.propTypes = {
-  data: PropTypes.any.isRequired,
+  data: PropTypes.object.isRequired,
 }
 
 export default AddressEditLoading
