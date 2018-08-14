@@ -4,6 +4,10 @@ import MenuLink from './MenuLink'
 
 const links = [
   {
+    id: 'pages.orders',
+    path: '/my-orders',
+  },
+  {
     id: 'pages.addresses',
     path: '/addresses',
   },

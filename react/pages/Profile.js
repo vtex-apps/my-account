@@ -8,7 +8,6 @@ import Header from '../components/shared/Header'
 import ProfileBox from '../components/Profile/ProfileBox'
 import PasswordBox from '../components/Profile/PasswordBox'
 import PasswordFormBox from '../components/Profile/PasswordFormBox'
-import ProfileFormBox from '../components/Profile/ProfileFormBox'
 import GetProfile from '../graphql/getProfile.gql'
 
 class Profile extends Component {
