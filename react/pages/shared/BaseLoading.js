@@ -12,7 +12,7 @@ class BaseLoading extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.data.loading != this.props.data.loading) {
+    if (prevProps.queryData.loading != this.props.queryData.loading) {
       this.setState({ isLoading: false })
     }
   }
@@ -20,17 +20,18 @@ class BaseLoading extends Component {
   reload = async () => {
     this.setState(() => ({ isLoading: true }))
     try {
-      await this.props.data.refetch()
+      await this.props.queryData.refetch()
     } catch (error) {}
     this.setState(() => ({ isLoading: false }))
   }
 
   render() {
-    const { PageHeader, isLoading } = this.state
+    const { isLoading } = this.state
+    const { PageHeader } = this.props
 
     return (
       <section>
-        {/* <PageHeader /> */}
+        <PageHeader />
         <main className="mt7">
           {isLoading ? <Spinner /> : <ConnectionError onReload={this.reload} />}
         </main>
@@ -40,8 +41,8 @@ class BaseLoading extends Component {
 }
 
 BaseLoading.propTypes = {
-  data: PropTypes.any.isRequired,
-  PageHeader: PropTypes.element.isRequired,
+  queryData: PropTypes.any.isRequired,
+  PageHeader: PropTypes.func.isRequired,
 }
 
 export default BaseLoading

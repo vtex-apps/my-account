@@ -4,6 +4,7 @@ import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import ProfileEditHeader from './ProfileEditHeader'
+import ProfileEditLoading from './ProfileEditLoading'
 import ErrorAlert from '../../components/shared/ErrorAlert'
 import ProfileFormBox from '../../components/Profile/ProfileFormBox'
 import GetProfile from '../../graphql/getProfile.gql'
@@ -58,7 +59,10 @@ ProfileEdit.propTypes = {
 
 const enhance = compose(
   graphql(GetProfile),
-  branch(({ data }) => data.loading, renderComponent(null)),
+  branch(
+    ({ data }) => data.profile == null,
+    renderComponent(ProfileEditLoading),
+  ),
   withProps(({ data }) => ({ profile: data.profile })),
   withRouter,
 )

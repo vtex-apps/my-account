@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import AddressCreateHeader from './AddressCreateHeader'
+import AddressCreateLoading from './AddressCreateLoading'
 import ErrorAlert from '../../components/shared/ErrorAlert'
 import AddressFormBox from '../../components/Addresses/AddressFormBox'
 import GetName from '../../graphql/getName.gql'
@@ -58,7 +59,10 @@ AddressCreate.propTypes = {
 
 const enhance = compose(
   graphql(GetName),
-  branch(({ data }) => data.loading, renderComponent(AddressCreateHeader)),
+  branch(
+    ({ data }) => data.profile == null,
+    renderComponent(AddressCreateLoading),
+  ),
   withProps(({ data }) => ({ profile: data.profile })),
 )
 export default enhance(AddressCreate)

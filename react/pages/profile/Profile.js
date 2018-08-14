@@ -4,6 +4,7 @@ import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import ProfileHeader from './ProfileHeader'
+import ProfileLoading from './ProfileLoading'
 import ProfileBox from '../../components/Profile/ProfileBox'
 import PasswordBox from '../../components/Profile/PasswordBox'
 import PasswordFormBox from '../../components/Profile/PasswordFormBox'
@@ -53,7 +54,7 @@ Profile.propTypes = {
 
 const enhance = compose(
   graphql(GetProfile),
-  branch(({ data }) => data.loading, renderComponent(null)),
+  branch(({ data }) => data.profile == null, renderComponent(ProfileLoading)),
   withProps(({ data }) => ({ profile: data.profile })),
   withRouter,
 )

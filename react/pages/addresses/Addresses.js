@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import AddressBox from '../../components/Addresses/AddressBox'
 import AddressesHeader from './AddressesHeader'
+import AddressesLoading from './AddressesLoading'
+import AddressBox from '../../components/Addresses/AddressBox'
 import GetAddresses from '../../graphql/getAddresses.gql'
 
 class Addresses extends Component {
@@ -38,7 +39,7 @@ Addresses.propTypes = {
 
 const enhance = compose(
   graphql(GetAddresses),
-  branch(({ data }) => data.profile == null, renderComponent(AddressesHeader)),
+  branch(({ data }) => data.profile == null, renderComponent(AddressesLoading)),
   withProps(({ data }) => ({ addresses: data.profile.addresses })),
   withRouter,
 )
