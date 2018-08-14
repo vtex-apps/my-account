@@ -3,21 +3,20 @@ import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import { Alert } from 'vtex.styleguide'
 
-const ErrorAlert = ({ onDismiss, intl }) => {
+const GenericError = ({ errorId, onDismiss, intl }) => {
   return (
     <div className="mb5">
       <Alert type="error" onClose={onDismiss}>
-        {intl.formatMessage({ id: 'commons.errorOccurred' })}
+        {intl.formatMessage({ id: errorId })}
       </Alert>
     </div>
   )
 }
 
-ErrorAlert.propTypes = {
-  /** Callback for dismissing the alert */
+GenericError.propTypes = {
+  errorId: PropTypes.string.isRequired,
   onDismiss: PropTypes.func,
-  /** React-intl utility */
   intl: intlShape.isRequired,
 }
 
-export default injectIntl(ErrorAlert)
+export default injectIntl(GenericError)

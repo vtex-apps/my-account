@@ -7,7 +7,7 @@
   "pages.addressEdit": "Editar endereço",
   "pages.profile": "Dados pessoais",
   "pages.profileEdit": "Editar dados pessoais",
-  "pages.paymentData": "Métodos de pagamento",
+  "pages.payments": "Métodos de pagamento",
   "pages.myAccount": "Minha conta",
 
   "personalData.redefinePassword": "Redefinir senha",
@@ -34,5 +34,9 @@
   "addresses.defaultAddress": "Endereço padrão",
 
   "commons.edit": "Editar",
-  "commons.errorOccurred": "Ocorreu um erro inesperado, tente novamente."
+
+  "error.connectionError": "Houve um erro de comunicação com o sistema, tente recarregar a página.",
+  "error.addressNotFound": "O endereço especificado não foi encontrado.",
+  "error.unknownError": "Suas informações não foram salvas, tente novamente mais tarde.",
+  "error.reload": "Recarregar"
 }

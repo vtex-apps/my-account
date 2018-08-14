@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import Loading from '../pages/Loading'
-import Header from '../components/shared/Header'
-import ErrorAlert from '../components/shared/ErrorAlert'
-import ProfileFormBox from '../components/Profile/ProfileFormBox'
-import GetProfile from '../graphql/getProfile.gql'
+import ProfileEditHeader from './ProfileEditHeader'
+import ProfileEditLoading from './ProfileEditLoading'
+import GenericError from '../../components/shared/GenericError'
+import ProfileFormBox from '../../components/Profile/ProfileFormBox'
+import GetProfile from '../../graphql/getProfile.gql'
 
 class ProfileEdit extends Component {
   constructor(props) {
@@ -35,17 +35,13 @@ class ProfileEdit extends Component {
 
     return (
       <section>
-        <Header
-          titleId={'pages.profileEdit'}
-          backButtonId={'pages.profile'}
-          backButtonPath={'/profile'}
-          shouldAlwaysShowBackButton
-        />
+        <ProfileEditHeader />
         <main className="mt6">
           {shouldShowError && (
-            <div className="mb6 mw6 pr5-ns">
-              <ErrorAlert onDismiss={this.dismissError} />
-            </div>
+            <GenericError
+              onDismiss={this.dismissError}
+              errorId="error.unknownError"
+            />
           )}
           <ProfileFormBox
             profile={profile}
@@ -64,7 +60,10 @@ ProfileEdit.propTypes = {
 
 const enhance = compose(
   graphql(GetProfile),
-  branch(({ data }) => data.loading, renderComponent(Loading)),
+  branch(
+    ({ data }) => data.profile == null,
+    renderComponent(ProfileEditLoading),
+  ),
   withProps(({ data }) => ({ profile: data.profile })),
   withRouter,
 )

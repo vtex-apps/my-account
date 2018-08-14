@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import Loading from '../pages/Loading'
-import Header from '../components/shared/Header'
-import ProfileBox from '../components/Profile/ProfileBox'
-import PasswordBox from '../components/Profile/PasswordBox'
-import PasswordFormBox from '../components/Profile/PasswordFormBox'
-import GetProfile from '../graphql/getProfile.gql'
+import ProfileHeader from './ProfileHeader'
+import ProfileLoading from './ProfileLoading'
+import ProfileBox from '../../components/Profile/ProfileBox'
+import PasswordBox from '../../components/Profile/PasswordBox'
+import PasswordFormBox from '../../components/Profile/PasswordFormBox'
+import GetProfile from '../../graphql/getProfile.gql'
 
 class Profile extends Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class Profile extends Component {
 
     return (
       <section>
-        <Header titleId={'pages.profile'} />
+        <ProfileHeader />
         <main className="mt6 flex-ns flex-wrap items-start-ns">
           <ProfileBox profile={profile} onEditClick={this.toggleEditingData} />
           {isEditingPassword ? (
@@ -54,7 +54,7 @@ Profile.propTypes = {
 
 const enhance = compose(
   graphql(GetProfile),
-  branch(({ data }) => data.loading, renderComponent(Loading)),
+  branch(({ data }) => data.profile == null, renderComponent(ProfileLoading)),
   withProps(({ data }) => ({ profile: data.profile })),
   withRouter,
 )

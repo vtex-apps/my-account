@@ -16,8 +16,8 @@ const links = [
     path: '/profile',
   },
   {
-    id: 'pages.paymentData',
-    path: '/payment-data',
+    id: 'pages.payments',
+    path: '/payments',
   },
 ]
 
