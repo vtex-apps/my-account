@@ -12,13 +12,17 @@ class Toast extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.setState({ isClosing: true }, () => {
         setTimeout(() => {
           this.props.onClose
         }, 3000)
       })
     }, this.props.autoClose)
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timeout)
   }
 
   render() {
