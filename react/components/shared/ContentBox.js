@@ -9,7 +9,7 @@ const ContentBox = ({
   lowerButton,
   onLowerButtonClick,
 }) => {
-  const widthClass = maxWidthStep ? `mw${maxWidthStep}` : ''
+  const widthClass = maxWidthStep ? `mw${maxWidthStep}-ns` : ''
   const flexClass = shouldAllowGrowing ? 'flex-auto' : 'flex-none'
   return (
     <div className={`pb5 pr5-ns ${flexClass} ${widthClass}`}>
