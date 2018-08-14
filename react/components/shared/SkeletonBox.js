@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import SkeletonPiece from './SkeletonPiece'
 
-const ContentBox = ({
+const SkeletonBox = ({
   children,
   maxWidthStep,
   shouldAllowGrowing,
@@ -24,15 +24,15 @@ const ContentBox = ({
   )
 }
 
-ContentBox.defaultProps = {
+SkeletonBox.defaultProps = {
   shouldAllowGrowing: false,
 }
 
-ContentBox.propTypes = {
+SkeletonBox.propTypes = {
   children: PropTypes.any,
   maxWidthStep: PropTypes.number,
   shouldAllowGrowing: PropTypes.bool,
   shouldShowLowerButton: PropTypes.bool,
 }
 
-export default ContentBox
+export default SkeletonBox
