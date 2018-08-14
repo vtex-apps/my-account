@@ -13,9 +13,7 @@ const UserInfoLoading = () => {
         <div className="mb2">
           <SkeletonPiece width={50} />
         </div>
-        <div>
-          <SkeletonPiece />
-        </div>
+        <SkeletonPiece />
       </div>
     </div>
   )
