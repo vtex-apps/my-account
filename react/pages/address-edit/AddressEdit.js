@@ -33,24 +33,28 @@ class AddressEdit extends Component {
     const { shouldShowError } = this.state
     const address = addresses.find(current => current.addressId === addressId)
 
-    if (!address) return <ErrorAlert errorId="error.addressNotFound" />
-
     return (
       <section>
         <AddressEditHeader />
         <main className="mt6">
-          {shouldShowError && (
-            <ErrorAlert
-              onDismiss={this.dismissError}
-              errorId="error.unknownError"
-            />
+          {address ? (
+            <React.Fragment>
+              {shouldShowError && (
+                <ErrorAlert
+                  onDismiss={this.dismissError}
+                  errorId="error.unknownError"
+                />
+              )}
+              <AddressFormBox
+                address={address}
+                onAddressSaved={this.goBack}
+                onAddressDeleted={this.goBack}
+                onError={this.handleError}
+              />
+            </React.Fragment>
+          ) : (
+            <ErrorAlert errorId="error.addressNotFound" />
           )}
-          <AddressFormBox
-            address={address}
-            onAddressSaved={this.goBack}
-            onAddressDeleted={this.goBack}
-            onError={this.handleError}
-          />
         </main>
       </section>
     )
