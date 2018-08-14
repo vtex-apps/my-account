@@ -6,7 +6,6 @@ import AddressEditHeader from './AddressEditHeader'
 import AddressEditLoading from './AddressEditLoading'
 import ErrorAlert from '../../components/shared/ErrorAlert'
 import AddressFormBox from '../../components/Addresses/AddressFormBox'
-import GetName from '../../graphql/getName.gql'
 import GetAddresses from '../../graphql/getAddresses.gql'
 
 class AddressEdit extends Component {
@@ -30,7 +29,7 @@ class AddressEdit extends Component {
   }
 
   render() {
-    const { profile, addresses, addressId } = this.props
+    const { addresses, addressId } = this.props
     const { shouldShowError } = this.state
     const address = addresses.find(current => current.addressId === addressId)
 
@@ -47,7 +46,6 @@ class AddressEdit extends Component {
           )}
           <AddressFormBox
             address={address}
-            profile={profile}
             onAddressSaved={this.goBack}
             onAddressDeleted={this.goBack}
             onError={this.handleError}
@@ -59,21 +57,18 @@ class AddressEdit extends Component {
 }
 
 AddressEdit.propTypes = {
-  profile: PropTypes.object.isRequired,
   addresses: PropTypes.array.isRequired,
   addressId: PropTypes.string.isRequired,
 }
 
 const enhance = compose(
-  graphql(GetAddresses, { name: 'addressQ' }),
-  graphql(GetName, { name: 'nameQ' }),
+  graphql(GetAddresses),
   branch(
-    ({ addressQ, nameQ }) => addressQ.loading || nameQ.loading,
+    ({ data }) => data.profile == null,
     renderComponent(AddressEditLoading),
   ),
-  withProps(({ addressQ, nameQ, match }) => ({
-    profile: nameQ.profile,
-    addresses: addressQ.profile.addresses,
+  withProps(({ data, match }) => ({
+    addresses: data.profile.addresses,
     addressId: match.params.id,
   })),
 )
