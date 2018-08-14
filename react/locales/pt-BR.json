@@ -35,6 +35,8 @@
 
   "commons.edit": "Editar",
 
-  "error.connection": "Ocorreu um erro na comunicação com o sistema, tente recarregar a página.",
+  "error.connectionError": "Ocorreu um erro na comunicação com o sistema, tente recarregar a página.",
+  "error.addressNotFound": "O endereço especificado não foi encontrado.",
+  "error.unknownError": "Não foi possível salvar os dados. Verifique sua conexão de rede ou tente novamente mais tarde.",
   "error.reload": "Recarregar"
 }

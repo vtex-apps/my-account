@@ -13,7 +13,7 @@ const ConnectionError = ({ onReload, intl }) => {
           onClick: onReload,
         }}
       >
-        {intl.formatMessage({ id: 'error.connection' })}
+        {intl.formatMessage({ id: 'error.connectionError' })}
       </Alert>
     </div>
   )

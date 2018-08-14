@@ -33,16 +33,17 @@ class AddressEdit extends Component {
     const { shouldShowError } = this.state
     const address = addresses.find(current => current.addressId === addressId)
 
-    if (!address) return null
+    if (!address) return <ErrorAlert errorId="error.addressNotFound" />
 
     return (
       <section>
         <AddressEditHeader />
         <main className="mt6">
           {shouldShowError && (
-            <div className="mb6 mw6 pr5-ns">
-              <ErrorAlert onDismiss={this.dismissError} />
-            </div>
+            <ErrorAlert
+              onDismiss={this.dismissError}
+              errorId="error.unknownError"
+            />
           )}
           <AddressFormBox
             address={address}

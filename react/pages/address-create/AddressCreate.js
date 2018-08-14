@@ -37,9 +37,10 @@ class AddressCreate extends Component {
         <AddressCreateHeader />
         <main className="mt6">
           {shouldShowError && (
-            <div className="mb6 mw6 pr5-ns">
-              <ErrorAlert onDismiss={this.dismissError} />
-            </div>
+            <ErrorAlert
+              onDismiss={this.dismissError}
+              errorId="error.unknownError"
+            />
           )}
           <AddressFormBox
             isNew
