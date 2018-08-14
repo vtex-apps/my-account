@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import Header from '../shared/BaseHeader'
+import AddressCreateHeader from './AddressCreateHeader'
 import ErrorAlert from '../../components/shared/ErrorAlert'
 import AddressFormBox from '../../components/Addresses/AddressFormBox'
 import GetName from '../../graphql/getName.gql'
@@ -33,11 +33,7 @@ class AddressCreate extends Component {
 
     return (
       <section>
-        <Header
-          titleId={'pages.addressCreate'}
-          backButton={{ id: 'pages.addresses', path: '/addresses' }}
-          shouldAlwaysShowBackButton
-        />
+        <AddressCreateHeader />
         <main className="mt6">
           {shouldShowError && (
             <div className="mb6 mw6 pr5-ns">
@@ -62,7 +58,7 @@ AddressCreate.propTypes = {
 
 const enhance = compose(
   graphql(GetName),
-  branch(({ data }) => data.loading, renderComponent(null)),
+  branch(({ data }) => data.loading, renderComponent(AddressCreateHeader)),
   withProps(({ data }) => ({ profile: data.profile })),
 )
 export default enhance(AddressCreate)

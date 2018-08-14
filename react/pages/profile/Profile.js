@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import Header from '../shared/BaseHeader'
+import ProfileHeader from './ProfileHeader'
 import ProfileBox from '../../components/Profile/ProfileBox'
 import PasswordBox from '../../components/Profile/PasswordBox'
 import PasswordFormBox from '../../components/Profile/PasswordFormBox'
@@ -33,7 +33,7 @@ class Profile extends Component {
 
     return (
       <section>
-        <Header titleId={'pages.profile'} />
+        <ProfileHeader />
         <main className="mt6 flex-ns flex-wrap items-start-ns">
           <ProfileBox profile={profile} onEditClick={this.toggleEditingData} />
           {isEditingPassword ? (

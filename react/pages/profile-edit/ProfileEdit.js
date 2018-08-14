@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import Header from '../shared/BaseHeader'
+import ProfileEditHeader from './ProfileEditHeader'
 import ErrorAlert from '../../components/shared/ErrorAlert'
 import ProfileFormBox from '../../components/Profile/ProfileFormBox'
 import GetProfile from '../../graphql/getProfile.gql'
@@ -34,11 +34,7 @@ class ProfileEdit extends Component {
 
     return (
       <section>
-        <Header
-          titleId={'pages.profileEdit'}
-          backButton={{ id: 'pages.profile', path: '/profile' }}
-          shouldAlwaysShowBackButton
-        />
+        <ProfileEditHeader />
         <main className="mt6">
           {shouldShowError && (
             <div className="mb6 mw6 pr5-ns">
