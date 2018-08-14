@@ -8,6 +8,7 @@ import ProfileLoading from './ProfileLoading'
 import ProfileBox from '../../components/Profile/ProfileBox'
 import PasswordBox from '../../components/Profile/PasswordBox'
 import PasswordFormBox from '../../components/Profile/PasswordFormBox'
+import Toast from '../../components/shared/Toast'
 import GetProfile from '../../graphql/getProfile.gql'
 
 class Profile extends Component {
@@ -29,8 +30,9 @@ class Profile extends Component {
   }
 
   render() {
-    const { profile } = this.props
+    const { profile, location } = this.props
     const { isEditingPassword } = this.state
+    const shouldShowToast = location.search === '?success=true'
 
     return (
       <section>
@@ -42,6 +44,7 @@ class Profile extends Component {
           ) : (
             <PasswordBox onEditClick={this.toggleEditingPassword} />
           )}
+          {shouldShowToast && <Toast messageId="alert.success" />}
         </main>
       </section>
     )
