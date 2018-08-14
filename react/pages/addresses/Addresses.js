@@ -27,7 +27,7 @@ class Addresses extends Component {
   }
 
   startEditing = address => {
-    this.props.history.push('/addresses/edit/' + address.addressId)
+    this.props.history.push(`/addresses/edit/${address.addressId}`)
   }
 
   render() {

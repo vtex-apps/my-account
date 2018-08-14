@@ -8,7 +8,7 @@ const SkeletonBox = ({
   shouldAllowGrowing,
   shouldShowLowerButton,
 }) => {
-  const widthClass = maxWidthStep ? 'mw' + maxWidthStep : ''
+  const widthClass = maxWidthStep ? `mw${maxWidthStep}` : ''
   const flexClass = shouldAllowGrowing ? 'flex-auto' : 'flex-none'
   return (
     <div className={`pb5 pr5-ns ${flexClass} ${widthClass}`}>
@@ -29,7 +29,7 @@ SkeletonBox.defaultProps = {
 }
 
 SkeletonBox.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.any.isRequired,
   maxWidthStep: PropTypes.number,
   shouldAllowGrowing: PropTypes.bool,
   shouldShowLowerButton: PropTypes.bool,
