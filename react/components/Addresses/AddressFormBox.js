@@ -21,7 +21,7 @@ class AddressFormBox extends Component {
   prepareAddress(address) {
     const { profile } = this.props
     const defaultReceiver =
-      profile && profile.firstName + ' ' + profile.lastName
+      profile && `${profile.firstName} ${profile.lastName}`
 
     const { __typename, ...addr } = address
     return {
