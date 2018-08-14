@@ -2,12 +2,12 @@ import React from 'react'
 import { Route, Switch, Redirect, HashRouter } from 'react-router-dom'
 import Media from 'react-media'
 import Menu from './Menu/Menu'
-import Addresses from '../pages/Addresses'
-import Profile from '../pages/Profile'
-import PaymentData from '../pages/PaymentData'
-import ProfileEdit from '../pages/ProfileEdit'
-import AddressCreate from '../pages/AddressCreate'
-import AddressEdit from '../pages/AddressEdit'
+import Addresses from '../pages/addresses/Addresses'
+import Profile from '../pages/profile/Profile'
+import PaymentData from '../pages/payments/PaymentData'
+import ProfileEdit from '../pages/profile-edit/ProfileEdit'
+import AddressCreate from '../pages/address-create/AddressCreate'
+import AddressEdit from '../pages/address-edit/AddressEdit'
 
 const AppRouter = () => {
   const routes = [

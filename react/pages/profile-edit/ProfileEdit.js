@@ -3,11 +3,10 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import Loading from '../pages/Loading'
-import Header from '../components/shared/Header'
-import ErrorAlert from '../components/shared/ErrorAlert'
-import ProfileFormBox from '../components/Profile/ProfileFormBox'
-import GetProfile from '../graphql/getProfile.gql'
+import Header from '../shared/BaseHeader'
+import ErrorAlert from '../../components/shared/ErrorAlert'
+import ProfileFormBox from '../../components/Profile/ProfileFormBox'
+import GetProfile from '../../graphql/getProfile.gql'
 
 class ProfileEdit extends Component {
   constructor(props) {
@@ -63,7 +62,7 @@ ProfileEdit.propTypes = {
 
 const enhance = compose(
   graphql(GetProfile),
-  branch(({ data }) => data.loading, renderComponent(Loading)),
+  branch(({ data }) => data.loading, renderComponent(null)),
   withProps(({ data }) => ({ profile: data.profile })),
   withRouter,
 )

@@ -4,9 +4,9 @@ import { injectIntl, intlShape } from 'react-intl'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 import { IconArrowBack, Button } from 'vtex.styleguide'
-import ClearButton from './ClearButton'
+import ClearButton from '../../components/shared/ClearButton'
 
-const Header = ({
+const BaseHeader = ({
   titleId,
   shouldAlwaysShowBackButton,
   backButton,
@@ -42,12 +42,12 @@ const Header = ({
   )
 }
 
-Header.defaultProps = {
+BaseHeader.defaultProps = {
   shouldAlwaysShowBackButton: false,
   backButton: { id: 'pages.myAccount', path: '/' },
 }
 
-Header.propTypes = {
+BaseHeader.propTypes = {
   titleId: PropTypes.string,
   shouldAlwaysShowBackButton: PropTypes.bool.isRequired,
   backButton: PropTypes.object.isRequired,
@@ -56,4 +56,4 @@ Header.propTypes = {
   history: PropTypes.any,
 }
 
-export default withRouter(injectIntl(Header))
+export default withRouter(injectIntl(BaseHeader))

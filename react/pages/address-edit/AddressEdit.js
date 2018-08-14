@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import Header from '../components/shared/Header'
-import ErrorAlert from '../components/shared/ErrorAlert'
-import AddressFormBox from '../components/Addresses/AddressFormBox'
-import Loading from '../pages/Loading'
-import GetName from '../graphql/getName.gql'
+import Header from '../shared/BaseHeader'
+import ErrorAlert from '../../components/shared/ErrorAlert'
+import AddressFormBox from '../../components/Addresses/AddressFormBox'
+import GetName from '../../graphql/getName.gql'
+import GetAddresses from '../../graphql/getAddresses.gql'
 
-class AddressCreate extends Component {
+class AddressEdit extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -29,13 +29,16 @@ class AddressCreate extends Component {
   }
 
   render() {
-    const { profile } = this.props
+    const { profile, addresses, addressId } = this.props
     const { shouldShowError } = this.state
+    const address = addresses.find(current => current.addressId === addressId)
+
+    if (!address) return null
 
     return (
       <section>
         <Header
-          titleId={'pages.addressCreate'}
+          titleId={'pages.addressEdit'}
           backButton={{ id: 'pages.addresses', path: '/addresses' }}
           shouldAlwaysShowBackButton
         />
@@ -46,10 +49,11 @@ class AddressCreate extends Component {
             </div>
           )}
           <AddressFormBox
-            isNew
-            onAddressSaved={this.goBack}
-            onError={this.handleError}
+            address={address}
             profile={profile}
+            onAddressSaved={this.goBack}
+            onAddressDeleted={this.goBack}
+            onError={this.handleError}
           />
         </main>
       </section>
@@ -57,13 +61,23 @@ class AddressCreate extends Component {
   }
 }
 
-AddressCreate.propTypes = {
+AddressEdit.propTypes = {
   profile: PropTypes.object.isRequired,
+  addresses: PropTypes.array.isRequired,
+  addressId: PropTypes.string.isRequired,
 }
 
 const enhance = compose(
-  graphql(GetName),
-  branch(({ data }) => data.loading, renderComponent(Loading)),
-  withProps(({ data }) => ({ profile: data.profile })),
+  graphql(GetAddresses, { name: 'addressQ' }),
+  graphql(GetName, { name: 'nameQ' }),
+  branch(
+    ({ addressQ, nameQ }) => addressQ.loading || nameQ.loading,
+    renderComponent(null),
+  ),
+  withProps(({ addressQ, nameQ, match }) => ({
+    profile: nameQ.profile,
+    addresses: addressQ.profile.addresses,
+    addressId: match.params.id,
+  })),
 )
-export default enhance(AddressCreate)
+export default enhance(AddressEdit)
