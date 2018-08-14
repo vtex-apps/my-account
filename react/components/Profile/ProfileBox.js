@@ -11,6 +11,7 @@ const ProfileBox = ({ profile, onEditClick, intl }) => {
   return (
     <ContentBox
       shouldAllowGrowing
+      maxWidthStep={6}
       lowerButton={intl.formatMessage({ id: 'commons.edit' })}
       onLowerButtonClick={onEditClick}
     >
