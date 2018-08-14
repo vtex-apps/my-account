@@ -12,9 +12,9 @@ class Toast extends Component {
   }
 
   componentDidMount() {
-    this.timeout = setTimeout(() => {
+    this.openTimeout = setTimeout(() => {
       this.setState({ isClosing: true }, () => {
-        setTimeout(() => {
+        this.closeTimeout = setTimeout(() => {
           this.props.onClose
         }, 3000)
       })
@@ -22,7 +22,8 @@ class Toast extends Component {
   }
 
   componentWillUnmount() {
-    clearTimeout(this.timeout)
+    clearTimeout(this.openTimeout)
+    clearTimeout(this.closeTimeout)
   }
 
   render() {
