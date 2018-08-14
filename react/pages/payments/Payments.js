@@ -9,6 +9,4 @@ const Payments = () => {
   )
 }
 
-Payments.propTypes = {}
-
 export default Payments
