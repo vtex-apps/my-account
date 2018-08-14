@@ -44,7 +44,7 @@ Toast.defaultProps = {
 
 Toast.propTypes = {
   autoClose: PropTypes.number,
-  onClose: PropTypes.func,
+  onClose: PropTypes.func.isRequired,
   messageId: PropTypes.string.isRequired,
   intl: intlShape.isRequired,
 }

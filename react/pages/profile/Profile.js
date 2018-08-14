@@ -16,7 +16,17 @@ class Profile extends Component {
     super(props)
     this.state = {
       isEditingPassword: false,
+      showToast: false,
     }
+  }
+
+  componentDidMount() {
+    const { location } = this.props
+    this.setState({ showToast: location.search === '?success=true' })
+  }
+
+  handleCloseToast = () => {
+    this.setState({ showToast: false })
   }
 
   toggleEditingData = () => {
@@ -30,9 +40,8 @@ class Profile extends Component {
   }
 
   render() {
-    const { profile, location } = this.props
-    const { isEditingPassword } = this.state
-    const shouldShowToast = location.search === '?success=true'
+    const { profile } = this.props
+    const { isEditingPassword, showToast } = this.state
 
     return (
       <section>
@@ -44,7 +53,9 @@ class Profile extends Component {
           ) : (
             <PasswordBox onEditClick={this.toggleEditingPassword} />
           )}
-          {shouldShowToast && <Toast messageId="alert.success" />}
+          {showToast && (
+            <Toast messageId="alert.success" onClose={this.handleCloseToast} />
+          )}
         </main>
       </section>
     )

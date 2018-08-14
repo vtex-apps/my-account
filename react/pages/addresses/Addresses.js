@@ -10,13 +10,29 @@ import Toast from '../../components/shared/Toast'
 import GetAddresses from '../../graphql/getAddresses.gql'
 
 class Addresses extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showToast: false,
+    }
+  }
+
+  componentDidMount() {
+    const { location } = this.props
+    this.setState({ showToast: location.search === '?success=true' })
+  }
+
+  handleCloseToast = () => {
+    this.setState({ showToast: false })
+  }
+
   startEditing = address => {
     this.props.history.push('/addresses/edit/' + address.addressId)
   }
 
   render() {
-    const { addresses, location } = this.props
-    const shouldShowToast = location.search === '?success=true'
+    const { addresses } = this.props
+    const { showToast } = this.state
 
     return (
       <section>
@@ -29,7 +45,9 @@ class Addresses extends Component {
               onEditClick={() => this.startEditing(address)}
             />
           ))}
-          {shouldShowToast && <Toast messageId="alert.success" />}
+          {showToast && (
+            <Toast messageId="alert.success" onClose={this.handleCloseToast} />
+          )}
         </main>
       </section>
     )
