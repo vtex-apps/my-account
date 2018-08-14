@@ -40,7 +40,7 @@ class ProfileEdit extends Component {
           {shouldShowError && (
             <GenericError
               onDismiss={this.dismissError}
-              errorId="error.unknownError"
+              errorId="alert.unknownError"
             />
           )}
           <ProfileFormBox

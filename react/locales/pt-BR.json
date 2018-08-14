@@ -35,8 +35,9 @@
 
   "commons.edit": "Editar",
 
-  "error.connectionError": "Houve um erro de comunicação com o sistema, tente recarregar a página.",
-  "error.addressNotFound": "O endereço especificado não foi encontrado.",
-  "error.unknownError": "Suas informações não foram salvas, tente novamente mais tarde.",
-  "error.reload": "Recarregar"
+  "alert.connectionError": "Houve um erro de comunicação com o sistema, tente recarregar a página.",
+  "alert.addressNotFound": "O endereço especificado não foi encontrado.",
+  "alert.unknownError": "Suas informações não foram salvas, tente novamente mais tarde.",
+  "alert.success": "Suas informações foram salvas com sucesso.",
+  "alert.reload": "Recarregar"
 }

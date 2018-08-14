@@ -9,11 +9,11 @@ const ConnectionError = ({ onReload, intl }) => {
       <Alert
         type="error"
         action={{
-          label: intl.formatMessage({ id: 'error.reload' }),
+          label: intl.formatMessage({ id: 'alert.reload' }),
           onClick: onReload,
         }}
       >
-        {intl.formatMessage({ id: 'error.connectionError' })}
+        {intl.formatMessage({ id: 'alert.connectionError' })}
       </Alert>
     </div>
   )

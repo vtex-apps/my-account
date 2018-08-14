@@ -42,7 +42,7 @@ class AddressEdit extends Component {
               {shouldShowError && (
                 <GenericError
                   onDismiss={this.dismissError}
-                  errorId="error.unknownError"
+                  errorId="alert.unknownError"
                 />
               )}
               <AddressFormBox
@@ -53,7 +53,7 @@ class AddressEdit extends Component {
               />
             </React.Fragment>
           ) : (
-            <GenericError errorId="error.addressNotFound" />
+            <GenericError errorId="alert.addressNotFound" />
           )}
         </main>
       </section>
