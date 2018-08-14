@@ -1,5 +1,5 @@
 query Addresses @context(scope: "private") {
-  profile {
+  profilse {
     cacheId
     addresses: address {
       addressId: id
