@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## Changed
+
+- Extracted forms to new pages
+
 ## [0.8.0] - 2018-08-13
 
 ### Added
