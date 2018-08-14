@@ -22,7 +22,7 @@ class Profile extends Component {
 
   componentDidMount() {
     const { location } = this.props
-    this.setState({ showToast: location.search === '?success=true' })
+    this.setState({ showToast: location.search.indexOf('success=true') > -1 })
   }
 
   handleCloseToast = () => {
