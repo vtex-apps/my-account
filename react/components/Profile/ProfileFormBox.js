@@ -6,7 +6,6 @@ import { compose } from 'recompose'
 import { Button } from 'vtex.styleguide'
 import { ProfileRules, ProfileContainer } from '@vtex/profile-form'
 import ContentBox from '../shared/ContentBox'
-import ErrorAlert from '../shared/ErrorAlert'
 import UpdateProfile from '../../graphql/updateProfile.gql'
 
 class ProfileFormBox extends Component {
@@ -14,49 +13,32 @@ class ProfileFormBox extends Component {
     super(props)
     this.state = {
       isLoading: false,
-      shouldShowError: false,
     }
   }
 
   handleSubmit = async ({ valid, profile: profileInput }) => {
-    const { updateProfile, onDataSave } = this.props
+    const { updateProfile, onDataSave, onError } = this.props
     const { email, ...profile } = profileInput
-    if (!valid) return
+    if (!valid || this.state.isLoading) return
 
     try {
-      this.setState({ isLoading: true, shouldShowError: false })
+      this.setState({ isLoading: true })
       await updateProfile({ variables: { profile } })
+      this.setState({ isLoading: false })
       onDataSave()
     } catch (error) {
-      this.showError()
+      onError(error)
     }
-  }
-
-  showError = () => {
-    window.scroll(0, 0)
-
-    this.setState({
-      isLoading: false,
-      shouldShowError: true,
-    })
-  }
-
-  dismissError = () => {
-    this.setState({
-      shouldShowError: false,
-    })
   }
 
   render() {
     const { intl, profile } = this.props
-    const { isLoading, shouldShowError } = this.state
+    const { isLoading } = this.state
 
     if (!profile) return null
 
     return (
-      <ContentBox shouldAllowGrowing>
-        {shouldShowError && <ErrorAlert onDismiss={this.dismissError} />}
-
+      <ContentBox shouldAllowGrowing maxWidthStep={6}>
         <ProfileRules
           country={'BRA'}
           fetch={country => import('@vtex/profile-form/lib/rules/' + country)}
@@ -81,7 +63,8 @@ ProfileFormBox.propTypes = {
   profile: PropTypes.object.isRequired,
   updateProfile: PropTypes.func.isRequired,
   intl: intlShape.isRequired,
-  onDataSave: PropTypes.func,
+  onDataSave: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired,
 }
 
 const enhance = compose(

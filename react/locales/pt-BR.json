@@ -3,7 +3,10 @@
 
   "pages.orders": "Meus pedidos",
   "pages.addresses": "Endereços",
+  "pages.addressCreate": "Criar endereço",
+  "pages.addressEdit": "Editar endereço",
   "pages.profile": "Dados pessoais",
+  "pages.profileEdit": "Editar dados pessoais",
   "pages.paymentData": "Métodos de pagamento",
   "pages.myAccount": "Minha conta",
 
@@ -31,5 +34,5 @@
   "addresses.defaultAddress": "Endereço padrão",
 
   "commons.edit": "Editar",
-  "commons.error-occurred": "Ocorreu um erro inesperado, tente novamente."
+  "commons.errorOccurred": "Ocorreu um erro inesperado, tente novamente."
 }

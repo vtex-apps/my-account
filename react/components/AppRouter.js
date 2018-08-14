@@ -5,14 +5,18 @@ import Menu from './Menu/Menu'
 import Addresses from '../pages/Addresses'
 import Profile from '../pages/Profile'
 import PaymentData from '../pages/PaymentData'
-import Loading from '../pages/Loading'
+import ProfileEdit from '../pages/ProfileEdit'
+import AddressCreate from '../pages/AddressCreate'
+import AddressEdit from '../pages/AddressEdit'
 
 const AppRouter = () => {
-  const mainRoutes = [
-    <Route key="1" path="/addresses" component={Addresses} />,
-    <Route key="2" path="/profile" component={Profile} />,
-    <Route key="3" path="/payment-data" component={PaymentData} />,
-    <Route key="4" path="/my-orders" component={Loading} />,
+  const routes = [
+    { path: '/addresses', component: Addresses },
+    { path: '/addresses/new', component: AddressCreate },
+    { path: '/addresses/edit/:id', component: AddressEdit },
+    { path: '/profile', component: Profile },
+    { path: '/profile/edit', component: ProfileEdit },
+    { path: '/payment-data', component: PaymentData },
   ]
 
   return (
@@ -23,7 +27,9 @@ const AppRouter = () => {
             <main className="pa6 vh-100">
               <Switch>
                 <Route exact path="/" component={Menu} />
-                {mainRoutes}
+                {routes.map(({ path, component }) => (
+                  <Route exact key={path} path={path} component={component} />
+                ))}
               </Switch>
             </main>
           ) : (
@@ -31,8 +37,10 @@ const AppRouter = () => {
               <Menu />
               <main className="flex-auto pt6">
                 <Switch>
-                  {mainRoutes}
-                  <Redirect from="/" to="/addresses" />
+                  {routes.map(({ path, component }) => (
+                    <Route exact key={path} path={path} component={component} />
+                  ))}
+                  <Redirect from="/" to="/profile" />
                 </Switch>
               </main>
             </div>

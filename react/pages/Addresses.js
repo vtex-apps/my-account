@@ -2,94 +2,42 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
+import { Link, withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import { Button } from 'vtex.styleguide'
 import Header from '../components/shared/Header'
 import AddressBox from '../components/Addresses/AddressBox'
-import AddressFormBox from '../components/Addresses/AddressFormBox'
 import Loading from '../pages/Loading'
 import GetAddresses from '../graphql/getAddresses.gql'
-import GetName from '../graphql/getName.gql'
 
 class Addresses extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isAddingNew: false,
-      editingIndex: null,
-    }
-  }
-
-  startAddingNew = () => {
-    this.setState({
-      isAddingNew: true,
-      editingIndex: null,
-    })
-  }
-
-  startEditing = index => {
-    this.setState({
-      editingIndex: index,
-      isAddingNew: false,
-    })
-  }
-
-  handleAddressDeleted = () => {
-    this.setState({ editingIndex: null })
-  }
-
-  handleAddressSaved = () => {
-    this.setState({
-      editingIndex: null,
-      isAddingNew: false,
-    })
+  startEditing = address => {
+    this.props.history.push('/addresses/edit/' + address.addressId)
   }
 
   render() {
-    const { intl, addresses, profile } = this.props
-    const { isAddingNew, editingIndex } = this.state
-
-    const pageTitle = intl.formatMessage({ id: 'pages.addresses' })
+    const { intl, addresses } = this.props
 
     return (
       <section>
         <div className="flex flex-column flex-row-ns flex-wrap items-center-ns justify-between-ns">
-          <Header title={pageTitle} />
+          <Header titleId={'pages.addresses'} />
           <div className="mt6 mt5-ns mr5-ns flex-none">
-            <Button
-              variation="primary"
-              block
-              size="small"
-              onClick={this.startAddingNew}
-              disabled={isAddingNew}
-            >
-              {intl.formatMessage({ id: 'addresses.addAddress' })}
-            </Button>
+            <Link to="/addresses/new">
+              <Button variation="primary" block size="small">
+                {intl.formatMessage({ id: 'addresses.addAddress' })}
+              </Button>
+            </Link>
           </div>
         </div>
         <main className="mt7 flex-ns flex-wrap-ns items-start-ns">
-          {isAddingNew && (
-            <AddressFormBox isNew onAddressSaved={this.handleAddressSaved} />
-          )}
-          {addresses.map(
-            (address, index) =>
-              editingIndex === index ? (
-                <AddressFormBox
-                  isNew={false}
-                  address={address}
-                  profile={profile}
-                  onAddressSaved={this.handleAddressSaved}
-                  onAddressDeleted={this.handleAddressDeleted}
-                  key={address.addressId}
-                />
-              ) : (
-                <AddressBox
-                  key={address.addressId}
-                  address={address}
-                  onEditClick={() => this.startEditing(index)}
-                />
-              ),
-          )}
+          {addresses.map(address => (
+            <AddressBox
+              key={address.addressId}
+              address={address}
+              onEditClick={() => this.startEditing(address)}
+            />
+          ))}
         </main>
       </section>
     )
@@ -99,20 +47,15 @@ class Addresses extends Component {
 Addresses.propTypes = {
   intl: intlShape.isRequired,
   addresses: PropTypes.array.isRequired,
-  profile: PropTypes.object.isRequired,
 }
 
 const enhance = compose(
   graphql(GetAddresses),
-  graphql(GetName, { name: 'nameQuery' }),
-  branch(
-    ({ data, nameQuery }) => data.loading || nameQuery.loading,
-    renderComponent(Loading),
-  ),
-  withProps(({ data, nameQuery }) => ({
-    profile: nameQuery.profile,
+  branch(({ data }) => data.loading, renderComponent(Loading)),
+  withProps(({ data }) => ({
     addresses: data.profile.addresses,
   })),
   injectIntl,
+  withRouter,
 )
 export default enhance(Addresses)

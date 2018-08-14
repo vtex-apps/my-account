@@ -7,7 +7,7 @@ const ErrorAlert = ({ onDismiss, intl }) => {
   return (
     <div className="mb5">
       <Alert type="error" onClose={onDismiss}>
-        {intl.formatMessage({ id: 'commons.error-occurred' })}
+        {intl.formatMessage({ id: 'commons.errorOccurred' })}
       </Alert>
     </div>
   )

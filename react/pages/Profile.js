@@ -1,27 +1,25 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { injectIntl, intlShape } from 'react-intl'
 import { graphql } from 'react-apollo'
+import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import Loading from '../pages/Loading'
 import Header from '../components/shared/Header'
 import ProfileBox from '../components/Profile/ProfileBox'
 import PasswordBox from '../components/Profile/PasswordBox'
 import PasswordFormBox from '../components/Profile/PasswordFormBox'
-import ProfileFormBox from '../components/Profile/ProfileFormBox'
 import GetProfile from '../graphql/getProfile.gql'
 
 class Profile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isEditingData: false,
       isEditingPassword: false,
     }
   }
 
   toggleEditingData = () => {
-    this.setState(prevState => ({ isEditingData: !prevState.isEditingData }))
+    this.props.history.push('/profile/edit')
   }
 
   toggleEditingPassword = () => {
@@ -31,25 +29,14 @@ class Profile extends Component {
   }
 
   render() {
-    const { intl, profile } = this.props
-    const { isEditingData, isEditingPassword } = this.state
-    const pageTitle = intl.formatMessage({ id: 'pages.profile' })
+    const { profile } = this.props
+    const { isEditingPassword } = this.state
 
     return (
       <section>
-        <Header title={pageTitle} />
+        <Header titleId={'pages.profile'} />
         <main className="mt6 flex-ns flex-wrap items-start-ns">
-          {isEditingData ? (
-            <ProfileFormBox
-              profile={profile}
-              onDataSave={this.toggleEditingData}
-            />
-          ) : (
-            <ProfileBox
-              profile={profile}
-              onEditClick={this.toggleEditingData}
-            />
-          )}
+          <ProfileBox profile={profile} onEditClick={this.toggleEditingData} />
           {isEditingPassword ? (
             <PasswordFormBox onPasswordChange={this.toggleEditingPassword} />
           ) : (
@@ -63,13 +50,12 @@ class Profile extends Component {
 
 Profile.propTypes = {
   profile: PropTypes.object.isRequired,
-  intl: intlShape.isRequired,
 }
 
 const enhance = compose(
   graphql(GetProfile),
   branch(({ data }) => data.loading, renderComponent(Loading)),
   withProps(({ data }) => ({ profile: data.profile })),
-  injectIntl,
+  withRouter,
 )
 export default enhance(Profile)

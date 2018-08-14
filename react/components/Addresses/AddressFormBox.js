@@ -4,7 +4,6 @@ import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
 import AddressShape from '@vtex/address-form/lib/propTypes/AddressShape'
 import ContentBox from '../shared/ContentBox'
-import ErrorAlert from '../shared/ErrorAlert'
 import emptyAddress from './emptyAddress'
 import AddressEditor from './AddressEditor'
 import AddressDeletter from './AddressDeletter'
@@ -15,9 +14,7 @@ class AddressFormBox extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      address: null,
       isLoading: false,
-      shouldShowError: false,
     }
   }
 
@@ -31,14 +28,6 @@ class AddressFormBox extends Component {
       addressQuery: null,
       receiverName: addr.receiverName || defaultReceiver,
     }
-  }
-
-  componentDidMount() {
-    const baseAddress = this.props.isNew ? emptyAddress : this.props.address
-
-    this.setState({
-      address: this.prepareAddress(baseAddress),
-    })
   }
 
   reshapeAddress(address) {
@@ -57,53 +46,39 @@ class AddressFormBox extends Component {
   handleSubmit = async (valid, address) => {
     if (!valid || this.state.isLoading) return
 
-    const { createAddress, updateAddress, isNew, onAddressSaved } = this.props
+    const {
+      createAddress,
+      updateAddress,
+      isNew,
+      onAddressSaved,
+      onError,
+    } = this.props
     const { addressId } = address
     const addressFields = this.reshapeAddress(address)
 
-    this.setState({
-      isLoading: true,
-      shouldShowError: false,
-    })
-
     try {
-      if (isNew) {
-        const { data } = await createAddress({ variables: { addressFields } })
-        onAddressSaved(data.createAddress.addresses)
-      } else {
-        const { data } = await updateAddress({
-          variables: { addressId, addressFields },
-        })
-        onAddressSaved(data.updateAddress.addresses)
-      }
+      this.setState({ isLoading: true })
+      isNew
+        ? await createAddress({ variables: { addressFields } })
+        : await updateAddress({ variables: { addressId, addressFields } })
+      this.setState({ isLoading: false })
+      onAddressSaved()
     } catch (error) {
-      this.showError()
+      onError()
     }
   }
 
-  showError = () => {
-    window.scroll(0, 0)
-    this.setState({
-      isLoading: false,
-      shouldShowError: true,
-    })
-  }
-
-  dismissError = () => {
-    this.setState({
-      shouldShowError: false,
-    })
-  }
-
   render() {
-    const { onAddressDeleted, isNew } = this.props
-    const { address, isLoading, shouldShowError } = this.state
+    const { onAddressDeleted, isNew, onError } = this.props
+    const { isLoading } = this.state
+    const baseAddress = isNew ? emptyAddress : this.props.address
 
-    if (!address) return null
+    if (!baseAddress) return null
+
+    const address = this.prepareAddress(baseAddress)
 
     return (
-      <ContentBox shouldAllowGrowing>
-        {shouldShowError && <ErrorAlert onDismiss={this.dismissError} />}
+      <ContentBox shouldAllowGrowing maxWidthStep={6}>
         <AddressEditor
           address={address}
           isNew={isNew}
@@ -114,12 +89,16 @@ class AddressFormBox extends Component {
           <AddressDeletter
             addressId={address.addressId}
             onAddressDeleted={onAddressDeleted}
-            onError={this.showError}
+            onError={onError}
           />
         )}
       </ContentBox>
     )
   }
+}
+
+AddressFormBox.defaultProps = {
+  isNew: false,
 }
 
 AddressFormBox.propTypes = {
@@ -128,6 +107,7 @@ AddressFormBox.propTypes = {
   createAddress: PropTypes.func.isRequired,
   updateAddress: PropTypes.func.isRequired,
   onAddressSaved: PropTypes.func.isRequired,
+  onError: PropTypes.func,
   address: AddressShape,
   profile: PropTypes.object,
 }
