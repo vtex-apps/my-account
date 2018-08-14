@@ -40,8 +40,7 @@ class AddressEdit extends Component {
       <section>
         <Header
           titleId={'pages.addressEdit'}
-          backButtonId={'pages.addresses'}
-          backButtonPath={'/addresses'}
+          backButton={{ id: 'pages.addresses', path: '/addresses' }}
           shouldAlwaysShowBackButton
         />
         <main className="mt6">

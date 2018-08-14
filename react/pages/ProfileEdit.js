@@ -37,8 +37,7 @@ class ProfileEdit extends Component {
       <section>
         <Header
           titleId={'pages.profileEdit'}
-          backButtonId={'pages.profile'}
-          backButtonPath={'/profile'}
+          backButton={{ id: 'pages.profile', path: '/profile' }}
           shouldAlwaysShowBackButton
         />
         <main className="mt6">

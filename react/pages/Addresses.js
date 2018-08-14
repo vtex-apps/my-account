@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { intlShape, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { Link, withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
@@ -17,24 +16,18 @@ class Addresses extends Component {
   }
 
   render() {
-    const { intl, addresses, error } = this.props
+    const { addresses, error, data } = this.props
+
+    console.log(data.loading)
 
     return (
       <section>
-        <div className="flex flex-column flex-row-ns flex-wrap items-center-ns justify-between-ns">
-          <Header titleId={'pages.addresses'} />
-          {!error && (
-            <div className="mt6 mt5-ns mr5-ns flex-none">
-              <Link to="/addresses/new">
-                <Button variation="primary" block size="small">
-                  {intl.formatMessage({ id: 'addresses.addAddress' })}
-                </Button>
-              </Link>
-            </div>
-          )}
-        </div>
+        <Header
+          titleId={'pages.addresses'}
+          actionButton={{ id: 'addresses.addAddress', path: '/addresses/new' }}
+        />
         {error ? (
-          <ConnectionError />
+          <ConnectionError onReload={data.refetch} />
         ) : (
           <main className="mt7 flex-ns flex-wrap-ns items-start-ns">
             {addresses.map(address => (
@@ -52,18 +45,17 @@ class Addresses extends Component {
 }
 
 Addresses.propTypes = {
-  intl: intlShape.isRequired,
   addresses: PropTypes.array.isRequired,
 }
 
 const enhance = compose(
   graphql(GetAddresses),
   branch(({ data }) => data.loading, renderComponent(Loading)),
+  branch(({ data }) => data.error, renderComponent(ConnectionError)),
   withProps(({ data }) => ({
     addresses: data.profile && data.profile.addresses,
     error: data.error,
   })),
-  injectIntl,
   withRouter,
 )
 export default enhance(Addresses)

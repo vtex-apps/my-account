@@ -36,8 +36,7 @@ class AddressCreate extends Component {
       <section>
         <Header
           titleId={'pages.addressCreate'}
-          backButtonId={'pages.addresses'}
-          backButtonPath={'/addresses'}
+          backButton={{ id: 'pages.addresses', path: '/addresses' }}
           shouldAlwaysShowBackButton
         />
         <main className="mt6">
