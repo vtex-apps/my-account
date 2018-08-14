@@ -1,5 +1,4 @@
 import React from 'react'
-import UserPlaceholderPicture from './UserPlaceholderPicture'
 import SkeletonPiece from '../shared/SkeletonPiece'
 
 const UserInfoLoading = () => {
