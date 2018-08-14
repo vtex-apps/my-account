@@ -4,7 +4,7 @@ import Media from 'react-media'
 import Menu from './Menu/Menu'
 import Addresses from '../pages/addresses/Addresses'
 import Profile from '../pages/profile/Profile'
-import PaymentData from '../pages/payments/PaymentData'
+import Payments from '../pages/payments/Payments'
 import ProfileEdit from '../pages/profile-edit/ProfileEdit'
 import AddressCreate from '../pages/address-create/AddressCreate'
 import AddressEdit from '../pages/address-edit/AddressEdit'
@@ -16,7 +16,7 @@ const AppRouter = () => {
     { path: '/addresses/edit/:id', component: AddressEdit },
     { path: '/profile', component: Profile },
     { path: '/profile/edit', component: ProfileEdit },
-    { path: '/payment-data', component: PaymentData },
+    { path: '/payments', component: Payments },
   ]
 
   return (
