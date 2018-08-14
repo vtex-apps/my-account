@@ -18,7 +18,7 @@ class ProfileEdit extends Component {
   }
 
   goBack = () => {
-    this.props.history.push('/profile')
+    this.props.history.push('/profile?success=true')
   }
 
   handleError = () => {

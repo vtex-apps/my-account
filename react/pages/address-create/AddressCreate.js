@@ -17,7 +17,7 @@ class AddressCreate extends Component {
   }
 
   goBack = () => {
-    this.props.history.push('/addresses')
+    this.props.history.push('/addresses?success=true')
   }
 
   handleError = () => {
