@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import ProfileEditHeader from './ProfileEditHeader'
 import ProfileEditLoading from './ProfileEditLoading'
-import ErrorAlert from '../../components/shared/ErrorAlert'
+import GenericError from '../../components/shared/GenericError'
 import ProfileFormBox from '../../components/Profile/ProfileFormBox'
 import GetProfile from '../../graphql/getProfile.gql'
 
@@ -38,7 +38,7 @@ class ProfileEdit extends Component {
         <ProfileEditHeader />
         <main className="mt6">
           {shouldShowError && (
-            <ErrorAlert
+            <GenericError
               onDismiss={this.dismissError}
               errorId="error.unknownError"
             />

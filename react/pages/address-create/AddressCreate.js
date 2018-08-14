@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import AddressCreateHeader from './AddressCreateHeader'
 import AddressCreateLoading from './AddressCreateLoading'
-import ErrorAlert from '../../components/shared/ErrorAlert'
+import GenericError from '../../components/shared/GenericError'
 import AddressFormBox from '../../components/Addresses/AddressFormBox'
 import GetName from '../../graphql/getName.gql'
 
@@ -37,7 +37,7 @@ class AddressCreate extends Component {
         <AddressCreateHeader />
         <main className="mt6">
           {shouldShowError && (
-            <ErrorAlert
+            <GenericError
               onDismiss={this.dismissError}
               errorId="error.unknownError"
             />

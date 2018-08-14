@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import AddressEditHeader from './AddressEditHeader'
 import AddressEditLoading from './AddressEditLoading'
-import ErrorAlert from '../../components/shared/ErrorAlert'
+import GenericError from '../../components/shared/GenericError'
 import AddressFormBox from '../../components/Addresses/AddressFormBox'
 import GetAddresses from '../../graphql/getAddresses.gql'
 
@@ -40,7 +40,7 @@ class AddressEdit extends Component {
           {address ? (
             <React.Fragment>
               {shouldShowError && (
-                <ErrorAlert
+                <GenericError
                   onDismiss={this.dismissError}
                   errorId="error.unknownError"
                 />
@@ -53,7 +53,7 @@ class AddressEdit extends Component {
               />
             </React.Fragment>
           ) : (
-            <ErrorAlert errorId="error.addressNotFound" />
+            <GenericError errorId="error.addressNotFound" />
           )}
         </main>
       </section>
