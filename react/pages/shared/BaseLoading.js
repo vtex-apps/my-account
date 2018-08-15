@@ -18,11 +18,12 @@ class BaseLoading extends Component {
   }
 
   reload = async () => {
-    this.setState(() => ({ isLoading: true }))
+    this.setState({ isLoading: true })
     try {
       await this.props.queryData.refetch()
-    } catch (error) {}
-    this.setState(() => ({ isLoading: false }))
+    } catch (error) {
+      this.setState({ isLoading: false })
+    }
   }
 
   render() {
