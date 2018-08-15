@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import PaymentsHeader from './PaymentsHeader'
-// import AddressesLoading from './AddressesLoading'
+import PaymentsLoading from './PaymentsLoading'
 import PaymentBox from '../../components/Payments/PaymentBox'
 import Toast from '../../components/shared/Toast'
 import GetAddresses from '../../graphql/getAddresses.gql'
@@ -35,10 +35,7 @@ class Payments extends Component {
         <PaymentsHeader />
         <main className="mt7 flex-ns flex-wrap-ns items-start-ns relative">
           {addresses.map(address => (
-            <PaymentBox
-              address={address}
-              onEditClick={() => this.startEditing(address)}
-            />
+            <PaymentBox address={address} />
           ))}
           {showToast && (
             <Toast messageId="alert.success" onClose={this.handleCloseToast} />
@@ -55,7 +52,7 @@ Payments.propTypes = {
 
 const enhance = compose(
   graphql(GetAddresses),
-  branch(({ data }) => data.profile == null, renderComponent(PaymentsHeader)),
+  branch(({ data }) => data.profile == null, renderComponent(PaymentsLoading)),
   withProps(({ data }) => ({ addresses: data.profile.addresses })),
   withRouter,
 )

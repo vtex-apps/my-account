@@ -8,7 +8,7 @@ import DataEntry from '../shared/DataEntry'
 
 const PaymentBox = ({ intl, address }) => {
   return (
-    <ContentBox lowerButton={intl.formatMessage({ id: 'commons.edit' })}>
+    <ContentBox>
       <div className="w5">
         <div className="mb7">
           <DataEntry label={intl.formatMessage({ id: 'payments.holder' })}>
