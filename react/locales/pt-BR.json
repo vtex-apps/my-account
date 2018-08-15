@@ -3,11 +3,12 @@
 
   "pages.orders": "Meus pedidos",
   "pages.addresses": "Endereços",
-  "pages.addressCreate": "Criar endereço",
+  "pages.addressCreate": "Adicionar endereço",
   "pages.addressEdit": "Editar endereço",
   "pages.profile": "Dados pessoais",
   "pages.profileEdit": "Editar dados pessoais",
-  "pages.payments": "Métodos de pagamento",
+  "pages.payments": "Cartões",
+  "pages.paymentCreate": "Adicionar cartão",
   "pages.myAccount": "Minha conta",
 
   "personalData.redefinePassword": "Redefinir senha",
@@ -32,6 +33,11 @@
   "addresses.deleteAddress": "Remover endereço",
   "addresses.setDefault": "Definir padrão",
   "addresses.defaultAddress": "Endereço padrão",
+
+  "payments.addPayment": "Adicionar cartão",
+  "payments.holder": "Titular",
+  "payments.expiration": "Vencimento",
+  "payments.billingAddress": "Faturamento",
 
   "commons.edit": "Editar",
 

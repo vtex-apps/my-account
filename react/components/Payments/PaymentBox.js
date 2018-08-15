@@ -11,7 +11,7 @@ const PaymentBox = ({ intl, address }) => {
     <ContentBox lowerButton={intl.formatMessage({ id: 'commons.edit' })}>
       <div className="w5">
         <div className="mb7">
-          <DataEntry label={'Titular'}>
+          <DataEntry label={intl.formatMessage({ id: 'payments.holder' })}>
             {'Gustavo Henrique Faustino Silva'}
           </DataEntry>
         </div>
@@ -26,9 +26,13 @@ const PaymentBox = ({ intl, address }) => {
           </DataEntry>
         </div>
         <div className="mb7">
-          <DataEntry label={'Vencimento'}>{'10/2020'}</DataEntry>
+          <DataEntry label={intl.formatMessage({ id: 'payments.expiration' })}>
+            {'10/2020'}
+          </DataEntry>
         </div>
-        <DataEntry label={'Faturamento'}>
+        <DataEntry
+          label={intl.formatMessage({ id: 'payments.billingAddress' })}
+        >
           <div className="lh-copy">
             <AddressRules
               country={address.country}
