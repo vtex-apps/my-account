@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ClearButton from './ClearButton'
+import SkeletonPiece from './SkeletonPiece'
 
-const ContentBox = ({
+const SkeletonBox = ({
   children,
   maxWidthStep,
   shouldAllowGrowing,
-  lowerButton,
-  onLowerButtonClick,
+  shouldShowLowerButton,
 }) => {
   const widthClass = maxWidthStep ? `mw${maxWidthStep}-ns` : ''
   const flexClass = shouldAllowGrowing ? 'flex-auto' : 'flex-none'
@@ -15,11 +14,9 @@ const ContentBox = ({
     <div className={`pb5 pr5-ns ${flexClass} ${widthClass}`}>
       <article className="ba bw1 b--light-gray br2 h-100 flex flex-column justify-between">
         <main className="ph7 pv6">{children}</main>
-        {lowerButton && (
-          <footer className="flex justify-end ph7 pb5">
-            <ClearButton onClick={onLowerButtonClick}>
-              {lowerButton}
-            </ClearButton>
+        {shouldShowLowerButton && (
+          <footer className="flex justify-end ph7 pb6 pt3">
+            <SkeletonPiece width={50} />
           </footer>
         )}
       </article>
@@ -27,16 +24,15 @@ const ContentBox = ({
   )
 }
 
-ContentBox.defaultProps = {
+SkeletonBox.defaultProps = {
   shouldAllowGrowing: false,
 }
 
-ContentBox.propTypes = {
-  children: PropTypes.any,
+SkeletonBox.propTypes = {
+  children: PropTypes.any.isRequired,
   maxWidthStep: PropTypes.number,
   shouldAllowGrowing: PropTypes.bool,
-  lowerButton: PropTypes.string,
-  onLowerButtonClick: PropTypes.func,
+  shouldShowLowerButton: PropTypes.bool,
 }
 
-export default ContentBox
+export default SkeletonBox

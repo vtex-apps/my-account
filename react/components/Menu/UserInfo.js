@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
-import { compose, branch, renderNothing, withProps } from 'recompose'
+import { compose, branch, withProps, renderComponent } from 'recompose'
 import { injectIntl, intlShape } from 'react-intl'
 import { IconPlus } from 'vtex.styleguide'
 import UserPlaceholderPicture from './UserPlaceholderPicture'
+import UserInfoLoading from './UserInfoLoading'
 import GetName from '../../graphql/getName.gql'
 
 const UserInfo = ({ profile, intl }) => {
@@ -33,7 +34,7 @@ UserInfo.propTypes = {
 
 const enhance = compose(
   graphql(GetName),
-  branch(({ data }) => data.loading, renderNothing),
+  branch(({ data }) => data.profile == null, renderComponent(UserInfoLoading)),
   withProps(({ data }) => ({ profile: data.profile })),
   injectIntl,
 )

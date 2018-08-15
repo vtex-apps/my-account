@@ -17,7 +17,7 @@ class AddressCreate extends Component {
   }
 
   goBack = () => {
-    this.props.history.push('/addresses')
+    this.props.history.push('/addresses?success=true')
   }
 
   handleError = () => {
@@ -39,7 +39,7 @@ class AddressCreate extends Component {
           {shouldShowError && (
             <GenericError
               onDismiss={this.dismissError}
-              errorId="error.unknownError"
+              errorId="alert.unknownError"
             />
           )}
           <AddressFormBox

@@ -8,6 +8,7 @@ import ProfileLoading from './ProfileLoading'
 import ProfileBox from '../../components/Profile/ProfileBox'
 import PasswordBox from '../../components/Profile/PasswordBox'
 import PasswordFormBox from '../../components/Profile/PasswordFormBox'
+import Toast from '../../components/shared/Toast'
 import GetProfile from '../../graphql/getProfile.gql'
 
 class Profile extends Component {
@@ -15,7 +16,17 @@ class Profile extends Component {
     super(props)
     this.state = {
       isEditingPassword: false,
+      showToast: false,
     }
+  }
+
+  componentDidMount() {
+    const { location } = this.props
+    this.setState({ showToast: location.search.indexOf('success=true') > -1 })
+  }
+
+  handleCloseToast = () => {
+    this.setState({ showToast: false })
   }
 
   toggleEditingData = () => {
@@ -30,7 +41,7 @@ class Profile extends Component {
 
   render() {
     const { profile } = this.props
-    const { isEditingPassword } = this.state
+    const { isEditingPassword, showToast } = this.state
 
     return (
       <section>
@@ -41,6 +52,9 @@ class Profile extends Component {
             <PasswordFormBox onPasswordChange={this.toggleEditingPassword} />
           ) : (
             <PasswordBox onEditClick={this.toggleEditingPassword} />
+          )}
+          {showToast && (
+            <Toast messageId="alert.success" onClose={this.handleCloseToast} />
           )}
         </main>
       </section>

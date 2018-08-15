@@ -4,8 +4,8 @@ import BaseHeader from '../shared/BaseHeader'
 const ProfileEditHeader = () => {
   return (
     <BaseHeader
-      titleId={'pages.addressEdit'}
-      backButton={{ id: 'pages.addresses', path: '/addresses' }}
+      titleId={'pages.profileEdit'}
+      backButton={{ id: 'pages.profile', path: '/profile' }}
       shouldAlwaysShowBackButton
     />
   )

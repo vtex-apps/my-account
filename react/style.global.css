@@ -12,3 +12,29 @@ textarea {
 .plus-sign svg {
   display: block;
 }
+
+/* Skeleton animation */
+@keyframes shimmer-anim {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(50%, 0, 0);
+  }
+}
+
+.shimmer {
+  width: 200%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0)
+  );
+  background-size: 50% 100%;
+  animation: shimmer-anim 0.7s linear infinite;
+}

@@ -19,7 +19,7 @@ const BaseHeader = ({
       <div>
         <div className={shouldAlwaysShowBackButton ? '' : 'dn-ns'}>
           <ClearButton onClick={() => history.push(backButton.path)}>
-            <IconArrowBack size={12} color="currentColor" />
+            <IconArrowBack size={14} color="currentColor" />
             <span className="ml2">
               {intl.formatMessage({ id: backButton.id })}
             </span>

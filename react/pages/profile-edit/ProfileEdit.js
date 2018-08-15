@@ -18,7 +18,7 @@ class ProfileEdit extends Component {
   }
 
   goBack = () => {
-    this.props.history.push('/profile')
+    this.props.history.push('/profile?success=true')
   }
 
   handleError = () => {
@@ -40,7 +40,7 @@ class ProfileEdit extends Component {
           {shouldShowError && (
             <GenericError
               onDismiss={this.dismissError}
-              errorId="error.unknownError"
+              errorId="alert.unknownError"
             />
           )}
           <ProfileFormBox

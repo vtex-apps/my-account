@@ -27,13 +27,13 @@ class BaseLoading extends Component {
 
   render() {
     const { isLoading } = this.state
-    const { PageHeader } = this.props
+    const { PageHeader, children } = this.props
 
     return (
       <section>
         <PageHeader />
         <main className="mt7">
-          {isLoading ? <Spinner /> : <ConnectionError onReload={this.reload} />}
+          {isLoading ? children : <ConnectionError onReload={this.reload} />}
         </main>
       </section>
     )
@@ -43,6 +43,7 @@ class BaseLoading extends Component {
 BaseLoading.propTypes = {
   queryData: PropTypes.any.isRequired,
   PageHeader: PropTypes.func.isRequired,
+  children: PropTypes.any.isRequired,
 }
 
 export default BaseLoading
