@@ -5,6 +5,7 @@ import Menu from './Menu/Menu'
 import Addresses from '../pages/addresses/Addresses'
 import Profile from '../pages/profile/Profile'
 import Payments from '../pages/payments/Payments'
+import PaymentCreate from '../pages/payment-create/PaymentCreate'
 import ProfileEdit from '../pages/profile-edit/ProfileEdit'
 import AddressCreate from '../pages/address-create/AddressCreate'
 import AddressEdit from '../pages/address-edit/AddressEdit'
@@ -17,6 +18,7 @@ const AppRouter = () => {
     { path: '/profile', component: Profile },
     { path: '/profile/edit', component: ProfileEdit },
     { path: '/payments', component: Payments },
+    { path: '/payments/new', component: PaymentCreate },
   ]
 
   return (
