@@ -1,18 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const DataEntry = ({ label, content }) => {
+const DataEntry = ({ label, children }) => {
   return (
     <div>
       <label className="db black-90 mb3">{label}</label>
-      <span className="light black-40">{content}</span>
+      <div className="light black-40">{children}</div>
     </div>
   )
 }
 
 DataEntry.propTypes = {
   label: PropTypes.string,
-  content: PropTypes.string,
+  children: PropTypes.any,
 }
 
 export default DataEntry

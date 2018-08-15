@@ -12,10 +12,9 @@ const PasswordBox = ({ onEditClick, intl }) => {
       lowerButton={intl.formatMessage({ id: 'personalData.redefinePassword' })}
       onLowerButtonClick={onEditClick}
     >
-      <DataEntry
-        label={intl.formatMessage({ id: 'personalData.password' })}
-        content="*******************"
-      />
+      <DataEntry label={intl.formatMessage({ id: 'personalData.password' })}>
+        *******************
+      </DataEntry>
     </ContentBox>
   )
 }

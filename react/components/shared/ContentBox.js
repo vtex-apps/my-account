@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ClearButton from './ClearButton'
+import { Button } from 'vtex.styleguide'
 
 const ContentBox = ({
   children,
@@ -16,10 +17,14 @@ const ContentBox = ({
       <article className="ba bw1 b--light-gray br2 h-100 flex flex-column justify-between">
         <main className="ph7 pv6">{children}</main>
         {lowerButton && (
-          <footer className="flex justify-end ph7 pb5">
-            <ClearButton onClick={onLowerButtonClick}>
+          <footer className="flex justify-end ph3 pb3">
+            <Button
+              variation="tertiary"
+              size="small"
+              onClick={onLowerButtonClick}
+            >
               {lowerButton}
-            </ClearButton>
+            </Button>
           </footer>
         )}
       </article>
