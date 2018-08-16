@@ -4,7 +4,7 @@ import { intlShape, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
 import { Button } from 'vtex.styleguide'
-import { ProfileRules, ProfileContainer } from '@vtex/profile-form'
+import { ProfileRules, ProfileContainer } from 'vtex.profile-form'
 import ContentBox from '../shared/ContentBox'
 import UpdateProfile from '../../graphql/updateProfile.gql'
 
@@ -39,10 +39,7 @@ class ProfileFormBox extends Component {
 
     return (
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
-        <ProfileRules
-          country={'BRA'}
-          fetch={country => import('@vtex/profile-form/lib/rules/' + country)}
-        >
+        <ProfileRules country={'BRA'} shouldUseIOFetching>
           <ProfileContainer
             defaultProfile={profile}
             onSubmit={this.handleSubmit}

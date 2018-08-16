@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
-import { ProfileRules, ProfileSummary } from '@vtex/profile-form'
+import { ProfileRules, ProfileSummary } from 'vtex.profile-form'
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
 
@@ -15,10 +15,7 @@ const ProfileBox = ({ profile, onEditClick, intl }) => {
       lowerButton={intl.formatMessage({ id: 'commons.edit' })}
       onLowerButtonClick={onEditClick}
     >
-      <ProfileRules
-        country={'BRA'}
-        fetch={country => import('@vtex/profile-form/lib/rules/' + country)}
-      >
+      <ProfileRules country={'BRA'} shouldUseIOFetching>
         <ProfileSummary profile={profile}>
           {({
             personalData: {
