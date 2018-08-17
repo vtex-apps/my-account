@@ -1,5 +1,6 @@
 import React from 'react'
 import { injectIntl, intlShape } from 'react-intl'
+import { ExtensionPoint } from 'render'
 import MenuLink from './MenuLink'
 
 const links = [
@@ -33,6 +34,13 @@ const MenuLinksList = ({ intl }) => {
           key={link.id}
         />
       ))}
+      <ExtensionPoint id="menu-links">
+        {links =>
+          links.map(({ name, path }) => (
+            <MenuLink path={path} name={name} key={name} />
+          ))
+        }
+      </ExtensionPoint>
     </nav>
   )
 }

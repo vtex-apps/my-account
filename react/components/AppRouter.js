@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Switch, Redirect, HashRouter } from 'react-router-dom'
 import Media from 'react-media'
+import { ExtensionPoint } from 'render'
 import Menu from './Menu/Menu'
 import Addresses from '../pages/addresses/Addresses'
 import Profile from '../pages/profile/Profile'
@@ -21,6 +22,10 @@ const AppRouter = () => {
     { path: '/payments/new', component: PaymentCreate },
   ]
 
+  const toRouteComponent = ({ path, component }) => (
+    <Route exact key={path} path={path} component={component} />
+  )
+
   return (
     <HashRouter>
       <Media query="(max-width: 40em)">
@@ -29,9 +34,13 @@ const AppRouter = () => {
             <main className="pa6 vh-100">
               <Switch>
                 <Route exact path="/" component={Menu} />
-                {routes.map(({ path, component }) => (
-                  <Route exact key={path} path={path} component={component} />
-                ))}
+                {routes.map(toRouteComponent)}
+                <ExtensionPoint id="my-orders-route">
+                  {route => toRouteComponent(route)}
+                </ExtensionPoint>
+                <ExtensionPoint id="routes">
+                  {routes => routes.map(toRouteComponent)}
+                </ExtensionPoint>
               </Switch>
             </main>
           ) : (
@@ -42,6 +51,12 @@ const AppRouter = () => {
                   {routes.map(({ path, component }) => (
                     <Route exact key={path} path={path} component={component} />
                   ))}
+                  <ExtensionPoint id="my-orders-route">
+                    {route => toRouteComponent(route)}
+                  </ExtensionPoint>
+                  <ExtensionPoint id="routes">
+                    {routes => routes.map(toRouteComponent)}
+                  </ExtensionPoint>
                   <Redirect from="/" to="/profile" />
                 </Switch>
               </main>
