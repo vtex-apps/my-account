@@ -7,6 +7,21 @@
   "extensions": {
     "my-account": {
       "component": "index"
+    },
+    "my-account/my-orders-route": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "my-account/routes": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "my-account/menu-links": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "my-account/profile/display": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "my-account/profile/input": {
+      "component": "vtex.render-runtime/ExtensionContainer"
     }
   }
 }
