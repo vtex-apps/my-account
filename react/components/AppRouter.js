@@ -35,12 +35,7 @@ const AppRouter = () => {
               <Switch>
                 <Route exact path="/" component={Menu} />
                 {routes.map(toRouteComponent)}
-                <ExtensionPoint id="my-orders-route">
-                  {route => toRouteComponent(route)}
-                </ExtensionPoint>
-                <ExtensionPoint id="routes">
-                  {routes => routes.map(toRouteComponent)}
-                </ExtensionPoint>
+                <ExtensionPoint id="routes" />
               </Switch>
             </main>
           ) : (
@@ -48,16 +43,9 @@ const AppRouter = () => {
               <Menu />
               <main className="flex-auto pt6">
                 <Switch>
-                  {routes.map(({ path, component }) => (
-                    <Route exact key={path} path={path} component={component} />
-                  ))}
-                  <ExtensionPoint id="my-orders-route">
-                    {route => toRouteComponent(route)}
-                  </ExtensionPoint>
-                  <ExtensionPoint id="routes">
-                    {routes => routes.map(toRouteComponent)}
-                  </ExtensionPoint>
-                  <Redirect from="/" to="/profile" />
+                  {routes.map(toRouteComponent)}
+                  <Redirect exact from="/" to="/profile" />
+                  <ExtensionPoint id="routes" />
                 </Switch>
               </main>
             </div>

@@ -30,19 +30,12 @@ const PaymentBox = ({ intl, address }) => {
                 import('@vtex/address-form/lib/country/' + country)
               }
             >
+              {' '}
               <AddressSummary address={address} />
             </AddressRules>
           </div>
         </DataEntry>
       </div>
-      {/* <div className="lighter black-40 lh-copy pv4 w5 h4">
-        <AddressRules
-          country={address.country}
-          fetch={country => import('@vtex/address-form/lib/country/' + country)}
-        >
-          <AddressSummary address={address} />
-        </AddressRules>
-      </div> */}
     </ContentBox>
   )
 }
