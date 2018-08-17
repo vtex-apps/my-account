@@ -11,23 +11,13 @@ const PaymentBox = ({ intl, address }) => {
     <ContentBox>
       <div className="w5">
         <div className="mb7">
-          <DataEntry label={intl.formatMessage({ id: 'payments.holder' })}>
-            {'Gustavo Henrique Faustino Silva'}
-          </DataEntry>
-        </div>
-        <div className="mb7">
-          <DataEntry>
+          <DataEntry label={intl.formatMessage({ id: 'payments.cardNumber' })}>
             <div className="flex items-center">
               <div className="h2 mr4">
                 <Elo />
               </div>
               <span>**** **** **** 7462</span>
             </div>
-          </DataEntry>
-        </div>
-        <div className="mb7">
-          <DataEntry label={intl.formatMessage({ id: 'payments.expiration' })}>
-            {'10/2020'}
           </DataEntry>
         </div>
         <DataEntry

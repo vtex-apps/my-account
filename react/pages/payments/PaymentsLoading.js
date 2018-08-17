@@ -12,13 +12,7 @@ const PaymentsLoading = ({ data }) => {
         <SkeletonBox>
           <div className="pv4 w5">
             <div className="mb8">
-              <SkeletonPiece width={70} />
-            </div>
-            <div className="mb8">
               <SkeletonPiece width={100} />
-            </div>
-            <div className="mb8">
-              <SkeletonPiece width={40} />
             </div>
             <div className="mb4">
               <SkeletonPiece width={70} />

@@ -35,6 +35,7 @@
   "addresses.defaultAddress": "Endereço padrão",
 
   "payments.addPayment": "Adicionar cartão",
+  "payments.cardNumber": "Número do cartão",
   "payments.holder": "Titular",
   "payments.expiration": "Vencimento",
   "payments.billingAddress": "Faturamento",
