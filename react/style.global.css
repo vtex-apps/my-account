@@ -8,11 +8,6 @@ textarea {
   font-family: 'helvetica neue', helvetica, sans-serif;
 }
 
-/* Required to make parent element fit to icon size */
-.plus-sign svg {
-  display: block;
-}
-
 /* Skeleton animation */
 @keyframes shimmer-anim {
   0% {
