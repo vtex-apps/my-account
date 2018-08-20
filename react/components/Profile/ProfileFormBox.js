@@ -14,12 +14,18 @@ class ProfileFormBox extends Component {
     this.state = {
       isLoading: false,
     }
+    this.extension = React.createRef()
   }
 
   handleSubmit = async ({ valid, profile: profileInput }) => {
     const { updateProfile, onDataSave, onError } = this.props
     const { email, ...profile } = profileInput
     if (!valid || this.state.isLoading) return
+
+    if (this.extension.current && this.extension.current.submit) {
+      const extensionValid = this.extension.current.submit()
+      if (!extensionValid) return
+    }
 
     try {
       this.setState({ isLoading: true })
