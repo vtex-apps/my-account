@@ -14,7 +14,10 @@
     "my-account/routes": {
       "component": "vtex.render-runtime/ExtensionContainer"
     },
-    "my-account/menu-links": {
+    "my-account/menu-links-before": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "my-account/menu-links-after": {
       "component": "vtex.render-runtime/ExtensionContainer"
     },
     "my-account/profile/display": {
@@ -29,7 +32,10 @@
     "my-account-portal/routes": {
       "component": "vtex.render-runtime/ExtensionContainer"
     },
-    "my-account-portal/menu-links": {
+    "my-account-portal/menu-links-before": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "my-account-portal/menu-links-after": {
       "component": "vtex.render-runtime/ExtensionContainer"
     },
     "my-account-portal/profile/display": {

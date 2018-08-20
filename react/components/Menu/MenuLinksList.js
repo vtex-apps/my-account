@@ -5,10 +5,6 @@ import MenuLink from './MenuLink'
 
 const links = [
   {
-    id: 'pages.orders',
-    path: '/myorders',
-  },
-  {
     id: 'pages.addresses',
     path: '/addresses',
   },
@@ -25,17 +21,19 @@ const links = [
 const MenuLinksList = ({ intl }) => {
   return (
     <nav>
-      {links.map(link => (
-        <MenuLink
-          path={link.path}
-          name={intl.formatMessage({
-            id: link.id,
-          })}
-          key={link.id}
-        />
+      <ExtensionPoint
+        id="menu-links-before"
+        render={links =>
+          links.map(({ name, path }) => (
+            <MenuLink path={path} name={name} key={name} />
+          ))
+        }
+      />
+      {links.map(({ path, id }) => (
+        <MenuLink path={path} name={intl.formatMessage({ id })} key={id} />
       ))}
       <ExtensionPoint
-        id="menu-links"
+        id="menu-links-after"
         render={links =>
           links.map(({ name, path }) => (
             <MenuLink path={path} name={name} key={name} />
