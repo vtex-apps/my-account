@@ -111,7 +111,9 @@ const ProfileBox = ({ profile, onEditClick, intl }) => {
           <div className="flex-ns flex-wrap">
             {fields.map(({ label, value }) => (
               <div className="mb8 w-50-ns">
-                <DataEntry label={label}>{value}</DataEntry>
+                <DataEntry key={label} label={label}>
+                  {value}
+                </DataEntry>
               </div>
             ))}
           </div>
