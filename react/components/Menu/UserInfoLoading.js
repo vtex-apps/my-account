@@ -9,7 +9,7 @@ const UserInfoLoading = () => {
           <div className="shimmer" />
         </div>
       </div>
-      <div className="flex-auto">
+      <div className="flex-auto w3">
         <div className="mb2">
           <SkeletonPiece width={50} />
         </div>
