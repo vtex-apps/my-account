@@ -2,11 +2,47 @@
   "pages": {
     "my-account": {
       "path": "/my-account"
+    },
+    "my-account-portal": {
+      "path": "/legacy-extensions/my-account"
     }
   },
   "extensions": {
     "my-account": {
       "component": "index"
+    },
+    "my-account/routes": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "my-account/menu-links-before": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "my-account/menu-links-after": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "my-account/profile/display": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "my-account/profile/input": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "my-account-portal": {
+      "component": "index"
+    },
+    "my-account-portal/routes": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "my-account-portal/menu-links-before": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "my-account-portal/menu-links-after": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "my-account-portal/profile/display": {
+      "component": "vtex.render-runtime/ExtensionContainer"
+    },
+    "my-account-portal/profile/input": {
+      "component": "vtex.render-runtime/ExtensionContainer"
     }
   }
 }

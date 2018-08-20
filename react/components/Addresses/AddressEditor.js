@@ -12,7 +12,6 @@ import {
   AddressRules,
   AddressSubmitter,
 } from '@vtex/address-form'
-
 import {
   GeolocationInput,
   GoogleMapsContainer,

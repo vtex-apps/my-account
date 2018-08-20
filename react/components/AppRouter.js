@@ -1,10 +1,12 @@
 import React from 'react'
 import { Route, Switch, Redirect, HashRouter } from 'react-router-dom'
 import Media from 'react-media'
+import { ExtensionPoint } from 'render'
 import Menu from './Menu/Menu'
 import Addresses from '../pages/addresses/Addresses'
 import Profile from '../pages/profile/Profile'
 import Payments from '../pages/payments/Payments'
+import PaymentCreate from '../pages/payment-create/PaymentCreate'
 import ProfileEdit from '../pages/profile-edit/ProfileEdit'
 import AddressCreate from '../pages/address-create/AddressCreate'
 import AddressEdit from '../pages/address-edit/AddressEdit'
@@ -17,7 +19,12 @@ const AppRouter = () => {
     { path: '/profile', component: Profile },
     { path: '/profile/edit', component: ProfileEdit },
     { path: '/payments', component: Payments },
+    { path: '/payments/new', component: PaymentCreate },
   ]
+
+  const toRouteComponent = ({ path, component }) => (
+    <Route exact key={path} path={path} component={component} />
+  )
 
   return (
     <HashRouter>
@@ -27,9 +34,8 @@ const AppRouter = () => {
             <main className="pa6 vh-100">
               <Switch>
                 <Route exact path="/" component={Menu} />
-                {routes.map(({ path, component }) => (
-                  <Route exact key={path} path={path} component={component} />
-                ))}
+                {routes.map(toRouteComponent)}
+                <ExtensionPoint id="routes" />
               </Switch>
             </main>
           ) : (
@@ -37,10 +43,9 @@ const AppRouter = () => {
               <Menu />
               <main className="flex-auto pt6">
                 <Switch>
-                  {routes.map(({ path, component }) => (
-                    <Route exact key={path} path={path} component={component} />
-                  ))}
-                  <Redirect from="/" to="/profile" />
+                  {routes.map(toRouteComponent)}
+                  <Redirect exact from="/" to="/profile" />
+                  <ExtensionPoint id="routes" />
                 </Switch>
               </main>
             </div>

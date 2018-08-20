@@ -2,7 +2,6 @@
   "name": "my-account",
   "dependencies": {
     "@vtex/address-form": "^2.0.2",
-    "@vtex/profile-form": "^1.1.1",
     "classname": "0.0.0",
     "exenv": "^1.2.2",
     "moment": "^2.22.2",
