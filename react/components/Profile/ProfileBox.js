@@ -9,6 +9,7 @@ import DataEntry from '../shared/DataEntry'
 const ProfileBox = ({ profile, onEditClick, intl }) => {
   if (!profile) return null
 
+  const storeCountry = global.__RUNTIME__.culture.country
   return (
     <ContentBox
       shouldAllowGrowing
@@ -16,7 +17,7 @@ const ProfileBox = ({ profile, onEditClick, intl }) => {
       lowerButton={intl.formatMessage({ id: 'commons.edit' })}
       onLowerButtonClick={onEditClick}
     >
-      <ProfileRules country={'BRA'} shouldUseIOFetching>
+      <ProfileRules country={storeCountry} shouldUseIOFetching>
         <ProfileSummary profile={profile}>
           {({
             personalData: {

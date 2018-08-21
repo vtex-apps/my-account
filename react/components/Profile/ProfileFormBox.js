@@ -40,12 +40,13 @@ class ProfileFormBox extends Component {
   render() {
     const { intl, profile } = this.props
     const { isLoading } = this.state
+    const storeCountry = global.__RUNTIME__.culture.country
 
     if (!profile) return null
 
     return (
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
-        <ProfileRules country={'BRA'} shouldUseIOFetching>
+        <ProfileRules country={storeCountry} shouldUseIOFetching>
           <ProfileContainer
             defaultProfile={profile}
             onSubmit={this.handleSubmit}
