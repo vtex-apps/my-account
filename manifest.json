@@ -13,7 +13,8 @@
   "dependencies": {
     "vtex.store-graphql": "2.x",
     "vtex.styleguide": "5.x",
-    "vtex.profile-form": "1.x"
+    "vtex.profile-form": "1.x",
+    "vtex.country-codes": "0.x"
   },
   "builders": {
     "react": "2.x",
