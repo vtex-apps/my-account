@@ -9,12 +9,9 @@ import { ProfileRules, ProfileContainer } from 'vtex.profile-form'
 import ContentBox from '../shared/ContentBox'
 import UpdateProfile from '../../graphql/updateProfile.gql'
 import { withRuntime } from '../shared/withRuntime'
+import { withSettings } from '../shared/withSettings'
 
 class ProfileFormBox extends Component {
-  static contextTypes = {
-    getSettings: PropTypes.func,
-  }
-
   constructor(props) {
     super(props)
     this.state = {
@@ -59,15 +56,11 @@ class ProfileFormBox extends Component {
   }
 
   render() {
-    const { intl, profile, runtime } = this.props
+    const { intl, profile, runtime, settings } = this.props
     const { isLoading } = this.state
     const storeCountry = runtime.culture.country
-
-    const storeSettings = this.context.getSettings('vtex.my-account')
     const showGenders =
-      storeSettings &&
-      storeSettings.profile &&
-      storeSettings.profile.showGenders
+      settings && settings.profile && settings.profile.showGenders
 
     if (!profile) return null
 
@@ -100,6 +93,7 @@ ProfileFormBox.propTypes = {
   profile: PropTypes.object.isRequired,
   updateProfile: PropTypes.func.isRequired,
   runtime: PropTypes.object.isRequired,
+  settings: PropTypes.object.isRequired,
   intl: intlShape.isRequired,
   onDataSave: PropTypes.func.isRequired,
   onError: PropTypes.func.isRequired,
@@ -109,5 +103,6 @@ const enhance = compose(
   graphql(UpdateProfile, { name: 'updateProfile' }),
   injectIntl,
   withRuntime,
+  withSettings,
 )
 export default enhance(ProfileFormBox)
