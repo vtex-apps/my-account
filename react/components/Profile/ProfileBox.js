@@ -5,8 +5,9 @@ import { ExtensionPoint } from 'render'
 import { ProfileRules, ProfileSummary } from 'vtex.profile-form'
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
+import { withStoreCountry } from '../shared/withStoreCountry'
 
-const ProfileBox = ({ profile, onEditClick, intl }) => {
+const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
   if (!profile) return null
 
   return (
@@ -16,7 +17,7 @@ const ProfileBox = ({ profile, onEditClick, intl }) => {
       lowerButton={intl.formatMessage({ id: 'commons.edit' })}
       onLowerButtonClick={onEditClick}
     >
-      <ProfileRules country={'BRA'} shouldUseIOFetching>
+      <ProfileRules country={storeCountry} shouldUseIOFetching>
         <ProfileSummary profile={profile}>
           {({
             personalData: {
@@ -125,8 +126,9 @@ const ProfileBox = ({ profile, onEditClick, intl }) => {
 
 ProfileBox.propTypes = {
   profile: PropTypes.object.isRequired,
+  storeCountry: PropTypes.string.isRequired,
   onEditClick: PropTypes.func,
   intl: intlShape.isRequired,
 }
 
-export default injectIntl(ProfileBox)
+export default withStoreCountry(injectIntl(ProfileBox))

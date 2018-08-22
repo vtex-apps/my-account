@@ -3,10 +3,13 @@ import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
+import { ExtensionPoint } from 'render'
 import { Button } from 'vtex.styleguide'
 import { ProfileRules, ProfileContainer } from 'vtex.profile-form'
 import ContentBox from '../shared/ContentBox'
 import UpdateProfile from '../../graphql/updateProfile.gql'
+import { withStoreCountry } from '../shared/withStoreCountry'
+import { withSettings } from '../shared/withSettings'
 
 class ProfileFormBox extends Component {
   constructor(props) {
@@ -14,22 +17,46 @@ class ProfileFormBox extends Component {
     this.state = {
       isLoading: false,
     }
-    this.extension = React.createRef()
+    this.validatorFunctions = []
+    this.submitterFunctions = []
   }
 
-  handleSubmit = async ({ valid, profile: profileInput }) => {
-    const { updateProfile, onDataSave, onError } = this.props
-    const { email, ...profile } = profileInput
-    if (!valid || this.state.isLoading) return
+  componentDidMount() {
+    this.registerValidator(this.validate)
+    this.registerSubmitter(this.submit)
+  }
 
-    if (this.extension.current && this.extension.current.submit) {
-      const extensionValid = this.extension.current.submit()
-      if (!extensionValid) return
-    }
+  setStateAsync(state) {
+    return new Promise(resolve => {
+      this.setState(state, resolve)
+    })
+  }
 
+  registerValidator = validator => {
+    this.validatorFunctions.push(validator)
+  }
+
+  registerSubmitter = submitter => {
+    this.submitterFunctions.push(submitter)
+  }
+
+  handleSubmit = async ({ valid, profile }) => {
+    if (this.isLoading) return
+
+    const { onDataSave, onError } = this.props
+    await this.setStateAsync({ isLoading: true, valid, profile })
     try {
-      this.setState({ isLoading: true })
-      await updateProfile({ variables: { profile } })
+      const validation$ = this.validatorFunctions.map(validator => validator())
+      const validationResults = await Promise.all(validation$)
+      const isValid = validationResults.reduce((acc, cur) => acc && cur, true)
+
+      if (!isValid) {
+        this.setState({ isLoading: false })
+        return
+      }
+
+      const submit$ = this.submitterFunctions.map(submitter => submitter())
+      await Promise.all(submit$)
       this.setState({ isLoading: false })
       onDataSave()
     } catch (error) {
@@ -37,25 +64,44 @@ class ProfileFormBox extends Component {
     }
   }
 
+  validate = () => {
+    return this.state.valid
+  }
+
+  submit = () => {
+    const { updateProfile } = this.props
+    const { profile: profileInput } = this.state
+    const { email, ...profile } = profileInput
+    return updateProfile({ variables: { profile } })
+  }
+
   render() {
-    const { intl, profile } = this.props
+    const { intl, profile, runtime, settings, storeCountry } = this.props
     const { isLoading } = this.state
+    const showGenders =
+      settings && settings.profile && settings.profile.showGenders
 
     if (!profile) return null
 
     return (
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
-        <ProfileRules country={'BRA'} shouldUseIOFetching>
+        <ProfileRules country={storeCountry} shouldUseIOFetching>
           <ProfileContainer
             defaultProfile={profile}
             onSubmit={this.handleSubmit}
-            shouldShowExtendedGenders={true}
+            shouldShowExtendedGenders={showGenders}
             SubmitButton={
               <Button type="submit" block size="small" isLoading={isLoading}>
                 {intl.formatMessage({ id: 'profile-form.save-changes' })}
               </Button>
             }
-          />
+          >
+            <ExtensionPoint
+              id="profile/input"
+              registerValidator={this.registerValidator}
+              registerSubmitter={this.registerSubmitter}
+            />
+          </ProfileContainer>
         </ProfileRules>
       </ContentBox>
     )
@@ -65,6 +111,8 @@ class ProfileFormBox extends Component {
 ProfileFormBox.propTypes = {
   profile: PropTypes.object.isRequired,
   updateProfile: PropTypes.func.isRequired,
+  storeCountry: PropTypes.string.isRequired,
+  settings: PropTypes.object.isRequired,
   intl: intlShape.isRequired,
   onDataSave: PropTypes.func.isRequired,
   onError: PropTypes.func.isRequired,
@@ -73,5 +121,7 @@ ProfileFormBox.propTypes = {
 const enhance = compose(
   graphql(UpdateProfile, { name: 'updateProfile' }),
   injectIntl,
+  withStoreCountry,
+  withSettings,
 )
 export default enhance(ProfileFormBox)

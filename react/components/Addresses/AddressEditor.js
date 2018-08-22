@@ -20,8 +20,7 @@ import {
 import StyleguideInput from '@vtex/address-form/lib/inputs/StyleguideInput'
 import AddressShape from '@vtex/address-form/lib/propTypes/AddressShape'
 import countryCodes from './countryCodes'
-
-const GOOGLE_MAPS_API_KEY = 'AIzaSyAjfT_MsnlHoxFmr7qw6fdTJhDm17e02EI'
+import { withSettings } from '../shared/withSettings'
 
 class AddressEditor extends Component {
   constructor(props) {
@@ -58,7 +57,7 @@ class AddressEditor extends Component {
   }
 
   render() {
-    const { isNew, isLoading, onSubmit, intl } = this.props
+    const { isNew, isLoading, settings, onSubmit, intl } = this.props
     const { address, shipsTo } = this.state
     const intlId = isNew ? 'addresses.addAddress' : 'addresses.saveAddress'
 
@@ -80,6 +79,12 @@ class AddressEditor extends Component {
 
     const locale = global.__RUNTIME__.culture.locale
 
+    const shouldUseGoogleMaps =
+      settings && settings.addresses && settings.addresses.useMap
+
+    const mapsAPIKey =
+      settings && settings.addresses && settings.addresses.apiKey
+
     return (
       <AddressRules
         country={address.country.value}
@@ -95,11 +100,9 @@ class AddressEditor extends Component {
             <CountrySelector shipsTo={shipsTo} />
 
             {isNew &&
+              shouldUseGoogleMaps &&
               !validPostalCode && (
-                <GoogleMapsContainer
-                  apiKey={GOOGLE_MAPS_API_KEY}
-                  locale={locale}
-                >
+                <GoogleMapsContainer apiKey={mapsAPIKey} locale={locale}>
                   {({ loading, googleMaps }) => (
                     <div>
                       <GeolocationInput
@@ -157,16 +160,12 @@ class AddressEditor extends Component {
 }
 
 AddressEditor.propTypes = {
-  /** Whether the form is being used for a new address or an existing one */
   isNew: PropTypes.bool.isRequired,
-  /** Whether the form should display a 'loading' state */
   isLoading: PropTypes.bool.isRequired,
-  /** The address currently being worked on */
   address: AddressShape,
-  /** Callback for form submission */
+  settings: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  /** React-intl utility */
   intl: intlShape.isRequired,
 }
 
-export default injectIntl(AddressEditor)
+export default withSettings(injectIntl(AddressEditor))
