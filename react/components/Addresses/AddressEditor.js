@@ -21,9 +21,11 @@ import StyleguideInput from '@vtex/address-form/lib/inputs/StyleguideInput'
 import AddressShape from '@vtex/address-form/lib/propTypes/AddressShape'
 import countryCodes from './countryCodes'
 
-const GOOGLE_MAPS_API_KEY = 'AIzaSyAjfT_MsnlHoxFmr7qw6fdTJhDm17e02EI'
-
 class AddressEditor extends Component {
+  static contextTypes = {
+    getSettings: PropTypes.func,
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -61,6 +63,7 @@ class AddressEditor extends Component {
     const { isNew, isLoading, onSubmit, intl } = this.props
     const { address, shipsTo } = this.state
     const intlId = isNew ? 'addresses.addAddress' : 'addresses.saveAddress'
+    const mapSettings = this.context.getSettings('vtex.my-account')
 
     if (!address) return null
 
@@ -80,6 +83,12 @@ class AddressEditor extends Component {
 
     const locale = global.__RUNTIME__.culture.locale
 
+    const shouldUseGoogleMaps =
+      mapSettings && mapSettings.addresses && mapSettings.addresses.useMap
+
+    const mapsAPIKey =
+      mapSettings && mapSettings.addresses && mapSettings.addresses.apiKey
+
     return (
       <AddressRules
         country={address.country.value}
@@ -95,11 +104,9 @@ class AddressEditor extends Component {
             <CountrySelector shipsTo={shipsTo} />
 
             {isNew &&
+              shouldUseGoogleMaps &&
               !validPostalCode && (
-                <GoogleMapsContainer
-                  apiKey={GOOGLE_MAPS_API_KEY}
-                  locale={locale}
-                >
+                <GoogleMapsContainer apiKey={mapsAPIKey} locale={locale}>
                   {({ loading, googleMaps }) => (
                     <div>
                       <GeolocationInput
