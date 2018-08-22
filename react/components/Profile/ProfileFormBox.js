@@ -21,6 +21,17 @@ class ProfileFormBox extends Component {
     this.submitterFunctions = []
   }
 
+  componentDidMount() {
+    this.registerValidator(this.validate)
+    this.registerSubmitter(this.submit)
+  }
+
+  setStateAsync(state) {
+    return new Promise(resolve => {
+      this.setState(state, resolve)
+    })
+  }
+
   registerValidator = validator => {
     this.validatorFunctions.push(validator)
   }
@@ -29,30 +40,39 @@ class ProfileFormBox extends Component {
     this.submitterFunctions.push(submitter)
   }
 
-  handleSubmit = async ({ valid, profile: profileInput }) => {
-    const { updateProfile, onDataSave, onError } = this.props
-    const { email, ...profile } = profileInput
-    if (!valid || this.state.isLoading) return
+  handleSubmit = async ({ valid, profile }) => {
+    if (this.isLoading) return
 
-    const passedAllValidators = this.validatorFunctions.reduce(
-      (validationState, currentValidator) => {
-        return validationState && currentValidator()
-      },
-      true,
-    )
-    if (!passedAllValidators) return
-
+    const { onDataSave, onError } = this.props
+    await this.setStateAsync({ isLoading: true, valid, profile })
     try {
-      this.setState({ isLoading: true })
-      this.submitterFunctions.map(submitter => {
-        submitter()
-      })
-      await updateProfile({ variables: { profile } })
+      const validation$ = this.validatorFunctions.map(validator => validator())
+      const validationResults = await Promise.all(validation$)
+      const isValid = validationResults.reduce((acc, cur) => acc && cur, true)
+
+      if (!isValid) {
+        this.setState({ isLoading: false })
+        return
+      }
+
+      const submit$ = this.submitterFunctions.map(submitter => submitter())
+      await Promise.all(submit$)
       this.setState({ isLoading: false })
       onDataSave()
     } catch (error) {
       onError(error)
     }
+  }
+
+  validate = () => {
+    return this.state.valid
+  }
+
+  submit = () => {
+    const { updateProfile } = this.props
+    const { profile: profileInput } = this.state
+    const { email, ...profile } = profileInput
+    return updateProfile({ variables: { profile } })
   }
 
   render() {
