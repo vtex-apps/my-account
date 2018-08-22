@@ -5,12 +5,11 @@ import { ExtensionPoint } from 'render'
 import { ProfileRules, ProfileSummary } from 'vtex.profile-form'
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
-import { withRuntime } from '../shared/withRuntime'
+import { withStoreCountry } from '../shared/withStoreCountry'
 
-const ProfileBox = ({ profile, runtime, onEditClick, intl }) => {
+const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
   if (!profile) return null
 
-  const storeCountry = runtime.culture.country
   return (
     <ContentBox
       shouldAllowGrowing
@@ -127,9 +126,9 @@ const ProfileBox = ({ profile, runtime, onEditClick, intl }) => {
 
 ProfileBox.propTypes = {
   profile: PropTypes.object.isRequired,
-  runtime: PropTypes.object.isRequired,
+  storeCountry: PropTypes.string.isRequired,
   onEditClick: PropTypes.func,
   intl: intlShape.isRequired,
 }
 
-export default withRuntime(injectIntl(ProfileBox))
+export default withStoreCountry(injectIntl(ProfileBox))
