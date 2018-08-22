@@ -26,7 +26,7 @@ const MyRoutes = () => {
 
 ### Menu links
 
-These extension points add new links to the main sidebar. There are two of them: `my-account/menu-links-before` and `my-account/menu-links-after`. As one might suspect, the first one adds links before my-account's own links and the other one adds them after those.
+These extension points add new links to the main sidebar. There are two of them: `my-account/menu-links-before` and `my-account/menu-links-after`, where the first one adds links before my-account's own links and the other one adds them after those.
 
 **Usage:** These extension points shall not render any React component. They take a `render` prop, which is a function they should call with a specific argument. Such argument is a list of objects containing a `name` property and a `path` property. The `name` property is the text to be displayed for the link; if using `i18n` utilities, you must translate the text before passing it. The `path` property is the URL the link leads to. Keep in mind that you must register your routes using the `routes` extension point in order for them to work here (unless you plan on adding an absolute path to some other website).
 
@@ -51,7 +51,7 @@ const ExtendedLinks = ({ render }) => {
 
 Inside the Profile page, right above the `edit` button, there is another extension point, with ID `my-account/profile/display`. This one is intended for stores that collect custom data from their customers (such as their hair color or their pet's name). This extension point allows your component to display such information without breaking the page layout.
 
-**Usage:** Just as when extendind the menu links, here your component shall not render anything. You will simply call the `render` prop again with the appropriate data and it will be displayed together with the user's default information. This time, you should pass in an array of objects containing `label` and `value` props. `label` is the name of the field you which to display (such as `Hair color`) and `value` is the value for such field (such as `brown`). Again, you must run any necessary preprocessing in your data by yourself before displaying, such as masking or localizing your texts. Also, it is up to you to fetch the data from wherever it is.
+**Usage:** Your component shall not render anything: you will simply call the `render` prop with the appropriate data and it will be displayed together with the user's default information. You should pass in an array of objects containing `label` and `value` props. `label` is the name of the field you which to display (such as `Hair color`) and `value` is the value for such field (such as `brown`). Keep in mind that you must run any necessary preprocessing in your data by yourself before displaying, such as masking or localizing your texts. Also, it is up to you to fetch the data from wherever it is.
 
 **Example**
 
