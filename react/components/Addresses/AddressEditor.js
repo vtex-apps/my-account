@@ -19,15 +19,15 @@ import {
 } from '@vtex/address-form/lib/geolocation'
 import StyleguideInput from '@vtex/address-form/lib/inputs/StyleguideInput'
 import AddressShape from '@vtex/address-form/lib/propTypes/AddressShape'
-import countryCodes from './countryCodes'
 import { withSettings } from '../shared/withSettings'
+import { withLocale } from '../shared/withLocale'
+import { compose } from 'recompose'
 
 class AddressEditor extends Component {
   constructor(props) {
     super(props)
     this.state = {
       address: null,
-      shipsTo: null,
     }
   }
 
@@ -35,16 +35,7 @@ class AddressEditor extends Component {
     const { address } = this.props
     this.setState({
       address: addValidation(address),
-      shipsTo: this.getShippingCountries(),
     })
-  }
-
-  getShippingCountries() {
-    const { intl } = this.props
-    return countryCodes.map(countryCode => ({
-      label: intl.formatMessage({ id: 'country.' + countryCode }),
-      value: countryCode,
-    }))
   }
 
   handleAddressChange = newAddress => {
@@ -57,8 +48,16 @@ class AddressEditor extends Component {
   }
 
   render() {
-    const { isNew, isLoading, settings, onSubmit, intl } = this.props
-    const { address, shipsTo } = this.state
+    const {
+      isNew,
+      isLoading,
+      settings,
+      locale,
+      shipsTo,
+      onSubmit,
+      intl,
+    } = this.props
+    const { address } = this.state
     const intlId = isNew ? 'addresses.addAddress' : 'addresses.saveAddress'
 
     if (!address) return null
@@ -77,13 +76,16 @@ class AddressEditor extends Component {
         address[fieldName].postalCodeAutoCompleted,
     )
 
-    const locale = global.__RUNTIME__.culture.locale
-
     const shouldUseGoogleMaps =
       settings && settings.addresses && settings.addresses.useMap
 
     const mapsAPIKey =
       settings && settings.addresses && settings.addresses.apiKey
+
+    const shipCountries = shipsTo.map(code => ({
+      label: intl.formatMessage({ id: 'country.' + code }),
+      value: code,
+    }))
 
     return (
       <AddressRules
@@ -97,7 +99,7 @@ class AddressEditor extends Component {
           autoCompletePostalCode
         >
           <div>
-            <CountrySelector shipsTo={shipsTo} />
+            <CountrySelector shipsTo={shipCountries} />
 
             {isNew &&
               shouldUseGoogleMaps &&
@@ -163,9 +165,15 @@ AddressEditor.propTypes = {
   isNew: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
   address: AddressShape,
+  shipsTo: PropTypes.array.isRequired,
   settings: PropTypes.object.isRequired,
+  locale: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
   intl: intlShape.isRequired,
 }
-
-export default withSettings(injectIntl(AddressEditor))
+const enhance = compose(
+  withSettings,
+  withLocale,
+  injectIntl,
+)
+export default enhance(AddressEditor)

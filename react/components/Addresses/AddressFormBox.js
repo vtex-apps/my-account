@@ -70,7 +70,7 @@ class AddressFormBox extends Component {
   }
 
   render() {
-    const { onAddressDeleted, isNew, onError } = this.props
+    const { onAddressDeleted, isNew, shipsTo, onError } = this.props
     const { isLoading } = this.state
     const baseAddress = isNew ? emptyAddress : this.props.address
 
@@ -85,6 +85,7 @@ class AddressFormBox extends Component {
           isNew={isNew}
           isLoading={isLoading}
           onSubmit={this.handleSubmit}
+          shipsTo={shipsTo}
         />
         {!isNew && (
           <AddressDeletter
@@ -111,6 +112,7 @@ AddressFormBox.propTypes = {
   onError: PropTypes.func,
   address: AddressShape,
   profile: PropTypes.object,
+  shipsTo: PropTypes.array.isRequired,
 }
 
 const enhance = compose(
