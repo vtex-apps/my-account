@@ -1,0 +1,10 @@
+query GetNewAddressData @context(scope: "private") {
+  profile {
+    cacheId
+    firstName
+    lastName
+  }
+  logistics {
+    shipsTo
+  }
+}

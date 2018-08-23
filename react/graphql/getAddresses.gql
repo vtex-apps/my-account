@@ -17,4 +17,7 @@ query Addresses @context(scope: "private") {
       street
     }
   }
+  logistics {
+    shipsTo
+  }
 }

@@ -6,7 +6,7 @@ import AddressCreateHeader from './AddressCreateHeader'
 import AddressCreateLoading from './AddressCreateLoading'
 import GenericError from '../../components/shared/GenericError'
 import AddressFormBox from '../../components/Addresses/AddressFormBox'
-import GetName from '../../graphql/getName.gql'
+import GetNewAddressData from '../../graphql/getNewAddressData.gql'
 
 class AddressCreate extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class AddressCreate extends Component {
   }
 
   render() {
-    const { profile } = this.props
+    const { profile, shipsTo } = this.props
     const { shouldShowError } = this.state
 
     return (
@@ -47,6 +47,7 @@ class AddressCreate extends Component {
             onAddressSaved={this.goBack}
             onError={this.handleError}
             profile={profile}
+            shipsTo={shipsTo}
           />
         </main>
       </section>
@@ -56,14 +57,18 @@ class AddressCreate extends Component {
 
 AddressCreate.propTypes = {
   profile: PropTypes.object.isRequired,
+  shipsTo: PropTypes.array.isRequired,
 }
 
 const enhance = compose(
-  graphql(GetName),
+  graphql(GetNewAddressData),
   branch(
     ({ data }) => data.profile == null,
     renderComponent(AddressCreateLoading),
   ),
-  withProps(({ data }) => ({ profile: data.profile })),
+  withProps(({ data }) => ({
+    profile: data.profile,
+    shipsTo: data.logistics.shipsTo,
+  })),
 )
 export default enhance(AddressCreate)

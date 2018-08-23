@@ -29,7 +29,7 @@ class AddressEdit extends Component {
   }
 
   render() {
-    const { addresses, addressId } = this.props
+    const { addresses, addressId, shipsTo } = this.props
     const { shouldShowError } = this.state
     const address = addresses.find(current => current.addressId === addressId)
 
@@ -50,6 +50,7 @@ class AddressEdit extends Component {
                 onAddressSaved={this.goBack}
                 onAddressDeleted={this.goBack}
                 onError={this.handleError}
+                shipsTo={shipsTo}
               />
             </React.Fragment>
           ) : (
@@ -64,6 +65,7 @@ class AddressEdit extends Component {
 AddressEdit.propTypes = {
   addresses: PropTypes.array.isRequired,
   addressId: PropTypes.string.isRequired,
+  shipsTo: PropTypes.array.isRequired,
 }
 
 const enhance = compose(
@@ -75,6 +77,7 @@ const enhance = compose(
   withProps(({ data, match }) => ({
     addresses: data.profile.addresses,
     addressId: match.params.id,
+    shipsTo: data.logistics.shipsTo,
   })),
 )
 export default enhance(AddressEdit)
