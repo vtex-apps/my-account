@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Shippable countries fetching in address forms
+
 ## [0.13.0] - 2018-08-22
 
 ### Added
