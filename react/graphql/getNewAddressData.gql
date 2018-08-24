@@ -1,4 +1,4 @@
-query GetNewAddressData @context(scope: "private") {
+query NewAddressData @context(scope: "private") {
   profile {
     cacheId
     firstName

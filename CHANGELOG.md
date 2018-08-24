@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.14.0] - 2018-08-24
+
+### Added
+
+- Fetching payments information from API
+
 ## [0.13.1] - 2018-08-23
 
 ### Added
