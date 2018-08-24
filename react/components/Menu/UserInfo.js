@@ -14,15 +14,21 @@ const UserInfo = ({ profile, intl }) => {
       <div className="mr5 relative">
         <UserPlaceholderPicture />
         <div className="absolute bottom-0 right-0 blue bg-white br-100 plus-sign">
-          <IconPlus block size={20} color="currentColor" />
+          <IconPlus block size={20} />
         </div>
       </div>
-      <div>
-        <div className="f5 fw3 mid-gray mb2">
-          {intl.formatMessage({ id: 'userInfo.greeting' })},
+      {profile.firstName ? (
+        <div>
+          <div className="f5 fw3 mid-gray mb2">
+            {intl.formatMessage({ id: 'userInfo.greeting' })},
+          </div>
+          <div className="f4 fw3 nowrap">{profile.firstName}!</div>
         </div>
-        <div className="f4 fw3 nowrap">{profile.firstName}!</div>
-      </div>
+      ) : (
+        <div className="f4 fw3 nowrap">
+          {intl.formatMessage({ id: 'userInfo.greeting' })}!
+        </div>
+      )}
     </div>
   )
 }

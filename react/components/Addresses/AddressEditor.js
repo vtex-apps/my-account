@@ -144,7 +144,6 @@ class AddressEditor extends Component {
               {handleSubmit => (
                 <Button
                   onClick={handleSubmit}
-                  variation="secondary"
                   block
                   size="small"
                   isLoading={isLoading}
