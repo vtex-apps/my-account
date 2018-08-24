@@ -10,7 +10,7 @@ const PaymentsLoading = ({ data }) => {
     <BaseLoading queryData={data} PageHeader={PaymentsHeader}>
       <main className="mt7 flex-ns flex-wrap-ns items-start-ns">
         <SkeletonBox>
-          <div className="pv4 w5">
+          <div className="pv4 w5 h5">
             <div className="mb8">
               <SkeletonPiece width={100} />
             </div>
@@ -26,7 +26,7 @@ const PaymentsLoading = ({ data }) => {
           </div>
         </SkeletonBox>
         <SkeletonBox>
-          <div className="pv4 w5">
+          <div className="pv4 w5 h5">
             <div className="mb8">
               <SkeletonPiece width={100} />
             </div>
