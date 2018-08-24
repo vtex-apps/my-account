@@ -1,0 +1,6 @@
+mutation UpdateProfilePicture($file: File) {
+  updateProfile(file: $file) {
+    cacheId
+    profilePicture
+  }
+}
