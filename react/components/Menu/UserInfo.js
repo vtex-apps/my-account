@@ -3,19 +3,15 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose, branch, withProps, renderComponent } from 'recompose'
 import { injectIntl, intlShape } from 'react-intl'
-import { IconPlus } from 'vtex.styleguide'
-import UserPlaceholderPicture from './UserPlaceholderPicture'
 import UserInfoLoading from './UserInfoLoading'
 import GetName from '../../graphql/getName.gql'
+import UserPicture from './UserPicture'
 
 const UserInfo = ({ profile, intl }) => {
   return (
     <div className="flex items-end mb7">
-      <div className="mr5 relative">
-        <UserPlaceholderPicture />
-        <div className="absolute bottom-0 right-0 blue bg-white br-100 plus-sign">
-          <IconPlus block size={20} />
-        </div>
+      <div className="mr5 relative h3 w3">
+        <UserPicture />
       </div>
       {profile.firstName ? (
         <div>
