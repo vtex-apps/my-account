@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { IconPlus, Modal } from 'vtex.styleguide'
-import UploadPictureModal from './UploadPictureModal'
+import PictureUploader from './PictureUploader'
 import UserPlaceholderPicture from './UserPlaceholderPicture'
 
 class UserPicture extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isModalOpen: false,
+      isModalOpen: true,
     }
   }
 
@@ -32,10 +32,11 @@ class UserPicture extends Component {
         >
           <IconPlus block size={22} />
         </button>
-        <UploadPictureModal
-          isOpen={isModalOpen}
-          handleClose={this.handleCloseModal}
-        />
+        <Modal centered isOpen={isModalOpen} onClose={this.handleCloseModal}>
+          <div className="pv4 ph4">
+            <PictureUploader />
+          </div>
+        </Modal>
       </React.Fragment>
     )
   }

@@ -5,7 +5,7 @@ import { compose, branch, withProps, renderComponent } from 'recompose'
 import { injectIntl, intlShape } from 'react-intl'
 import UserInfoLoading from './UserInfoLoading'
 import GetName from '../../graphql/getName.gql'
-import UserPicture from './UserPicture'
+import UserPicture from './ProfilePicture/UserPicture'
 
 const UserInfo = ({ profile, intl }) => {
   return (
