@@ -1,0 +1,22 @@
+query Payments @context(scope: "private") {
+  profile {
+    cacheId
+    payments {
+      id
+      paymentSystem
+      cardNumber
+      address {
+        addressId: id
+        addressType
+        city
+        complement
+        country
+        neighborhood
+        number
+        postalCode
+        state
+        street
+      }
+    }
+  }
+}
