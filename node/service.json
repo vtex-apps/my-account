@@ -1,0 +1,10 @@
+{
+  "stack": "nodejs",
+  "memory": 64,
+  "routes": {
+    "enabled": {
+      "path": "/_v/account/enabled",
+      "public": true
+    }
+  }
+}

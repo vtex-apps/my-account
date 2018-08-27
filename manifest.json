@@ -15,7 +15,8 @@
   },
   "builders": {
     "react": "2.x",
-    "pages": "0.x"
+    "pages": "0.x",
+    "node": "3.x"
   },
   "billingOptions": {
     "support": {
