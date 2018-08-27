@@ -1,0 +1,11 @@
+query Greeting @context(scope: "private") {
+  profile(customFields: "profilePicture") {
+    cacheId
+    firstName
+    lastName
+    customFields {
+      key
+      value
+    }
+  }
+}
