@@ -1,0 +1,9 @@
+mutation UpdateProfilePicture($file: Upload!) {
+  updateProfilePicture(file: $file) {
+    cacheId
+    customFields {
+      key
+      value
+    }
+  }
+}
