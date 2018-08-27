@@ -8,7 +8,7 @@ class UserPicture extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isModalOpen: true,
+      isModalOpen: false,
     }
   }
 
@@ -21,13 +21,9 @@ class UserPicture extends Component {
   }
 
   render() {
-    const { profile } = this.props
-    const imagePath = profile.customFields[0].value
-      ? '//api.vtex.com/storecomponents/dataentities/CL/documents/03532226-a799-11e8-8214-ff32d2cd1e6c/profilePicture/attachments/' +
-        profile.customFields[0].value
-      : null
-
+    const { imagePath } = this.props
     const { isModalOpen } = this.state
+
     return (
       <React.Fragment>
         <PictureRenderer imagePath={imagePath} />
@@ -51,7 +47,7 @@ class UserPicture extends Component {
 }
 
 UserPicture.propTypes = {
-  profile: PropTypes.object.isRequired,
+  imagePath: PropTypes.string,
 }
 
 export default UserPicture

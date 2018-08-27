@@ -4,7 +4,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import { compose } from 'recompose'
 import { Button, Spinner } from 'vtex.styleguide'
 import { graphql } from 'react-apollo'
-import UploadProfilePicture from '../../../graphql/uploadProfilePicture.gql'
+import UpdateProfilePicture from '../../../graphql/updateProfilePicture.gql'
 import BaseDropzone from './BaseDropzone'
 import GenericError from '../../shared/GenericError'
 import PictureRenderer from './PictureRenderer'
@@ -21,16 +21,14 @@ class PictureUploader extends Component {
   }
 
   handleImageDrop = async acceptedFiles => {
-    const { uploadProfilePicture } = this.props
+    const { updateProfilePicture } = this.props
 
     if (acceptedFiles && acceptedFiles[0]) {
-      this.setState({ isLoading: true })
+      this.setState({ isLoading: true, error: null })
 
       try {
-        await uploadProfilePicture({ variables: { file: acceptedFiles[0] } })
+        await updateProfilePicture({ variables: { file: acceptedFiles[0] } })
         this.setState({ isLoading: false, finishedUpload: true })
-
-        console.log('obtivemos sucesso')
       } catch (e) {
         console.log(e)
         this.setState({
@@ -47,8 +45,13 @@ class PictureUploader extends Component {
     this.setState({ error: null })
   }
 
+  handleCloseClick = event => {
+    event.stopPropagation()
+    this.props.onCloseClick()
+  }
+
   render() {
-    const { currentPicture, onCloseClick, intl } = this.props
+    const { currentPicture, intl } = this.props
     const { error, isLoading, finishedUpload } = this.state
     const boxText = finishedUpload
       ? 'upload.photoUpdated'
@@ -62,7 +65,7 @@ class PictureUploader extends Component {
           </div>
         )}
         <BaseDropzone
-          disabled={isLoading || finishedUpload}
+          disabled={isLoading}
           onClick={this.handleErrorReset}
           onDrop={this.handleImageDrop}
         >
@@ -83,11 +86,22 @@ class PictureUploader extends Component {
                   {intl.formatMessage({ id: boxText })}
                 </div>
                 {finishedUpload ? (
-                  <Button size="small" onClick={onCloseClick}>
-                    {intl.formatMessage({ id: 'upload.close' })}
-                  </Button>
+                  <React.Fragment>
+                    <div className="mb4 w-100">
+                      <Button
+                        block
+                        size="small"
+                        onClick={this.handleCloseClick}
+                      >
+                        {intl.formatMessage({ id: 'upload.save' })}
+                      </Button>
+                    </div>
+                    <Button block size="small" variation="secondary">
+                      {intl.formatMessage({ id: 'upload.chooseAgain' })}
+                    </Button>
+                  </React.Fragment>
                 ) : (
-                  <Button size="small">
+                  <Button block size="small">
                     {intl.formatMessage({ id: 'upload.choosePhoto' })}
                   </Button>
                 )}
@@ -101,14 +115,14 @@ class PictureUploader extends Component {
 }
 
 PictureUploader.propTypes = {
-  uploadProfilePicture: PropTypes.func.isRequired,
+  updateProfilePicture: PropTypes.func.isRequired,
   currentPicture: PropTypes.string,
   onCloseClick: PropTypes.func.isRequired,
   intl: intlShape.isRequired,
 }
 
 const enhance = compose(
-  graphql(UploadProfilePicture, { name: 'uploadProfilePicture' }),
+  graphql(UpdateProfilePicture, { name: 'updateProfilePicture' }),
   injectIntl,
 )
 export default enhance(PictureUploader)

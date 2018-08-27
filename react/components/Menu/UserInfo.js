@@ -11,7 +11,7 @@ const UserInfo = ({ profile, intl }) => {
   return (
     <div className="flex items-end mb7">
       <div className="mr5 relative h3 w3">
-        <UserPicture profile={profile} />
+        <UserPicture imagePath={profile.profilePicture} />
       </div>
       {profile.firstName ? (
         <div>
