@@ -28,6 +28,13 @@
   "personalData.confirmPassword": "Confirmar senha",
   "personalData.savePassword": "Salvar senha",
 
+  "upload.loading": "Carregando...",
+  "upload.choosePhoto": "Escolher Foto",
+  "upload.chooseAgain": "Escolher outra",
+  "upload.save": "Salvar",
+  "upload.dragYourPhoto": "Arraste para cá sua nova foto de perfil",
+  "upload.photoUpdated": "Sua foto de perfil foi alterada com sucesso.",
+
   "addresses.addAddress": "Adicionar endereço",
   "addresses.saveAddress": "Salvar endereço",
   "addresses.deleteAddress": "Remover endereço",
@@ -44,7 +51,8 @@
 
   "alert.connectionError": "Houve um erro de comunicação com o sistema, tente recarregar a página.",
   "alert.addressNotFound": "O endereço especificado não foi encontrado.",
-  "alert.unknownError": "Suas informações não foram salvas, tente novamente mais tarde.",
+  "alert.unknownError": "Ocorreu um erro, tente novamente.",
   "alert.success": "Suas informações foram salvas com sucesso.",
-  "alert.reload": "Recarregar"
+  "alert.reload": "Recarregar",
+  "alert.fileTooBig": "Esta imagem ultrapassa o limite de 4MB, selecione um menor."
 }
