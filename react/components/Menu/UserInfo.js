@@ -4,14 +4,14 @@ import { graphql } from 'react-apollo'
 import { compose, branch, withProps, renderComponent } from 'recompose'
 import { injectIntl, intlShape } from 'react-intl'
 import UserInfoLoading from './UserInfoLoading'
-import GetName from '../../graphql/getName.gql'
+import GetGreeting from '../../graphql/getGreeting.gql'
 import UserPicture from './ProfilePicture/UserPicture'
 
 const UserInfo = ({ profile, intl }) => {
   return (
     <div className="flex items-end mb7">
       <div className="mr5 relative h3 w3">
-        <UserPicture />
+        <UserPicture profile={profile} />
       </div>
       {profile.firstName ? (
         <div>
@@ -35,7 +35,7 @@ UserInfo.propTypes = {
 }
 
 const enhance = compose(
-  graphql(GetName),
+  graphql(GetGreeting),
   branch(({ data }) => data.profile == null, renderComponent(UserInfoLoading)),
   withProps(({ data }) => ({ profile: data.profile })),
   injectIntl,

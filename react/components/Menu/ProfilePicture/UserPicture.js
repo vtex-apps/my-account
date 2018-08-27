@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { IconPlus, Modal } from 'vtex.styleguide'
 import PictureUploader from './PictureUploader'
-import UserPlaceholderPicture from './UserPlaceholderPicture'
+import PictureRenderer from './PictureRenderer'
 
 class UserPicture extends Component {
   constructor(props) {
@@ -13,7 +13,6 @@ class UserPicture extends Component {
   }
 
   openModal = () => {
-    console.log('opening modal')
     this.setState({ isModalOpen: true })
   }
 
@@ -22,10 +21,16 @@ class UserPicture extends Component {
   }
 
   render() {
+    const { profile } = this.props
+    const imagePath = profile.customFields[0].value
+      ? '//api.vtex.com/storecomponents/dataentities/CL/documents/03532226-a799-11e8-8214-ff32d2cd1e6c/profilePicture/attachments/' +
+        profile.customFields[0].value
+      : null
+
     const { isModalOpen } = this.state
     return (
       <React.Fragment>
-        <UserPlaceholderPicture />
+        <PictureRenderer imagePath={imagePath} />
         <button
           className="absolute bottom-0 right-0 blue hover-heavy-blue bg-white br-100 pa0 bn pointer"
           onClick={this.openModal}
@@ -34,12 +39,19 @@ class UserPicture extends Component {
         </button>
         <Modal centered isOpen={isModalOpen} onClose={this.handleCloseModal}>
           <div className="pv4 ph4">
-            <PictureUploader />
+            <PictureUploader
+              currentPicture={imagePath}
+              onCloseClick={this.handleCloseModal}
+            />
           </div>
         </Modal>
       </React.Fragment>
     )
   }
+}
+
+UserPicture.propTypes = {
+  profile: PropTypes.object.isRequired,
 }
 
 export default UserPicture
