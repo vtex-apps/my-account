@@ -28,7 +28,7 @@ class UserPicture extends Component {
       <React.Fragment>
         <PictureRenderer imagePath={imagePath} />
         <button
-          className="absolute bottom-0 right-0 blue hover-heavy-blue bg-white br-100 pa0 bn pointer"
+          className="absolute bottom-0 right-0 c-link hover-c-link bg-base br-100 pa0 bn pointer"
           onClick={this.openModal}
         >
           <IconPlus block size={22} />

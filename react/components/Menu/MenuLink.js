@@ -9,8 +9,11 @@ const MenuLink = ({ path, name, location }) => {
       to={path}
       className={classnames(
         'f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap',
-        { 'mid-gray b--transparent': location.pathname.indexOf(path) === -1 },
-        { 'near-black b b--blue': location.pathname.indexOf(path) !== -1 },
+        { 'c-muted-1 b--transparent': location.pathname.indexOf(path) === -1 },
+        {
+          'c-on-base b b--action-primary':
+            location.pathname.indexOf(path) !== -1,
+        },
       )}
     >
       {name}

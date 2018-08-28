@@ -5,7 +5,7 @@ const ClearButton = ({ children, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="blue no-underline f5 b db pv3 ph0 bg-white b--none pointer hover-heavy-blue"
+      className="c-link no-underline f5 b db pv3 ph0 bg-base b--none pointer hover-c-link"
     >
       {children}
     </button>
