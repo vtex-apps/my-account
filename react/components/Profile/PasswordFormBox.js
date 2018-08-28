@@ -6,7 +6,7 @@ import { compose } from 'recompose'
 import { Input, Button } from 'vtex.styleguide'
 import ContentBox from '../shared/ContentBox'
 import GenericError from '../shared/GenericError'
-import SetPassword from '../../graphql/setPassword.gql'
+import RedefinePassword from '../../graphql/redefinePassword.gql'
 import PasswordValidator from './PasswordValidator'
 
 class PasswordFormBox extends Component {
@@ -54,7 +54,7 @@ class PasswordFormBox extends Component {
       changeAttempts: changeAttempts + 1,
     })
     try {
-      await this.props.setPassword({
+      await this.props.redefinePassword({
         variables: { email, currentPassword, newPassword },
       })
       this.setState({ isLoading: false, changeAttempts: 0 })
@@ -167,7 +167,7 @@ PasswordFormBox.propTypes = {
 }
 
 const enhance = compose(
-  graphql(SetPassword, { name: 'setPassword' }),
+  graphql(RedefinePassword, { name: 'redefinePassword' }),
   injectIntl,
 )
 
