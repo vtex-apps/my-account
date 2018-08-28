@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import { Alert } from 'vtex.styleguide'
 
-const ConnectionError = ({ onReload, intl }) => {
+const ReloadableError = ({ errorId, onReload, intl }) => {
   return (
     <div className="mt7">
       <Alert
@@ -13,15 +13,16 @@ const ConnectionError = ({ onReload, intl }) => {
           onClick: onReload,
         }}
       >
-        {intl.formatMessage({ id: 'alert.connectionError' })}
+        {intl.formatMessage({ id: errorId })}
       </Alert>
     </div>
   )
 }
 
-ConnectionError.propTypes = {
+ReloadableError.propTypes = {
+  errorId: PropTypes.string.isRequired,
   onReload: PropTypes.func.isRequired,
   intl: intlShape.isRequired,
 }
 
-export default injectIntl(ConnectionError)
+export default injectIntl(ReloadableError)

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import ConnectionError from '../../components/shared/ConnectionError'
+import ReloadableError from '../../components/shared/ReloadableError'
 
 class BaseLoading extends Component {
   constructor(props) {
@@ -27,13 +27,28 @@ class BaseLoading extends Component {
 
   render() {
     const { isLoading } = this.state
-    const { PageHeader, children } = this.props
+    const { PageHeader, children, queryData } = this.props
+
+    const hasAuthenticationError =
+      queryData.error &&
+      queryData.error.toString().indexOf('not authenticated') > -1
 
     return (
       <section>
         <PageHeader />
         <main className="mt7">
-          {isLoading ? children : <ConnectionError onReload={this.reload} />}
+          {isLoading ? (
+            children
+          ) : (
+            <ReloadableError
+              errorId={
+                hasAuthenticationError
+                  ? 'alert.unauthenticated'
+                  : 'alert.connectionError'
+              }
+              onReload={this.reload}
+            />
+          )}
         </main>
       </section>
     )
