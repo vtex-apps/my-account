@@ -26,7 +26,7 @@ const AppRouter = () => {
 
   return (
     <HashRouter>
-      <Media query="(max-width: 50em)">
+      <Media query="(max-width: 55em)">
         {matches =>
           matches ? (
             <main className="pa6 vh-100">
