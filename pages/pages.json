@@ -1,10 +1,10 @@
 {
   "pages": {
     "my-account": {
-      "path": "/my-account"
+      "path": "/account"
     },
     "my-account-portal": {
-      "path": "/legacy-extensions/my-account"
+      "path": "/legacy-extensions/account"
     }
   },
   "extensions": {
