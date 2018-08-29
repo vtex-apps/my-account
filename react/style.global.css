@@ -9,7 +9,7 @@ textarea {
 }
 
 /* Add tweakpoint inside m */
-@media (min-width: 55em) {
+@media (min-width: 57em) {
   .dn-m-2 {
     display: none;
   }
