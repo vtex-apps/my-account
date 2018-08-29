@@ -7,6 +7,7 @@
     "moment": "^2.22.2",
     "react": "^16.4.1",
     "react-apollo": "^2.1.9",
+    "react-dropzone": "^5.0.1",
     "react-intl": "^2.4.0",
     "react-media": "^1.8.0",
     "react-router-dom": "^4.3.1",

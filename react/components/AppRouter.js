@@ -6,7 +6,6 @@ import Menu from './Menu/Menu'
 import Addresses from '../pages/addresses/Addresses'
 import Profile from '../pages/profile/Profile'
 import Payments from '../pages/payments/Payments'
-import PaymentCreate from '../pages/payment-create/PaymentCreate'
 import ProfileEdit from '../pages/profile-edit/ProfileEdit'
 import AddressCreate from '../pages/address-create/AddressCreate'
 import AddressEdit from '../pages/address-edit/AddressEdit'
@@ -19,7 +18,6 @@ const AppRouter = () => {
     { path: '/profile', component: Profile },
     { path: '/profile/edit', component: ProfileEdit },
     { path: '/payments', component: Payments },
-    { path: '/payments/new', component: PaymentCreate },
   ]
 
   const toRouteComponent = ({ path, component }) => (
@@ -28,7 +26,7 @@ const AppRouter = () => {
 
   return (
     <HashRouter>
-      <Media query="(max-width: 40em)">
+      <Media query="(max-width: 55em)">
         {matches =>
           matches ? (
             <main className="pa6 vh-100">
@@ -39,7 +37,7 @@ const AppRouter = () => {
               </Switch>
             </main>
           ) : (
-            <div className="flex pl7 pr9 pv9">
+            <div className="flex pl4-m pr6-m pv6-m pl7-l pr9-l pv9-l">
               <Menu />
               <main className="flex-auto pt6">
                 <Switch>

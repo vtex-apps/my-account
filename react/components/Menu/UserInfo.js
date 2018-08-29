@@ -3,26 +3,28 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose, branch, withProps, renderComponent } from 'recompose'
 import { injectIntl, intlShape } from 'react-intl'
-import { IconPlus } from 'vtex.styleguide'
-import UserPlaceholderPicture from './UserPlaceholderPicture'
 import UserInfoLoading from './UserInfoLoading'
-import GetName from '../../graphql/getName.gql'
+import GetGreeting from '../../graphql/getGreeting.gql'
+import UserPicture from './ProfilePicture/UserPicture'
 
 const UserInfo = ({ profile, intl }) => {
   return (
     <div className="flex items-end mb7">
-      <div className="mr5 relative">
-        <UserPlaceholderPicture />
-        <div className="absolute bottom-0 right-0 blue bg-white br-100 plus-sign">
-          <IconPlus block size={20} color="currentColor" />
-        </div>
+      <div className="mr5 relative h3 w3">
+        <UserPicture imagePath={profile.profilePicture} />
       </div>
-      <div>
-        <div className="f5 fw3 mid-gray mb2">
-          {intl.formatMessage({ id: 'userInfo.greeting' })},
+      {profile.firstName ? (
+        <div>
+          <div className="f5 fw3 mid-gray mb2">
+            {intl.formatMessage({ id: 'userInfo.greeting' })},
+          </div>
+          <div className="f4 fw3 nowrap">{profile.firstName}!</div>
         </div>
-        <div className="f4 fw3 nowrap">{profile.firstName}!</div>
-      </div>
+      ) : (
+        <div className="f4 fw3 nowrap">
+          {intl.formatMessage({ id: 'userInfo.greeting' })}!
+        </div>
+      )}
     </div>
   )
 }
@@ -33,7 +35,7 @@ UserInfo.propTypes = {
 }
 
 const enhance = compose(
-  graphql(GetName),
+  graphql(GetGreeting),
   branch(({ data }) => data.profile == null, renderComponent(UserInfoLoading)),
   withProps(({ data }) => ({ profile: data.profile })),
   injectIntl,
