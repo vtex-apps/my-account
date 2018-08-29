@@ -30,11 +30,7 @@ class PictureUploader extends Component {
         await updateProfilePicture({ variables: { file: acceptedFiles[0] } })
         this.setState({ isLoading: false, finishedUpload: true })
       } catch (e) {
-        console.log(e)
-        this.setState({
-          error: 'alert.unknownError',
-          isLoading: false,
-        })
+        this.setState({ error: 'alert.unknownError', isLoading: false })
       }
     } else {
       this.setState({ error: 'alert.fileTooBig' })
