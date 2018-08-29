@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.16.0] - 2018-08-29
+
+### Added
+
+- Redefine password feature
+
+### Changed
+
+- All color-related classes to the new Styleguide tokens
+
 ## [0.15.0] - 2018-08-29
 
 ### Added

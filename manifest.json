@@ -1,7 +1,7 @@
 {
   "name": "my-account",
   "vendor": "vtex",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "title": "My Account",
   "description": "",
   "mustUpdateAt": "2019-07-09",
@@ -13,18 +13,13 @@
     "vtex.store-graphql": "2.x",
     "vtex.styleguide": "6.x",
     "vtex.profile-form": "2.x",
-    "vtex.country-codes": "1.x"
+    "vtex.country-codes": "1.x",
+    "vtex.payment-flags": "0.x"
   },
   "builders": {
     "react": "2.x",
     "pages": "0.x",
     "node": "3.x"
-  },
-  "billingOptions": {
-    "support": {
-      "url": "https://support.vtex.com/hc/requests"
-    },
-    "free": true
   },
   "settingsSchema": {
     "title": "My Account",

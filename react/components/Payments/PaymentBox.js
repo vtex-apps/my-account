@@ -4,7 +4,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import { AddressSummary, AddressRules } from '@vtex/address-form'
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
-import PaymentFlagPicker from './PaymentFlagPicker'
+import { PaymentFlagPicker } from 'vtex.payment-flags'
 
 const PaymentBox = ({ payment, intl }) => {
   const lastDigits = payment.cardNumber.replace(/[^\d]/g, '')

@@ -29,14 +29,16 @@ class Profile extends Component {
     this.setState({ showToast: false })
   }
 
-  toggleEditingData = () => {
+  startEditingData = () => {
     this.props.history.push('/profile/edit')
   }
 
-  toggleEditingPassword = () => {
-    this.setState(prevState => ({
-      isEditingPassword: !prevState.isEditingPassword,
-    }))
+  startEditingPassword = () => {
+    this.setState({ isEditingPassword: true })
+  }
+
+  finishEditingPassword = () => {
+    this.setState({ isEditingPassword: false, showToast: true })
   }
 
   render() {
@@ -47,11 +49,14 @@ class Profile extends Component {
       <section>
         <ProfileHeader />
         <main className="mt6 flex-ns flex-wrap items-start-ns">
-          <ProfileBox profile={profile} onEditClick={this.toggleEditingData} />
+          <ProfileBox profile={profile} onEditClick={this.startEditingData} />
           {isEditingPassword ? (
-            <PasswordFormBox onPasswordChange={this.toggleEditingPassword} />
+            <PasswordFormBox
+              email={profile.email}
+              onPasswordChange={this.finishEditingPassword}
+            />
           ) : (
-            <PasswordBox onEditClick={this.toggleEditingPassword} />
+            <PasswordBox onEditClick={this.startEditingPassword} />
           )}
           {showToast && (
             <Toast messageId="alert.success" onClose={this.handleCloseToast} />

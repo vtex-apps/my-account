@@ -131,7 +131,7 @@ class AddressEditor extends Component {
             {hasAutoCompletedFields && (
               <div className="pb7">
                 <AutoCompletedFields>
-                  <a className="blue pointer">
+                  <a className="c-link pointer">
                     {intl.formatMessage({ id: 'address-form.edit' })}
                   </a>
                 </AutoCompletedFields>
