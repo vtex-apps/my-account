@@ -8,6 +8,13 @@ textarea {
   font-family: 'helvetica neue', helvetica, sans-serif;
 }
 
+/* Add tweakpoint inside m */
+@media (min-width: 55em) {
+  .dn-m-2 {
+    display: none;
+  }
+}
+
 /* Skeleton animation */
 @keyframes shimmer-anim {
   0% {
