@@ -1,6 +1,6 @@
 {
   "stack": "nodejs",
-  "memory": 64,
+  "memory": 256,
   "routes": {
     "enabled": {
       "path": "/_v/account/enabled",
