@@ -34,7 +34,7 @@ class BaseLoading extends Component {
       queryData.error.toString().indexOf('not authenticated') > -1
 
     return (
-      <section>
+      <section className="pa6 pv0-m-2 pl0-m-2 pr5-m pr8-l">
         <PageHeader />
         <main className="mt7">
           {isLoading ? (
