@@ -29,7 +29,14 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
               birthDate,
               homePhone,
             },
-            businessData,
+            businessData: {
+              isCorporate,
+              corporateName,
+              tradeName,
+              corporateDocument,
+              businessPhone,
+              stateRegistration,
+            },
           }) => (
             <React.Fragment>
               <div>
@@ -71,33 +78,31 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
                   </div>
                 </div>
               </div>
-              {Object.keys(businessData).some(
-                fieldName => businessData[fieldName].value != null,
-              ) && (
+              {isCorporate && (
                 <div>
                   <div className="mb8">
-                    <DataEntry label={businessData.corporateName.label}>
-                      {businessData.corporateName.value}
+                    <DataEntry label={corporateName.label}>
+                      {corporateName.value}
                     </DataEntry>
                   </div>
                   <div className="mb8">
-                    <DataEntry label={businessData.tradeName.label}>
-                      {businessData.tradeName.value}
+                    <DataEntry label={tradeName.label}>
+                      {tradeName.value}
                     </DataEntry>
                   </div>
                   <div className="mb8">
-                    <DataEntry label={businessData.corporateDocument.label}>
-                      {businessData.corporateDocument.value}
+                    <DataEntry label={corporateDocument.label}>
+                      {corporateDocument.value}
                     </DataEntry>
                   </div>
                   <div className="mb8">
-                    <DataEntry label={businessData.businessPhone.label}>
-                      {businessData.businessPhone.value}
+                    <DataEntry label={businessPhone.label}>
+                      {businessPhone.value}
                     </DataEntry>
                   </div>
                   <div className="mb8">
-                    <DataEntry label={businessData.stateRegistration.label}>
-                      {businessData.stateRegistration.value}
+                    <DataEntry label={stateRegistration.label}>
+                      {stateRegistration.value}
                     </DataEntry>
                   </div>
                 </div>
