@@ -18,7 +18,7 @@ class Payments extends Component {
     const { payments } = this.props
 
     return (
-      <section>
+      <section className="pa6 pv0-m-2 pl0-m-2 pr5-m pr8-l">
         <PaymentsHeader />
         <main className="mt7 flex-ns flex-wrap-ns items-start-ns relative">
           {payments.map(payment => (

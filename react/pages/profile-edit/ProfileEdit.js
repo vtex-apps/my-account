@@ -34,7 +34,7 @@ class ProfileEdit extends Component {
     const { shouldShowError } = this.state
 
     return (
-      <section>
+      <section className="pa6 pv0-m-2 pl0-m-2 pr5-m pr8-l">
         <ProfileEditHeader />
         <main className="mt6">
           {shouldShowError && (

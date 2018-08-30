@@ -34,7 +34,7 @@ class AddressEdit extends Component {
     const address = addresses.find(current => current.addressId === addressId)
 
     return (
-      <section>
+      <section className="pa6 pv0-m-2 pl0-m-2 pr5-m pr8-l">
         <AddressEditHeader />
         <main className="mt6">
           {address ? (

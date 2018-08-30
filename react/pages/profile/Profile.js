@@ -46,7 +46,7 @@ class Profile extends Component {
     const { isEditingPassword, showToast } = this.state
 
     return (
-      <section>
+      <section className="pa6 pv0-m-2 pl0-m-2 pr5-m pr8-l">
         <ProfileHeader />
         <main className="mt6 flex-ns flex-wrap items-start-ns">
           <ProfileBox profile={profile} onEditClick={this.startEditingData} />

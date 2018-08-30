@@ -35,7 +35,7 @@ class Addresses extends Component {
     const { showToast } = this.state
 
     return (
-      <section>
+      <section className="pa6 pv0-m-2 pl0-m-2 pr5-m pr8-l">
         <AddressesHeader />
         <main className="mt7 flex-ns flex-wrap-ns items-start-ns relative">
           {addresses.map(address => (
