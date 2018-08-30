@@ -7,6 +7,7 @@ import AddressCreateLoading from './AddressCreateLoading'
 import GenericError from '../../components/shared/GenericError'
 import AddressFormBox from '../../components/Addresses/AddressFormBox'
 import GetNewAddressData from '../../graphql/getNewAddressData.gql'
+import ContentWrapper from '../shared/ContentWrapper'
 
 class AddressCreate extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class AddressCreate extends Component {
     const { shouldShowError } = this.state
 
     return (
-      <section className="pa6 pv0-m-2 pl0-m-2 pr5-m pr8-l">
+      <ContentWrapper>
         <AddressCreateHeader />
         <main className="mt6">
           {shouldShowError && (
@@ -50,7 +51,7 @@ class AddressCreate extends Component {
             shipsTo={shipsTo}
           />
         </main>
-      </section>
+      </ContentWrapper>
     )
   }
 }

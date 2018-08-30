@@ -10,6 +10,7 @@ import PasswordBox from '../../components/Profile/PasswordBox'
 import PasswordFormBox from '../../components/Profile/PasswordFormBox'
 import Toast from '../../components/shared/Toast'
 import GetProfile from '../../graphql/getProfile.gql'
+import ContentWrapper from '../shared/ContentWrapper'
 
 class Profile extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class Profile extends Component {
     const { isEditingPassword, showToast } = this.state
 
     return (
-      <section className="pa6 pv0-m-2 pl0-m-2 pr5-m pr8-l">
+      <ContentWrapper>
         <ProfileHeader />
         <main className="mt6 flex-ns flex-wrap items-start-ns">
           <ProfileBox profile={profile} onEditClick={this.startEditingData} />
@@ -62,7 +63,7 @@ class Profile extends Component {
             <Toast messageId="alert.success" onClose={this.handleCloseToast} />
           )}
         </main>
-      </section>
+      </ContentWrapper>
     )
   }
 }
