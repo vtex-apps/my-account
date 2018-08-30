@@ -78,7 +78,7 @@ class PictureUploader extends Component {
                 <div className="h4 w4 mb8">
                   <PictureRenderer imagePath={currentPicture} />
                 </div>
-                <div className="mb8 f5 tc gray">
+                <div className="mb6 f5 tc c-muted-2 lh-copy">
                   {intl.formatMessage({ id: boxText })}
                 </div>
                 {finishedUpload ? (
@@ -97,9 +97,18 @@ class PictureUploader extends Component {
                     </Button>
                   </React.Fragment>
                 ) : (
-                  <Button block size="small">
-                    {intl.formatMessage({ id: 'upload.choosePhoto' })}
-                  </Button>
+                  <React.Fragment>
+                    <div className="flex w-100 items-center mb6">
+                      <div className="flex-auto bt b--muted-4" />
+                      <span className="mh3 c-muted-2">
+                        {intl.formatMessage({ id: 'upload.or' })}
+                      </span>
+                      <div className="flex-auto bt b--muted-4" />
+                    </div>
+                    <Button block size="small">
+                      {intl.formatMessage({ id: 'upload.choosePhoto' })}
+                    </Button>
+                  </React.Fragment>
                 )}
               </React.Fragment>
             )}
