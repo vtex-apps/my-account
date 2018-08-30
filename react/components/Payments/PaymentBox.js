@@ -16,11 +16,13 @@ const PaymentBox = ({ payment, intl }) => {
           <DataEntry label={intl.formatMessage({ id: 'payments.cardNumber' })}>
             <div className="flex items-center">
               <PaymentFlagPicker paymentSystem={payment.paymentSystem}>
-                {FlagComponent => (
-                  <div className="h2 mr4">
-                    <FlagComponent />
-                  </div>
-                )}
+                {FlagComponent =>
+                  FlagComponent && (
+                    <div className="h2 mr4">
+                      <FlagComponent />
+                    </div>
+                  )
+                }
               </PaymentFlagPicker>
               <span>**** **** **** {lastDigits}</span>
             </div>
