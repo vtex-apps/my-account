@@ -95,15 +95,17 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
                       {corporateDocument.value}
                     </DataEntry>
                   </div>
-                  <div className="mb8">
-                    <DataEntry label={businessPhone.label}>
-                      {businessPhone.value}
-                    </DataEntry>
-                  </div>
-                  <div className="mb8">
-                    <DataEntry label={stateRegistration.label}>
-                      {stateRegistration.value}
-                    </DataEntry>
+                  <div className="flex-ns flex-wrap">
+                    <div className="mb8 flex-auto">
+                      <DataEntry label={businessPhone.label}>
+                        {businessPhone.value}
+                      </DataEntry>
+                    </div>
+                    <div className="mb8 w-50-ns">
+                      <DataEntry label={stateRegistration.label}>
+                        {stateRegistration.value}
+                      </DataEntry>
+                    </div>
                   </div>
                 </div>
               )}

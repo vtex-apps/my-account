@@ -13,6 +13,5 @@ query Profile @context(scope: "private") {
     corporateName
     corporateDocument
     stateRegistration
-    isCorporate
   }
 }
