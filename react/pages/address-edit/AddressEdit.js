@@ -7,6 +7,7 @@ import AddressEditLoading from './AddressEditLoading'
 import GenericError from '../../components/shared/GenericError'
 import AddressFormBox from '../../components/Addresses/AddressFormBox'
 import GetAddresses from '../../graphql/getAddresses.gql'
+import ContentWrapper from '../shared/ContentWrapper'
 
 class AddressEdit extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class AddressEdit extends Component {
     const address = addresses.find(current => current.addressId === addressId)
 
     return (
-      <section>
+      <ContentWrapper>
         <AddressEditHeader />
         <main className="mt6">
           {address ? (
@@ -57,7 +58,7 @@ class AddressEdit extends Component {
             <GenericError errorId="alert.addressNotFound" />
           )}
         </main>
-      </section>
+      </ContentWrapper>
     )
   }
 }

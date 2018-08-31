@@ -8,6 +8,7 @@ import ProfileEditLoading from './ProfileEditLoading'
 import GenericError from '../../components/shared/GenericError'
 import ProfileFormBox from '../../components/Profile/ProfileFormBox'
 import GetProfile from '../../graphql/getProfile.gql'
+import ContentWrapper from '../shared/ContentWrapper'
 
 class ProfileEdit extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class ProfileEdit extends Component {
     const { shouldShowError } = this.state
 
     return (
-      <section>
+      <ContentWrapper>
         <ProfileEditHeader />
         <main className="mt6">
           {shouldShowError && (
@@ -49,7 +50,7 @@ class ProfileEdit extends Component {
             onError={this.handleError}
           />
         </main>
-      </section>
+      </ContentWrapper>
     )
   }
 }

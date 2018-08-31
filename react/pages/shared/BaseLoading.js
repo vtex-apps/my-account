@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ReloadableError from '../../components/shared/ReloadableError'
+import ContentWrapper from './ContentWrapper'
 
 class BaseLoading extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class BaseLoading extends Component {
       queryData.error.toString().indexOf('not authenticated') > -1
 
     return (
-      <section>
+      <ContentWrapper>
         <PageHeader />
         <main className="mt7">
           {isLoading ? (
@@ -50,7 +51,7 @@ class BaseLoading extends Component {
             />
           )}
         </main>
-      </section>
+      </ContentWrapper>
     )
   }
 }

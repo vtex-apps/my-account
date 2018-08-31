@@ -8,6 +8,7 @@ import AddressesLoading from './AddressesLoading'
 import AddressBox from '../../components/Addresses/AddressBox'
 import Toast from '../../components/shared/Toast'
 import GetAddresses from '../../graphql/getAddresses.gql'
+import ContentWrapper from '../shared/ContentWrapper'
 
 class Addresses extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class Addresses extends Component {
     const { showToast } = this.state
 
     return (
-      <section>
+      <ContentWrapper>
         <AddressesHeader />
         <main className="mt7 flex-ns flex-wrap-ns items-start-ns relative">
           {addresses.map(address => (
@@ -49,7 +50,7 @@ class Addresses extends Component {
             <Toast messageId="alert.success" onClose={this.handleCloseToast} />
           )}
         </main>
-      </section>
+      </ContentWrapper>
     )
   }
 }

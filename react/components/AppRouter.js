@@ -29,7 +29,7 @@ const AppRouter = () => {
       <Media query="(max-width: 57em)">
         {matches =>
           matches ? (
-            <main className="pa6 vh-100">
+            <main className="vh-100">
               <Switch>
                 <Route exact path="/" component={Menu} />
                 {routes.map(toRouteComponent)}
@@ -37,9 +37,9 @@ const AppRouter = () => {
               </Switch>
             </main>
           ) : (
-            <div className="flex pl4-m pr6-m pv6-m pl7-l pr9-l pv9-l">
+            <div className="flex pv7-m pv9-l">
               <Menu />
-              <main className="flex-auto pt6">
+              <main className="flex-auto pt5">
                 <Switch>
                   {routes.map(toRouteComponent)}
                   <Redirect exact from="/" to="/profile" />

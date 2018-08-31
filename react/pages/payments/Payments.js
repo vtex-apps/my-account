@@ -8,6 +8,7 @@ import PaymentsLoading from './PaymentsLoading'
 import PaymentBox from '../../components/Payments/PaymentBox'
 import Toast from '../../components/shared/Toast'
 import GetPayments from '../../graphql/getPayments.gql'
+import ContentWrapper from '../shared/ContentWrapper'
 
 class Payments extends Component {
   constructor(props) {
@@ -18,14 +19,14 @@ class Payments extends Component {
     const { payments } = this.props
 
     return (
-      <section>
+      <ContentWrapper>
         <PaymentsHeader />
         <main className="mt7 flex-ns flex-wrap-ns items-start-ns relative">
           {payments.map(payment => (
             <PaymentBox key={payment.id} payment={payment} />
           ))}
         </main>
-      </section>
+      </ContentWrapper>
     )
   }
 }

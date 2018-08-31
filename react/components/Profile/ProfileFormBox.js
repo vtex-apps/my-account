@@ -76,7 +76,7 @@ class ProfileFormBox extends Component {
   }
 
   render() {
-    const { intl, profile, runtime, settings, storeCountry } = this.props
+    const { intl, profile, settings, storeCountry } = this.props
     const { isLoading } = this.state
     const showGenders =
       settings && settings.profile && settings.profile.showGenders
