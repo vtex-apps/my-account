@@ -30,13 +30,13 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
               homePhone,
             },
             businessData: {
-              isCorporate,
               corporateName,
               tradeName,
               corporateDocument,
               businessPhone,
               stateRegistration,
             },
+            isCorporate,
           }) => (
             <React.Fragment>
               <div>
