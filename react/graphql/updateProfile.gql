@@ -13,5 +13,6 @@ mutation UpdateProfile($profile: ProfileInput) {
     corporateName
     corporateDocument
     stateRegistration
+    isCorporate
   }
 }
