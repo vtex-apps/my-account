@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `profile-form` component call
+
 ## [0.16.1] - 2018-08-30
 
 ### Added
