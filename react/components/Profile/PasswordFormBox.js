@@ -99,7 +99,7 @@ class PasswordFormBox extends Component {
       currentPassword && !passwordMismatch && newPasswordValid
 
     return (
-      <ContentBox shouldAllowGrowing>
+      <ContentBox shouldAllowGrowing maxWidthStep={6}>
         {error && (
           <div className="mb7">
             <GenericError onDismiss={this.dismissError} errorId={error} />
