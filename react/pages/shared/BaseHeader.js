@@ -25,7 +25,7 @@ const BaseHeader = ({
             </span>
           </ClearButton>
         </div>
-        <h1 className="b near-black mb0 mt4 f3">
+        <h1 className="b c-on-base mb0 mt4 f3">
           {intl.formatMessage({ id: titleId })}
         </h1>
       </div>

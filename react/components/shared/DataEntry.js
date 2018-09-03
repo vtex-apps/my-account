@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 const DataEntry = ({ label, children }) => {
   return (
     <div>
-      <label className="db black-90 mb3">{label}</label>
-      <div className="light black-40">{children}</div>
+      <label className="db c-on-base mb3">{label}</label>
+      <div className="light c-on-disabled">{children}</div>
     </div>
   )
 }
