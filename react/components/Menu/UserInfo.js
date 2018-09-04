@@ -15,10 +15,10 @@ const UserInfo = ({ profile, intl }) => {
       </div>
       {profile.firstName ? (
         <div>
-          <div className="f5 fw3 mid-gray mb2">
+          <div className="f5 fw3 c-muted-1 mb2">
             {intl.formatMessage({ id: 'userInfo.greeting' })},
           </div>
-          <div className="f4 fw3 nowrap">{profile.firstName}!</div>
+          <div className="f4 c-on-base fw3 nowrap">{profile.firstName}!</div>
         </div>
       ) : (
         <div className="f4 fw3 nowrap">
