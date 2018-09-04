@@ -78,7 +78,7 @@ class PictureUploader extends Component {
                 <div className="h4 w4 mb8">
                   <PictureRenderer imagePath={currentPicture} />
                 </div>
-                <div className="mb6 f5 tc c-muted-2 lh-copy">
+                <div className="mb6 f5 tc c-muted-1 lh-copy">
                   {intl.formatMessage({ id: boxText })}
                 </div>
                 {finishedUpload ? (
@@ -100,7 +100,7 @@ class PictureUploader extends Component {
                   <React.Fragment>
                     <div className="flex w-100 items-center mb6">
                       <div className="flex-auto bt b--muted-4" />
-                      <span className="mh3 c-muted-2">
+                      <span className="mh3 c-muted-1">
                         {intl.formatMessage({ id: 'upload.or' })}
                       </span>
                       <div className="flex-auto bt b--muted-4" />
