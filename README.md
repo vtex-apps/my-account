@@ -1,10 +1,34 @@
-# My Account
+# My Account 
 
-This is the `vtex.io` app responsible for managing the customer's personal data such as his addresses and credit cards.
+My account is a canonical app that any VTEX store can use. This app is responsible for managing the customer's personal data such as his addresses and credit cards.
 
 ## Setup
+Add the dependency in your `manifest.json`
 
-After cloning this repository, run `vtex link` to add it to your workspace. In your main app, add `vtex.my-account: 1.x` to your dependencies.
+```json
+"dependencies": {
+  "vtex.my-account": "1.x"
+}
+```
+
+Add the app as a template in your `templates` on `pages.json`.
+
+```json
+"account": {
+  "component": "vtex.render-runtime/LayoutContainer",
+  "props": {
+    "elements": [
+      "account"
+    ]
+  },
+  "extensions": {
+    "account": {
+      "component": "vtex.my-account/index"
+    }
+  }
+}
+```
+Also, you can clone this project, and execute `vtex link` in your workspace.
 
 ## Extension points
 
