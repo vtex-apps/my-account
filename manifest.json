@@ -22,6 +22,9 @@
     "pages": "0.x",
     "node": "3.x"
   },
+  "scripts": {
+    "postreleasy": "vtex publish --verbose"
+  },
   "settingsSchema": {
     "title": "My Account",
     "type": "object",
