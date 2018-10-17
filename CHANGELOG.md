@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.16.6] - 2018-10-17
+
 ### Fixed
 - Bump to vtex.my-orders@2.x
 
