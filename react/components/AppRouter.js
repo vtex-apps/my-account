@@ -24,11 +24,7 @@ const AppRouter = () => {
     <Route exact key={path} path={path} component={component} />
   )
 
-  let shouldRedirectOrder = false
-
-  if(vtex) {
-    shouldRedirectOrder = vtex.orderListRendered
-  }
+  const shouldRedirectOrder = vtex && vtex.orderListRendered
 
   return (
     <HashRouter>
