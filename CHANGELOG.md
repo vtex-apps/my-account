@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.16.7] - 2018-10-18
+### Added
+- Verify if it should redirect to the orders page instead of profile
+
 ### Fixed
 - Add `vtex.my-orders-app` to extension points
 
