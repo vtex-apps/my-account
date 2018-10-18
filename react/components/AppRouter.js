@@ -24,6 +24,12 @@ const AppRouter = () => {
     <Route exact key={path} path={path} component={component} />
   )
 
+  let shouldRedirectOrder = false
+
+  if(vtex) {
+    shouldRedirectOrder = vtex.orderListRendered
+  }
+
   return (
     <HashRouter>
       <Media query="(max-width: 57em)">
@@ -33,6 +39,7 @@ const AppRouter = () => {
               <Switch>
                 <Route exact path="/" component={Menu} />
                 {routes.map(toRouteComponent)}
+                <Redirect exact from="/" to={ shouldRedirectOrder ? "/orders" : "/profile"} />
                 <ExtensionPoint id="routes" />
               </Switch>
             </main>
@@ -42,7 +49,7 @@ const AppRouter = () => {
               <main className="flex-auto pt5">
                 <Switch>
                   {routes.map(toRouteComponent)}
-                  <Redirect exact from="/" to="/profile" />
+                  <Redirect exact from="/" to={ shouldRedirectOrder ? "/orders" : "/profile"} />
                   <ExtensionPoint id="routes" />
                 </Switch>
               </main>
