@@ -34,9 +34,11 @@
   "addresses.addAddress": "Add address",
   "addresses.saveAddress": "Save address",
   "addresses.deleteAddress": "Delete address",
+  "addresses.notFound": "You don't have any addresses yet!",
 
   "payments.cardNumber": "Card number",
   "payments.billingAddress": "Billing address",
+  "payments.notFound": "You don't have any payment method registered yet!",
 
   "commons.edit": "Edit",
 

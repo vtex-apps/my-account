@@ -34,9 +34,11 @@
   "addresses.addAddress": "Adaugă adresă",
   "addresses.saveAddress": "Salvați adresa",
   "addresses.deleteAddress": "Ștergeți adresa",
+  "addresses.notFound": "Încă nu aveți adrese!",
 
   "payments.cardNumber": "Număr de card",
   "payments.billingAddress": "Adresa de facturare",
+  "payments.notFound": "Nu aveți nicio metodă de plată înregistrată!",
 
   "commons.edit": "Editați",
 

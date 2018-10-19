@@ -34,9 +34,11 @@
   "addresses.addAddress": "Adicionar endereço",
   "addresses.saveAddress": "Salvar endereço",
   "addresses.deleteAddress": "Remover endereço",
+  "addresses.notFound": "Você não tem nenhum endereço cadastrado!",
 
   "payments.cardNumber": "Número do cartão",
   "payments.billingAddress": "Endereço de cobrança",
+  "payments.notFound": "Você não tem nenhum método de pagamento registrado!",
 
   "commons.edit": "Editar",
 

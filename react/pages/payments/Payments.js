@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { FormattedMessage } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
+import EmptyPlaceholder from '../../components/EmptyPlaceholder'
 import PaymentsHeader from './PaymentsHeader'
 import PaymentsLoading from './PaymentsLoading'
 import PaymentBox from '../../components/Payments/PaymentBox'
-import Toast from '../../components/shared/Toast'
 import GetPayments from '../../graphql/getPayments.gql'
 import ContentWrapper from '../shared/ContentWrapper'
 
@@ -22,9 +23,13 @@ class Payments extends Component {
       <ContentWrapper>
         <PaymentsHeader />
         <main className="mt7 flex-ns flex-wrap-ns items-start-ns relative">
-          {payments.map(payment => (
+          {payments ? payments.map(payment => (
             <PaymentBox key={payment.id} payment={payment} />
-          ))}
+          )):(
+            <EmptyPlaceholder>
+              <FormattedMessage id="payments.notFound" />
+            </EmptyPlaceholder>
+          )}
         </main>
       </ContentWrapper>
     )
@@ -32,7 +37,7 @@ class Payments extends Component {
 }
 
 Payments.propTypes = {
-  payments: PropTypes.array.isRequired,
+  payments: PropTypes.array,
 }
 
 const enhance = compose(
