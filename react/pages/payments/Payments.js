@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { FormattedMessage } from 'react-intl'
+import { injectIntl, intlShape } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import EmptyPlaceholder from '../../components/EmptyPlaceholder'
+import { EmptyState } from 'vtex.styleguide'
 import PaymentsHeader from './PaymentsHeader'
 import PaymentsLoading from './PaymentsLoading'
 import PaymentBox from '../../components/Payments/PaymentBox'
@@ -17,7 +17,7 @@ class Payments extends Component {
   }
 
   render() {
-    const { payments } = this.props
+    const { payments, intl } = this.props
 
     return (
       <ContentWrapper>
@@ -26,9 +26,7 @@ class Payments extends Component {
           {payments ? payments.map(payment => (
             <PaymentBox key={payment.id} payment={payment} />
           )):(
-            <EmptyPlaceholder>
-              <FormattedMessage id="payments.notFound" />
-            </EmptyPlaceholder>
+            <EmptyState title={intl.formatMessage({ id: 'payments.notFound'})}/>
           )}
         </main>
       </ContentWrapper>
@@ -37,10 +35,12 @@ class Payments extends Component {
 }
 
 Payments.propTypes = {
+  intl: intlShape.isRequired,
   payments: PropTypes.array,
 }
 
 const enhance = compose(
+  injectIntl,
   graphql(GetPayments),
   branch(({ data }) => data.profile == null, renderComponent(PaymentsLoading)),
   withProps(({ data }) => ({ payments: data.profile.payments })),

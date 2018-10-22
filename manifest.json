@@ -12,7 +12,7 @@
   "dependencies": {
     "vtex.my-orders-app": "2.x",
     "vtex.store-graphql": "2.x",
-    "vtex.styleguide": "6.x",
+    "vtex.styleguide": "7.x",
     "vtex.profile-form": "2.x",
     "vtex.country-codes": "1.x",
     "vtex.payment-flags": "1.x"
