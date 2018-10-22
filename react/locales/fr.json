@@ -34,11 +34,11 @@
   "addresses.addAddress": "Ajouter addresse",
   "addresses.saveAddress": "Sauvegarder addresse",
   "addresses.deleteAddress": "Supprimer addresse",
-  "addresses.notFound": "Vous n'avez aucune adresse enregistré!",
+  "addresses.notFound": "Vous n'avez aucune adresse enregistré !",
 
   "payments.cardNumber": "Numéro de carte",
   "payments.billingAddress": "Adresse de facturation",
-  "payments.notFound": "Vous n'avez aucun moyen de paiement enregistré!",
+  "payments.notFound": "Vous n'avez aucun moyen de paiement enregistré !",
 
   "commons.edit": "Modifier",
 
