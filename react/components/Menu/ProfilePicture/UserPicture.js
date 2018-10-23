@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { IconPlus, Modal } from 'vtex.styleguide'
+import { Modal } from 'vtex.styleguide'
 import PictureUploader from './PictureUploader'
 import PictureRenderer from './PictureRenderer'
 
@@ -28,10 +28,10 @@ class UserPicture extends Component {
       <React.Fragment>
         <PictureRenderer imagePath={imagePath} />
         <button
-          className="absolute bottom-0 right-0 c-link hover-c-link bg-base br-100 pa0 bn pointer"
+          className="absolute bottom-0 right-0 c-on-base--inverted center bg-action-primary br-100 f4 bn pointer"
           onClick={this.openModal}
         >
-          <IconPlus block size={22} />
+          +
         </button>
         <Modal centered isOpen={isModalOpen} onClose={this.handleCloseModal}>
           <div className="pv4 ph4">
