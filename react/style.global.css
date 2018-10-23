@@ -1,3 +1,17 @@
+.vtex-account__header {
+  min-height: 5vh;
+}
+
+/* Setting systemwide font to Helvetica */
+body,
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: 'helvetica neue', helvetica, sans-serif;
+}
+
 /* Add tweakpoint inside m */
 @media screen and (min-width: 57em) {
   .dn-m-2 {

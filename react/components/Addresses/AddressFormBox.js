@@ -6,7 +6,7 @@ import AddressShape from '@vtex/address-form/lib/propTypes/AddressShape'
 import ContentBox from '../shared/ContentBox'
 import emptyAddress from './emptyAddress'
 import AddressEditor from './AddressEditor'
-import AddressDeletter from './AddressDeletter'
+import AddressDeleter from './AddressDeleter'
 import CREATE_ADDRESS from '../../graphql/createAddress.gql'
 import UPDATE_ADDRESS from '../../graphql/updateAddress.gql'
 
@@ -95,7 +95,7 @@ class AddressFormBox extends Component {
           shipsTo={shipsTo}
         />
         {!isNew && (
-          <AddressDeletter
+          <AddressDeleter
             addressId={address.addressId}
             onAddressDeleted={onAddressDeleted}
             onError={onError}
