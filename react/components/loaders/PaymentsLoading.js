@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import BaseLoading from '../shared/BaseLoading'
-import PaymentsHeader from './PaymentsHeader'
-import SkeletonPiece from '../../components/shared/SkeletonPiece'
-import SkeletonBox from '../../components/shared/SkeletonBox'
+import PaymentsHeader from '../headers/PaymentsHeader'
+import SkeletonPiece from '../shared/SkeletonPiece'
+import SkeletonBox from '../shared/SkeletonBox'
 
 const PaymentsLoading = ({ data }) => {
   return (

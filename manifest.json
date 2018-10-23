@@ -19,8 +19,7 @@
   },
   "builders": {
     "react": "2.x",
-    "pages": "0.x",
-    "node": "3.x"
+    "pages": "0.x"
   },
   "scripts": {
     "postreleasy": "vtex publish --verbose"

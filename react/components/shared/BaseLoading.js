@@ -1,17 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import ReloadableError from '../../components/shared/ReloadableError'
-import ContentWrapper from './ContentWrapper'
+import ReloadableError from './ReloadableError'
+import PageTemplate from './PageTemplate'
 
 class BaseLoading extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isLoading: true,
-    }
+  state = {
+    isLoading: true,
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate = (prevProps) => {
     if (prevProps.queryData.loading != this.props.queryData.loading) {
       this.setState({ isLoading: false })
     }
@@ -35,23 +32,26 @@ class BaseLoading extends Component {
       queryData.error.toString().indexOf('not authenticated') > -1
 
     return (
-      <ContentWrapper>
-        <PageHeader />
-        <main className="mt7">
-          {isLoading ? (
-            children
-          ) : (
-            <ReloadableError
-              errorId={
-                hasAuthenticationError
-                  ? 'alert.unauthenticated'
-                  : 'alert.connectionError'
-              }
-              onReload={this.reload}
-            />
-          )}
-        </main>
-      </ContentWrapper>
+      <PageTemplate
+        header={<PageHeader />}
+      >
+        {() => (
+          <Fragment>
+            {isLoading ? (
+              children
+            ) : (
+              <ReloadableError
+                errorId={
+                  hasAuthenticationError
+                    ? 'alert.unauthenticated'
+                    : 'alert.connectionError'
+                }
+                onReload={this.reload}
+              />
+            )}
+          </Fragment>
+        )}
+      </PageTemplate>
     )
   }
 }

@@ -1,35 +1,29 @@
 {
   "pages": {
-    "my-account": {
-      "path": "/account"
-    },
     "my-account-portal": {
       "path": "/legacy-extensions/account"
     }
   },
   "extensions": {
-    "my-account": {
-      "component": "index"
-    },
-    "my-account/routes": {
+    "store/account/account/routes": {
       "component": "vtex.render-runtime/ExtensionContainer"
     },
-    "my-account/routes/my-orders": {
+    "store/account/account/routes/my-orders": {
       "component": "vtex.my-orders-app/ExtensionRouter"
     },
-    "my-account/menu-links-before": {
+    "store/account/account/menu-links-before": {
       "component": "vtex.render-runtime/ExtensionContainer"
     },
-    "my-account/menu-links-before/my-orders": {
+    "store/account/account/menu-links-before/my-orders": {
       "component": "vtex.my-orders-app/ExtensionLinks"
     },
-    "my-account/menu-links-after": {
+    "store/account/account/menu-links-after": {
       "component": "vtex.render-runtime/ExtensionContainer"
     },
-    "my-account/profile/display": {
+    "store/account/account/profile/display": {
       "component": "vtex.render-runtime/ExtensionContainer"
     },
-    "my-account/profile/input": {
+    "store/account/account/profile/input": {
       "component": "vtex.render-runtime/ExtensionContainer"
     },
     "my-account-portal": {
