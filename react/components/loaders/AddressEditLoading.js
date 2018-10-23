@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import BaseLoading from '../shared/BaseLoading'
-import AddressEditHeader from './AddressEditHeader'
-import SkeletonPiece from '../../components/shared/SkeletonPiece'
-import SkeletonBox from '../../components/shared/SkeletonBox'
+import AddressEditHeader from '../headers/AddressEditHeader'
+import SkeletonPiece from '../shared/SkeletonPiece'
+import SkeletonBox from '../shared/SkeletonBox'
 
 const AddressEditLoading = ({ data }) => {
   return (

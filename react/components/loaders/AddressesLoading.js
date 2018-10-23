@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import BaseLoading from '../shared/BaseLoading'
-import AddressesHeader from './AddressesHeader'
+import AddressesHeader from '../headers/AddressesHeader'
 import SkeletonPiece from '../../components/shared/SkeletonPiece'
 import SkeletonBox from '../../components/shared/SkeletonBox'
 
