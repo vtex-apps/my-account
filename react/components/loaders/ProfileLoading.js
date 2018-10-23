@@ -10,7 +10,7 @@ const ProfileLoading = ({ data }) => {
     <BaseLoading queryData={data} PageHeader={ProfileHeader}>
       <main className="mt6 flex-ns flex-wrap-ns items-start-ns">
         <SkeletonBox shouldAllowGrowing shouldShowLowerButton maxWidthStep={6}>
-          <div className="flex flex-wrap mb8 justify-between">
+          <div className="flex flex-wrap mb8 justify-between w5">
             <SkeletonPiece width={40} />
             <SkeletonPiece width={50} />
           </div>
@@ -26,9 +26,11 @@ const ProfileLoading = ({ data }) => {
             <SkeletonPiece width={50} />
           </div>
         </SkeletonBox>
-        <SkeletonBox shouldAllowGrowing shouldShowLowerButton maxWidthStep={5}>
-          <SkeletonPiece width={100} />
-        </SkeletonBox>
+        <div className="flex flex-wrap mb8 justify-between w5">
+          <SkeletonBox shouldAllowGrowing shouldShowLowerButton maxWidthStep={5}>
+            <SkeletonPiece width={100} />
+          </SkeletonBox>
+        </div>
       </main>
     </BaseLoading>
   )

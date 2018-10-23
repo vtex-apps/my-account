@@ -37,7 +37,7 @@ class BaseLoading extends Component {
       >
         {() => (
           <Fragment>
-            {isLoading ? (
+            {isLoading || true ? (
               children
             ) : (
               <ReloadableError
