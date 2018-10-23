@@ -24,7 +24,7 @@ class Payments extends Component {
       > 
         {() => (
           <Fragment>
-            {payments ? payments.map(payment => (
+            {payments && (payments.length !== 0) ? payments.map(payment => (
               <PaymentBox key={payment.id} payment={payment} />
             )):(
               <EmptyState title={emptyStateTitle}/>
