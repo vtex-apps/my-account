@@ -7,21 +7,28 @@ import ContentBox from '../shared/ContentBox'
 import emptyAddress from './emptyAddress'
 import AddressEditor from './AddressEditor'
 import AddressDeletter from './AddressDeletter'
-import CreateAddress from '../../graphql/createAddress.gql'
-import UpdateAddress from '../../graphql/updateAddress.gql'
+import CREATE_ADDRESS from '../../graphql/createAddress.gql'
+import UPDATE_ADDRESS from '../../graphql/updateAddress.gql'
+
+const generateRandomName = () => {
+  return (1 + Math.random()).toString(36).substring(2)
+}
 
 class AddressFormBox extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isLoading: false,
-    }
+  state = {
+    isLoading: false,
   }
 
-  prepareAddress(address) {
+  prepareAddress = (address) => {
     const { profile } = this.props
-    const defaultReceiver =
-      profile && `${profile.firstName} ${profile.lastName}`
+  
+    let defaultReceiver
+    if(profile) {
+      defaultReceiver = profile.firstName || ''
+
+      if(profile.lastName)
+        defaultReceiver += ` ${profile.lastName}` 
+    }
 
     const { __typename, ...addr } = address
     return {
@@ -31,21 +38,17 @@ class AddressFormBox extends Component {
     }
   }
 
-  reshapeAddress(address) {
+  reshapeAddress = (address) => {
     const { addressId, addressQuery, geoCoordinates, ...reshapedAddr } = address
     return {
       ...reshapedAddr,
       geoCoordinate: address.geoCoordinates,
-      addressName: this.generateRandomName(),
+      addressName: generateRandomName(),
     }
   }
 
-  generateRandomName() {
-    return (1 + Math.random()).toString(36).substring(2)
-  }
-
-  handleSubmit = async (valid, address) => {
-    if (!valid || this.state.isLoading) return
+  handleSubmit = (valid, address) => {
+    if (!valid) return
 
     const {
       createAddress,
@@ -57,26 +60,30 @@ class AddressFormBox extends Component {
     const { addressId } = address
     const addressFields = this.reshapeAddress(address)
 
-    try {
-      this.setState({ isLoading: true })
-      isNew
-        ? await createAddress({ variables: { addressFields } })
-        : await updateAddress({ variables: { addressId, addressFields } })
+    this.setState({ isLoading: true })
+
+    const promise = isNew ? 
+      createAddress({ variables: { addressFields } })
+      : updateAddress({ variables: { addressId, addressFields } })
+    
+    promise.then(() => {
       this.setState({ isLoading: false })
       onAddressSaved()
-    } catch (error) {
+    }).catch( () => {
+      this.setState({ isLoading: false})
       onError()
-    }
+    })
   }
 
   render() {
     const { onAddressDeleted, isNew, shipsTo, onError } = this.props
-    const { isLoading } = this.state
     const baseAddress = isNew ? emptyAddress : this.props.address
 
     if (!baseAddress) return null
 
     const address = this.prepareAddress(baseAddress)
+
+    const isLoading = false
 
     return (
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
@@ -116,7 +123,7 @@ AddressFormBox.propTypes = {
 }
 
 const enhance = compose(
-  graphql(UpdateAddress, { name: 'updateAddress' }),
-  graphql(CreateAddress, { name: 'createAddress' }),
+  graphql(UPDATE_ADDRESS, { name: 'updateAddress' }),
+  graphql(CREATE_ADDRESS, { name: 'createAddress' }),
 )
 export default enhance(AddressFormBox)
