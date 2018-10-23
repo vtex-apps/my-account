@@ -6,7 +6,7 @@ import './style.global.css'
 
 const bootstrap = () => {
   return (
-    <div className="vtex-account helvetica">
+    <div className="vtex-account helvetica flex justify-around">
       <ClientSide>
         <AppRouter />
       </ClientSide>

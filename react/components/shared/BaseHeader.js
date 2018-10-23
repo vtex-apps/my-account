@@ -15,7 +15,7 @@ const BaseHeader = ({
   history,
 }) => {
   return (
-    <header className="vtex-account__header flex flex-column flex-row-ns flex-wrap items-center-ns justify-between-ns">
+    <header className="vtex-account__page-header flex flex-column flex-row-ns flex-wrap items-center-ns justify-between-ns">
       <div>
         <div className={shouldAlwaysShowBackButton ? '' : 'dn-m-2'}>
           <ClearButton onClick={() => history.push(backButton.path)}>

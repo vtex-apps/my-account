@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Route, Switch, Redirect, HashRouter } from 'react-router-dom'
 import Media from 'react-media'
 import { ExtensionPoint } from 'render'
@@ -27,33 +27,31 @@ const AppRouter = () => {
   const shouldRedirectOrder = vtex && vtex.orderListRendered
 
   return (
-    <HashRouter>
-      <Media query="(max-width: 57em)">
-        {matches =>
-          matches ? (
-            <main className="vh-100">
+    <div className="w-100 mw9 pv7-m pv9-l flex">
+      <HashRouter>
+        <Media query="(max-width: 45em)">
+          {matches =>
+            matches ? (
               <Switch>
                 <Route exact path="/" component={Menu} />
                 {routes.map(toRouteComponent)}
                 <Redirect exact from="/" to={ shouldRedirectOrder ? "/orders" : "/profile"} />
                 <ExtensionPoint id="routes" />
               </Switch>
-            </main>
-          ) : (
-            <div className="flex pv7-m pv9-l">
-              <Menu />
-              <main className="flex-auto pt5">
+            ) : (
+              <Fragment>
+                <Menu />
                 <Switch>
                   {routes.map(toRouteComponent)}
                   <Redirect exact from="/" to={ shouldRedirectOrder ? "/orders" : "/profile"} />
                   <ExtensionPoint id="routes" />
                 </Switch>
-              </main>
-            </div>
-          )
-        }
-      </Media>
-    </HashRouter>
+              </Fragment>
+            )
+          }
+        </Media>
+      </HashRouter>
+    </div>
   )
 }
 

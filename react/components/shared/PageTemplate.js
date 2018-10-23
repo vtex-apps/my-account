@@ -21,9 +21,9 @@ export default class PageTemplate extends Component {
     const { shouldShowError } = this.state
 
     return (
-      <section className="pa6">
+      <section className="vtex-account__page w-100 w-80-m pa6">
         {header}
-        <main className="center w-100 pt6">
+        <main className="vtex-account__page-body center w-100 pt6 flex justify-around">
           {shouldShowError && (
             <GenericError
               onDismiss={this.handleDismissError}
