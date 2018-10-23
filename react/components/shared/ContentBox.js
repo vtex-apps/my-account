@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ClearButton from './ClearButton'
 import { Button } from 'vtex.styleguide'
 
 const ContentBox = ({

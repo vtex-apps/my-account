@@ -21,9 +21,9 @@ export default class PageTemplate extends Component {
     const { shouldShowError } = this.state
 
     return (
-      <section className="pa0 pa6-m pv0-m-2 pl0-m-2 pr8-l">
+      <section className="pa6">
         {header}
-        <main className="center w-100 pt6 tc">
+        <main className="center w-100 pt6">
           {shouldShowError && (
             <GenericError
               onDismiss={this.handleDismissError}

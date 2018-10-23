@@ -5,7 +5,7 @@ import { graphql, compose } from 'react-apollo'
 import { Button } from 'vtex.styleguide'
 import DeleteAddress from '../../graphql/deleteAddress.gql'
 
-class AddressDeletter extends Component {
+class AddressDeleter extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -47,7 +47,7 @@ class AddressDeletter extends Component {
   }
 }
 
-AddressDeletter.propTypes = {
+AddressDeleter.propTypes = {
   /** Mutation for deleting an address */
   deleteAddress: PropTypes.func.isRequired,
   /** Callback for address deletion */
@@ -64,4 +64,4 @@ const enhance = compose(
   graphql(DeleteAddress, { name: 'deleteAddress' }),
   injectIntl,
 )
-export default enhance(AddressDeletter)
+export default enhance(AddressDeleter)

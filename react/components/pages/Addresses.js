@@ -47,7 +47,7 @@ class Addresses extends Component {
         header={<AddressesHeader />}
       >
         {() => (
-          <Fragment>
+          <div className="flex-ns flex-wrap-ns items-start-ns relative tl">
             {addresses ? addresses.map(address => (
               <AddressBox
                 key={address.addressId}
@@ -58,7 +58,7 @@ class Addresses extends Component {
               <EmptyState title={emptyStateTitle} />
             )}
             {showToast && <Toast messageId="alert.success" onClose={this.handleCloseToast} />}
-          </Fragment>
+          </div>
         )}
       </PageTemplate>
     )
