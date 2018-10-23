@@ -38,7 +38,7 @@
 
   "payments.cardNumber": "Número do cartão",
   "payments.billingAddress": "Endereço de cobrança",
-  "payments.notFound": "Você não tem nenhum método de pagamento registrado!",
+  "payments.notFound": "Você não tem nenhum método de pagamento registrado.",
 
   "commons.edit": "Editar",
 

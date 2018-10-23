@@ -34,7 +34,7 @@
   "addresses.addAddress": "Añadir dirección",
   "addresses.saveAddress": "Guardar dirección",
   "addresses.deleteAddress": "Borrar dirección",
-  "addresses.notFound": "¡Usted no tiene ninguna de las direcciones registrado!",
+  "addresses.notFound": "Usted no tiene ninguna de las direcciones registrado.",
 
   "payments.cardNumber": "Número de tarjeta",
   "payments.billingAddress": "Dirección de facturación",

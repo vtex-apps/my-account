@@ -38,7 +38,7 @@
 
   "payments.cardNumber": "Card number",
   "payments.billingAddress": "Billing address",
-  "payments.notFound": "You don't have any payment method registered yet!",
+  "payments.notFound": "You don't have any payment method registered yet.",
 
   "commons.edit": "Edit",
 

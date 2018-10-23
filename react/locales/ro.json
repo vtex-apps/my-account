@@ -38,7 +38,7 @@
 
   "payments.cardNumber": "Număr de card",
   "payments.billingAddress": "Adresa de facturare",
-  "payments.notFound": "Nu aveți nicio metodă de plată înregistrată!",
+  "payments.notFound": "Nu aveți nicio metodă de plată înregistrată.",
 
   "commons.edit": "Editați",
 
