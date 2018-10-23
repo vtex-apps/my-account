@@ -30,13 +30,11 @@ const BaseHeader = ({
         </h1>
       </div>
       {actionButton && (
-        <div className="mt6 mt5-ns mr5-ns flex-none">
-          <Link to={actionButton.path}>
-            <Button variation="primary" block size="small">
-              {intl.formatMessage({ id: actionButton.id })}
-            </Button>
-          </Link>
-        </div>
+        <Link to={actionButton.path}>
+          <Button variation="primary" block size="small">
+            {intl.formatMessage({ id: actionButton.id })}
+          </Button>
+        </Link>
       )}
     </header>
   )
