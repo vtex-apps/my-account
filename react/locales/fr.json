@@ -38,7 +38,7 @@
 
   "payments.cardNumber": "Numéro de carte",
   "payments.billingAddress": "Adresse de facturation",
-  "payments.notFound": "Vous n'avez aucun moyen de paiement enregistré !",
+  "payments.notFound": "Vous n'avez aucun moyen de paiement enregistré.",
 
   "commons.edit": "Modifier",
 
