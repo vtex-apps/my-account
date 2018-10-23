@@ -20,7 +20,7 @@ const links = [
 
 const MenuLinksList = ({ intl }) => {
   return (
-    <nav>
+    <nav className="vtex-account__menu-links">
       <ExtensionPoint
         id="menu-links-before"
         render={links =>

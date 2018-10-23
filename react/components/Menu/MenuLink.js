@@ -8,7 +8,7 @@ const MenuLink = ({ path, name, location }) => {
     <Link
       to={path}
       className={classnames(
-        'f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap',
+        'vtex-account_menu-link f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap',
         { 'c-muted-1 b--transparent': location.pathname.indexOf(path) === -1 },
         {
           'c-on-base b b--action-primary':
