@@ -4,14 +4,17 @@ import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 
-import ProfileHeader from '../headers/ProfileHeader'
 import ProfileLoading from '../loaders/ProfileLoading'
 import ProfileBox from '../Profile/ProfileBox'
 import PasswordBox from '../Profile/PasswordBox'
 import PasswordFormBox from '../Profile/PasswordFormBox'
 import Toast from '../shared/Toast'
-import PageTemplate from '../shared/PageTemplate'
+import ContentWrapper from '../shared/ContentWrapper'
 import GET_PROFILE from '../../graphql/getProfile.gql'
+
+export const headerConfig = () => {
+  return { titleId: 'pages.profile' }
+}
 
 class Profile extends Component {
   state = {
@@ -28,7 +31,7 @@ class Profile extends Component {
     this.setState({ showToast: false })
   }
 
-  goToEdit = () => {
+  handleGoToEdit = () => {
     this.props.history.push('/profile/edit')
   }
 
@@ -45,31 +48,35 @@ class Profile extends Component {
     const { isEditingPassword, showToast } = this.state
 
     return (
-      <PageTemplate
-        header={<ProfileHeader />}
-      >
+      <ContentWrapper {...headerConfig()}>
         {() => (
           <Fragment>
-            <ProfileBox profile={profile} onEditClick={this.goToEdit} />
-            {isEditingPassword ? (
-              <PasswordFormBox
-                email={profile.email}
-                onPasswordChange={this.handleFinishEditingPassword}
-              />
-            ) : (
-              <PasswordBox onEditClick={this.handleEditingPassword} />
-            )}
-            {showToast && (
-              <Toast messageId="alert.success" onClose={this.handleCloseToast} />
-            )}
+            <ProfileBox profile={profile} onEditClick={this.handleGoToEdit} />
+            {
+              isEditingPassword ? (
+                <PasswordFormBox
+                  email={profile.email}
+                  onPasswordChange={this.handleFinishEditingPassword}
+                />
+              ) : (
+                  <PasswordBox onEditClick={this.handleEditingPassword} />
+                )
+            }
+            {
+              showToast && (
+                <Toast messageId="alert.success" onClose={this.handleCloseToast} />
+              )
+            }
           </Fragment>
         )}
-      </PageTemplate>
+      </ContentWrapper>
     )
   }
 }
 
 Profile.propTypes = {
+  location: PropTypes.any,
+  history: PropTypes.object,
   profile: PropTypes.object.isRequired,
 }
 

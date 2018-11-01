@@ -1,6 +1,5 @@
 {
   "userInfo.greeting": "Bună",
-
   "pages.addresses": "Adrese",
   "pages.addressCreate": "Adaugă adresă",
   "pages.addressEdit": "Editați adresa",
@@ -9,7 +8,6 @@
   "pages.payments": "Carduri de credit",
   "pages.paymentCreate": "Adăugați carte de credit",
   "pages.myAccount": "Contul meu",
-
   "personalData.redefinePassword": "Redenumiți parola",
   "personalData.saveData": "Salvează modificările",
   "personalData.password": "Parola",
@@ -22,7 +20,6 @@
   "personalData.1number": "1 număr",
   "personalData.1upLetter": "1 literă majuscule",
   "personalData.1lowLetter": "1 literă mică",
-
   "upload.loading": "Se incarca…",
   "upload.choosePhoto": "Alege o poza",
   "upload.chooseAgain": "Alegeți o altă imagine",
@@ -30,18 +27,15 @@
   "upload.dragYourPhoto": "Glisați-vă noua imagine de profil aici",
   "upload.photoUpdated": "Imaginea ta de profil a fost actualizată cu succes.",
   "upload.or": "sau",
-
   "addresses.addAddress": "Adaugă adresă",
   "addresses.saveAddress": "Salvați adresa",
   "addresses.deleteAddress": "Ștergeți adresa",
   "addresses.notFound": "Încă nu aveți adrese!",
-
   "payments.cardNumber": "Număr de card",
   "payments.billingAddress": "Adresa de facturare",
   "payments.notFound": "Nu aveți nicio metodă de plată înregistrată.",
-
   "commons.edit": "Editați",
-
+  "commons.back": "Întoarcere",
   "alert.unauthenticated": "Trebuie să fiți autentificat pentru a continua această acțiune.",
   "alert.connectionError": "A apărut o eroare la conectarea la sistem, încercați să reîncărcați pagina.",
   "alert.addressNotFound": "Adresa selectată nu a fost găsită.",
@@ -53,12 +47,10 @@
   "alert.wrongPassword": "Parola curentă este greșită.",
   "alert.wrongAndAboutToBlock": "Parola curentă este greșită. Încă o încercare nevalidă va bloca contul dvs. timp de o oră.",
   "alert.blockedUser": "Ați fost blocat, încercați din nou mai târziu.",
-
   "address-form.loading": "Te rugăm așteaptă...",
   "address-form.dontKnowPostalCode": "nu îmi cunosc codul poștal",
   "address-form.optional": "Optional",
   "address-form.edit": "Editează",
-
   "address-form.field.addressQuery": "Adresă",
   "address-form.geolocation.example.ARG": "Eg: Av. del Libertador 1473, Buenos Aires",
   "address-form.geolocation.example.BOL": "Eg: Av Arce, 2556, La Paz",
@@ -77,12 +69,10 @@
   "address-form.geolocation.example.URY": "Eg: Bulevar Artigas, 1394, Montevidéu",
   "address-form.geolocation.example.USA": "Eg: 225 East 41st Street, New York",
   "address-form.geolocation.example.VEN": "Eg: Avenida Mohedano, Caracas",
-
   "address-form.error.ERROR_EMPTY_FIELD": "Acest câmp este obligatoriu.",
   "address-form.error.ERROR_POSTAL_CODE": "Cod poștal invalid.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Adresă invalidă.",
   "address-form.error.generic": "Câmp invalid",
-
   "address-form.field.country": "Țară",
   "address-form.field.postalCode": "Cod Poștal",
   "address-form.field.street": "Stradă",

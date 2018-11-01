@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
+import { headerConfig } from '../pages/Payments'
 import BaseLoading from '../shared/BaseLoading'
-import PaymentsHeader from '../headers/PaymentsHeader'
 import SkeletonPiece from '../shared/SkeletonPiece'
 import SkeletonBox from '../shared/SkeletonBox'
 
 const PaymentsLoading = ({ data }) => {
   return (
-    <BaseLoading queryData={data} PageHeader={PaymentsHeader}>
+    <BaseLoading queryData={data} headerConfig={headerConfig}>
       <main className="mt7 flex-ns flex-wrap-ns items-start-ns">
         <SkeletonBox>
           <div className="pv4 w5 h5">

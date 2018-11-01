@@ -1,6 +1,5 @@
 {
   "userInfo.greeting": "Olá",
-
   "pages.addresses": "Endereços",
   "pages.addressCreate": "Adicionar endereço",
   "pages.addressEdit": "Editar endereço",
@@ -9,7 +8,6 @@
   "pages.payments": "Cartões",
   "pages.paymentCreate": "Adicionar cartão",
   "pages.myAccount": "Minha conta",
-
   "personalData.redefinePassword": "Redefinir senha",
   "personalData.saveData": "Salvar alterações",
   "personalData.password": "Senha",
@@ -22,7 +20,6 @@
   "personalData.1number": "1 número",
   "personalData.1upLetter": "1 letra maiúscula",
   "personalData.1lowLetter": "1 letra minúscula",
-
   "upload.loading": "Carregando…",
   "upload.choosePhoto": "Escolha uma Foto",
   "upload.chooseAgain": "Escolher outra Foto",
@@ -30,18 +27,15 @@
   "upload.dragYourPhoto": "Arraste para cá sua nova foto de perfil",
   "upload.photoUpdated": "Sua foto de perfil foi alterada com sucesso.",
   "upload.or": "ou",
-
   "addresses.addAddress": "Adicionar endereço",
   "addresses.saveAddress": "Salvar endereço",
   "addresses.deleteAddress": "Remover endereço",
   "addresses.notFound": "Você não tem nenhum endereço cadastrado!",
-
   "payments.cardNumber": "Número do cartão",
   "payments.billingAddress": "Endereço de cobrança",
   "payments.notFound": "Você não tem nenhum método de pagamento registrado.",
-
   "commons.edit": "Editar",
-
+  "commons.back": "Voltar",
   "alert.unauthenticated": "Você precisa se identificar para realizar esta ação.",
   "alert.connectionError": "Houve um erro de comunicação com o sistema, tente recarregar a página.",
   "alert.addressNotFound": "O endereço especificado não foi encontrado.",
@@ -53,12 +47,10 @@
   "alert.wrongPassword": "A senha atual está incorreta.",
   "alert.wrongAndAboutToBlock": "A senha atual está incorreta. Mais uma tentativa inválida bloqueará sua conta por uma hora.",
   "alert.blockedUser": "Você está bloqueado, tente novamente mais tarde.",
-
   "address-form.loading": "Por favor, aguarde...",
   "address-form.dontKnowPostalCode": "Não sei meu código postal",
   "address-form.optional": "Opcional",
   "address-form.edit": "Editar",
-
   "address-form.field.addressQuery": "Endereço",
   "address-form.geolocation.example.ARG": "Ex: Av. del Libertador 1473, Buenos Aires",
   "address-form.geolocation.example.BOL": "Ex: Av Arce, 2556, La Paz",
@@ -77,12 +69,10 @@
   "address-form.geolocation.example.URY": "Ex: Bulevar Artigas, 1394, Montevidéu",
   "address-form.geolocation.example.USA": "Ex: 225 East 41st Street, New York",
   "address-form.geolocation.example.VEN": "Ex: Avenida Mohedano, Caracas",
-
   "address-form.error.ERROR_EMPTY_FIELD": "Campo obrigatório.",
   "address-form.error.ERROR_POSTAL_CODE": "Código postal inválido.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Endereço inválido.",
   "address-form.error.generic": "Campo inválido.",
-
   "address-form.field.country": "País",
   "address-form.field.postalCode": "Código Postal",
   "address-form.field.street": "Endereço",

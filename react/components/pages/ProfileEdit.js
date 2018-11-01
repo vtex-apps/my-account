@@ -1,17 +1,26 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 
-import ProfileEditHeader from '../headers/ProfileEditHeader'
 import ProfileEditLoading from '../loaders/ProfileEditLoading'
 import ProfileFormBox from '../Profile/ProfileFormBox'
-import PageTemplate from '../shared/PageTemplate'
+import ContentWrapper from '../shared/ContentWrapper'
 import GET_PROFILE from '../../graphql/getProfile.gql'
 
+export const headerConfig = () => {
+  return {
+    titleId: 'pages.profileEdit',
+    backButton: {
+      title: 'pages.profile',
+      path: '/profile',
+    }
+  }
+}
+
 class ProfileEdit extends Component {
-  goBack = () => {
+  handleGoBack = () => {
     this.props.history.push('/profile?success=true')
   }
 
@@ -19,23 +28,22 @@ class ProfileEdit extends Component {
     const { profile } = this.props
     
     return (
-      <PageTemplate 
-        header={<ProfileEditHeader />}
-      >
+      <ContentWrapper {...headerConfig()}>
         {onError => (
           <ProfileFormBox
             profile={profile}
-            onDataSave={this.goBack}
+            onDataSave={this.handleGoBack}
             onError={onError}
           />
         )}
-      </PageTemplate>
+      </ContentWrapper>
     )
   }
 }
 
 ProfileEdit.propTypes = {
   profile: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 }
 
 const enhance = compose(
