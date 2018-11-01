@@ -71,8 +71,7 @@ class ProfileFormBox extends Component {
   submit = () => {
     const { updateProfile } = this.props
     const { profile: profileInput } = this.state
-    const { email, ...profile } = profileInput
-    return updateProfile({ variables: { profile } })
+    return updateProfile({ variables: { profile: profileInput } })
   }
 
   render() {
