@@ -17,7 +17,7 @@ class ProfileEdit extends Component {
 
   render() {
     const { profile } = this.props
-
+    
     return (
       <PageTemplate 
         header={<ProfileEditHeader />}
