@@ -1,6 +1,5 @@
 {
   "userInfo.greeting": "Hi",
-
   "pages.addresses": "Addresses",
   "pages.addressCreate": "Add address",
   "pages.addressEdit": "Edit address",
@@ -9,7 +8,6 @@
   "pages.payments": "Credit cards",
   "pages.paymentCreate": "Add credit card",
   "pages.myAccount": "My account",
-
   "personalData.redefinePassword": "Redefine password",
   "personalData.saveData": "Save changes",
   "personalData.password": "Password",
@@ -22,7 +20,6 @@
   "personalData.1number": "1 number",
   "personalData.1upLetter": "1 uppercase letter",
   "personalData.1lowLetter": "1 lowercase letter",
-
   "upload.loading": "Loading…",
   "upload.choosePhoto": "Choose a Picture",
   "upload.chooseAgain": "Choose another Picture",
@@ -30,18 +27,15 @@
   "upload.dragYourPhoto": "Drag your new profile picture here",
   "upload.photoUpdated": "Your profile picture was successfully updated.",
   "upload.or": "or",
-
   "addresses.addAddress": "Add address",
   "addresses.saveAddress": "Save address",
   "addresses.deleteAddress": "Delete address",
   "addresses.notFound": "You don't have any addresses yet!",
-
   "payments.cardNumber": "Card number",
   "payments.billingAddress": "Billing address",
   "payments.notFound": "You don't have any payment method registered yet.",
-
   "commons.edit": "Edit",
-
+  "commons.back": "Return",
   "alert.unauthenticated": "You need to be authenticated to proceed with this action.",
   "alert.connectionError": "There was an error connecting with the system, try reloading the page.",
   "alert.addressNotFound": "The selected address was not found.",
@@ -53,12 +47,10 @@
   "alert.wrongPassword": "Current password is wrong.",
   "alert.wrongAndAboutToBlock": "Current password is wrong. One more invalid attempt will block your account for one hour.",
   "alert.blockedUser": "You have been blocked, try again later.",
-
   "address-form.loading": "Please wait...",
   "address-form.dontKnowPostalCode": "I don't know my postal code",
   "address-form.optional": "Optional",
   "address-form.edit": "Edit",
-
   "address-form.field.addressQuery": "Address",
   "address-form.geolocation.example.ARG": "Eg: Av. del Libertador 1473, Buenos Aires",
   "address-form.geolocation.example.BOL": "Eg: Av Arce, 2556, La Paz",
@@ -77,12 +69,10 @@
   "address-form.geolocation.example.URY": "Eg: Bulevar Artigas, 1394, Montevidéu",
   "address-form.geolocation.example.USA": "Eg: 225 East 41st Street, New York",
   "address-form.geolocation.example.VEN": "Eg: Avenida Mohedano, Caracas",
-
   "address-form.error.ERROR_EMPTY_FIELD": "This field is required.",
   "address-form.error.ERROR_POSTAL_CODE": "Invalid postal code.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Invalid address.",
   "address-form.error.generic": "Invalid field.",
-
   "address-form.field.country": "Country",
   "address-form.field.postalCode": "Postal Code",
   "address-form.field.street": "Street",

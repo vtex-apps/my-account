@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { injectIntl, intlShape } from 'react-intl'
+
 import ReloadableError from './ReloadableError'
-import PageTemplate from './PageTemplate'
+import ContentWrapper from './ContentWrapper'
 
 class BaseLoading extends Component {
   state = {
@@ -25,41 +27,40 @@ class BaseLoading extends Component {
 
   render() {
     const { isLoading } = this.state
-    const { PageHeader, children, queryData } = this.props
+    const { headerConfig, children, queryData, intl } = this.props
 
     const hasAuthenticationError =
       queryData.error &&
       queryData.error.toString().indexOf('not authenticated') > -1
 
     return (
-      <PageTemplate
-        header={<PageHeader />}
-      >
+      <ContentWrapper {...headerConfig(intl)}>
         {() => (
           <Fragment>
             {isLoading || true ? (
               children
             ) : (
-              <ReloadableError
-                errorId={
-                  hasAuthenticationError
-                    ? 'alert.unauthenticated'
-                    : 'alert.connectionError'
-                }
-                onReload={this.reload}
-              />
-            )}
+                <ReloadableError
+                  errorId={
+                    hasAuthenticationError
+                      ? 'alert.unauthenticated'
+                      : 'alert.connectionError'
+                  }
+                  onReload={this.reload}
+                />
+              )}
           </Fragment>
         )}
-      </PageTemplate>
+      </ContentWrapper>
     )
   }
 }
 
 BaseLoading.propTypes = {
+  intl: intlShape.isRequired,
   queryData: PropTypes.any.isRequired,
-  PageHeader: PropTypes.func.isRequired,
+  headerConfig: PropTypes.func.isRequired,
   children: PropTypes.any.isRequired,
 }
 
-export default BaseLoading
+export default injectIntl(BaseLoading)

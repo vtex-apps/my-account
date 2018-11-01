@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
+import { headerConfig } from '../pages/Profile'
 import BaseLoading from '../shared/BaseLoading'
-import ProfileHeader from '../headers/ProfileHeader'
 import SkeletonPiece from '../shared/SkeletonPiece'
 import SkeletonBox from '../shared/SkeletonBox'
 
 const ProfileLoading = ({ data }) => {
   return (
-    <BaseLoading queryData={data} PageHeader={ProfileHeader}>
+    <BaseLoading queryData={data} headerConfig={headerConfig}>
       <main className="mt6 flex-ns flex-wrap-ns items-start-ns">
         <SkeletonBox shouldAllowGrowing shouldShowLowerButton maxWidthStep={6}>
           <div className="flex flex-wrap mb8 justify-between w5">

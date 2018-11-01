@@ -1,6 +1,5 @@
 {
   "userInfo.greeting": "Hola",
-
   "pages.addresses": "Direcciones",
   "pages.addressCreate": "Añadir Dirección",
   "pages.addressEdit": "Editar dirección",
@@ -9,7 +8,6 @@
   "pages.payments": "Tarjetas de crédito",
   "pages.paymentCreate": "Añadir tarjeta de crédito",
   "pages.myAccount": "Mi cuenta",
-
   "personalData.redefinePassword": "Modificar contraseña",
   "personalData.saveData": "Guardar cambios",
   "personalData.password": "Contraseña",
@@ -22,7 +20,6 @@
   "personalData.1number": "1 número",
   "personalData.1upLetter": "1 letra mayúscula",
   "personalData.1lowLetter": "1 letra minúscula",
-
   "upload.loading": "Cargando…",
   "upload.choosePhoto": "Elige una imagen",
   "upload.chooseAgain": "Elige otra imagen",
@@ -30,19 +27,15 @@
   "upload.dragYourPhoto": "Arrastre su nueva imagen de perfil aquí",
   "upload.photoUpdated": "Tu foto de perfil fue actualizada con éxito.",
   "upload.or": "o",
-
   "addresses.addAddress": "Añadir dirección",
   "addresses.saveAddress": "Guardar dirección",
   "addresses.deleteAddress": "Borrar dirección",
   "addresses.notFound": "Usted no tiene ninguna de las direcciones registrado.",
-
   "payments.cardNumber": "Número de tarjeta",
   "payments.billingAddress": "Dirección de facturación",
   "payments.notFound": "¡Aún no tienes ningún método de pago registrado!",
-
-
   "commons.edit": "Editar",
-
+  "commons.back": "Regreso",
   "alert.unauthenticated": "Debe estar autenticado para continuar con esta acción.",
   "alert.connectionError": "Hubo un error al conectar con el sistema, intente cargar la página nuevamente.",
   "alert.addressNotFound": "La dirección seleccionada no fue encontrada.",
@@ -54,12 +47,10 @@
   "alert.wrongPassword": "La contraseña actual es incorrecta.",
   "alert.wrongAndAboutToBlock": "La contraseña actual es incorrecta. Un intento inválido más bloqueará su cuenta durante una hora.",
   "alert.blockedUser": "Has sido bloqueado, inténtalo de nuevo más tarde.",
-
   "address-form.loading": "Por favor, aguarde...",
   "address-form.dontKnowPostalCode": "No conozco mi Código Postal",
   "address-form.optional": "Opcional",
   "address-form.edit": "Cambiar",
-
   "address-form.field.addressQuery": "Dirección",
   "address-form.geolocation.example.ARG": "Ej: Av. del Libertador 1473, Buenos Aires",
   "address-form.geolocation.example.BOL": "Ej: Av Arce, 2556, La Paz",
@@ -78,12 +69,10 @@
   "address-form.geolocation.example.URY": "Ej: Bulevar Artigas, 1394, Montevidéu",
   "address-form.geolocation.example.USA": "Ej: 225 East 41st Street, New York",
   "address-form.geolocation.example.VEN": "Ej: Avenida Mohedano, Caracas",
-
   "address-form.error.ERROR_EMPTY_FIELD": "Este campo es obligatorio.",
   "address-form.error.ERROR_POSTAL_CODE": "Código postal no válido.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Dirección no válida.",
   "address-form.error.generic": "Campo no válido.",
-
   "address-form.field.country": "País",
   "address-form.field.postalCode": "Código Postal",
   "address-form.field.street": "Calle",

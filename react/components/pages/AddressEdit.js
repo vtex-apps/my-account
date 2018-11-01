@@ -4,14 +4,23 @@ import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 
 import GenericError from '../shared/GenericError'
-import AddressEditHeader from '../headers/AddressEditHeader'
 import AddressEditLoading from '../loaders/AddressEditLoading'
 import AddressFormBox from '../Addresses/AddressFormBox'
-import PageTemplate from '../shared/PageTemplate'
+import ContentWrapper from '../shared/ContentWrapper'
 import GET_ADDRESS from '../../graphql/getAddresses.gql'
 
+export const headerConfig = () => {
+  return {
+    titleId: 'pages.addressEdit',
+    backButton: {
+      titleId: 'pages.addresses',
+      path: '/addresses',
+    }
+  }
+}
+
 class AddressEdit extends Component {
-  goBack = () => {
+  handleGoBack = () => {
     this.props.history.push('/addresses?success=true')
   }
 
@@ -20,30 +29,29 @@ class AddressEdit extends Component {
     const address = addresses.find(current => current.addressId === addressId)
 
     return (
-      <PageTemplate
-        header={<AddressEditHeader />}
-      >
+      <ContentWrapper {...headerConfig()}>
         {onError => (
           <Fragment>
             {address ? (
               <AddressFormBox
                 address={address}
-                onAddressSaved={this.goBack}
-                onAddressDeleted={this.goBack}
+                onAddressSaved={this.handleGoBack}
+                onAddressDeleted={this.handleGoBack}
                 onError={onError}
                 shipsTo={shipsTo}
               />
             ) : (
-              <GenericError errorId="alert.addressNotFound" />
-            )}
+                <GenericError errorId="alert.addressNotFound" />
+              )}
           </Fragment>
         )}
-      </PageTemplate>
+      </ContentWrapper>
     )
   }
 }
 
 AddressEdit.propTypes = {
+  history: PropTypes.object.isRequired,
   addresses: PropTypes.array.isRequired,
   addressId: PropTypes.string.isRequired,
   shipsTo: PropTypes.array.isRequired,

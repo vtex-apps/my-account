@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
+import { headerConfig } from '../pages/AddressEdit'
 import BaseLoading from '../shared/BaseLoading'
-import AddressEditHeader from '../headers/AddressEditHeader'
 import SkeletonPiece from '../shared/SkeletonPiece'
 import SkeletonBox from '../shared/SkeletonBox'
 
 const AddressEditLoading = ({ data }) => {
   return (
-    <BaseLoading queryData={data} PageHeader={AddressEditHeader}>
+    <BaseLoading queryData={data} headerConfig={headerConfig}>
       <main className="mt7 flex-ns flex-wrap-ns items-start-ns">
         <SkeletonBox shouldAllowGrowing maxWidthStep={6}>
           <div className="mb8 mt4">

@@ -1,18 +1,32 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import { graphql } from 'react-apollo'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import { EmptyState } from 'vtex.styleguide'
+import { EmptyState, Button } from 'vtex.styleguide'
 
-import AddressesHeader from '../headers/AddressesHeader'
 import AddressesLoading from '../loaders/AddressesLoading'
 import AddressBox from '../Addresses/AddressBox'
 import Toast from '../shared/Toast'
-import PageTemplate from '../shared/PageTemplate'
+import ContentWrapper from '../shared/ContentWrapper'
 
 import GET_ADRESSES from '../../graphql/getAddresses.gql'
+
+export const headerConfig = (intl) => {
+  const headerContent = (
+    <Link to="/addresses/new">
+      <Button variation="primary" block size="small">
+        {intl.formatMessage({ id: 'addresses.addAddress' })}
+      </Button>
+    </Link>
+  )
+
+  return {
+    titleId: 'pages.addresses',
+    headerContent
+  }
+}
 
 class Addresses extends Component {
   state = {
@@ -38,14 +52,12 @@ class Addresses extends Component {
 
     const emptyStateTitle = (
       <span className="c-on-base">
-        {intl.formatMessage({ id: 'addresses.notFound'})}
+        {intl.formatMessage({ id: 'addresses.notFound' })}
       </span>
     )
 
     return (
-      <PageTemplate 
-        header={<AddressesHeader />}
-      >
+      <ContentWrapper {...headerConfig(intl)}>
         {() => (
           <div className="flex-ns flex-wrap-ns items-start-ns relative tl">
             {addresses ? addresses.map(address => (
@@ -55,17 +67,19 @@ class Addresses extends Component {
                 onEditClick={() => this.startEditing(address)}
               />
             )) : (
-              <EmptyState title={emptyStateTitle} />
-            )}
+                <EmptyState title={emptyStateTitle} />
+              )}
             {showToast && <Toast messageId="alert.success" onClose={this.handleCloseToast} />}
           </div>
         )}
-      </PageTemplate>
+      </ContentWrapper>
     )
   }
 }
 
 Addresses.propTypes = {
+  location: PropTypes.any,
+  history: PropTypes.object,
   intl: intlShape.isRequired,
   addresses: PropTypes.array,
 }
