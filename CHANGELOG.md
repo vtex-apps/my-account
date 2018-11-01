@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - Not editing profile because the email was not being sent to the `updateProfile` mutation.
+### Added
+- `PageHeader` to the pages components
 
 ## [0.16.9] - 2018-10-24
 ### Fixed
