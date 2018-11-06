@@ -13,7 +13,7 @@ export const headerConfig = () => {
   return {
     titleId: 'pages.profileEdit',
     backButton: {
-      title: 'pages.profile',
+      titleId: 'pages.profile',
       path: '/profile',
     }
   }
@@ -26,7 +26,7 @@ class ProfileEdit extends Component {
 
   render() {
     const { profile } = this.props
-    
+
     return (
       <ContentWrapper {...headerConfig()}>
         {onError => (

@@ -55,12 +55,13 @@ class ContentWrapper extends Component {
 ContentWrapper.propTypes = {
   intl: intlShape,
   children: PropTypes.func.isRequired,
-  header: PropTypes.node.isRequired,
+  titleId: PropTypes.string.isRequired,
   backButton: PropTypes.shape({
     titleId: PropTypes.string.isRequired,
     path: PropTypes.string.isRequired
   }),
-  headerContent: PropTypes.node
+  headerContent: PropTypes.node,
+
 }
 
 export default withRouter(injectIntl(ContentWrapper))
