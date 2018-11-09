@@ -2,11 +2,10 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
+import { ContentWrapper, GenericError } from 'vtex.store-components/Account'
 
-import GenericError from '../shared/GenericError'
 import AddressEditLoading from '../loaders/AddressEditLoading'
 import AddressFormBox from '../Addresses/AddressFormBox'
-import ContentWrapper from '../shared/ContentWrapper'
 import GET_ADDRESS from '../../graphql/getAddresses.gql'
 
 export const headerConfig = () => {

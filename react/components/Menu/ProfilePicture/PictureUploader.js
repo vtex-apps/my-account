@@ -2,11 +2,12 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 import { compose } from 'recompose'
-import { Button, Spinner } from 'vtex.styleguide'
 import { graphql } from 'react-apollo'
+import { Button, Spinner } from 'vtex.styleguide'
+import { GenericError } from 'vtex.store-components/Account'
+
 import UpdateProfilePicture from '../../../graphql/updateProfilePicture.gql'
 import BaseDropzone from './BaseDropzone'
-import GenericError from '../../shared/GenericError'
 import PictureRenderer from './PictureRenderer'
 
 class PictureUploader extends Component {
@@ -74,44 +75,44 @@ class PictureUploader extends Component {
                 </div>
               </React.Fragment>
             ) : (
-              <React.Fragment>
-                <div className="h4 w4 mb8">
-                  <PictureRenderer imagePath={currentPicture} />
-                </div>
-                <div className="mb6 f5 tc c-muted-1 lh-copy">
-                  {intl.formatMessage({ id: boxText })}
-                </div>
-                {finishedUpload ? (
-                  <React.Fragment>
-                    <div className="mb4 w-100">
-                      <Button
-                        block
-                        size="small"
-                        onClick={this.handleCloseClick}
-                      >
-                        {intl.formatMessage({ id: 'upload.save' })}
+                <React.Fragment>
+                  <div className="h4 w4 mb8">
+                    <PictureRenderer imagePath={currentPicture} />
+                  </div>
+                  <div className="mb6 f5 tc c-muted-1 lh-copy">
+                    {intl.formatMessage({ id: boxText })}
+                  </div>
+                  {finishedUpload ? (
+                    <React.Fragment>
+                      <div className="mb4 w-100">
+                        <Button
+                          block
+                          size="small"
+                          onClick={this.handleCloseClick}
+                        >
+                          {intl.formatMessage({ id: 'upload.save' })}
+                        </Button>
+                      </div>
+                      <Button block size="small" variation="secondary">
+                        {intl.formatMessage({ id: 'upload.chooseAgain' })}
                       </Button>
-                    </div>
-                    <Button block size="small" variation="secondary">
-                      {intl.formatMessage({ id: 'upload.chooseAgain' })}
-                    </Button>
-                  </React.Fragment>
-                ) : (
-                  <React.Fragment>
-                    <div className="flex w-100 items-center mb6">
-                      <div className="flex-auto bt b--muted-4" />
-                      <span className="mh3 c-muted-1">
-                        {intl.formatMessage({ id: 'upload.or' })}
-                      </span>
-                      <div className="flex-auto bt b--muted-4" />
-                    </div>
-                    <Button block size="small">
-                      {intl.formatMessage({ id: 'upload.choosePhoto' })}
-                    </Button>
-                  </React.Fragment>
-                )}
-              </React.Fragment>
-            )}
+                    </React.Fragment>
+                  ) : (
+                      <React.Fragment>
+                        <div className="flex w-100 items-center mb6">
+                          <div className="flex-auto bt b--muted-4" />
+                          <span className="mh3 c-muted-1">
+                            {intl.formatMessage({ id: 'upload.or' })}
+                          </span>
+                          <div className="flex-auto bt b--muted-4" />
+                        </div>
+                        <Button block size="small">
+                          {intl.formatMessage({ id: 'upload.choosePhoto' })}
+                        </Button>
+                      </React.Fragment>
+                    )}
+                </React.Fragment>
+              )}
           </div>
         </BaseDropzone>
       </React.Fragment>

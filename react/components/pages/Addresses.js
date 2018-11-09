@@ -5,11 +5,11 @@ import { graphql } from 'react-apollo'
 import { withRouter, Link } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import { EmptyState, Button } from 'vtex.styleguide'
+import { ContentWrapper } from 'vtex.store-components/Account'
 
 import AddressesLoading from '../loaders/AddressesLoading'
 import AddressBox from '../Addresses/AddressBox'
 import Toast from '../shared/Toast'
-import ContentWrapper from '../shared/ContentWrapper'
 
 import GET_ADRESSES from '../../graphql/getAddresses.gql'
 
