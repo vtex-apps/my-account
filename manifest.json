@@ -15,7 +15,8 @@
     "vtex.styleguide": "7.x",
     "vtex.profile-form": "2.x",
     "vtex.country-codes": "1.x",
-    "vtex.payment-flags": "1.x"
+    "vtex.payment-flags": "1.x",
+    "vtex.store-components": "2.x"
   },
   "builders": {
     "react": "2.x",
