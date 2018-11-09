@@ -8,14 +8,8 @@
     "store/account/account/routes": {
       "component": "vtex.render-runtime/ExtensionContainer"
     },
-    "store/account/account/routes/my-orders": {
-      "component": "vtex.my-orders-app/ExtensionRouter"
-    },
     "store/account/account/menu-links-before": {
       "component": "vtex.render-runtime/ExtensionContainer"
-    },
-    "store/account/account/menu-links-before/my-orders": {
-      "component": "vtex.my-orders-app/ExtensionLinks"
     },
     "store/account/account/menu-links-after": {
       "component": "vtex.render-runtime/ExtensionContainer"
@@ -32,14 +26,8 @@
     "my-account-portal/routes": {
       "component": "vtex.render-runtime/ExtensionContainer"
     },
-    "my-account-portal/routes/my-orders": {
-      "component": "vtex.my-orders-app/ExtensionRouter"
-    },
     "my-account-portal/menu-links-before": {
       "component": "vtex.render-runtime/ExtensionContainer"
-    },
-    "my-account-portal/menu-links-before/my-orders": {
-      "component": "vtex.my-orders-app/ExtensionLinks"
     },
     "my-account-portal/menu-links-after": {
       "component": "vtex.render-runtime/ExtensionContainer"
