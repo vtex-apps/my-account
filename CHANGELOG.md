@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Removed
+- `MyOrders` from `pages.json`
 - Extract the components: `GenericError`, `BaseLoading` and `ContentWrapper` to the `vtex.store-components` module.
 
 ## [0.16.11] - 2018-11-06
