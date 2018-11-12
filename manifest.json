@@ -1,7 +1,7 @@
 {
   "name": "my-account",
   "vendor": "vtex",
-  "version": "0.16.11",
+  "version": "0.17.0",
   "title": "My Account",
   "description": "",
   "mustUpdateAt": "2019-07-09",
@@ -15,7 +15,8 @@
     "vtex.styleguide": "7.x",
     "vtex.profile-form": "2.x",
     "vtex.country-codes": "1.x",
-    "vtex.payment-flags": "1.x"
+    "vtex.payment-flags": "1.x",
+    "vtex.store-components": "2.x"
   },
   "builders": {
     "react": "2.x",

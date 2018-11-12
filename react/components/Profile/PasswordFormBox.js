@@ -4,8 +4,9 @@ import { intlShape, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
 import { Input, Button } from 'vtex.styleguide'
+import { GenericError } from 'vtex.store-components/Account'
+
 import ContentBox from '../shared/ContentBox'
-import GenericError from '../shared/GenericError'
 import RedefinePassword from '../../graphql/redefinePassword.gql'
 import PasswordValidator from './PasswordValidator'
 
