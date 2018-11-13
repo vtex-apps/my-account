@@ -4,7 +4,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import { EmptyState } from 'vtex.styleguide'
-import { ContentWrapper } from 'vtex.store-components/Account'
+import { ContentWrapper } from 'vtex.my-account-commons'
 
 import PaymentsLoading from '../loaders/PaymentsLoading'
 import PaymentBox from '../Payments/PaymentBox'

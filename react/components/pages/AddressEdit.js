@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import { ContentWrapper, GenericError } from 'vtex.store-components/Account'
+import { ContentWrapper, GenericError } from 'vtex.my-account-commons'
 
 import AddressEditLoading from '../loaders/AddressEditLoading'
 import AddressFormBox from '../Addresses/AddressFormBox'

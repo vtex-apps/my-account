@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { BaseLoading } from 'vtex.store-components/Account'
+import { BaseLoading } from 'vtex.my-account-commons'
 
 import { headerConfig } from '../pages/Payments'
 import SkeletonPiece from '../shared/SkeletonPiece'
