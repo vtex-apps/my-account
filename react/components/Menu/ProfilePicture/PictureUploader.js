@@ -4,7 +4,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import { compose } from 'recompose'
 import { graphql } from 'react-apollo'
 import { Button, Spinner } from 'vtex.styleguide'
-import { GenericError } from 'vtex.store-components/Account'
+import { GenericError } from 'vtex.my-account-commons'
 
 import UpdateProfilePicture from '../../../graphql/updateProfilePicture.gql'
 import BaseDropzone from './BaseDropzone'
