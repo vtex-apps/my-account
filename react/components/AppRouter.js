@@ -5,7 +5,6 @@ import { ExtensionPoint } from 'render'
 import Menu from './Menu/Menu'
 import Addresses from './pages/Addresses'
 import Profile from './pages/Profile'
-import Payments from './pages/Payments'
 import ProfileEdit from './pages/ProfileEdit'
 import AddressCreate from './pages/AddressCreate'
 import AddressEdit from './pages/AddressEdit'
@@ -17,7 +16,6 @@ const AppRouter = () => {
     { path: '/addresses/edit/:id', component: AddressEdit },
     { path: '/profile', component: Profile },
     { path: '/profile/edit', component: ProfileEdit },
-    { path: '/payments', component: Payments },
   ]
 
   const toRouteComponent = ({ path, component }) => (
