@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export function withSettings(WrappedComponent) {
-  return class extends Component {
+  return class SettingsApplied extends Component {
     static contextTypes = {
       getSettings: PropTypes.func,
     }

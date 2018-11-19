@@ -15,7 +15,7 @@ export const headerConfig = () => {
     backButton: {
       titleId: 'pages.profile',
       path: '/profile',
-    }
+    },
   }
 }
 
@@ -50,9 +50,9 @@ const enhance = compose(
   graphql(GET_PROFILE),
   branch(
     ({ data }) => data.profile == null,
-    renderComponent(ProfileEditLoading),
+    renderComponent(ProfileEditLoading)
   ),
   withProps(({ data }) => ({ profile: data.profile })),
-  withRouter,
+  withRouter
 )
 export default enhance(ProfileEdit)

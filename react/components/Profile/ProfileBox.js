@@ -15,8 +15,7 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
       shouldAllowGrowing
       maxWidthStep={6}
       lowerButton={intl.formatMessage({ id: 'commons.edit' })}
-      onLowerButtonClick={onEditClick}
-    >
+      onLowerButtonClick={onEditClick}>
       <ProfileRules country={storeCountry} shouldUseIOFetching>
         <ProfileSummary profile={profile}>
           {({
@@ -118,10 +117,8 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
         render={fields => (
           <div className="flex-ns flex-wrap">
             {fields.map(({ label, value }) => (
-              <div className="mb8 w-50-ns">
-                <DataEntry key={label} label={label}>
-                  {value}
-                </DataEntry>
+              <div className="mb8 w-50-ns" key={label}>
+                <DataEntry label={label}>{value}</DataEntry>
               </div>
             ))}
           </div>

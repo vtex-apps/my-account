@@ -52,21 +52,20 @@ class Profile extends Component {
         {() => (
           <Fragment>
             <ProfileBox profile={profile} onEditClick={this.handleGoToEdit} />
-            {
-              isEditingPassword ? (
-                <PasswordFormBox
-                  email={profile.email}
-                  onPasswordChange={this.handleFinishEditingPassword}
-                />
-              ) : (
-                  <PasswordBox onEditClick={this.handleEditingPassword} />
-                )
-            }
-            {
-              showToast && (
-                <Toast messageId="alert.success" onClose={this.handleCloseToast} />
-              )
-            }
+            {isEditingPassword ? (
+              <PasswordFormBox
+                email={profile.email}
+                onPasswordChange={this.handleFinishEditingPassword}
+              />
+            ) : (
+              <PasswordBox onEditClick={this.handleEditingPassword} />
+            )}
+            {showToast && (
+              <Toast
+                messageId="alert.success"
+                onClose={this.handleCloseToast}
+              />
+            )}
           </Fragment>
         )}
       </ContentWrapper>
@@ -84,6 +83,6 @@ const enhance = compose(
   graphql(GET_PROFILE),
   branch(({ data }) => data.profile == null, renderComponent(ProfileLoading)),
   withProps(({ data }) => ({ profile: data.profile })),
-  withRouter,
+  withRouter
 )
 export default enhance(Profile)

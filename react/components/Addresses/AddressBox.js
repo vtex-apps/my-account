@@ -8,13 +8,13 @@ const AddressBox = ({ address, onEditClick, intl }) => {
   return (
     <ContentBox
       lowerButton={intl.formatMessage({ id: 'commons.edit' })}
-      onLowerButtonClick={onEditClick}
-    >
+      onLowerButtonClick={onEditClick}>
       <div className="lighter c-muted-2 lh-copy pv4 w5 h4">
         <AddressRules
           country={address.country}
-          fetch={country => import('@vtex/address-form/lib/country/' + country)}
-        >
+          fetch={country =>
+            import(`@vtex/address-form/lib/country/${country}`)
+          }>
           <AddressSummary address={address} />
         </AddressRules>
       </div>

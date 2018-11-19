@@ -14,7 +14,7 @@ export const headerConfig = () => {
     backButton: {
       titleId: 'pages.addresses',
       path: '/addresses',
-    }
+    },
   }
 }
 
@@ -37,7 +37,7 @@ class AddressCreate extends Component {
             shipsTo={shipsTo}
           />
         )}
-      </ContentWrapper >
+      </ContentWrapper>
     )
   }
 }

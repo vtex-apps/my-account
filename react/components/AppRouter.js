@@ -18,10 +18,12 @@ const AppRouter = () => {
     { path: '/profile/edit', component: ProfileEdit },
   ]
 
+  // eslint-disable-next-line
   const toRouteComponent = ({ path, component }) => (
     <Route exact key={path} path={path} component={component} />
   )
 
+  // eslint-disable-next-line
   const shouldRedirectOrder = vtex && vtex.orderListRendered
 
   return (
@@ -33,7 +35,11 @@ const AppRouter = () => {
               <Switch>
                 <Route exact path="/" component={Menu} />
                 {routes.map(toRouteComponent)}
-                <Redirect exact from="/" to={ shouldRedirectOrder ? "/orders" : "/profile"} />
+                <Redirect
+                  exact
+                  from="/"
+                  to={shouldRedirectOrder ? '/orders' : '/profile'}
+                />
                 <ExtensionPoint id="routes" />
               </Switch>
             ) : (
@@ -41,7 +47,11 @@ const AppRouter = () => {
                 <Menu />
                 <Switch>
                   {routes.map(toRouteComponent)}
-                  <Redirect exact from="/" to={ shouldRedirectOrder ? "/orders" : "/profile"} />
+                  <Redirect
+                    exact
+                    from="/"
+                    to={shouldRedirectOrder ? '/orders' : '/profile'}
+                  />
                   <ExtensionPoint id="routes" />
                 </Switch>
               </Fragment>

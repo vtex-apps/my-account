@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 import { compose } from 'recompose'
 import { graphql } from 'react-apollo'
@@ -11,14 +11,10 @@ import BaseDropzone from './BaseDropzone'
 import PictureRenderer from './PictureRenderer'
 
 class PictureUploader extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      error: null,
-      isLoading: false,
-      finishedUpload: false,
-    }
+  state = {
+    error: null,
+    isLoading: false,
+    finishedUpload: false,
   }
 
   handleImageDrop = async acceptedFiles => {
@@ -55,7 +51,7 @@ class PictureUploader extends Component {
       : 'upload.dragYourPhoto'
 
     return (
-      <React.Fragment>
+      <Fragment>
         {error && (
           <div className="mb6">
             <GenericError onDismiss={this.handleErrorReset} errorId={error} />
@@ -64,58 +60,56 @@ class PictureUploader extends Component {
         <BaseDropzone
           disabled={isLoading}
           onClick={this.handleErrorReset}
-          onDrop={this.handleImageDrop}
-        >
+          onDrop={this.handleImageDrop}>
           <div className="w-100 w5-ns flex flex-column justify-between items-center">
             {isLoading ? (
-              <React.Fragment>
+              <Fragment>
                 <Spinner />
                 <div className="mt8 f5 tc gray">
                   {intl.formatMessage({ id: 'upload.loading' })}
                 </div>
-              </React.Fragment>
+              </Fragment>
             ) : (
-                <React.Fragment>
-                  <div className="h4 w4 mb8">
-                    <PictureRenderer imagePath={currentPicture} />
-                  </div>
-                  <div className="mb6 f5 tc c-muted-1 lh-copy">
-                    {intl.formatMessage({ id: boxText })}
-                  </div>
-                  {finishedUpload ? (
-                    <React.Fragment>
-                      <div className="mb4 w-100">
-                        <Button
-                          block
-                          size="small"
-                          onClick={this.handleCloseClick}
-                        >
-                          {intl.formatMessage({ id: 'upload.save' })}
-                        </Button>
-                      </div>
-                      <Button block size="small" variation="secondary">
-                        {intl.formatMessage({ id: 'upload.chooseAgain' })}
+              <Fragment>
+                <div className="h4 w4 mb8">
+                  <PictureRenderer imagePath={currentPicture} />
+                </div>
+                <div className="mb6 f5 tc c-muted-1 lh-copy">
+                  {intl.formatMessage({ id: boxText })}
+                </div>
+                {finishedUpload ? (
+                  <Fragment>
+                    <div className="mb4 w-100">
+                      <Button
+                        block
+                        size="small"
+                        onClick={this.handleCloseClick}>
+                        {intl.formatMessage({ id: 'upload.save' })}
                       </Button>
-                    </React.Fragment>
-                  ) : (
-                      <React.Fragment>
-                        <div className="flex w-100 items-center mb6">
-                          <div className="flex-auto bt b--muted-4" />
-                          <span className="mh3 c-muted-1">
-                            {intl.formatMessage({ id: 'upload.or' })}
-                          </span>
-                          <div className="flex-auto bt b--muted-4" />
-                        </div>
-                        <Button block size="small">
-                          {intl.formatMessage({ id: 'upload.choosePhoto' })}
-                        </Button>
-                      </React.Fragment>
-                    )}
-                </React.Fragment>
-              )}
+                    </div>
+                    <Button block size="small" variation="secondary">
+                      {intl.formatMessage({ id: 'upload.chooseAgain' })}
+                    </Button>
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <div className="flex w-100 items-center mb6">
+                      <div className="flex-auto bt b--muted-4" />
+                      <span className="mh3 c-muted-1">
+                        {intl.formatMessage({ id: 'upload.or' })}
+                      </span>
+                      <div className="flex-auto bt b--muted-4" />
+                    </div>
+                    <Button block size="small">
+                      {intl.formatMessage({ id: 'upload.choosePhoto' })}
+                    </Button>
+                  </Fragment>
+                )}
+              </Fragment>
+            )}
           </div>
         </BaseDropzone>
-      </React.Fragment>
+      </Fragment>
     )
   }
 }
@@ -129,6 +123,6 @@ PictureUploader.propTypes = {
 
 const enhance = compose(
   graphql(UpdateProfilePicture, { name: 'updateProfilePicture' }),
-  injectIntl,
+  injectIntl
 )
 export default enhance(PictureUploader)

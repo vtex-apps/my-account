@@ -14,7 +14,7 @@ export const headerConfig = () => {
     backButton: {
       titleId: 'pages.addresses',
       path: '/addresses',
-    }
+    },
   }
 }
 
@@ -40,8 +40,8 @@ class AddressEdit extends Component {
                 shipsTo={shipsTo}
               />
             ) : (
-                <GenericError errorId="alert.addressNotFound" />
-              )}
+              <GenericError errorId="alert.addressNotFound" />
+            )}
           </Fragment>
         )}
       </ContentWrapper>
@@ -60,12 +60,12 @@ const enhance = compose(
   graphql(GET_ADDRESS),
   branch(
     ({ data }) => data.profile == null,
-    renderComponent(AddressEditLoading),
+    renderComponent(AddressEditLoading)
   ),
   withProps(({ data, match }) => ({
     addresses: data.profile.addresses,
     addressId: match.params.id,
     shipsTo: data.logistics.shipsTo,
-  })),
+  }))
 )
 export default enhance(AddressEdit)
