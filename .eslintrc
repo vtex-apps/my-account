@@ -15,9 +15,6 @@
         "ignore": ["^([a-zA-Z@]+[-\\.]?)+"]
       }
     ],
-    // Rules that conflict with Prettier.
-    // To verify conflicting rules, run:
-    // $ npm run prettier-conflict-check
     "react/jsx-curly-spacing": 0,
     "react/jsx-equals-spacing": 0,
     "react/jsx-indent": 0,
