@@ -1,5 +1,6 @@
 mutation UpdateAddress($addressId: String, $addressFields: AddressInput) {
-  updateAddress(id: $addressId, fields: $addressFields) @context(provider: "vtex.store-graphql")  {
+  updateAddress(id: $addressId, fields: $addressFields)
+    @context(provider: "vtex.store-graphql") {
     cacheId
     addresses: address {
       addressId: id

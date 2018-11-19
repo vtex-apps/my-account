@@ -11,26 +11,23 @@ import RedefinePassword from '../../graphql/redefinePassword.gql'
 import PasswordValidator from './PasswordValidator'
 
 class PasswordFormBox extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      currentPassword: '',
-      newPassword: '',
-      confirmPassword: '',
-      newPasswordTouched: false,
-      confirmPasswordTouched: false,
-      newPasswordValid: false,
-      changeAttempts: 0,
-      isLoading: false,
-      error: null,
-    }
+  state = {
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: '',
+    newPasswordTouched: false,
+    confirmPasswordTouched: false,
+    newPasswordValid: false,
+    changeAttempts: 0,
+    isLoading: false,
+    error: null,
   }
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  touchField = e => {
+  handleTouchField = e => {
     this.setState({ [`${e.target.name}Touched`]: true })
   }
 
@@ -69,15 +66,15 @@ class PasswordFormBox extends Component {
           wrongPassword && prevState.changeAttempts === 3
             ? 'alert.wrongAndAboutToBlock'
             : wrongPassword
-              ? 'alert.wrongPassword'
-              : blockedUser
-                ? 'alert.blockedUser'
-                : 'alert.unknownError',
+            ? 'alert.wrongPassword'
+            : blockedUser
+            ? 'alert.blockedUser'
+            : 'alert.unknownError',
       }))
     }
   }
 
-  dismissError = () => {
+  handleDismissError = () => {
     this.setState({ error: null })
   }
 
@@ -103,7 +100,7 @@ class PasswordFormBox extends Component {
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
         {error && (
           <div className="mb7">
-            <GenericError onDismiss={this.dismissError} errorId={error} />
+            <GenericError onDismiss={this.handleDismissError} errorId={error} />
           </div>
         )}
         <div className="mb7">
@@ -120,7 +117,7 @@ class PasswordFormBox extends Component {
             name="newPassword"
             value={newPassword}
             onChange={this.handleChange}
-            onBlur={this.touchField}
+            onBlur={this.handleTouchField}
             type="password"
             label={intl.formatMessage({ id: 'personalData.newPassword' })}
           />
@@ -136,7 +133,7 @@ class PasswordFormBox extends Component {
             name="confirmPassword"
             value={confirmPassword}
             onChange={this.handleChange}
-            onBlur={this.touchField}
+            onBlur={this.handleTouchField}
             errorMessage={
               passwordsTouched && passwordMismatch
                 ? intl.formatMessage({ id: 'alert.passwordMismatch' })
@@ -151,8 +148,7 @@ class PasswordFormBox extends Component {
           size="small"
           onClick={this.handleSubmit}
           isLoading={isLoading}
-          disabled={!shouldEnableSubmit}
-        >
+          disabled={!shouldEnableSubmit}>
           {intl.formatMessage({ id: 'personalData.savePassword' })}
         </Button>
       </ContentBox>
@@ -169,7 +165,7 @@ PasswordFormBox.propTypes = {
 
 const enhance = compose(
   graphql(RedefinePassword, { name: 'redefinePassword' }),
-  injectIntl,
+  injectIntl
 )
 
 export default enhance(PasswordFormBox)

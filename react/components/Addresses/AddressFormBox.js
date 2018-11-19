@@ -19,17 +19,16 @@ class AddressFormBox extends Component {
     isLoading: false,
   }
 
-  prepareAddress = (address) => {
+  prepareAddress = address => {
     const { profile } = this.props
-  
+
     let defaultReceiver
-    if(profile) {
+    if (profile) {
       defaultReceiver = profile.firstName || ''
 
-      if(profile.lastName)
-        defaultReceiver += ` ${profile.lastName}` 
+      if (profile.lastName) defaultReceiver += ` ${profile.lastName}`
     }
-
+    // eslint-disable-next-line
     const { __typename, ...addr } = address
     return {
       ...addr,
@@ -38,7 +37,8 @@ class AddressFormBox extends Component {
     }
   }
 
-  reshapeAddress = (address) => {
+  reshapeAddress = address => {
+    // eslint-disable-next-line
     const { addressId, addressQuery, geoCoordinates, ...reshapedAddr } = address
     return {
       ...reshapedAddr,
@@ -62,17 +62,19 @@ class AddressFormBox extends Component {
 
     this.setState({ isLoading: true })
 
-    const promise = isNew ? 
-      createAddress({ variables: { addressFields } })
+    const promise = isNew
+      ? createAddress({ variables: { addressFields } })
       : updateAddress({ variables: { addressId, addressFields } })
-    
-    promise.then(() => {
-      this.setState({ isLoading: false })
-      onAddressSaved()
-    }).catch( () => {
-      this.setState({ isLoading: false})
-      onError()
-    })
+
+    promise
+      .then(() => {
+        this.setState({ isLoading: false })
+        onAddressSaved()
+      })
+      .catch(() => {
+        this.setState({ isLoading: false })
+        onError()
+      })
   }
 
   render() {
@@ -124,6 +126,6 @@ AddressFormBox.propTypes = {
 
 const enhance = compose(
   graphql(UPDATE_ADDRESS, { name: 'updateAddress' }),
-  graphql(CREATE_ADDRESS, { name: 'createAddress' }),
+  graphql(CREATE_ADDRESS, { name: 'createAddress' })
 )
 export default enhance(AddressFormBox)

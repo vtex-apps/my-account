@@ -24,11 +24,8 @@ import { withLocale } from '../shared/withLocale'
 import { compose } from 'recompose'
 
 class AddressEditor extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      address: null,
-    }
+  state = {
+    address: null,
   }
 
   componentDidMount() {
@@ -73,7 +70,7 @@ class AddressEditor extends Component {
     const hasAutoCompletedFields = Object.keys(address).some(
       fieldName =>
         address[fieldName].geolocationAutoCompleted ||
-        address[fieldName].postalCodeAutoCompleted,
+        address[fieldName].postalCodeAutoCompleted
     )
 
     const shouldUseGoogleMaps =
@@ -83,48 +80,44 @@ class AddressEditor extends Component {
       settings && settings.addresses && settings.addresses.apiKey
 
     const shipCountries = shipsTo.map(code => ({
-      label: intl.formatMessage({ id: 'country.' + code }),
+      label: intl.formatMessage({ id: `country.${code}` }),
       value: code,
     }))
 
     return (
       <AddressRules
         country={address.country.value}
-        fetch={country => import('@vtex/address-form/lib/country/' + country)}
-      >
+        fetch={country => import(`@vtex/address-form/lib/country/${country}`)}>
         <AddressContainer
           address={address}
           onChangeAddress={this.handleAddressChange}
           Input={StyleguideInput}
-          autoCompletePostalCode
-        >
+          autoCompletePostalCode>
           <div>
             <CountrySelector shipsTo={shipCountries} />
 
-            {isNew &&
-              shouldUseGoogleMaps &&
-              !validPostalCode && (
-                <GoogleMapsContainer apiKey={mapsAPIKey} locale={locale}>
-                  {({ loading, googleMaps }) => (
-                    <div>
-                      <GeolocationInput
+            {isNew && shouldUseGoogleMaps && !validPostalCode && (
+              <GoogleMapsContainer apiKey={mapsAPIKey} locale={locale}>
+                {({ loading, googleMaps }) => (
+                  <div>
+                    <GeolocationInput
+                      loadingGoogle={loading}
+                      googleMaps={googleMaps}
+                    />
+
+                    {validGeoCoords && (
+                      <Map
                         loadingGoogle={loading}
                         googleMaps={googleMaps}
+                        mapProps={{
+                          className: 'mb7 br2 h4',
+                        }}
                       />
-
-                      {validGeoCoords && (
-                        <Map
-                          loadingGoogle={loading}
-                          googleMaps={googleMaps}
-                          mapProps={{
-                            className: 'mb7 br2 h4',
-                          }}
-                        />
-                      )}
-                    </div>
-                  )}
-                </GoogleMapsContainer>
-              )}
+                    )}
+                  </div>
+                )}
+              </GoogleMapsContainer>
+            )}
 
             {!validGeoCoords && <PostalCodeGetter />}
 
@@ -147,8 +140,7 @@ class AddressEditor extends Component {
                   block
                   size="small"
                   isLoading={isLoading}
-                  disabled={!(validGeoCoords || validPostalCode)}
-                >
+                  disabled={!(validGeoCoords || validPostalCode)}>
                   {intl.formatMessage({ id: intlId })}
                 </Button>
               )}
@@ -173,6 +165,6 @@ AddressEditor.propTypes = {
 const enhance = compose(
   withSettings,
   withLocale,
-  injectIntl,
+  injectIntl
 )
 export default enhance(AddressEditor)

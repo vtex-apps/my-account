@@ -28,7 +28,10 @@ const ProfileLoading = ({ data }) => {
           </div>
         </SkeletonBox>
         <div className="flex flex-wrap mb8 justify-between w5">
-          <SkeletonBox shouldAllowGrowing shouldShowLowerButton maxWidthStep={5}>
+          <SkeletonBox
+            shouldAllowGrowing
+            shouldShowLowerButton
+            maxWidthStep={5}>
             <SkeletonPiece width={100} />
           </SkeletonBox>
         </div>

@@ -4,11 +4,8 @@ import { intlShape, injectIntl } from 'react-intl'
 import { Alert } from 'vtex.styleguide'
 
 class Toast extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isClosing: false,
-    }
+  state = {
+    isClosing: false,
   }
 
   componentDidMount() {
@@ -33,8 +30,7 @@ class Toast extends Component {
       <div
         className={`animated ${
           isClosing ? 'fadeOutDown' : 'fadeInUp'
-        }  slower bottom--1 fixed z-5 ma7-ns mb5-s left-2-ns w-100-s w-30-ns`}
-      >
+        }  slower bottom--1 fixed z-5 ma7-ns mb5-s left-2-ns w-100-s w-30-ns`}>
         <Alert type="success" onClose={onClose}>
           {intl.formatMessage({ id: messageId })}
         </Alert>
