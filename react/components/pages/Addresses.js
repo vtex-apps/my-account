@@ -23,6 +23,7 @@ export const headerConfig = intl => {
   )
 
   return {
+    namespace: 'vtex-account__address-list',
     titleId: 'pages.addresses',
     headerContent,
   }
