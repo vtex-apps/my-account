@@ -13,7 +13,7 @@ import Toast from '../shared/Toast'
 import GET_PROFILE from '../../graphql/getProfile.gql'
 
 export const headerConfig = () => {
-  return { titleId: 'pages.profile' }
+  return { namespace: 'vtex-account__profile', titleId: 'pages.profile' }
 }
 
 class Profile extends Component {

@@ -11,6 +11,7 @@ import GET_PROFILE from '../../graphql/getProfile.gql'
 
 export const headerConfig = () => {
   return {
+    namespace: 'vtex-account__profile-edit',
     titleId: 'pages.profileEdit',
     backButton: {
       titleId: 'pages.profile',

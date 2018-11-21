@@ -10,6 +10,7 @@ import GET_ADDRESS from '../../graphql/getAddresses.gql'
 
 export const headerConfig = () => {
   return {
+    namespace: 'vtex-account__address-edit',
     titleId: 'pages.addressEdit',
     backButton: {
       titleId: 'pages.addresses',
