@@ -73,6 +73,10 @@ class Profile extends Component {
   }
 }
 
+const options = {
+  options : () => ({variables: { customFields: "cloudaAnetaCustomerCreditCode,cloudaAnetaCustomerCreditLimitAmount"}})
+}
+
 Profile.propTypes = {
   location: PropTypes.any,
   history: PropTypes.object,
@@ -80,7 +84,7 @@ Profile.propTypes = {
 }
 
 const enhance = compose(
-  graphql(GET_PROFILE),
+  graphql(GET_PROFILE, options),
   branch(({ data }) => data.profile == null, renderComponent(ProfileLoading)),
   withProps(({ data }) => ({ profile: data.profile })),
   withRouter

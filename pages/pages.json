@@ -15,7 +15,7 @@
       "component": "vtex.render-runtime/ExtensionContainer"
     },
     "store/account/account/profile/display": {
-      "component": "vtex.render-runtime/ExtensionContainer"
+      "component": "ProfileCustomFields"
     },
     "store/account/account/profile/input": {
       "component": "vtex.render-runtime/ExtensionContainer"

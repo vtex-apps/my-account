@@ -113,14 +113,14 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
         </ProfileSummary>
       </ProfileRules>
       <ExtensionPoint
-        id="profile/display"
+        id="store/account/account/profile/display"
         render={fields => (
           <div className="flex-ns flex-wrap">
-            {fields.map(({ label, value }) => (
+            {fields.map(({ label, value }) => { console.log("lable - " + label + " value - " + value); return (
               <div className="mb8 w-50-ns" key={label}>
                 <DataEntry label={label}>{value}</DataEntry>
               </div>
-            ))}
+            )})}
           </div>
         )}
       />
