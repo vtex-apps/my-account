@@ -20,8 +20,7 @@ const ContentBox = ({
             <Button
               variation="tertiary"
               size="small"
-              onClick={onLowerButtonClick}
-            >
+              onClick={onLowerButtonClick}>
               {lowerButton}
             </Button>
           </footer>

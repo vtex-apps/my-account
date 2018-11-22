@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import { ContentWrapper, GenericError } from 'vtex.store-components/Account'
+import { ContentWrapper, GenericError } from 'vtex.my-account-commons'
 
 import AddressEditLoading from '../loaders/AddressEditLoading'
 import AddressFormBox from '../Addresses/AddressFormBox'
@@ -10,11 +10,12 @@ import GET_ADDRESS from '../../graphql/getAddresses.gql'
 
 export const headerConfig = () => {
   return {
+    namespace: 'vtex-account__address-edit',
     titleId: 'pages.addressEdit',
     backButton: {
       titleId: 'pages.addresses',
       path: '/addresses',
-    }
+    },
   }
 }
 
@@ -40,8 +41,8 @@ class AddressEdit extends Component {
                 shipsTo={shipsTo}
               />
             ) : (
-                <GenericError errorId="alert.addressNotFound" />
-              )}
+              <GenericError errorId="alert.addressNotFound" />
+            )}
           </Fragment>
         )}
       </ContentWrapper>
@@ -60,12 +61,12 @@ const enhance = compose(
   graphql(GET_ADDRESS),
   branch(
     ({ data }) => data.profile == null,
-    renderComponent(AddressEditLoading),
+    renderComponent(AddressEditLoading)
   ),
   withProps(({ data, match }) => ({
     addresses: data.profile.addresses,
     addressId: match.params.id,
     shipsTo: data.logistics.shipsTo,
-  })),
+  }))
 )
 export default enhance(AddressEdit)

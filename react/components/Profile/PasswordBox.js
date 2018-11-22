@@ -10,8 +10,7 @@ const PasswordBox = ({ onEditClick, intl }) => {
       shouldAllowGrowing
       maxWidthStep={5}
       lowerButton={intl.formatMessage({ id: 'personalData.redefinePassword' })}
-      onLowerButtonClick={onEditClick}
-    > 
+      onLowerButtonClick={onEditClick}>
       <div className="vtex-account__password-box">
         <DataEntry label={intl.formatMessage({ id: 'personalData.password' })}>
           *******************

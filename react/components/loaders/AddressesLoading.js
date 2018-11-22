@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
-import { BaseLoading } from 'vtex.store-components/Account'
+import { BaseLoading } from 'vtex.my-account-commons'
 
 import { headerConfig } from '../pages/Addresses'
 import SkeletonPiece from '../../components/shared/SkeletonPiece'
@@ -40,7 +40,7 @@ const AddressesLoading = ({ data, intl }) => {
 
 AddressesLoading.propTypes = {
   data: PropTypes.object.isRequired,
-  intl: intlShape.isRequired
+  intl: intlShape.isRequired,
 }
 
 export default injectIntl(AddressesLoading)

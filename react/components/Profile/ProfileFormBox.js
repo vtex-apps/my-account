@@ -93,8 +93,7 @@ class ProfileFormBox extends Component {
               <Button type="submit" block size="small" isLoading={isLoading}>
                 {intl.formatMessage({ id: 'profile-form.save-changes' })}
               </Button>
-            }
-          >
+            }>
             <ExtensionPoint
               id="profile/input"
               registerValidator={this.registerValidator}
@@ -121,6 +120,6 @@ const enhance = compose(
   graphql(UpdateProfile, { name: 'updateProfile' }),
   injectIntl,
   withStoreCountry,
-  withSettings,
+  withSettings
 )
 export default enhance(ProfileFormBox)

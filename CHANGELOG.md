@@ -7,44 +7,88 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.17.0] - 2018-11-11
+## [0.19.1] - 2018-11-21
+
+## [0.19.0] - 2018-11-21
+
+### Added
+
+- Eslint/Prettier config files
+- `vtex.my-cards` to the dependencies.
+
+### Changed
+
+- `README` documentation.
+
+## [0.18.0] - 2018-11-19
+
 ### Removed
+
+- `Payments` page, extracted to `vtex.my-payments-app`.
+
+## [0.17.1] - 2018-11-13
+
+### Changed
+
+- Using `vtex.my-account-commons` insteadof `vtex.store-components`
+
+## [0.17.0] - 2018-11-11
+
+### Removed
+
 - `MyOrders` from `pages.json`
 - Extract the components: `GenericError`, `BaseLoading` and `ContentWrapper` to the `vtex.store-components` module.
 
 ## [0.16.11] - 2018-11-06
+
 ### Fixed
+
 - typo on `ProfileEdit`
 
 ## [0.16.10] - 2018-11-05
+
 ### Fixed
+
 - Not editing profile because the email was not being sent to the `updateProfile` mutation.
+
 ### Added
+
 - `PageHeader` to the pages components
 
 ## [0.16.9] - 2018-10-24
+
 ### Fixed
+
 - Recommitting the endpoint `/enabled`.
 
 ## [0.16.8] - 2018-10-23
+
 ### Added
+
 - Css customization tokens
+
 ### Changed
+
 - App structure
 
 ### Fixed
+
 - Check for null in payments and addresses.
 
 ## [0.16.7] - 2018-10-18
+
 ### Added
+
 - Verify if it should redirect to the orders page instead of profile
 
 ### Fixed
+
 - Add `vtex.my-orders-app` to extension points
 
 ## [0.16.6] - 2018-10-17
 
 ### Fixed
+
 - Bump to vtex.my-orders@2.x
 
 ## [0.16.5] - 2018-10-10

@@ -5,7 +5,7 @@ import { graphql } from 'react-apollo'
 import { withRouter, Link } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import { EmptyState, Button } from 'vtex.styleguide'
-import { ContentWrapper } from 'vtex.store-components/Account'
+import { ContentWrapper } from 'vtex.my-account-commons'
 
 import AddressesLoading from '../loaders/AddressesLoading'
 import AddressBox from '../Addresses/AddressBox'
@@ -13,7 +13,7 @@ import Toast from '../shared/Toast'
 
 import GET_ADRESSES from '../../graphql/getAddresses.gql'
 
-export const headerConfig = (intl) => {
+export const headerConfig = intl => {
   const headerContent = (
     <Link to="/addresses/new">
       <Button variation="primary" block size="small">
@@ -23,8 +23,9 @@ export const headerConfig = (intl) => {
   )
 
   return {
+    namespace: 'vtex-account__address-list',
     titleId: 'pages.addresses',
-    headerContent
+    headerContent,
   }
 }
 
@@ -60,16 +61,23 @@ class Addresses extends Component {
       <ContentWrapper {...headerConfig(intl)}>
         {() => (
           <div className="flex-ns flex-wrap-ns items-start-ns relative tl">
-            {addresses ? addresses.map(address => (
-              <AddressBox
-                key={address.addressId}
-                address={address}
-                onEditClick={() => this.startEditing(address)}
+            {addresses ? (
+              addresses.map(address => (
+                <AddressBox
+                  key={address.addressId}
+                  address={address}
+                  onEditClick={() => this.startEditing(address)}
+                />
+              ))
+            ) : (
+              <EmptyState title={emptyStateTitle} />
+            )}
+            {showToast && (
+              <Toast
+                messageId="alert.success"
+                onClose={this.handleCloseToast}
               />
-            )) : (
-                <EmptyState title={emptyStateTitle} />
-              )}
-            {showToast && <Toast messageId="alert.success" onClose={this.handleCloseToast} />}
+            )}
           </div>
         )}
       </ContentWrapper>
@@ -89,6 +97,6 @@ const enhance = compose(
   graphql(GET_ADRESSES),
   branch(({ data }) => data.profile == null, renderComponent(AddressesLoading)),
   withProps(({ data }) => ({ addresses: data.profile.addresses })),
-  withRouter,
+  withRouter
 )
 export default enhance(Addresses)

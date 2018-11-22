@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { BaseLoading } from 'vtex.store-components/Account'
+import { BaseLoading } from 'vtex.my-account-commons'
 
 import { headerConfig } from '../pages/Profile'
 import SkeletonPiece from '../shared/SkeletonPiece'
@@ -28,7 +28,10 @@ const ProfileLoading = ({ data }) => {
           </div>
         </SkeletonBox>
         <div className="flex flex-wrap mb8 justify-between w5">
-          <SkeletonBox shouldAllowGrowing shouldShowLowerButton maxWidthStep={5}>
+          <SkeletonBox
+            shouldAllowGrowing
+            shouldShowLowerButton
+            maxWidthStep={5}>
             <SkeletonPiece width={100} />
           </SkeletonBox>
         </div>

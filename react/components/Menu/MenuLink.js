@@ -13,9 +13,8 @@ const MenuLink = ({ path, name, location }) => {
         {
           'c-on-base b b--action-primary':
             location.pathname.indexOf(path) !== -1,
-        },
-      )}
-    >
+        }
+      )}>
       {name}
     </Link>
   )

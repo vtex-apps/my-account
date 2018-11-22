@@ -4,17 +4,14 @@ import { intlShape, injectIntl } from 'react-intl'
 import { IconSuccess, IconFailure } from 'vtex.styleguide'
 
 class PasswordValidator extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      has8chars: false,
-      hasNumber: false,
-      hasCaps: false,
-      hasLow: false,
-    }
+  state = {
+    has8chars: false,
+    hasNumber: false,
+    hasCaps: false,
+    hasLow: false,
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     const { password, onValidationChange } = this.props
     if (password === prevProps.password) return
 

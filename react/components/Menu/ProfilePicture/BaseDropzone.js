@@ -5,18 +5,15 @@ import ReactDropzone from 'react-dropzone'
 const MAX_SIZE = 4 * 1024 * 1024
 
 class BaseDropzone extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isHovering: false,
-    }
+  state = {
+    isHovering: false,
   }
 
-  startHovering = () => {
+  handleStartHovering = () => {
     this.setState({ isHovering: true })
   }
 
-  stopHovering = () => {
+  handleStopHovering = () => {
     this.setState({ isHovering: false })
   }
 
@@ -26,7 +23,7 @@ class BaseDropzone extends Component {
   }
 
   render() {
-    const { disabled, children, onClick, onDrop } = this.props
+    const { disabled, children, onClick } = this.props
     const { isHovering } = this.state
     return (
       <ReactDropzone
@@ -36,14 +33,13 @@ class BaseDropzone extends Component {
           isHovering ? '' : 'b--muted-4'
         } pa7 pa9-ns`}
         disabled={disabled}
-        disablePreview={true}
+        disablePreview
         maxSize={MAX_SIZE}
         multiple={false}
         onClick={onClick}
         onDrop={this.handleDrop}
-        onDragEnter={this.startHovering}
-        onDragLeave={this.stopHovering}
-      >
+        onDragEnter={this.handleStartHovering}
+        onDragLeave={this.handleStopHovering}>
         {children}
       </ReactDropzone>
     )

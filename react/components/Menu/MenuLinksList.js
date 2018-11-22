@@ -12,10 +12,6 @@ const links = [
     id: 'pages.profile',
     path: '/profile',
   },
-  {
-    id: 'pages.payments',
-    path: '/payments',
-  },
 ]
 
 const MenuLinksList = ({ intl }) => {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import { ContentWrapper } from 'vtex.store-components/Account'
+import { ContentWrapper } from 'vtex.my-account-commons'
 
 import ProfileEditLoading from '../loaders/ProfileEditLoading'
 import ProfileFormBox from '../Profile/ProfileFormBox'
@@ -11,11 +11,12 @@ import GET_PROFILE from '../../graphql/getProfile.gql'
 
 export const headerConfig = () => {
   return {
+    namespace: 'vtex-account__profile-edit',
     titleId: 'pages.profileEdit',
     backButton: {
       titleId: 'pages.profile',
       path: '/profile',
-    }
+    },
   }
 }
 
@@ -50,9 +51,9 @@ const enhance = compose(
   graphql(GET_PROFILE),
   branch(
     ({ data }) => data.profile == null,
-    renderComponent(ProfileEditLoading),
+    renderComponent(ProfileEditLoading)
   ),
   withProps(({ data }) => ({ profile: data.profile })),
-  withRouter,
+  withRouter
 )
 export default enhance(ProfileEdit)

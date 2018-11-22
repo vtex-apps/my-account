@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import { ContentWrapper } from 'vtex.store-components/Account'
+import { ContentWrapper } from 'vtex.my-account-commons'
 
 import ProfileLoading from '../loaders/ProfileLoading'
 import ProfileBox from '../Profile/ProfileBox'
@@ -13,7 +13,7 @@ import Toast from '../shared/Toast'
 import GET_PROFILE from '../../graphql/getProfile.gql'
 
 export const headerConfig = () => {
-  return { titleId: 'pages.profile' }
+  return { namespace: 'vtex-account__profile', titleId: 'pages.profile' }
 }
 
 class Profile extends Component {
@@ -52,21 +52,20 @@ class Profile extends Component {
         {() => (
           <Fragment>
             <ProfileBox profile={profile} onEditClick={this.handleGoToEdit} />
-            {
-              isEditingPassword ? (
-                <PasswordFormBox
-                  email={profile.email}
-                  onPasswordChange={this.handleFinishEditingPassword}
-                />
-              ) : (
-                  <PasswordBox onEditClick={this.handleEditingPassword} />
-                )
-            }
-            {
-              showToast && (
-                <Toast messageId="alert.success" onClose={this.handleCloseToast} />
-              )
-            }
+            {isEditingPassword ? (
+              <PasswordFormBox
+                email={profile.email}
+                onPasswordChange={this.handleFinishEditingPassword}
+              />
+            ) : (
+              <PasswordBox onEditClick={this.handleEditingPassword} />
+            )}
+            {showToast && (
+              <Toast
+                messageId="alert.success"
+                onClose={this.handleCloseToast}
+              />
+            )}
           </Fragment>
         )}
       </ContentWrapper>
@@ -84,6 +83,6 @@ const enhance = compose(
   graphql(GET_PROFILE),
   branch(({ data }) => data.profile == null, renderComponent(ProfileLoading)),
   withProps(({ data }) => ({ profile: data.profile })),
-  withRouter,
+  withRouter
 )
 export default enhance(Profile)

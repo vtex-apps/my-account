@@ -5,14 +5,11 @@ import PictureUploader from './PictureUploader'
 import PictureRenderer from './PictureRenderer'
 
 class UserPicture extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isModalOpen: false,
-    }
+  state = {
+    isModalOpen: false,
   }
 
-  openModal = () => {
+  handleOpenModal = () => {
     this.setState({ isModalOpen: true })
   }
 
@@ -29,8 +26,7 @@ class UserPicture extends Component {
         <PictureRenderer imagePath={imagePath} />
         <button
           className="absolute bottom-0 right-0 c-on-base--inverted center bg-action-primary br-100 f4 bn pointer"
-          onClick={this.openModal}
-        >
+          onClick={this.handleOpenModal}>
           +
         </button>
         <Modal centered isOpen={isModalOpen} onClose={this.handleCloseModal}>

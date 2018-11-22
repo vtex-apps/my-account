@@ -18,7 +18,9 @@ const UserInfo = ({ profile, intl }) => {
           <div className="vtex-account__user-greeting f5 fw3 c-muted-1 mb2">
             {intl.formatMessage({ id: 'userInfo.greeting' })},
           </div>
-          <div className="vtex-account__user-name f4 c-on-base fw3 nowrap">{profile.firstName}!</div>
+          <div className="vtex-account__user-name f4 c-on-base fw3 nowrap">
+            {profile.firstName}!
+          </div>
         </div>
       ) : (
         <div className="vtex-account__user-greeting f4 fw3 nowrap">
@@ -38,6 +40,6 @@ const enhance = compose(
   graphql(GetGreeting),
   branch(({ data }) => data.profile == null, renderComponent(UserInfoLoading)),
   withProps(({ data }) => ({ profile: data.profile })),
-  injectIntl,
+  injectIntl
 )
 export default enhance(UserInfo)

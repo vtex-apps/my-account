@@ -6,14 +6,11 @@ import { Button } from 'vtex.styleguide'
 import DeleteAddress from '../../graphql/deleteAddress.gql'
 
 class AddressDeleter extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isLoading: false,
-    }
+  state = {
+    isLoading: false,
   }
 
-  onDeleteClick = async () => {
+  handleDeleteClick = async () => {
     const { addressId, onAddressDeleted, deleteAddress, onError } = this.props
     if (this.state.isLoading) return
 
@@ -37,9 +34,8 @@ class AddressDeleter extends Component {
           variation="danger"
           block
           size="small"
-          onClick={this.onDeleteClick}
-          isLoading={isLoading}
-        >
+          onClick={this.handleDeleteClick}
+          isLoading={isLoading}>
           {intl.formatMessage({ id: 'addresses.deleteAddress' })}
         </Button>
       </div>
@@ -62,6 +58,6 @@ AddressDeleter.propTypes = {
 
 const enhance = compose(
   graphql(DeleteAddress, { name: 'deleteAddress' }),
-  injectIntl,
+  injectIntl
 )
 export default enhance(AddressDeleter)
