@@ -55,11 +55,13 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
                   <DataEntry label={email.label}>{email.value}</DataEntry>
                 </div>
                 <div className="flex-ns flex-wrap">
-                  <div className="mb8 flex-auto">
-                    <DataEntry label={document.label}>
-                      {document.value}
-                    </DataEntry>
-                  </div>
+                  {document && document.label && (
+                    <div className="mb8 flex-auto">
+                      <DataEntry label={document.label}>
+                        {document.value}
+                      </DataEntry>
+                    </div>
+                  )}
                   <div className="mb8 w-50-ns">
                     <DataEntry label={gender.label}>{gender.value}</DataEntry>
                   </div>
@@ -84,27 +86,33 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
                       {corporateName.value}
                     </DataEntry>
                   </div>
-                  <div className="mb8">
-                    <DataEntry label={tradeName.label}>
-                      {tradeName.value}
-                    </DataEntry>
-                  </div>
-                  <div className="mb8">
-                    <DataEntry label={corporateDocument.label}>
-                      {corporateDocument.value}
-                    </DataEntry>
-                  </div>
+                  {tradeName && tradeName.label && (
+                    <div className="mb8">
+                      <DataEntry label={tradeName.label}>
+                        {tradeName.value}
+                      </DataEntry>
+                    </div>
+                  )}
+                  {corporateDocument && corporateDocument.label && (
+                    <div className="mb8">
+                      <DataEntry label={corporateDocument.label}>
+                        {corporateDocument.value}
+                      </DataEntry>
+                    </div>
+                  )}
                   <div className="flex-ns flex-wrap">
                     <div className="mb8 flex-auto">
                       <DataEntry label={businessPhone.label}>
                         {businessPhone.value}
                       </DataEntry>
                     </div>
-                    <div className="mb8 w-50-ns">
-                      <DataEntry label={stateRegistration.label}>
-                        {stateRegistration.value}
-                      </DataEntry>
-                    </div>
+                    {stateRegistration && stateRegistration.label && (
+                      <div className="mb8 w-50-ns">
+                        <DataEntry label={stateRegistration.label}>
+                          {stateRegistration.value}
+                        </DataEntry>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
