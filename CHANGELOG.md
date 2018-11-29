@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Fixed
+## [0.19.2] - 2018-11-29
+
+### Fixed   
+- Loading layout of address creation form.
 - Do not break if country rule doesn't have `document`, `tradeName`, `corporateDocument` or `stateRegistration`.
 
 ## [0.19.1] - 2018-11-21
