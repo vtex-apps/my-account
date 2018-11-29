@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Fixed
+### Fixed   
+- Loading layout
+- Package dependencies
 - Do not break if country rule doesn't have `document`, `tradeName`, `corporateDocument` or `stateRegistration`.
 
 ## [0.19.1] - 2018-11-21
