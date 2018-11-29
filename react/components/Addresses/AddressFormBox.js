@@ -42,7 +42,7 @@ class AddressFormBox extends Component {
     const { addressId, addressQuery, geoCoordinates, ...reshapedAddr } = address
     return {
       ...reshapedAddr,
-      geoCoordinate: address.geoCoordinates,
+      geoCoordinates: address.geoCoordinates,
       addressName: generateRandomName(),
     }
   }

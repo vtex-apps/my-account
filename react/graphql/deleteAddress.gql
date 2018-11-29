@@ -10,7 +10,7 @@ mutation DeleteAddress($addressId: String) {
       neighborhood
       number
       postalCode
-      geoCoordinates: geoCoordinate
+      geoCoordinates
       receiverName
       reference
       state
