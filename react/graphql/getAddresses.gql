@@ -10,7 +10,7 @@ query Addresses @context(scope: "private") {
       neighborhood
       number
       postalCode
-      geoCoordinates: geoCoordinate
+      geoCoordinates
       receiverName
       reference
       state

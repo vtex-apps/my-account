@@ -1,7 +1,7 @@
 {
   "name": "my-account",
   "vendor": "vtex",
-  "version": "0.19.2",
+  "version": "0.19.3",
   "title": "My Account",
   "description": "",
   "mustUpdateAt": "2019-07-09",

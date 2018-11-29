@@ -10,7 +10,7 @@ mutation CreateAddress($addressFields: AddressInput) {
       neighborhood
       number
       postalCode
-      geoCoordinates: geoCoordinate
+      geoCoordinates
       receiverName
       reference
       state

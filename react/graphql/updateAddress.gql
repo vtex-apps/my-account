@@ -11,7 +11,7 @@ mutation UpdateAddress($addressId: String, $addressFields: AddressInput) {
       neighborhood
       number
       postalCode
-      geoCoordinates: geoCoordinate
+      geoCoordinates
       receiverName
       reference
       state
