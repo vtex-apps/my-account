@@ -13,7 +13,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Fix `geoCoordinates`
 
-
 ## [0.19.2] - 2018-11-29
 
 ### Fixed   
