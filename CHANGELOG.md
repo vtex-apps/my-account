@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Removed
-- `vtex.my-subscriptions` dependencie.
+- `vtex.my-subscriptions` dependency.
 
 ## [0.19.4] - 2018-11-30
 ### Added
