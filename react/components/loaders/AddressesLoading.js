@@ -1,11 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
-import { BaseLoading } from 'vtex.my-account-commons'
-
+import { SkeletonPiece, SkeletonBox, BaseLoading } from 'vtex.my-account-commons'
 import { headerConfig } from '../pages/Addresses'
-import SkeletonPiece from '../../components/shared/SkeletonPiece'
-import SkeletonBox from '../../components/shared/SkeletonBox'
 
 const AddressesLoading = ({ data, intl }) => {
   return (

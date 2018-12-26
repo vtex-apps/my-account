@@ -1,5 +1,5 @@
 import React from 'react'
-import SkeletonPiece from '../shared/SkeletonPiece'
+import { SkeletonPiece } from 'vtex.my-account-commons'
 
 const UserInfoLoading = () => {
   return (
