@@ -1,10 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { BaseLoading } from 'vtex.my-account-commons'
-
+import { SkeletonPiece, SkeletonBox, BaseLoading } from 'vtex.my-account-commons'
 import { headerConfig } from '../pages/ProfileEdit'
-import SkeletonPiece from '../shared/SkeletonPiece'
-import SkeletonBox from '../shared/SkeletonBox'
 
 const ProfileEditLoading = ({ data }) => {
   return (
