@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.19.6] - 2018-12-26
+
 ### Changed
 - Use Skeleton components provided by `vtex.my-account-commons`
 
