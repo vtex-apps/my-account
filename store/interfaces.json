@@ -1,0 +1,62 @@
+{
+  "my-account": {
+    "required": [],
+    "allowed": [],
+    "component": "index"
+  },
+  "my-account.routes": {
+    "required": [],
+    "allowed": [],
+    "component": "vtex.render-runtime/ExtensionContainer"
+  },
+  "my-account.menu-links-before": {
+    "required": [],
+    "allowed": [],
+    "component": "vtex.render-runtime/ExtensionContainer"
+  },
+  "my-account.menu-links-after": {
+    "required": [],
+    "allowed": [],
+    "component": "vtex.render-runtime/ExtensionContainer"
+  },
+  "my-account.profile.display": {
+    "required": [],
+    "allowed": [],
+    "component": "vtex.render-runtime/ExtensionContainer"
+  },
+  "my-account.profile.input": {
+    "required": [],
+    "allowed": [],
+    "component": "vtex.render-runtime/ExtensionContainer"
+  },
+  "my-account-portal": {
+    "required": [],
+    "allowed": [],
+    "component": "index"
+  },
+  "my-account-portal.routes": {
+    "required": [],
+    "allowed": [],
+    "component": "vtex.render-runtime/ExtensionContainer"
+  },
+  "my-account-portal.menu-links-before": {
+    "required": [],
+    "allowed": [],
+    "component": "vtex.render-runtime/ExtensionContainer"
+  },
+  "my-account-portal.menu-links-after": {
+    "required": [],
+    "allowed": [],
+    "component": "vtex.render-runtime/ExtensionContainer"
+  },
+  "my-account-portal.profile.display": {
+    "required": [],
+    "allowed": [],
+    "component": "vtex.render-runtime/ExtensionContainer"
+  },
+  "my-account-portal/profile.input": {
+    "required": [],
+    "allowed": [],
+    "component": "vtex.render-runtime/ExtensionContainer"
+  }
+}
