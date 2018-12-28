@@ -9,6 +9,8 @@ import {
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
 
+import styles from '../../styles.css'
+
 const PASSWORD_MASK = '*******************'
 const messages = defineMessages({
   password: { id: 'personalData.password', defaultMessage: '' },
@@ -24,7 +26,7 @@ const PasswordBox = ({ passwordLastUpdate, onEditClick, intl }) => {
       shouldAllowGrowing
       lowerButton={<FormattedMessage id={lowerButtonId} />}
       onLowerButtonClick={onEditClick}>
-      <div className="vtex-account__password-box w-100">
+      <div className={`${styles.passwordBox} w-100`}>
         <DataEntry label={intl.formatMessage(messages.password)}>
           {passwordLastUpdate ? (
             PASSWORD_MASK
