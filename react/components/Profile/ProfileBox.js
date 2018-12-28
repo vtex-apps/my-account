@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
-import { ExtensionPoint } from 'render'
+import { ExtensionPoint } from 'vtex.render-runtime'
 import { ProfileRules, ProfileSummary } from 'vtex.profile-form'
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
@@ -118,7 +118,7 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
         </ProfileSummary>
       </ProfileRules>
       <ExtensionPoint
-        id="profile/display"
+        id="profile-display"
         render={fields => (
           <div className="flex-ns flex-wrap">
             {fields.map(({ label, value }) => (
