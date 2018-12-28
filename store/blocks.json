@@ -1,0 +1,25 @@
+{
+  "my-account": {
+    "blocks": [
+      "my-account-pages",
+      "my-account-defaultPage",
+      "my-account-menu",
+      "profile-display-container",
+      "profile-input-container"
+    ]
+  },
+  "my-account-menu": {
+    "blocks": [
+      "my-profile-link",
+      "my-addresses-link",
+      "my-orders-link",
+      "my-cards-link"
+    ]
+  },
+  "my-account-pages": {
+    "blocks": [
+      "my-orders",
+      "my-cards"
+    ]
+  }
+}
