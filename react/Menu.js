@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { ExtensionPoint } from 'render'
 import { Link, withRouter } from 'vtex.my-account-commons/Router'
+import { ExtensionPoint } from 'vtex.render-runtime'
 
 class Menu extends Component {
   componentDidMount() {

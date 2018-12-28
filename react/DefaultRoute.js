@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { ExtensionPoint } from 'render'
 import { Link, withRouter } from 'vtex.my-account-commons/Router'
 
 class DefaultRoute extends Component {
