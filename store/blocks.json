@@ -1,0 +1,34 @@
+{
+  "my-account": {
+    "blocks": [
+      "routes",
+      "defaultRoute",
+      "menu",
+      "menu-links-before",
+      "menu-links-after"
+    ]
+  },
+  "legacy.my-account-portal": {
+    "blocks": [
+      "routes",
+      "defaultRoute",
+      "menu",
+      "menu-links-before",
+      "menu-links-after"
+    ]
+  },
+  "routes": {
+    "blocks": [
+      "my-orders",
+      "my-subscriptions",
+      "my-cards"
+    ]
+  },
+  "menu-links-after": {
+    "blocks": [
+      "my-orders-link",
+      "my-cards-link",
+      "my-subscriptions-link"
+    ]
+  }
+}
