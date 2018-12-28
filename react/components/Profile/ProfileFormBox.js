@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
-import { ExtensionPoint } from 'render'
+import { ExtensionPoint } from 'vtex.render-runtime'
 import { Button } from 'vtex.styleguide'
 import { ProfileRules, ProfileContainer } from 'vtex.profile-form'
 import ContentBox from '../shared/ContentBox'
@@ -94,7 +94,7 @@ class ProfileFormBox extends Component {
               </Button>
             }>
             <ExtensionPoint
-              id="profile/input"
+              id="profile-input-container"
               registerValidator={this.registerValidator}
               registerSubmitter={this.registerSubmitter}
             />
