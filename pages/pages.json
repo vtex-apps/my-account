@@ -20,6 +20,7 @@
     "store/account/account/menu-links-after": {
       "component": "vtex.render-runtime/ExtensionContainer"
     },
+    "store/account/account/profile": {},
     "store/account/account/profile/display": {
       "component": "vtex.render-runtime/ExtensionContainer"
     },

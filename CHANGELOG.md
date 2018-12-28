@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- New builders are in the town! Add messages and store builders.
 
 ## [0.23.0] - 2019-02-12
 
@@ -35,7 +37,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Use `vtex.address-form` from VTEX IO instead of using it from npm
 
 ## [0.19.6] - 2018-12-26
-
 ### Changed
 - Use Skeleton components provided by `vtex.my-account-commons`
 
