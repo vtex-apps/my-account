@@ -2,7 +2,8 @@
   "my-account": {
     "blocks": [
       "routes",
-      "menu-links-before"
+      "menu-links-before",
+      "menu-links-after"
     ],
     "inheritComponent": true
   },
