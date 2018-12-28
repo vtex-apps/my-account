@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
-import { ExtensionPoint, withRuntimeContext } from 'render'
+import { ExtensionPoint, withRuntimeContext } from 'vtex.render-runtime'
 import { ProfileRules, ProfileContainer } from 'vtex.profile-form'
 import { Button } from 'vtex.styleguide'
 
@@ -97,7 +97,7 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
               </Button>
             }>
             <ExtensionPoint
-              id="profile/input"
+              id="profile-input-container"
               registerValidator={this.registerValidator}
               registerSubmitter={this.registerSubmitter}
             />

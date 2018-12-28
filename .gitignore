@@ -27,14 +27,9 @@ $RECYCLE.BIN/
 
 # App specific
 node_modules/
-docs/_book/
-.tmp
-.idea
-npm-debug.log
-.build/
-lib
-dist
-build
-lerna-debug.log
-yarn-error.log
+.vscode/
+!Icon
+/.eslintrc
+/react/*.js.map
+.DS_Store
 *.orig

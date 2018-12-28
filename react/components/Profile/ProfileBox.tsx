@@ -1,6 +1,6 @@
 import React, { Fragment, FunctionComponent } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { ExtensionPoint, withRuntimeContext } from 'render'
+import { ExtensionPoint, withRuntimeContext } from 'vtex.render-runtime'
 import { ProfileRules, ProfileSummary } from 'vtex.profile-form'
 
 import ContentBox from '../shared/ContentBox'
@@ -119,8 +119,8 @@ const ProfileBox: FunctionComponent<Props> = ({
         </ProfileSummary>
       </ProfileRules>
       <ExtensionPoint
-        id="profile/display"
-        render={(fields: { label: string; value: string }[]) => (
+        id="profile-display-container"
+        render={(fields: any) => (
           <div className="flex-ns flex-wrap">
             {fields.map(
               ({ label, value }: { label: string; value: string }) => (

@@ -1,13 +1,13 @@
 /* eslint-disable no-undef */
 import React, { Component, Fragment } from 'react'
 import Media from 'react-media'
-import { ExtensionPoint } from 'render'
 import {
   Route,
   Switch,
   Redirect,
   HashRouter,
 } from 'vtex.my-account-commons/Router'
+import { ExtensionPoint } from 'vtex.render-runtime'
 
 import Addresses from './pages/Addresses'
 import Profile from './pages/Profile'
@@ -56,7 +56,7 @@ class AppRouter extends Component {
     return (
       <div className="w-100 mw9 pv7-m pv9-l flex">
         <ExtensionPoint
-          id="defaultRoute"
+          id="my-account-defaultPage"
           onSetDefaultPath={this.handleDefaultPath}
         />
         {this.state.defaultPath && (
@@ -74,7 +74,7 @@ class AppRouter extends Component {
                         shouldRedirectOrder ? '/orders' : this.state.defaultPath
                       }
                     />
-                    <ExtensionPoint id="routes" />
+                    <ExtensionPoint id="my-account-pages" />
                   </Switch>
                 ) : (
                   <Fragment>
@@ -90,7 +90,7 @@ class AppRouter extends Component {
                             : this.state.defaultPath
                         }
                       />
-                      <ExtensionPoint id="routes" />
+                      <ExtensionPoint id="my-account-pages" />
                     </Switch>
                   </Fragment>
                 )

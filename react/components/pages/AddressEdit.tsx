@@ -6,10 +6,11 @@ import { ContentWrapper, GenericError } from 'vtex.my-account-commons'
 import AddressEditLoading from '../loaders/AddressEditLoading'
 import AddressFormBox from '../Addresses/AddressFormBox'
 import GET_ADDRESS from '../../graphql/getAddresses.gql'
+import styles from '../../styles.css'
 
 export function headerConfig() {
   return {
-    namespace: 'vtex-account__address-edit',
+    namespace: `${styles.addressEdit}`,
     titleId: 'pages.addressEdit',
     backButton: {
       titleId: 'pages.addresses',

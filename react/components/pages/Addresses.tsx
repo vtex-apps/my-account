@@ -9,8 +9,8 @@ import { withRouter, Link } from 'vtex.my-account-commons/Router'
 import AddressesLoading from '../loaders/AddressesLoading'
 import AddressBox from '../Addresses/AddressBox'
 import Toast from '../shared/Toast'
-
 import GET_ADRESSES from '../../graphql/getAddresses.gql'
+import styles from '../../styles.css'
 
 export function headerConfig() {
   const headerContent = (
@@ -22,7 +22,7 @@ export function headerConfig() {
   )
 
   return {
-    namespace: 'vtex-account__address-list',
+    namespace: `${styles.addressList}`,
     titleId: 'pages.addresses',
     headerContent,
   }
@@ -60,7 +60,10 @@ class Addresses extends Component<Props> {
 
   public render() {
     const content = (
-      <div className="flex-ns flex-wrap-ns items-start-ns relative tl">
+      <div
+        className={`
+          ${styles.addressBox} flex-ns flex-wrap-ns items-start-ns relative tl
+        `}>
         {this.props.addresses.map(address => (
           <AddressBox
             key={address.addressId}

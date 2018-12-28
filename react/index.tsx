@@ -5,7 +5,8 @@ import ClientSide from './components/ClientSide'
 import { logMyAccountURL, logGeneralErrors } from './utils/splunk'
 
 import 'vtex.country-codes/locales'
-import './style.global.css'
+
+import styles from './styles.css'
 
 class MyAccount extends Component {
   public constructor(props: any) {
