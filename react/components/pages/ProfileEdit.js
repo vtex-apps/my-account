@@ -9,9 +9,11 @@ import ProfileEditLoading from '../loaders/ProfileEditLoading'
 import ProfileFormBox from '../Profile/ProfileFormBox'
 import GET_PROFILE from '../../graphql/getProfile.gql'
 
+import styles from '../../styles.css'
+
 export const headerConfig = () => {
   return {
-    namespace: 'vtex-account__profile-edit',
+    namespace: `${styles.profileEdit}`,
     titleId: 'pages.profileEdit',
     backButton: {
       titleId: 'pages.profile',
