@@ -1,0 +1,59 @@
+{
+  "my-account": {
+    "component": "index",
+    "required": [
+      "my-account-pages",
+      "my-account-defaultPage",
+      "my-account-menu",
+      "profile-display-container",
+      "profile-input-container"
+    ]
+  },
+  "my-account-defaultPage": {
+    "component": "DefaultPage"
+  },
+  "my-account-pages": {
+    "allowed": [
+      "my-orders",
+      "my-cards",
+      "my-account-page"
+    ]
+  },
+  "my-account-page": {
+    "component": "*"
+  },
+  "my-account-menu": {
+    "allowed": [
+      "my-profile-link",
+      "my-addresses-link",
+      "my-orders-link",
+      "my-cards-link",
+      "my-account-link"
+    ]
+  },
+  "my-account-link": {
+    "component": "*"
+  },
+  "my-addresses-link": {
+    "component": "MyAddressesLink"
+  },
+  "my-profile-link": {
+    "component": "MyProfileLink"
+  },
+  "profile-display-container": {
+    "allowed": [
+      "profile-display"
+    ]
+  },
+  "profile-display": {
+    "component": "*"
+  },
+  "profile-input-container": {
+    "allowed": [
+      "profile-input"
+    ]
+  },
+  "profile-input": {
+    "component": "*"
+  }
+}

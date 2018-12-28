@@ -16,6 +16,6 @@
   },
   "intl-equalizer": {
     "referenceLocale": "en",
-    "localeDirectory": "react/locales/"
+    "localeDirectory": "messages"
   }
 }
