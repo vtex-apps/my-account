@@ -95,7 +95,7 @@ class ProfileFormBox extends Component {
               </Button>
             }>
             <ExtensionPoint
-              id="profile/input"
+              id="profile-input"
               registerValidator={this.registerValidator}
               registerSubmitter={this.registerSubmitter}
             />

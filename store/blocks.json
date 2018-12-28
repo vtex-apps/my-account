@@ -1,0 +1,39 @@
+{
+  "my-account": {
+    "blocks": [
+      "routes",
+      "menu-links-before",
+      "menu-links-after"
+    ],
+    "inheritComponent": true
+  },
+  "legacy.my-account-portal": {
+    "blocks": [
+      "routes",
+      "menu-links-before",
+      "menu-links-after"
+    ],
+    "inheritComponent": true
+  },
+  "routes": {
+    "blocks": [
+      "my-orders",
+      "my-subscriptions",
+      "my-cards"
+    ],
+    "inheritComponent": true
+  },
+  "menu-links-before": {
+    "blocks": [
+      "my-orders-link",
+      "my-subscriptions-link"
+    ],
+    "inheritComponent": true
+  },
+  "menu-links-after": {
+    "blocks": [
+      "my-cards-link"
+    ],
+    "inheritComponent": true
+  }
+}

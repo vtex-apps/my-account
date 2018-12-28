@@ -7,8 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.19.6] - 2018-12-26
+## [1.0.0] - 2018-12-28
+### Changed
+- New builders are in town! Add messages and store builders.
 
+## [0.19.6] - 2018-12-26
 ### Changed
 - Use Skeleton components provided by `vtex.my-account-commons`
 
