@@ -1,5 +1,5 @@
 {
-  "version": "0.27.3",
+  "version": "1.8.7",
   "devDependencies": {
     "@types/exenv": "^1.2.0",
     "@vtex/intl-equalizer": "^2.0.1",
@@ -16,6 +16,6 @@
   },
   "intl-equalizer": {
     "referenceLocale": "en",
-    "localeDirectory": "react/locales/"
+    "localeDirectory": "messages"
   }
 }
