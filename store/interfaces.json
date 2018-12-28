@@ -28,17 +28,23 @@
   },
   "routes": {
     "required": [
-      "my-orders"
+      "my-orders",
+      "my-subscriptions",
+      "my-cards"
     ],
     "component": "vtex.render-runtime/ExtensionContainer"
   },
   "menu-links-before": {
     "required": [
-      "my-orders-link"
+      "my-orders-link",
+      "my-subscriptions-link"
     ],
     "component": "vtex.render-runtime/ExtensionContainer"
   },
   "menu-links-after": {
+    "required": [
+      "my-cards-link"
+    ],
     "component": "vtex.render-runtime/ExtensionContainer"
   },
   "profile-display": {
