@@ -1,12 +1,14 @@
 import React from 'react'
+
 import AppRouter from './components/AppRouter'
 import ClientSide from './components/ClientSide'
 import 'vtex.country-codes/locales'
-import './style.global.css'
+
+import styles from './styles.css'
 
 const bootstrap = () => {
   return (
-    <div className="vtex-account helvetica flex justify-around">
+    <div className={`${styles.account} helvetica flex justify-around`}>
       <ClientSide>
         <AppRouter />
       </ClientSide>

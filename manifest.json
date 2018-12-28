@@ -1,29 +1,27 @@
 {
   "name": "my-account",
   "vendor": "vtex",
-  "version": "0.27.5",
+  "version": "1.8.4",
   "title": "My Account",
   "description": "",
   "mustUpdateAt": "2019-07-09",
   "categories": [],
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "dependencies": {
-    "vtex.my-cards": "0.x",
-    "vtex.my-orders-app": "2.x",
-    "vtex.my-account-commons": "0.x",
+    "vtex.my-cards": "1.x",
+    "vtex.my-orders-app": "3.x",
+    "vtex.my-account-commons": "1.x",
     "vtex.store-graphql": "2.x",
-    "vtex.styleguide": "8.x",
-    "vtex.profile-form": "2.x",
-    "vtex.country-codes": "1.x",
-    "vtex.address-form": "3.x",
-    "vtex.react-vtexid": "3.x"
+    "vtex.styleguide": "9.x",
+    "vtex.profile-form": "3.x",
+    "vtex.country-codes": "2.x",
+    "vtex.address-form": "4.x",
+    "vtex.react-vtexid": "4.x"
   },
   "builders": {
-    "react": "2.x",
-    "pages": "0.x",
-    "node": "3.x"
+    "react": "3.x",
+    "store": "0.x",
+    "messages": "1.x"
   },
   "scripts": {
     "postreleasy": "vtex publish --verbose"
@@ -50,10 +48,7 @@
           "useMap": {
             "title": "Use Google Maps to fill address data",
             "type": "boolean",
-            "enum": [
-              false,
-              true
-            ],
+            "enum": [false, true],
             "default": false
           }
         },
@@ -63,25 +58,19 @@
               {
                 "properties": {
                   "useMap": {
-                    "enum": [
-                      true
-                    ]
+                    "enum": [true]
                   },
                   "apiKey": {
                     "title": "Your Google Maps API Key",
                     "type": "string"
                   }
                 },
-                "required": [
-                  "apiKey"
-                ]
+                "required": ["apiKey"]
               },
               {
                 "properties": {
                   "useMap": {
-                    "enum": [
-                      false
-                    ]
+                    "enum": [false]
                   }
                 }
               }

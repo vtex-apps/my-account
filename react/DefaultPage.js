@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { ExtensionPoint } from 'render'
-import { Link, withRouter } from 'vtex.my-account-commons/Router'
 
-class DefaultRoute extends Component {
+class DefaultPage extends Component {
   componentDidMount() {
     this.props.onSetDefaultPath(this.props.defaultRoute || '/profile')
   }
@@ -13,7 +10,7 @@ class DefaultRoute extends Component {
   }
 }
 
-DefaultRoute.getSchema = () => {
+DefaultPage.getSchema = () => {
   return {
     title: 'editor.defaultRoute.name',
     description: 'editor.defaultRoute.description',
@@ -28,4 +25,4 @@ DefaultRoute.getSchema = () => {
   }
 }
 
-export default DefaultRoute
+export default DefaultPage
