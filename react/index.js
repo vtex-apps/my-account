@@ -4,7 +4,8 @@ import ClientSide from './components/ClientSide'
 import { logMyAccountURL, logGeneralErrors } from './SplunkUtils'
 
 import 'vtex.country-codes/locales'
-import './style.global.css'
+
+import styles from './styles.css'
 
 class bootstrap extends Component {
   constructor(props) {
