@@ -1,10 +1,30 @@
 {
-    "my-account": {
-        "blocks": [],
-        "inheritComponent": true
-    },
-    "my-account-portal": {
-        "blocks": [],
-        "inheritComponent": true
-    }
+  "my-account": {
+    "blocks": [],
+    "inheritComponent": true
+  },
+  "my-account.routes": {
+    "blocks": [
+      "my-orders"
+    ],
+    "inheritComponent": true
+  },
+  "my-account.menu-links-before": {
+    "blocks": [
+      "my-orders-link"
+    ],
+    "inheritComponent": true
+  },
+  "my-account.menu-links-after": {
+    "blocks": [],
+    "inheritComponent": true
+  },
+  "my-account.profile-display": {
+    "blocks": [],
+    "inheritComponent": true
+  },
+  "my-account.profile-input": {
+    "blocks": [],
+    "inheritComponent": true
+  }
 }
