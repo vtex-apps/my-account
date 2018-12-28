@@ -1,0 +1,10 @@
+{
+    "my-account": {
+        "blocks": [],
+        "inheritComponent": true
+    },
+    "my-account-portal": {
+        "blocks": [],
+        "inheritComponent": true
+    }
+}
