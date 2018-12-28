@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import UserInfo from './UserInfo'
 import MenuLinksList from './MenuLinksList'
-import { ExtensionPoint } from 'render'
+import { ExtensionPoint } from 'vtex.render-runtime'
 
 class Menu extends Component {
   state = {
