@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Add changes from versions `v0.23.2` and `v0.23.1`
+
 ## [0.23.2] - 2019-02-26
 
 ### Fixed
@@ -17,6 +20,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Add missing required prop, resulting in a error in address form
+
+## [1.3.1] - 2019-02-19
+
+### Changed
+
+- Get changes made between versions `v0.20.0` and `v0.23.0`.
+
+## [1.3.0] - 2019-01-22
+
+## [1.2.0] - 2019-01-22
+
+## [1.1.0] - 2019-01-18
+### Changed
+- Update React builder to 3.x.
+- Bump vtex.styleguide to 9.x.
+
+## [1.0.0] - 2018-12-28
+### Changed
+- New builders are in town! Add messages and store builders.
 
 ## [0.23.0] - 2019-02-12
 
@@ -46,7 +68,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Use `vtex.address-form` from VTEX IO instead of using it from npm
 
 ## [0.19.6] - 2018-12-26
-
 ### Changed
 - Use Skeleton components provided by `vtex.my-account-commons`
 
