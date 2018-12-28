@@ -12,8 +12,10 @@ import PasswordFormBox from '../Profile/PasswordFormBox'
 import Toast from '../shared/Toast'
 import GET_PROFILE from '../../graphql/getProfile.gql'
 
+import styles from '../../styles.css'
+
 export const headerConfig = () => {
-  return { namespace: 'vtex-account__profile', titleId: 'pages.profile' }
+  return { namespace: `${styles.profile}`, titleId: 'pages.profile' }
 }
 
 class Profile extends Component {

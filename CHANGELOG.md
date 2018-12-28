@@ -25,11 +25,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Loaders to be consistent with the new api of the `SkeletonPiece` component.
 
+## [1.6.0] - 2019-04-24
+
+### Changed
+
+- Get changes made at version `v0.26.0`.
+
+## [1.5.0] - 2019-04-16
+
+### Changed
+
+- Support plugins architecture in `my-account-pages` and `my-account-links`
+
 ## [0.26.0] - 2019-04-22
 
 ### Added
 
 - `logout` feature
+
+## [1.4.5] - 2019-04-08
+
+### Changed
+
+- Get changes made at version `v0.25.2`.
 
 ## [0.25.2] - 2019-04-08
 
@@ -37,11 +55,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - The word 'contrasenya' to 'contrassenya'.
 
+## [1.4.4] - 2019-03-22
+
+### Fixed
+
+- `render-runtime` import.
+
+## [1.4.3] - 2019-03-21
+
+### Changed
+
+- Get changes made at version `v0.25.1`.
+
 ## [0.25.1] - 2019-03-21
 
 ### Changed
 
 - Instead of using `import react-router-dom` changed to `import vtex.my-account-commons`
+
+## [1.4.2] - 2019-03-15
+
+### Fix
+
+- Delete node/ directory
+
+## [1.4.1] - 2019-03-15
+
+### Changed
+
+- Get changes made at version `v0.25.0`.
 
 ## [0.25.0] - 2019-03-15
 
@@ -49,11 +91,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Returning to the `returnUrl` if it is present on the url.
 
+## [1.4.0] - 2019-03-13
+
+### Changed
+
+- Get changes made at version `v0.24.0`.
+
 ## [0.24.0] - 2019-03-13
 
 ### Added
 
 - Italian translation
+
+## [1.3.2] - 2019-02-26
+
+### Changed
+
+- Add changes from versions `v0.23.2` and `v0.23.1`
 
 ## [0.23.2] - 2019-02-26
 
@@ -66,6 +120,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Add missing required prop, resulting in a error in address form
+
+## [1.3.1] - 2019-02-19
+
+### Changed
+
+- Get changes made between versions `v0.20.0` and `v0.23.0`.
+
+## [1.3.0] - 2019-01-22
+
+## [1.2.0] - 2019-01-22
+
+## [1.1.0] - 2019-01-18
+
+### Changed
+
+- Update React builder to 3.x.
+- Bump vtex.styleguide to 9.x.
+
+## [1.0.0] - 2018-12-28
+
+### Changed
+
+- New builders are in town! Add messages and store builders.
 
 ## [0.23.0] - 2019-02-12
 
