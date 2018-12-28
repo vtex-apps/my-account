@@ -13,6 +13,8 @@ import FormattedMessage from '../shared/FormattedMessage'
 
 import GET_ADRESSES from '../../graphql/getAddresses.gql'
 
+import styles from '../../styles.css'
+
 class Addresses extends Component {
   state = {
     showToast: false,
@@ -33,7 +35,10 @@ class Addresses extends Component {
 
   render() {
     const content = (
-      <div className="flex-ns flex-wrap-ns items-start-ns relative tl">
+      <div
+        className={`
+          ${styles.addressBox} flex-ns flex-wrap-ns items-start-ns relative tl
+        `}>
         {this.props.addresses.map(address => (
           <AddressBox
             key={address.addressId}
@@ -43,10 +48,7 @@ class Addresses extends Component {
         ))}
 
         {this.state.showToast && (
-          <Toast
-            messageId="alert.success"
-            onClose={this.handleCloseToast}
-          />
+          <Toast messageId="alert.success" onClose={this.handleCloseToast} />
         )}
       </div>
     )
@@ -64,7 +66,10 @@ Addresses.propTypes = {
 const enhance = compose(
   graphql(GET_ADRESSES),
   branch(({ data }) => data.loading, renderComponent(AddressesLoading)),
-  branch(({ data }) => data.profile == null || data.profile.addresses.length === 0, renderComponent(EmptyAddresses)),
+  branch(
+    ({ data }) => data.profile == null || data.profile.addresses.length === 0,
+    renderComponent(EmptyAddresses)
+  ),
   withProps(({ data }) => ({ addresses: data.profile.addresses })),
   withRouter
 )
@@ -74,19 +79,13 @@ export default enhance(Addresses)
 function EmptyAddresses() {
   const title = <FormattedMessage id="addresses.notFound" />
 
-  const content = (
-    <EmptyState title={title} />
-  )
+  const content = <EmptyState title={title} />
 
   return renderWrapper(content)
 }
 
 function renderWrapper(children) {
-  return (
-    <ContentWrapper {...headerConfig()}>
-      {() => children}
-    </ContentWrapper>
-  )
+  return <ContentWrapper {...headerConfig()}>{() => children}</ContentWrapper>
 }
 
 export function headerConfig() {
@@ -99,7 +98,7 @@ export function headerConfig() {
   )
 
   return {
-    namespace: 'vtex-account__address-list',
+    namespace: `${styles.addressList}`,
     titleId: 'pages.addresses',
     headerContent,
   }
