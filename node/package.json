@@ -3,6 +3,11 @@
   "version": "0.18.0",
   "main": "index.js",
   "devDependencies": {
-    "@types/node": "^10.12.20"
+    "@types/bluebird": "^3.5.0",
+    "@types/bluebird-global": "^3.5.0",
+    "@types/es6-shim": "^0.31.32",
+    "@types/node": "^7.0.8",
+    "tslint": "^5.8.0",
+    "tslint-config-vtex": "^2.0.0"
   }
 }

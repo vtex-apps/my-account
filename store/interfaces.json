@@ -1,0 +1,64 @@
+{
+  "my-account": {
+    "required": [
+      "routes",
+      "defaultRoute",
+      "menu"
+    ],
+    "allowed": [
+      "menu-links-before",
+      "menu-links-after",
+      "profile-display",
+      "profile-input"
+    ],
+    "component": "index"
+  },
+  "legacy": {
+    "required": []
+  },
+  "legacy.my-account-portal": {
+    "required": [
+      "routes",
+      "defaultRoute",
+      "menu"
+    ],
+    "allowed": [
+      "menu-links-before",
+      "menu-links-after",
+      "profile-display",
+      "profile-input"
+    ],
+    "component": "index"
+  },
+  "routes": {
+    "required": [
+      "my-orders",
+      "my-subscriptions",
+      "my-cards"
+    ],
+    "component": "vtex.render-runtime/ExtensionContainer"
+  },
+  "defaultRoute": {
+    "component": "DefaultRoute"
+  },
+  "menu": {
+    "component": "Menu"
+  },
+  "menu-links-before": {
+    "component": "vtex.render-runtime/ExtensionContainer"
+  },
+  "menu-links-after": {
+    "allowed": [
+      "my-cards-link",
+      "my-orders-link",
+      "my-subscriptions-link"
+    ],
+    "component": "vtex.render-runtime/ExtensionContainer"
+  },
+  "profile-display": {
+    "component": "vtex.render-runtime/ExtensionContainer"
+  },
+  "profile-input": {
+    "component": "vtex.render-runtime/ExtensionContainer"
+  }
+}
