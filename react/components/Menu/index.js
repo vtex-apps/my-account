@@ -7,6 +7,8 @@ import { ModalDialog } from 'vtex.styleguide'
 import UserInfo from './UserInfo'
 import MenuLink from './MenuLink'
 
+import styles from '../../styles.css'
+
 class Menu extends Component {
   state = { isModalOpen: false }
 
@@ -18,9 +20,10 @@ class Menu extends Component {
     const { intl } = this.props
 
     return (
-      <aside className="vtex-account__menu pv9 pv0-m-2 ph9 ph7-m ph8-l w-20-m w-100">
+      <aside
+        className={`${styles.menu} pv9 pv0-m-2 ph9 ph7-m ph8-l w-20-m w-100`}>
         <UserInfo />
-        <nav className="vtex-account__menu-links">
+        <nav className={`${styles.menuLinks}`}>
           <ExtensionPoint
             id="my-account-menu"
             render={links =>
@@ -33,7 +36,10 @@ class Menu extends Component {
             {({ action: logout }) => (
               <Fragment>
                 <div
-                  className={`vtex-account_menu-link f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-muted-1 b--transparent pointer`}
+                  className={`
+                    ${styles.menuLink}
+                    f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-muted-1 b--transparent pointer
+                  `}
                   onClick={this.handleModalToggle}>
                   <FormattedMessage id="pages.logout" />
                 </div>
