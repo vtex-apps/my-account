@@ -11,7 +11,10 @@
     ],
     "component": "index"
   },
-  "my-account-portal": {
+  "legacy": {
+    "required": []
+  },
+  "legacy.my-account-portal": {
     "required": [
       "routes",
       "menu-links-before"

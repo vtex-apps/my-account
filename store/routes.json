@@ -1,5 +1,5 @@
 {
-  "my-account-portal": {
+  "legacy.my-account-portal": {
     "path": "/legacy-extensions/account"
   }
 }
