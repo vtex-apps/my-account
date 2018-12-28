@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.24.0] - 2019-03-13
 
+<<<<<<< HEAD
 ### Added
 
 - Italian translation
@@ -35,6 +36,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+=======
+## [1.3.2] - 2019-02-26
+
+### Changed
+>>>>>>> Update to react 3 and messages 1
 - Add changes from versions `v0.23.2` and `v0.23.1`
 
 ## [0.23.2] - 2019-02-26
@@ -60,16 +66,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.2.0] - 2019-01-22
 
 ## [1.1.0] - 2019-01-18
+<<<<<<< HEAD
 
 ### Changed
 
+=======
+### Changed
+>>>>>>> Update to react 3 and messages 1
 - Update React builder to 3.x.
 - Bump vtex.styleguide to 9.x.
 
 ## [1.0.0] - 2018-12-28
+<<<<<<< HEAD
 
 ### Changed
 
+=======
+### Changed
+>>>>>>> Update to react 3 and messages 1
 - New builders are in town! Add messages and store builders.
 
 ## [0.23.0] - 2019-02-12
@@ -108,7 +122,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Use `vtex.address-form` from VTEX IO instead of using it from npm
 
 ## [0.19.6] - 2018-12-26
-
 ### Changed
 
 - Use Skeleton components provided by `vtex.my-account-commons`
