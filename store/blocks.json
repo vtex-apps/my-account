@@ -15,13 +15,22 @@
   },
   "routes": {
     "blocks": [
-      "my-orders"
+      "my-orders",
+      "my-subscriptions",
+      "my-cards"
     ],
     "inheritComponent": true
   },
   "menu-links-before": {
     "blocks": [
-      "my-orders-link"
+      "my-orders-link",
+      "my-subscriptions-link"
+    ],
+    "inheritComponent": true
+  },
+  "menu-links-after": {
+    "blocks": [
+      "my-cards-link"
     ],
     "inheritComponent": true
   }
