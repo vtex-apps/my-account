@@ -6,7 +6,7 @@
     ],
     "inheritComponent": true
   },
-  "my-account-portal": {
+  "legacy.my-account-portal": {
     "blocks": [
       "routes",
       "menu-links-before"
