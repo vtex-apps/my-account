@@ -1,6 +1,6 @@
 import React from 'react'
 import { injectIntl, intlShape } from 'react-intl'
-import { ExtensionPoint } from 'render'
+import { ExtensionPoint } from 'vtex.render-runtime'
 import MenuLink from './MenuLink'
 
 const links = [
