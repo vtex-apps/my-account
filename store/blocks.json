@@ -10,7 +10,8 @@
   "legacy.my-account-portal": {
     "blocks": [
       "routes",
-      "menu-links-before"
+      "menu-links-before",
+      "menu-links-after"
     ],
     "inheritComponent": true
   },
