@@ -1,7 +1,6 @@
 {
   "name": "my-account",
   "dependencies": {
-    "@vtex/address-form": "^2.0.2",
     "apollo-client": "^2.4.7",
     "classname": "0.0.0",
     "exenv": "^1.2.2",

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import { Button } from 'vtex.styleguide'
+import { addValidation } from 'vtex.address-form/helpers'
 import {
-  addValidation,
   AddressContainer,
   CountrySelector,
   PostalCodeGetter,
@@ -11,14 +11,12 @@ import {
   AutoCompletedFields,
   AddressRules,
   AddressSubmitter,
-} from '@vtex/address-form'
-import {
   GeolocationInput,
   GoogleMapsContainer,
   Map,
-} from '@vtex/address-form/lib/geolocation'
-import StyleguideInput from '@vtex/address-form/lib/inputs/StyleguideInput'
-import AddressShape from '@vtex/address-form/lib/propTypes/AddressShape'
+} from 'vtex.address-form/components'
+import { StyleguideInput } from 'vtex.address-form/inputs'
+import { AddressShape } from 'vtex.address-form/shapes'
 import { withSettings } from '../shared/withSettings'
 import { withLocale } from '../shared/withLocale'
 import { compose } from 'recompose'
@@ -87,11 +85,11 @@ class AddressEditor extends Component {
     return (
       <AddressRules
         country={address.country.value}
-        fetch={country => import(`@vtex/address-form/lib/country/${country}`)}>
+        shouldUseIOFetching>
         <AddressContainer
           address={address}
-          onChangeAddress={this.handleAddressChange}
           Input={StyleguideInput}
+          onChangeAddress={this.handleAddressChange}
           autoCompletePostalCode>
           <div>
             <CountrySelector shipsTo={shipCountries} />
