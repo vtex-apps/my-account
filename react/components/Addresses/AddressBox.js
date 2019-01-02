@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
-import { AddressSummary, AddressRules } from '@vtex/address-form'
+import { AddressSummary, AddressRules } from 'vtex.address-form'
 import ContentBox from '../shared/ContentBox'
 
 const AddressBox = ({ address, onEditClick, intl }) => {
@@ -12,9 +12,7 @@ const AddressBox = ({ address, onEditClick, intl }) => {
       <div className="lighter c-muted-2 lh-copy pv4 w5 h4">
         <AddressRules
           country={address.country}
-          fetch={country =>
-            import(`@vtex/address-form/lib/country/${country}`)
-          }>
+          shouldUseIOFetching>
           <AddressSummary address={address} />
         </AddressRules>
       </div>

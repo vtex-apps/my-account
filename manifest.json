@@ -16,7 +16,8 @@
     "vtex.store-graphql": "2.x",
     "vtex.styleguide": "7.x",
     "vtex.profile-form": "2.x",
-    "vtex.country-codes": "1.x"
+    "vtex.country-codes": "1.x",
+    "vtex.address-form": "3.x"
   },
   "builders": {
     "react": "2.x",
