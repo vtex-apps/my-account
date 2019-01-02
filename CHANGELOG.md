@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Use `vtex.address-form` from VTEX IO instead of using it from npm
+
 ## [0.19.6] - 2018-12-26
 
 ### Changed
