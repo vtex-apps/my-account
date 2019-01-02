@@ -1,5 +1,11 @@
 {
   "version": "0.20.0",
+  "scripts": {
+    "lint:locales": "intl-equalizer"
+  },
+  "intl-equalizer": {
+    "localeDirectory": "react/locales/"
+  },
   "dependencies": {
     "babel-eslint": "^10.0.1",
     "eslint": "^5.9.0",
@@ -9,5 +15,8 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^3.0.0",
     "prettier": "^1.15.2"
+  },
+  "devDependencies": {
+    "@vtex/intl-equalizer": "^2.0.1"
   }
 }

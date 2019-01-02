@@ -7,8 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.20.0] - 2019-01-07
+### Added
+- Catalan translation
 
+## [0.20.0] - 2019-01-07
 ### Changed
 - Use `vtex.address-form` from VTEX IO instead of using it from npm
 
