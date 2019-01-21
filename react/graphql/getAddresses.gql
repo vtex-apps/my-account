@@ -4,6 +4,7 @@ query Addresses @context(scope: "private") {
     addresses: address {
       addressId: id
       addressType
+      addressName
       city
       complement
       country
