@@ -29,11 +29,11 @@ class AddressCreate extends Component {
 
     return (
       <ContentWrapper {...headerConfig()}>
-        {onError => (
+        {({ handleError }) => (
           <AddressFormBox
             isNew
             onAddressSaved={this.handleGoBack}
-            onError={onError}
+            onError={handleError}
             profile={profile}
             shipsTo={shipsTo}
           />

@@ -30,14 +30,14 @@ class AddressEdit extends Component {
 
     return (
       <ContentWrapper {...headerConfig()}>
-        {onError => (
+        {({ handleError }) => (
           <Fragment>
             {address ? (
               <AddressFormBox
                 address={address}
                 onAddressSaved={this.handleGoBack}
                 onAddressDeleted={this.handleGoBack}
-                onError={onError}
+                onError={handleError}
                 shipsTo={shipsTo}
               />
             ) : (
