@@ -30,21 +30,26 @@ class AddressFormBox extends Component {
     }
     // eslint-disable-next-line
     const { __typename, ...addr } = address
+
     return {
       ...addr,
-      addressQuery: null,
       receiverName: addr.receiverName || defaultReceiver,
     }
   }
 
   reshapeAddress = address => {
+    const { isNew } = this.props
     // eslint-disable-next-line
     const { addressId, addressQuery, geoCoordinates, ...reshapedAddr } = address
-    return {
+
+    const result = {
       ...reshapedAddr,
       geoCoordinates: address.geoCoordinates,
-      addressName: generateRandomName(),
     }
+
+    if (isNew) result.addressName = generateRandomName()
+
+    return result
   }
 
   handleSubmit = (valid, address) => {
