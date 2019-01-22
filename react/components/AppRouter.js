@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Route, Switch, Redirect, HashRouter } from 'react-router-dom'
 import Media from 'react-media'
-import { ExtensionPoint } from 'render'
+import { ExtensionPoint } from 'vtex.render-runtime'
 import Menu from './Menu'
 import Addresses from './pages/Addresses'
 import Profile from './pages/Profile'
