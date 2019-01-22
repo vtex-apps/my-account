@@ -30,11 +30,11 @@ class ProfileEdit extends Component {
 
     return (
       <ContentWrapper {...headerConfig()}>
-        {onError => (
+        {({ handleError }) => (
           <ProfileFormBox
             profile={profile}
             onDataSave={this.handleGoBack}
-            onError={onError}
+            onError={handleError}
           />
         )}
       </ContentWrapper>

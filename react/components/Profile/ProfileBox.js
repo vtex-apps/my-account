@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import { ExtensionPoint } from 'render'
@@ -37,50 +37,48 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
             },
             isCorporate,
           }) => (
-            <React.Fragment>
-              <div>
-                <div className="flex-ns flex-wrap">
-                  <div className="mb8 flex-auto">
-                    <DataEntry label={firstName.label}>
-                      {firstName.value}
-                    </DataEntry>
-                  </div>
-                  <div className="mb8 flex-auto">
-                    <DataEntry label={lastName.label}>
-                      {lastName.value}
-                    </DataEntry>
-                  </div>
+            <Fragment>
+              <div className="flex-ns flex-wrap">
+                <div className="mb8 flex-auto">
+                  <DataEntry label={firstName.label}>
+                    {firstName.value}
+                  </DataEntry>
                 </div>
-                <div className="mb8">
-                  <DataEntry label={email.label}>{email.value}</DataEntry>
+                <div className="mb8 flex-auto">
+                  <DataEntry label={lastName.label}>
+                    {lastName.value}
+                  </DataEntry>
                 </div>
-                <div className="flex-ns flex-wrap">
-                  {document && document.label && (
-                    <div className="mb8 flex-auto">
-                      <DataEntry label={document.label}>
-                        {document.value}
-                      </DataEntry>
-                    </div>
-                  )}
-                  <div className="mb8 w-50-ns">
-                    <DataEntry label={gender.label}>{gender.value}</DataEntry>
-                  </div>
-                </div>
-                <div className="flex-ns flex-wrap">
+              </div>
+              <div className="mb8">
+                <DataEntry label={email.label}>{email.value}</DataEntry>
+              </div>
+              <div className="flex-ns flex-wrap">
+                {document && document.label && (
                   <div className="mb8 flex-auto">
-                    <DataEntry label={birthDate.label}>
-                      {birthDate.value}
+                    <DataEntry label={document.label}>
+                      {document.value}
                     </DataEntry>
                   </div>
-                  <div className="mb8 w-50-ns">
-                    <DataEntry label={homePhone.label}>
-                      {homePhone.value}
-                    </DataEntry>
-                  </div>
+                )}
+                <div className="mb8 w-50-ns">
+                  <DataEntry label={gender.label}>{gender.value}</DataEntry>
+                </div>
+              </div>
+              <div className="flex-ns flex-wrap">
+                <div className="mb8 flex-auto">
+                  <DataEntry label={birthDate.label}>
+                    {birthDate.value}
+                  </DataEntry>
+                </div>
+                <div className="mb8 w-50-ns">
+                  <DataEntry label={homePhone.label}>
+                    {homePhone.value}
+                  </DataEntry>
                 </div>
               </div>
               {isCorporate && (
-                <div>
+                <Fragment>
                   <div className="mb8">
                     <DataEntry label={corporateName.label}>
                       {corporateName.value}
@@ -114,9 +112,9 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
                       </div>
                     )}
                   </div>
-                </div>
+                </Fragment>
               )}
-            </React.Fragment>
+            </Fragment>
           )}
         </ProfileSummary>
       </ProfileRules>
