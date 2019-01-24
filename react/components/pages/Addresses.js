@@ -61,7 +61,7 @@ class Addresses extends Component {
       <ContentWrapper {...headerConfig(intl)}>
         {() => (
           <div className="flex-ns flex-wrap-ns items-start-ns relative tl">
-            {addresses || addresses.length === 0 ? (
+            {addresses && addresses.length !== 0 ? (
               addresses.map(address => (
                 <AddressBox
                   key={address.addressId}
