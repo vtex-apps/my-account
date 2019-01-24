@@ -13,7 +13,6 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
   return (
     <ContentBox
       shouldAllowGrowing
-      maxWidthStep={6}
       lowerButton={intl.formatMessage({ id: 'commons.edit' })}
       onLowerButtonClick={onEditClick}>
       <ProfileRules country={storeCountry} shouldUseIOFetching>

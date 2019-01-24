@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
@@ -50,23 +50,27 @@ class Profile extends Component {
     return (
       <ContentWrapper {...headerConfig()}>
         {() => (
-          <Fragment>
-            <ProfileBox profile={profile} onEditClick={this.handleGoToEdit} />
-            {isEditingPassword ? (
-              <PasswordFormBox
-                email={profile.email}
-                onPasswordChange={this.handleFinishEditingPassword}
-              />
-            ) : (
-              <PasswordBox onEditClick={this.handleEditingPassword} />
-            )}
+          <main className="flex flex-column-s flex-row-ns">
+            <div className="w-60-ns w-100-s">
+              <ProfileBox profile={profile} onEditClick={this.handleGoToEdit} />
+            </div>
+            <div className="w-40-ns w-100-s">
+              {isEditingPassword ? (
+                <PasswordFormBox
+                  email={profile.email}
+                  onPasswordChange={this.handleFinishEditingPassword}
+                />
+              ) : (
+                <PasswordBox onEditClick={this.handleEditingPassword} />
+              )}
+            </div>
             {showToast && (
               <Toast
                 messageId="alert.success"
                 onClose={this.handleCloseToast}
               />
             )}
-          </Fragment>
+          </main>
         )}
       </ContentWrapper>
     )
