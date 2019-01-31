@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.22.0] - 2019-01-31
+### Changed
+- Bump `vtex.styleguide` version.
+- Profile page layout.
+- Profile loading page layout.
+
+### Fixed
+- Address update.
+
+### Fixed
+- `ContentWrapper`
+
 ## [0.21.0] - 2019-01-07
 
 ### Added

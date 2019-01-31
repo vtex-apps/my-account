@@ -5,6 +5,7 @@ mutation UpdateAddress($addressId: String, $addressFields: AddressInput) {
     addresses: address {
       addressId: id
       addressType
+      addressName
       city
       complement
       country

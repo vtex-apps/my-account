@@ -4,6 +4,7 @@ mutation CreateAddress($addressFields: AddressInput) {
     addresses: address {
       addressId: id
       addressType
+      addressName
       city
       complement
       country

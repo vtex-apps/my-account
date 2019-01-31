@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import { Button } from 'vtex.styleguide'
@@ -17,13 +17,18 @@ import {
 } from 'vtex.address-form/components'
 import { StyleguideInput } from 'vtex.address-form/inputs'
 import { AddressShape } from 'vtex.address-form/shapes'
-import { withSettings } from '../shared/withSettings'
-import { withLocale } from '../shared/withLocale'
 import { compose } from 'recompose'
 
+import { withSettings } from '../shared/withSettings'
+import { withLocale } from '../shared/withLocale'
+
 class AddressEditor extends Component {
-  state = {
-    address: null,
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      address: addValidation(props.address),
+    }
   }
 
   componentDidMount() {
@@ -34,12 +39,12 @@ class AddressEditor extends Component {
   }
 
   handleAddressChange = newAddress => {
-    this.setState(prevState => ({
-      address: {
-        ...prevState.address,
-        ...newAddress,
-      },
-    }))
+    const address = {
+      ...this.state.address,
+      ...newAddress,
+    }
+
+    this.setState({ address })
   }
 
   render() {
@@ -55,11 +60,9 @@ class AddressEditor extends Component {
     const { address } = this.state
     const intlId = isNew ? 'addresses.addAddress' : 'addresses.saveAddress'
 
-    if (!address) return null
-
-    const validGeoCoords =
-      address.geoCoordinates.valid &&
-      address.geoCoordinates.geolocationAutoCompleted
+    const validGeoCoords = address.geoCoordinates &&
+    address.geoCoordinates.valid &&
+    address.geoCoordinates.geolocationAutoCompleted
 
     const validPostalCode = isNew
       ? address.postalCode.valid && !address.postalCode.geolocationAutoCompleted
@@ -67,8 +70,8 @@ class AddressEditor extends Component {
 
     const hasAutoCompletedFields = Object.keys(address).some(
       fieldName =>
-        address[fieldName].geolocationAutoCompleted ||
-        address[fieldName].postalCodeAutoCompleted
+        address && address[fieldName].geolocationAutoCompleted ||
+        address && address[fieldName].postalCodeAutoCompleted
     )
 
     const shouldUseGoogleMaps =
@@ -82,22 +85,24 @@ class AddressEditor extends Component {
       value: code,
     }))
 
+    const country = shipsTo && shipsTo.length > 0 ? shipsTo[0] : address.country
+
     return (
       <AddressRules
-        country={address.country.value}
+        country={country}
         shouldUseIOFetching>
         <AddressContainer
           address={address}
           Input={StyleguideInput}
           onChangeAddress={this.handleAddressChange}
           autoCompletePostalCode>
-          <div>
+          <Fragment>
             <CountrySelector shipsTo={shipCountries} />
 
             {isNew && shouldUseGoogleMaps && !validPostalCode && (
               <GoogleMapsContainer apiKey={mapsAPIKey} locale={locale}>
                 {({ loading, googleMaps }) => (
-                  <div>
+                  <Fragment>
                     <GeolocationInput
                       loadingGoogle={loading}
                       googleMaps={googleMaps}
@@ -112,7 +117,7 @@ class AddressEditor extends Component {
                         }}
                       />
                     )}
-                  </div>
+                  </Fragment>
                 )}
               </GoogleMapsContainer>
             )}
@@ -143,7 +148,7 @@ class AddressEditor extends Component {
                 </Button>
               )}
             </AddressSubmitter>
-          </div>
+          </Fragment>
         </AddressContainer>
       </AddressRules>
     )

@@ -41,8 +41,6 @@ class ProfileFormBox extends Component {
   }
 
   handleSubmit = async ({ valid, profile }) => {
-    if (this.isLoading) return
-
     const { onDataSave, onError } = this.props
     await this.setStateAsync({ isLoading: true, valid, profile })
     try {
@@ -55,7 +53,7 @@ class ProfileFormBox extends Component {
         return
       }
 
-      const submit$ = this.submitterFunctions.map(submitter => submitter())
+      const submit$ = this.submitterFunctions.map(submitter => submitter(profile))
       await Promise.all(submit$)
       this.setState({ isLoading: false })
       onDataSave()
@@ -68,10 +66,9 @@ class ProfileFormBox extends Component {
     return this.state.valid
   }
 
-  submit = () => {
+  submit = (profile) => {
     const { updateProfile } = this.props
-    const { profile: profileInput } = this.state
-    return updateProfile({ variables: { profile: profileInput } })
+    return updateProfile({ variables: { profile } })
   }
 
   render() {

@@ -4,6 +4,7 @@ mutation DeleteAddress($addressId: String) {
     addresses: address {
       addressId: id
       addressType
+      addressName
       city
       complement
       country

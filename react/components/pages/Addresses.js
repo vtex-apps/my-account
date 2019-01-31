@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { injectIntl, intlShape } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { withRouter, Link } from 'react-router-dom'
 import { compose, branch, renderComponent, withProps } from 'recompose'
@@ -10,24 +9,9 @@ import { ContentWrapper } from 'vtex.my-account-commons'
 import AddressesLoading from '../loaders/AddressesLoading'
 import AddressBox from '../Addresses/AddressBox'
 import Toast from '../shared/Toast'
+import FormattedMessage from '../shared/FormattedMessage'
 
 import GET_ADRESSES from '../../graphql/getAddresses.gql'
-
-export const headerConfig = intl => {
-  const headerContent = (
-    <Link to="/addresses/new">
-      <Button variation="primary" block size="small">
-        {intl.formatMessage({ id: 'addresses.addAddress' })}
-      </Button>
-    </Link>
-  )
-
-  return {
-    namespace: 'vtex-account__address-list',
-    titleId: 'pages.addresses',
-    headerContent,
-  }
-}
 
 class Addresses extends Component {
   state = {
@@ -48,55 +32,75 @@ class Addresses extends Component {
   }
 
   render() {
-    const { addresses, intl } = this.props
-    const { showToast } = this.state
+    const content = (
+      <div className="flex-ns flex-wrap-ns items-start-ns relative tl">
+        {this.props.addresses.map(address => (
+          <AddressBox
+            key={address.addressId}
+            address={address}
+            onEditClick={() => this.startEditing(address)}
+          />
+        ))}
 
-    const emptyStateTitle = (
-      <span className="c-on-base">
-        {intl.formatMessage({ id: 'addresses.notFound' })}
-      </span>
-    )
-
-    return (
-      <ContentWrapper {...headerConfig(intl)}>
-        {() => (
-          <div className="flex-ns flex-wrap-ns items-start-ns relative tl">
-            {addresses ? (
-              addresses.map(address => (
-                <AddressBox
-                  key={address.addressId}
-                  address={address}
-                  onEditClick={() => this.startEditing(address)}
-                />
-              ))
-            ) : (
-              <EmptyState title={emptyStateTitle} />
-            )}
-            {showToast && (
-              <Toast
-                messageId="alert.success"
-                onClose={this.handleCloseToast}
-              />
-            )}
-          </div>
+        {this.state.showToast && (
+          <Toast
+            messageId="alert.success"
+            onClose={this.handleCloseToast}
+          />
         )}
-      </ContentWrapper>
+      </div>
     )
+
+    return renderWrapper(content)
   }
 }
 
 Addresses.propTypes = {
   location: PropTypes.any,
   history: PropTypes.object,
-  intl: intlShape.isRequired,
   addresses: PropTypes.array,
 }
 
 const enhance = compose(
-  injectIntl,
   graphql(GET_ADRESSES),
-  branch(({ data }) => data.profile == null, renderComponent(AddressesLoading)),
+  branch(({ data }) => data.loading, renderComponent(AddressesLoading)),
+  branch(({ data }) => data.profile == null || data.profile.addresses.length === 0, renderComponent(EmptyAddresses)),
   withProps(({ data }) => ({ addresses: data.profile.addresses })),
   withRouter
 )
+
 export default enhance(Addresses)
+
+function EmptyAddresses() {
+  const title = <FormattedMessage id="addresses.notFound" />
+
+  const content = (
+    <EmptyState title={title} />
+  )
+
+  return renderWrapper(content)
+}
+
+function renderWrapper(children) {
+  return (
+    <ContentWrapper {...headerConfig()}>
+      {() => children}
+    </ContentWrapper>
+  )
+}
+
+export function headerConfig() {
+  const headerContent = (
+    <Link to="/addresses/new">
+      <Button variation="primary" block size="small">
+        <FormattedMessage id="addresses.addAddress" />
+      </Button>
+    </Link>
+  )
+
+  return {
+    namespace: 'vtex-account__address-list',
+    titleId: 'pages.addresses',
+    headerContent,
+  }
+}
