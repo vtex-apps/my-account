@@ -4,7 +4,7 @@ My account is a canonical app that any VTEX store can use. This app is responsib
 
 ## Extension points
 
-This app provides a few extension points in order to allow apps to customize stores' experience as needed. You can increment this app with more pages with custom navigation using `react-router-dom`.
+This app provides a few extension points in order to allow apps to customize stores' experience as needed. You can increment this app with more pages with your own custom navigation using `react-router-dom`.
 
 It's also important to add `"react-router-dom": "^4.3.1",` to your `react/package.json` dependencies.
 
