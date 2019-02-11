@@ -36,5 +36,11 @@
   "alert.passwordMismatch": "Passwords do not match.",
   "alert.wrongPassword": "Current password is wrong.",
   "alert.wrongAndAboutToBlock": "Current password is wrong. One more invalid attempt will block your account for one hour.",
-  "alert.blockedUser": "You have been blocked, try again later."
+  "alert.blockedUser": "You have been blocked, try again later.",
+  "editor.defaultRoute.name": "My Account - Home",
+  "editor.defaultRoute.description": "My Account's default page",
+  "editor.defaultRoute.field": "My Account's default path",
+  "editor.menu.name": "My Account - Menu",
+  "editor.menu.description": "My Account's side menu",
+  "editor.menu.field": "Menu's Extension Point"
 }
