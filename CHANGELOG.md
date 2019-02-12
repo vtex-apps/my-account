@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Add option to opt-out from default Menu component to use a custom one
+- Add option to set default page
+
 ## [0.22.0] - 2019-01-31
 ### Changed
 - Bump `vtex.styleguide` version.
