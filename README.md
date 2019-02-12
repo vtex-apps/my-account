@@ -2,46 +2,15 @@
 
 My account is a canonical app that any VTEX store can use. This app is responsible for managing the customer's personal data such as his addresses and credit cards.
 
-## Setup
-
-Add the dependency in your `manifest.json`
-
-```json
-"dependencies": {
-  "vtex.my-account": "x.x"
-}
-```
-
-Add the app as a template in your `templates` on `pages.json`.
-
-```json
-"account": {
-  "component": "vtex.render-runtime/LayoutContainer",
-  "props": {
-    "elements": [
-      "account"
-    ]
-  },
-  "extensions": {
-    "account": {
-      "component": "vtex.my-account/index"
-    }
-  }
-}
-```
-
-Also, you can clone this project, and execute `vtex link` in your workspace.
-
 ## Extension points
 
-This app provides a few extension points in order to allow stores to customize their customer's experience as needed. You can increment this app with more pages with custom navigation using `react-router-dom`.
-To do so you gonna need two components, `ExtensionLinks` and `ExtensionRouter`.
+This app provides a few extension points in order to allow apps to customize stores' experience as needed. You can increment this app with more pages with your own custom navigation using `react-router-dom`.
 
-### Your pages.json config
+It's also important to add `"react-router-dom": "^4.3.1",` to your `react/package.json` dependencies.
 
-As a native app, the `my-accounts` can be inserted through two different extension-points, depending on the platform version. This will reflect also when extending this app.
+### Adding a new page to My Account
 
-On the old portal platform:
+To add new pages to My Account, your app must define in it `pages.json` file the following extension points:
 
 ```json
 {
@@ -49,41 +18,86 @@ On the old portal platform:
     "my-account-portal/routes/{YOUR_APP}": {
       "component": "ExtensionRouter"
     },
-    "my-account-portal/{LINKS_POSITION}/{YOUR_APP}": {
-      "component": "ExtensionLinks"
-    }
+    "store/account/account/routes/{YOUR_APP}": {
+      "component": "ExtensionRouter"
+    },
   }
 }
 ```
 
-On the dreamstore platform:
+The first will be used in the legacy platform, and the latter on the Dreamstore v1.
+
+#### Creating the ExtensionRouter component
+
+Now create a new file in the root of the "react" folder with the name "ExtensionRouter.js".
+
+```js
+import React, { Fragment } from 'react'
+import { Route } from 'react-router-dom'
+// Your component pages
+import UserSupport from './components/UserSupport'
+import UserPoints from './components/UserPoints'
+
+const ExtensionRouter = () => (
+  <Fragment>
+    {/* This `path` will be added at the end of the URL */}
+    <Route path="/support" exact component={UserSupport} />
+    <Route path="/points" exact component={UserPoints} />
+  </Fragment>
+)
+
+export default ExtensionRouter
+```
+
+In this example you will have two new pages `/account/#/support` and `/account/#/points`, rendering the UserSupport and UserPoints components respectively.
+
+### Menu
+
+There are two ways to customize the menu of My Account:
+
+1. Adding links to the top or bottom of the list
+2. Opting-out of the menu entirely (DEPRECATED)
+
+It's **highly recommended** that you follow the first option. The second option will make your menu out of future updates and will not create links automatically with other apps that extends My Account, like My Subscriptions, My Cards and [Customer Credit](https://github.com/vtex/customer-credit). Also this method is not supported in v1 of My Account, so don't do anything crazy here, this is not a future proof solution!
+
+
+#### Adding links to the top or bottom of the list
+
+To add links to the bottom of the menu add to your `pages.json`:
 
 ```json
 {
   "extensions": {
-    "store/account/account/routes/{YOUR_APP}": {
-      "component": "ExtensionRouter"
+    "my-account-portal/menu-links-after/{YOUR_APP}": {
+      "component": "ExtensionLinks"
     },
-    "store/account/account/{LINKS_POSITION}/{YOUR_APP}": {
+    "store/account/account/menu-links-after/{YOUR_APP}": {
       "component": "ExtensionLinks"
     }
   }
 }
 ```
 
-**PS:** `LINKS_POSITION` can be either:
+To add links to the top:
 
-```js
-'menu-links-after' || 'menu-links-before'
+```json
+{
+  "extensions": {
+    "my-account-portal/menu-links-before/{YOUR_APP}": {
+      "component": "ExtensionLinks"
+    },
+    "store/account/account/menu-links-before/{YOUR_APP}": {
+      "component": "ExtensionLinks"
+    }
+  }
+}
 ```
 
-Depending on if you want to add your custom links before or after the `my-account` default ones.
+##### Creating the ExtensionLinks component
 
-### ExtensionLinks
+This extension point will receive a prop called `render`. You **must** call it with an array of objects with the properties `name` and `path`. This will create the link given the `name` and the `path` provided.
 
-**Usage** Basically a list of tuples(name, path), thats what is going to appear on the side-bar to the left.
-
-**Example**
+Example of an ExtensionLinks implementation:
 
 ```jsx
 import PropTypes from 'prop-types'
@@ -92,8 +106,12 @@ import { intlShape, injectIntl } from 'react-intl'
 const ExtensionLinks = ({ render, intl }) => {
   return render([
     {
-      name: intl.formatMessage({ id: 'mycards.link' }),
-      path: '/cards',
+      name: intl.formatMessage({ id: 'userPoints.link' }),
+      path: '/points',
+    },
+    {
+      name: intl.formatMessage({ id: 'userSupport.link' }),
+      path: '/support',
     },
   ])
 }
@@ -106,27 +124,102 @@ ExtensionLinks.propTypes = {
 export default injectIntl(ExtensionLinks)
 ```
 
-### ExtensionRouter
+#### Optin-out of the default navigation (DEPRECATED)
 
-**Usage** Routes from `react-router-dom` that are the actual pages of your app.
+You can also opt-out from the default sidebar Menu implemented by this app. To do so, there are three steps: implementing your own Menu, adding your Menu to `pages.json`, and changing the settings of the "My Account - Menu" extension point.
 
-**Example**
+##### Implementing your own Menu
 
-```jsx
-import React, { Fragment } from 'react'
-import { Route } from 'react-router-dom'
-import MyCards from './pages/MyCards'
-import NewCard from './pages/NewCard'
+First, make sure you have `"react-router-dom": "^4.3.1",` in your `react/package.json` dependencies.
 
-const ExtensionRouter = () => (
-  <Fragment>
-    <Route path="/cards" exact component={MyCards} />
-    <Route path="/cards/new" component={NewCard} />
-  </Fragment>
-)
+Use the `Link` component from `react-router-dom` (check [React Router `Link` docs](https://reacttraining.com/react-router/web/api/Link)) to link to other pages.
 
-export default ExtensionRouter
+You can also wrap your component with `withRouter` (check [React Router `withRouter` docs](https://reacttraining.com/react-router/web/api/withRouter)), so you can mark a link as active.
+
+Check the example of an implementation of a custom menu: 
+
+```js
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link, withRouter } from 'react-router-dom'
+
+function CustomMenu(props) {
+  return (
+    <div>
+      <h4>Custom Menu</h4>
+      <Link to="/profile">
+        <span
+          className={`bl bw2 ${
+            props.location.pathname.indexOf('profile') === -1
+              ? 'c-muted-1 b--transparent'
+              : 'c-on-base b b--action-primary'
+          }`}>
+          Personal data
+        </span>
+      </Link>
+      <br />
+      <Link to="/address">
+        <span
+          className={`bl bw2 ${
+            props.location.pathname.indexOf('address') === -1
+              ? 'c-muted-1 b--transparent'
+              : 'c-on-base b b--action-primary'
+          }`}>
+          Address
+        </span>
+      </Link>
+    </div>
+  )
+}
+
+CustomMenu.propTypes = {
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+}
+
+export default withRouter(CustomMenu)
 ```
+
+##### Add an extension to `pages.json`
+
+Now add this React component to the root directory of your app and reference it in the `pages.json` of your app, like so:
+
+```json
+{
+  "extensions": {
+    "store/account/account/menu/customMenu": {
+      "component": "CustomMenu"
+    },
+    "my-account-portal/menu/customMenu": {
+      "component": "CustomMenu"
+    },
+  }
+}
+```
+
+Note that the name `CustomMenu` is the name of the React component filename.
+
+##### Changing the extension point settings
+
+1. Open the Storefront admin (`/admin/cms/storefront`).
+2. Navigate to the My Account page
+3. Click on the "My Account - Menu" extension point on the Storefront's Components menu
+4. The field "Menu's Extension Point" will make My Account load the following extension point: "store/account/account/menu/<VALUE>". So add the value `customMenu`, this will make it load the extension "store/account/account/menu/customMenu" defined in `pages.json`.
+5. Save the settings.
+
+Now, your store will render the custom menu instead of the default menu of My Account. It's important to acknowledge that this makes your menu completely indenpendent and out of future updates.
+
+### Defining the default home page of My Account
+
+After [creating a new page](#adding-a-new-page-to-my-acccount), you can define the default path that will be rendered when the user opens the URL `/account/`.
+
+1. Open the Storefront admin (`/admin/cms/storefront`).
+2. Navigate to the My Account page
+3. Click on the "My Account - Home" extension point on the Storefront's Components menu
+4. Fill the field "My Account's default path" to the new path
+
+Following the previous examples, we could fill it with "/points", to open the UserPoints page.
 
 ### Display personal info
 

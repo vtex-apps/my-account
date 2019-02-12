@@ -5,12 +5,12 @@ import MenuLink from './MenuLink'
 
 const links = [
   {
-    id: 'pages.addresses',
-    path: '/addresses',
-  },
-  {
     id: 'pages.profile',
     path: '/profile',
+  },
+  {
+    id: 'pages.addresses',
+    path: '/addresses',
   },
 ]
 

@@ -36,5 +36,11 @@
   "alert.passwordMismatch": "Senhas não conferem.",
   "alert.wrongPassword": "A senha atual está incorreta.",
   "alert.wrongAndAboutToBlock": "A senha atual está incorreta. Mais uma tentativa inválida bloqueará sua conta por uma hora.",
-  "alert.blockedUser": "Você está bloqueado, tente novamente mais tarde."
+  "alert.blockedUser": "Você está bloqueado, tente novamente mais tarde.",
+  "editor.defaultRoute.name": "Minha Conta - Home",
+  "editor.defaultRoute.description": "Página padrão da página Minha Conta",
+  "editor.defaultRoute.field": "Path padrão da página Minha Conta",
+  "editor.menu.name": "Minha Conta - Menu",
+  "editor.menu.description": "Menu lateral da página Minha Conta",
+  "editor.menu.field": "Ponto de Extensão do Menu"
 }
