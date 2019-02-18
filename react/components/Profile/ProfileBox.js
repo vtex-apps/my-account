@@ -114,16 +114,9 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
                       )}
                     </div>
                   </div>
-<<<<<<< HEAD
-                </Fragment>
-              )}
-            </Fragment>
-          )}
-=======
                 )}
               </React.Fragment>
             )}
->>>>>>> Add store and messages builder
         </ProfileSummary>
       </ProfileRules>
       <ExtensionPoint

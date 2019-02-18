@@ -2,9 +2,11 @@
   "my-account": {
     "required": [
       "routes",
-      "menu-links-before"
+      "defaultRoute",
+      "menu"
     ],
     "allowed": [
+      "menu-links-before",
       "menu-links-after",
       "profile-display",
       "profile-input"
@@ -17,9 +19,11 @@
   "legacy.my-account-portal": {
     "required": [
       "routes",
-      "menu-links-before"
+      "defaultRoute",
+      "menu"
     ],
     "allowed": [
+      "menu-links-before",
       "menu-links-after",
       "profile-display",
       "profile-input"
@@ -34,16 +38,20 @@
     ],
     "component": "vtex.render-runtime/ExtensionContainer"
   },
+  "defaultRoute": {
+    "component": "DefaultRoute"
+  },
+  "menu": {
+    "component": "Menu"
+  },
   "menu-links-before": {
-    "required": [
-      "my-orders-link",
-      "my-subscriptions-link"
-    ],
     "component": "vtex.render-runtime/ExtensionContainer"
   },
   "menu-links-after": {
-    "required": [
-      "my-cards-link"
+    "allowed": [
+      "my-cards-link",
+      "my-orders-link",
+      "my-subscriptions-link"
     ],
     "component": "vtex.render-runtime/ExtensionContainer"
   },

@@ -14,7 +14,6 @@
     "target": "es2017",
     "module": "commonjs",
     "sourceMap": false,
-    "outDir": "service",
     "allowJs": true
   },
   "typeAcquisition": {
