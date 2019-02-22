@@ -33,6 +33,7 @@ class AddressFormBox extends Component {
 
     return {
       ...addr,
+      addressQuery: '',
       receiverName: addr.receiverName || defaultReceiver,
     }
   }
