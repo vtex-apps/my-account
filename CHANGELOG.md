@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Add missing required prop, resulting in a error in address form
+
 ## [0.23.0] - 2019-02-12
 
 ### Added
