@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.23.2] - 2019-02-26
+
 ### Fixed
 
 - Profile last name field alignment
