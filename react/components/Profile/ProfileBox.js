@@ -43,7 +43,7 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
                     {firstName.value}
                   </DataEntry>
                 </div>
-                <div className="mb8 flex-auto">
+                <div className="mb8 w-50-ns">
                   <DataEntry label={lastName.label}>
                     {lastName.value}
                   </DataEntry>
