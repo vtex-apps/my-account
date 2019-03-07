@@ -14,6 +14,62 @@
     "recompose": "^0.27.1"
   },
   "devDependencies": {
-    "@types/node": "^10.12.20"
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "@types/graphql": "^14.0.7",
+    "@types/jest": "^23.3.13",
+    "@types/node": "^10.12.21",
+    "@types/prop-types": "^15.5.8",
+    "@types/react": "^16.8.1",
+    "@types/react-intl": "^2.3.15",
+    "babel-jest": "^24.1.0",
+    "jest": "^23.6.0",
+    "jest-dom": "^3.0.0",
+    "jest-transform-graphql": "^2.1.0",
+    "prettier": "^1.16.1",
+    "react-dom": "^16.7.0",
+    "react-testing-library": "^5.4.4",
+    "regenerator-runtime": "^0.13.1",
+    "tslint": "^5.12.1",
+    "tslint-config-vtex": "^2.1.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^3.3.1",
+    "typescript-babel-jest": "^1.0.5"
+  },
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "tsc --noEmit && tslint -c tslint.json -e './mocks/*.ts' './**/*.ts'",
+    "lint:locales": "intl-equalizer"
+  },
+  "jest": {
+    "verbose": true,
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.ts"
+    },
+    "setupTestFrameworkScriptFile": "./testUtils/setupTests.ts",
+    "collectCoverageFrom": [
+      "react/**/*.{ts, tsx}"
+    ],
+    "transform": {
+      "\\.(gql|graphql)$": "jest-transform-graphql",
+      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.(ts|tsx)$": "typescript-babel-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node",
+      "graphql"
+    ]
   }
 }

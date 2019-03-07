@@ -36,5 +36,11 @@
   "alert.passwordMismatch": "Les contrasenyes no coincideixen.",
   "alert.wrongPassword": "La contrasenya actual és incorrecta.",
   "alert.wrongAndAboutToBlock": "La contrasenya actual és incorrecta. Un intent invàlid més bloquejarà seu compte durant una hora.",
-  "alert.blockedUser": "Has estat bloquejat, torna a intentar-ho més tard."
+  "alert.blockedUser": "Has estat bloquejat, torna a intentar-ho més tard.",
+  "editor.defaultRoute.name": "El meu compte: inici",
+  "editor.defaultRoute.description": "Pàgina predeterminada del meu compte",
+  "editor.defaultRoute.field": "El camí predeterminat del meu compte",
+  "editor.menu.name": "El meu compte: menú",
+  "editor.menu.description": "My Account's side menu",
+  "editor.menu.field": "Punt d'extensió del menú"
 }
