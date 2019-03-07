@@ -36,5 +36,11 @@
   "alert.passwordMismatch": "Les mots de passe ne correspondent pas.",
   "alert.wrongPassword": "Le mot de passe actuel est incorrect.",
   "alert.wrongAndAboutToBlock": "Le mot de passe actuel est incorrect. Une autre tentative invalide bloquera votre compte pendant une heure.",
-  "alert.blockedUser": "Vous avez été bloqué, réessayez plus tard."
+  "alert.blockedUser": "Vous avez été bloqué, réessayez plus tard.",
+  "editor.defaultRoute.name": "Mon compte - Accueil",
+  "editor.defaultRoute.description": "La page par défaut de mon compte",
+  "editor.defaultRoute.field": "Chemin d'accès par défaut de mon compte",
+  "editor.menu.name": "Mon compte - Menu",
+  "editor.menu.description": "Menu latéral de mon compte",
+  "editor.menu.field": "Point d'extension du menu"
 }

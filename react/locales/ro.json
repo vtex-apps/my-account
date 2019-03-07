@@ -36,5 +36,11 @@
   "alert.passwordMismatch": "Parolele nu se potrivesc",
   "alert.wrongPassword": "Parola curentă este greșită.",
   "alert.wrongAndAboutToBlock": "Parola curentă este greșită. Încă o încercare nevalidă va bloca contul dvs. timp de o oră.",
-  "alert.blockedUser": "Ați fost blocat, încercați din nou mai târziu."
+  "alert.blockedUser": "Ați fost blocat, încercați din nou mai târziu.",
+  "editor.defaultRoute.name": "Contul meu - Acasă",
+  "editor.defaultRoute.description": "Pagina implicită a Contului meu",
+  "editor.defaultRoute.field": "Calea implicită a Contului meu",
+  "editor.menu.name": "Contul meu - Meniu",
+  "editor.menu.description": "Contul meu meniu lateral",
+  "editor.menu.field": "Punctul de extensie al meniului"
 }
