@@ -26,7 +26,7 @@ class AddressCreate extends Component {
 
     const parsed = queryString.parse(history.location.search)
 
-    this.props.history.push(parsed.returnUrl ? parsed.returnUrl : '/addresses?success=true')
+    history.push(parsed.returnUrl ? parsed.returnUrl : '/addresses?success=true')
   }
 
   render() {
