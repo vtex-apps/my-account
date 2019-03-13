@@ -27,7 +27,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.24.0] - 2019-03-13
 
-<<<<<<< HEAD
 ### Added
 
 - Italian translation
@@ -36,11 +35,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-=======
-## [1.3.2] - 2019-02-26
-
-### Changed
->>>>>>> Update to react 3 and messages 1
 - Add changes from versions `v0.23.2` and `v0.23.1`
 
 ## [0.23.2] - 2019-02-26
