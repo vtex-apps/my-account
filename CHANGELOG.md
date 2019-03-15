@@ -7,7 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.25.0] - 2019-03-15
+
+### Changed
+
+- Returning to the `returnUrl` if it is present on the url.
+
 ## [0.24.0] - 2019-03-13
+
+### Added
+
+- Italian translation
 
 ## [0.23.2] - 2019-02-26
 
@@ -18,55 +28,72 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.23.1] - 2019-02-25
 
 ### Fixed
+
 - Add missing required prop, resulting in a error in address form
 
 ## [0.23.0] - 2019-02-12
 
 ### Added
+
 - Add option to opt-out from default Menu component to use a custom one
 - Add option to set default page
 
 ## [0.22.0] - 2019-01-31
+
 ### Changed
+
 - Bump `vtex.styleguide` version.
 - Profile page layout.
 - Profile loading page layout.
 
 ### Fixed
+
 - Address update.
 
 ### Fixed
+
 - `ContentWrapper`
 
 ## [0.21.0] - 2019-01-07
 
 ### Added
+
 - Catalan translation
 
 ## [0.20.0] - 2019-01-07
+
 ### Changed
+
 - Use `vtex.address-form` from VTEX IO instead of using it from npm
 
 ## [0.19.6] - 2018-12-26
 
 ### Changed
+
 - Use Skeleton components provided by `vtex.my-account-commons`
 
 ## [0.19.5] - 2018-12-03
+
 ### Removed
+
 - `vtex.my-subscriptions` dependency.
 
 ## [0.19.4] - 2018-11-30
+
 ### Added
+
 - `vtex.my-subscriptions` to the dependencies.
 
 ## [0.19.3] - 2018-11-29
+
 ### Fixed
+
 - Fix `geoCoordinates`
 
 ## [0.19.2] - 2018-11-29
 
-### Fixed   
+### Fixed
+
 - Loading layout of address creation form.
 - Do not break if country rule doesn't have `document`, `tradeName`, `corporateDocument` or `stateRegistration`.
 

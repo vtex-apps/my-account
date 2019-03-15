@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import { ContentWrapper } from 'vtex.my-account-commons'
+import queryString from 'query-string'
 
 import AddressCreateLoading from '../loaders/AddressCreateLoading'
 import AddressFormBox from '../Addresses/AddressFormBox'
@@ -21,7 +22,11 @@ export const headerConfig = () => {
 
 class AddressCreate extends Component {
   handleGoBack = () => {
-    this.props.history.push('/addresses?success=true')
+    const { history } = this.props
+
+    const parsed = queryString.parse(history.location.search)
+
+    history.push(parsed.returnUrl ? parsed.returnUrl : '/addresses?success=true')
   }
 
   render() {
