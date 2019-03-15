@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fix
+
+- Delete node/ directory
+
 ## [1.4.1] - 2019-03-15
 
 ### Changed
@@ -60,24 +64,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.2.0] - 2019-01-22
 
 ## [1.1.0] - 2019-01-18
-<<<<<<< HEAD
 
 ### Changed
 
-=======
-### Changed
->>>>>>> Update to react 3 and messages 1
 - Update React builder to 3.x.
 - Bump vtex.styleguide to 9.x.
 
 ## [1.0.0] - 2018-12-28
-<<<<<<< HEAD
 
 ### Changed
 
-=======
-### Changed
->>>>>>> Update to react 3 and messages 1
 - New builders are in town! Add messages and store builders.
 
 ## [0.23.0] - 2019-02-12
