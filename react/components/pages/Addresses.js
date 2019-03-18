@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link } from 'vtex.my-account-commons/Router'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import { EmptyState, Button } from 'vtex.styleguide'
 import { ContentWrapper } from 'vtex.my-account-commons'
