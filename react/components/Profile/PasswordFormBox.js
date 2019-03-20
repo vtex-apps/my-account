@@ -1,30 +1,36 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { intlShape, injectIntl } from 'react-intl'
+import { intlShape, injectIntl, FormattedMessage } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
-import { Input, Button } from 'vtex.styleguide'
+import { Input, Button, Spinner, InputPassword } from 'vtex.styleguide'
+import { AuthState, AuthService } from 'vtex.react-vtexid'
 import { GenericError } from 'vtex.my-account-commons'
 
 import ContentBox from '../shared/ContentBox'
 import RedefinePassword from '../../graphql/redefinePassword.gql'
+import RedefinePasswordForm from './RedefinePassword'
+import DefinePassword from './DefinePassword'
 import PasswordValidator from './PasswordValidator'
 
 class PasswordFormBox extends Component {
   state = {
     currentPassword: '',
     newPassword: '',
-    confirmPassword: '',
     newPasswordTouched: false,
-    confirmPasswordTouched: false,
     newPasswordValid: false,
     changeAttempts: 0,
     isLoading: false,
     error: null,
+    passwordState: null,
   }
 
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
+  handleChange = (e, setPassword = () => {}) => {
+    const name = e.target.name
+    const value = e.target.value
+    this.setState({ [name]: value }, () => {
+      setPassword(this.state[name])
+    })
   }
 
   handleTouchField = e => {
@@ -35,66 +41,61 @@ class PasswordFormBox extends Component {
     this.setState({ newPasswordValid: valid })
   }
 
-  handleSubmit = async e => {
-    const { email, onPasswordChange } = this.props
+  handleSubmit = async (_, setNewPassword = () => {}) => {
     const {
-      currentPassword,
       newPassword,
       newPasswordValid,
-      confirmPassword,
       changeAttempts,
     } = this.state
-    if (newPassword !== confirmPassword || !newPasswordValid) return
+    if (!newPasswordValid) return
 
     this.setState({
       isLoading: true,
       error: null,
       changeAttempts: changeAttempts + 1,
     })
-    try {
-      await this.props.redefinePassword({
-        variables: { email, currentPassword, newPassword },
-      })
-      this.setState({ isLoading: false, changeAttempts: 0 })
-      onPasswordChange()
-    } catch (error) {
-      const wrongPassword = error.toString().indexOf('Wrong credentials') > -1
-      const blockedUser = error.toString().indexOf('Blocked') > -1
-      this.setState(prevState => ({
-        isLoading: false,
-        error:
-          wrongPassword && prevState.changeAttempts === 3
-            ? 'alert.wrongAndAboutToBlock'
-            : wrongPassword
-            ? 'alert.wrongPassword'
-            : blockedUser
-            ? 'alert.blockedUser'
-            : 'alert.unknownError',
-      }))
-    }
+    setNewPassword()
+  }
+
+  handleSetPasswordError = (error) => {
+    const wrongPassword = error.toString().indexOf('Wrong credentials') > -1
+    const blockedUser = error.toString().indexOf('Blocked') > -1
+    this.setState(prevState => ({
+      isLoading: false,
+      error:
+        wrongPassword && prevState.changeAttempts === 3
+          ? 'alert.wrongAndAboutToBlock'
+          : wrongPassword
+          ? 'alert.wrongPassword'
+          : blockedUser
+          ? 'alert.blockedUser'
+          : 'alert.unknownError',
+    }))
   }
 
   handleDismissError = () => {
     this.setState({ error: null })
   }
 
+  handleSetPasswordSuccess = (onPasswordChange) => {
+    this.setState({ isLoading: false, changeAttempts: 0 })
+    onPasswordChange()
+  }
+
   render() {
-    const { intl } = this.props
+    const { intl, passwordLastUpdate, currentToken, setToken, onPasswordChange } = this.props
     const {
       currentPassword,
       newPassword,
-      confirmPassword,
       newPasswordTouched,
-      confirmPasswordTouched,
       newPasswordValid,
       isLoading,
       error,
     } = this.state
 
-    const passwordsTouched = newPasswordTouched && confirmPasswordTouched
-    const passwordMismatch = newPassword !== confirmPassword
+    const passwordsTouched = newPasswordTouched
     const shouldEnableSubmit =
-      currentPassword && !passwordMismatch && newPasswordValid
+      (currentPassword || !passwordLastUpdate) && newPasswordValid
 
     return (
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
@@ -103,54 +104,27 @@ class PasswordFormBox extends Component {
             <GenericError onDismiss={this.handleDismissError} errorId={error} />
           </div>
         )}
-        <div className="mb7">
-          <Input
-            name="currentPassword"
-            value={currentPassword}
-            onChange={this.handleChange}
-            type="password"
-            label={intl.formatMessage({ id: 'personalData.currentPassword' })}
-          />
-        </div>
-        <div className="mb7">
-          <Input
-            name="newPassword"
-            value={newPassword}
-            onChange={this.handleChange}
-            onBlur={this.handleTouchField}
-            type="password"
-            label={intl.formatMessage({ id: 'personalData.newPassword' })}
-          />
-        </div>
-        <div className="mb7">
-          <PasswordValidator
-            password={newPassword}
-            onValidationChange={this.handleValidationChange}
-          />
-        </div>
-        <div className="mb7">
-          <Input
-            name="confirmPassword"
-            value={confirmPassword}
-            onChange={this.handleChange}
-            onBlur={this.handleTouchField}
-            errorMessage={
-              passwordsTouched && passwordMismatch
-                ? intl.formatMessage({ id: 'alert.passwordMismatch' })
-                : null
-            }
-            type="password"
-            label={intl.formatMessage({ id: 'personalData.confirmPassword' })}
-          />
-        </div>
-        <Button
-          block
-          size="small"
-          onClick={this.handleSubmit}
-          isLoading={isLoading}
-          disabled={!shouldEnableSubmit}>
-          {intl.formatMessage({ id: 'personalData.savePassword' })}
-        </Button>
+
+        {
+          !passwordLastUpdate?
+          <DefinePassword
+            setToken={setToken}
+            currentToken={currentToken}/> :
+          (
+            <RedefinePasswordForm
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              handleTouchField={this.handleTouchField}
+              handleValidationChange={this.handleValidationChange}
+              handleSetPasswordError={this.handleSetPasswordError}
+              handleSetPasswordSuccess={this.handleSetPasswordSuccess}
+              isLoading={isLoading}
+              shouldEnableSubmit={shouldEnableSubmit}
+              newPassword={newPassword}
+              onPasswordChange={onPasswordChange}
+            />
+          )
+        }
       </ContentBox>
     )
   }

@@ -23,6 +23,10 @@
   "personalData.1number": "1 numero",
   "personalData.1upLetter": "1 lettera maiuscola",
   "personalData.1lowLetter": "1 lettera minuscola",
+  "personalData.editePassword.title": "Invia il codice di accesso alla tua email",
+  "personalData.sendCode": "Invia il codice",
+  "personalData.confirmCode": "Conferma il codice",
+  "personalData.code": "Codice",
 
   "upload.loading": "Caricamento in corso…",
   "upload.choosePhoto": "Scegli una foto",
