@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Route, Switch, Redirect, HashRouter } from 'react-router-dom'
+import { Route, Switch, Redirect, HashRouter } from 'vtex.my-account-commons/Router'
 import Media from 'react-media'
 import { ExtensionPoint } from 'render'
 import Menu from './Menu'

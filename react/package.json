@@ -11,7 +11,6 @@
     "react-dropzone": "^5.0.1",
     "react-intl": "^2.4.0",
     "react-media": "^1.8.0",
-    "react-router-dom": "^4.3.1",
     "recompose": "^0.27.1"
   },
   "devDependencies": {
