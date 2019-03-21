@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.25.1] - 2019-03-21
+
 ### Changed
 - Instead of using `import react-router-dom` changed to `import vtex.my-account-commons`
 
