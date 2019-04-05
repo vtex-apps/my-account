@@ -118,7 +118,7 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
         </ProfileSummary>
       </ProfileRules>
       <ExtensionPoint
-        id="profile-display"
+        id="profile-display-container"
         render={fields => (
           <div className="flex-ns flex-wrap">
             {fields.map(({ label, value }) => (

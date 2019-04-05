@@ -1,64 +1,59 @@
 {
   "my-account": {
+    "component": "index",
     "required": [
-      "routes",
-      "defaultRoute",
-      "menu"
-    ],
+      "my-account-pages",
+      "my-account-defaultPage",
+      "my-account-menu",
+      "profile-display-container",
+      "profile-input-container"
+    ]
+  },
+  "my-account-defaultPage": {
+    "component": "DefaultPage"
+  },
+  "my-account-pages": {
     "allowed": [
-      "menu-links-before",
-      "menu-links-after",
-      "profile-display",
-      "profile-input"
-    ],
-    "component": "index"
-  },
-  "legacy": {
-    "required": []
-  },
-  "legacy.my-account-portal": {
-    "required": [
-      "routes",
-      "defaultRoute",
-      "menu"
-    ],
-    "allowed": [
-      "menu-links-before",
-      "menu-links-after",
-      "profile-display",
-      "profile-input"
-    ],
-    "component": "index"
-  },
-  "routes": {
-    "required": [
       "my-orders",
-      "my-subscriptions",
-      "my-cards"
-    ],
-    "component": "vtex.render-runtime/ExtensionContainer"
+      "my-cards",
+      "my-account-page"
+    ]
   },
-  "defaultRoute": {
-    "component": "DefaultRoute"
+  "my-account-page": {
+    "component": "*"
   },
-  "menu": {
-    "component": "Menu"
-  },
-  "menu-links-before": {
-    "component": "vtex.render-runtime/ExtensionContainer"
-  },
-  "menu-links-after": {
+  "my-account-menu": {
     "allowed": [
-      "my-cards-link",
+      "my-profile-link",
+      "my-addresses-link",
       "my-orders-link",
-      "my-subscriptions-link"
-    ],
-    "component": "vtex.render-runtime/ExtensionContainer"
+      "my-cards-link",
+      "my-account-link"
+    ]
+  },
+  "my-account-link": {
+    "component": "*"
+  },
+  "my-addresses-link": {
+    "component": "MyAddressesLink"
+  },
+  "my-profile-link": {
+    "component": "MyProfileLink"
+  },
+  "profile-display-container": {
+    "allowed": [
+      "profile-display"
+    ]
   },
   "profile-display": {
-    "component": "vtex.render-runtime/ExtensionContainer"
+    "component": "*"
+  },
+  "profile-input-container": {
+    "allowed": [
+      "profile-input"
+    ]
   },
   "profile-input": {
-    "component": "vtex.render-runtime/ExtensionContainer"
+    "component": "*"
   }
 }
