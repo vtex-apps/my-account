@@ -1,34 +1,25 @@
 {
   "my-account": {
     "blocks": [
-      "routes",
-      "defaultRoute",
-      "menu",
-      "menu-links-before",
-      "menu-links-after"
+      "my-account-pages",
+      "my-account-defaultPage",
+      "my-account-menu",
+      "profile-display-container",
+      "profile-input-container"
     ]
   },
-  "legacy.my-account-portal": {
+  "my-account-menu": {
     "blocks": [
-      "routes",
-      "defaultRoute",
-      "menu",
-      "menu-links-before",
-      "menu-links-after"
+      "my-profile-link",
+      "my-addresses-link",
+      "my-orders-link",
+      "my-cards-link"
     ]
   },
-  "routes": {
+  "my-account-pages": {
     "blocks": [
       "my-orders",
-      "my-subscriptions",
       "my-cards"
-    ]
-  },
-  "menu-links-after": {
-    "blocks": [
-      "my-orders-link",
-      "my-cards-link",
-      "my-subscriptions-link"
     ]
   }
 }
