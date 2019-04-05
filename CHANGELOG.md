@@ -7,11 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Get changes made at version `v0.26.1`.
+
 ## [0.26.1] - 2019-04-25
 
 ### Changed
 
 - Loaders to be consistent with the new api of the `SkeletonPiece` component.
+
+## [1.6.0] - 2019-04-24
+
+### Changed
+
+- Get changes made at version `v0.26.0`.
+
+## [1.5.0] - 2019-04-16
+
+### Changed
+
+- Support plugins architecture in `my-account-pages` and `my-account-links`
 
 ## [0.26.0] - 2019-04-22
 

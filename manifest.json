@@ -1,12 +1,11 @@
 {
   "name": "my-account",
   "vendor": "vtex",
-  "version": "1.4.5",
+  "version": "1.6.0",
   "title": "My Account",
   "description": "",
   "mustUpdateAt": "2019-07-09",
   "dependencies": {
-    "vtex.my-subscriptions": "1.x",
     "vtex.my-cards": "1.x",
     "vtex.my-orders-app": "3.x",
     "vtex.my-account-commons": "1.x",
@@ -15,7 +14,7 @@
     "vtex.profile-form": "3.x",
     "vtex.country-codes": "2.x",
     "vtex.address-form": "4.x",
-    "vtex.react-vtexid": "3.x"
+    "vtex.react-vtexid": "4.x"
   },
   "builders": {
     "react": "3.x",
