@@ -36,7 +36,7 @@ class AppRouter extends Component {
     return (
       <div className="w-100 mw9 pv7-m pv9-l flex">
         <ExtensionPoint
-          id="defaultRoute"
+          id="my-account-defaultPage"
           onSetDefaultPath={this.handleDefaultPath} />
         {this.state.defaultPath && (
           <HashRouter>
@@ -51,7 +51,7 @@ class AppRouter extends Component {
                       from="/"
                       to={shouldRedirectOrder ? '/orders' : this.state.defaultPath}
                     />
-                    <ExtensionPoint id="routes" />
+                    <ExtensionPoint id="my-account-pages" />
                   </Switch>
                 ) : (
                   <Fragment>
@@ -63,7 +63,7 @@ class AppRouter extends Component {
                         from="/"
                         to={shouldRedirectOrder ? '/orders' : this.state.defaultPath}
                       />
-                      <ExtensionPoint id="routes" />
+                      <ExtensionPoint id="my-account-pages" />
                     </Switch>
                   </Fragment>
                 )

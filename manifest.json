@@ -6,7 +6,6 @@
   "description": "",
   "mustUpdateAt": "2019-07-09",
   "dependencies": {
-    "vtex.my-subscriptions": "1.x",
     "vtex.my-cards": "1.x",
     "vtex.my-orders-app": "3.x",
     "vtex.my-account-commons": "1.x",
