@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `logout` feature
 
+## [1.4.5] - 2019-04-08
+
 ### Changed
 
 - Get changes made at version `v0.25.2`.
