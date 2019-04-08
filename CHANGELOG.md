@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.25.2] - 2019-04-08
+
+### Fixed
+
+- The word 'contrasenya' to 'contrassenya'.
+
 ## [0.25.1] - 2019-03-21
 
 ### Changed
+
 - Instead of using `import react-router-dom` changed to `import vtex.my-account-commons`
 
 ## [0.25.0] - 2019-03-15
