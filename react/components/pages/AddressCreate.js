@@ -9,9 +9,11 @@ import AddressCreateLoading from '../loaders/AddressCreateLoading'
 import AddressFormBox from '../Addresses/AddressFormBox'
 import GET_NEW_ADDRESS_DATA from '../../graphql/getNewAddressData.gql'
 
+import styles from '../../styles.css'
+
 export const headerConfig = () => {
   return {
-    namespace: 'vtex-account__address-create',
+    namespace: `${styles.addressCreate}`,
     titleId: 'pages.addressCreate',
     backButton: {
       titleId: 'pages.addresses',

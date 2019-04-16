@@ -1,6 +1,16 @@
-.vtex-account__header {
-  min-height: 5vh;
-}
+.account {}
+.passwordBox {}
+.addressCreate {}
+.addressBox {}
+.profile {}
+.profileEdit {}
+.menu {}
+.menuLink {}
+.menuLinks {}
+.userInfo {}
+.userImage {}
+.userGreeting {}
+.userName {}
 
 /* Add tweakpoint inside m */
 @media screen and (min-width: 57em) {

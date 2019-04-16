@@ -13,6 +13,8 @@ import FormattedMessage from '../shared/FormattedMessage'
 
 import GET_ADRESSES from '../../graphql/getAddresses.gql'
 
+import styles from '../../styles.css'
+
 class Addresses extends Component {
   state = {
     showToast: false,
@@ -33,7 +35,7 @@ class Addresses extends Component {
 
   render() {
     const content = (
-      <div className="flex-ns flex-wrap-ns items-start-ns relative tl">
+      <div className={`${styles.addressBox} flex-ns flex-wrap-ns items-start-ns relative tl`}>
         {this.props.addresses.map(address => (
           <AddressBox
             key={address.addressId}

@@ -3,6 +3,8 @@ import { injectIntl, intlShape } from 'react-intl'
 import { ExtensionPoint } from 'vtex.render-runtime'
 import MenuLink from './MenuLink'
 
+import styles from '../../styles.css'
+
 const links = [
   {
     id: 'pages.profile',
@@ -16,7 +18,7 @@ const links = [
 
 const MenuLinksList = ({ intl }) => {
   return (
-    <nav className="vtex-account__menu-links">
+    <nav className={`${styles.menuLinks}`}>
       <ExtensionPoint
         id="menu-links-before"
         render={links =>
