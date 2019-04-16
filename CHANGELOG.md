@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.5.0] - 2019-04-16
+### Changed
+- Support plugins architecture in `my-account-pages` and `my-account-links`
+
 ## [1.4.5] - 2019-04-08
 
 ### Changed
@@ -28,7 +32,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.4.3] - 2019-03-21
 
 ### Changed
-
 - Get changes made at version `v0.25.1`.
 
 ## [0.25.1] - 2019-03-21
@@ -144,7 +147,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Use `vtex.address-form` from VTEX IO instead of using it from npm
 
 ## [0.19.6] - 2018-12-26
-
 ### Changed
 
 - Use Skeleton components provided by `vtex.my-account-commons`
