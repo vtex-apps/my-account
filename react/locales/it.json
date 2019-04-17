@@ -7,6 +7,9 @@
   "pages.profile": "Profilo",
   "pages.profileEdit": "Modifica Profilo",
   "pages.myAccount": "Il mio account",
+  "pages.logout": "Lasciare",
+  "logoutModal.cancel": "Annullare",
+  "logoutModal.title": "Vuoi veramente smettere?",
 
   "personalData.redefinePassword": "Ridefinisci la password",
   "personalData.saveData": "Salva le modifiche",
