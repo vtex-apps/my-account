@@ -21,7 +21,6 @@ class MenuLinksList extends Component {
   state = { isModalOpen: false }
 
   handleModalToggle = () => {
-    console.log(this)
     this.setState(prevState => ({ isModalOpen: !prevState.isModalOpen }))
   }
 
@@ -71,9 +70,9 @@ class MenuLinksList extends Component {
                   isOpen={this.state.isModalOpen}
                   onClose={this.handleModalToggle}
                   >
-                  <h1>
+                  <span className="t-heading-5" >
                     <FormattedMessage id="logoutModal.title" />
-                  </h1>
+                  </span>
                 </ModalDialog>
               </Fragment>
             )}
