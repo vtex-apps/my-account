@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `logout` feature
+
 ## [0.25.2] - 2019-04-08
 
 ### Fixed
