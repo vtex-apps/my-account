@@ -70,7 +70,7 @@ class MenuLinksList extends Component {
                   isOpen={this.state.isModalOpen}
                   onClose={this.handleModalToggle}
                   >
-                  <span className="t-heading-5" >
+                  <span className="t-heading-5 pa6" >
                     <FormattedMessage id="logoutModal.title" />
                   </span>
                 </ModalDialog>
