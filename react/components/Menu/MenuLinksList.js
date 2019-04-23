@@ -17,13 +17,6 @@ const links = [
 ]
 
 class MenuLinksList extends Component {
-
-  state = { isModalOpen: false }
-
-  handleModalToggle = () => {
-    this.setState(prevState => ({ isModalOpen: !prevState.isModalOpen }))
-  }
-
   render() {
     const { intl } = this.props
 
