@@ -1,6 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { SkeletonPiece, SkeletonBox, BaseLoading } from 'vtex.my-account-commons'
+import {
+  SkeletonPiece,
+  SkeletonBox,
+  BaseLoading,
+} from 'vtex.my-account-commons'
 import { headerConfig } from '../pages/Profile'
 
 const ProfileLoading = ({ data }) => {
@@ -10,27 +14,25 @@ const ProfileLoading = ({ data }) => {
         <div className="w-60-ns w-100-s">
           <SkeletonBox shouldAllowGrowing shouldShowLowerButton>
             <div className="flex flex-wrap mb8 justify-between w5">
-              <SkeletonPiece width={40} />
-              <SkeletonPiece width={50} />
+              <SkeletonPiece width="40" size="4" />
+              <SkeletonPiece width="50" size="4" />
             </div>
             <div className="mb8">
-              <SkeletonPiece width={100} />
+              <SkeletonPiece size="4" />
             </div>
             <div className="flex flex-wrap mb8 justify-between">
-              <SkeletonPiece width={30} />
-              <SkeletonPiece width={50} />
+              <SkeletonPiece width="30" size="4" />
+              <SkeletonPiece width="50" size="4" />
             </div>
             <div className="flex flex-wrap mb8 justify-between">
-              <SkeletonPiece width={40} />
-              <SkeletonPiece width={50} />
+              <SkeletonPiece width="40" size="4" />
+              <SkeletonPiece width="50" size="4" />
             </div>
           </SkeletonBox>
         </div>
         <div className="w-40-ns w-100-s">
-          <SkeletonBox
-            shouldAllowGrowing
-            shouldShowLowerButton>
-            <SkeletonPiece width={100} />
+          <SkeletonBox shouldAllowGrowing shouldShowLowerButton>
+            <SkeletonPiece size="4" />
           </SkeletonBox>
         </div>
       </main>
