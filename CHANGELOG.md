@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.26.1] - 2019-04-25
+
 ### Changed
 
 - Loaders to be consistent with the new api of the `SkeletonPiece` component.
