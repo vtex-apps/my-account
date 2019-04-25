@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.6.0] - 2019-04-24
+
 ## [1.5.0] - 2019-04-16
 ### Changed
 - Support plugins architecture in `my-account-pages` and `my-account-links`
