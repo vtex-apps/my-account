@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Add support to CSS override
+- Support to CSS override.
 
 ## [1.5.0] - 2019-04-16
 ### Changed
