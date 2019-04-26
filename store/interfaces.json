@@ -13,14 +13,11 @@
     "component": "DefaultPage"
   },
   "my-account-pages": {
-    "allowed": [
-      "my-orders",
-      "my-cards",
-      "my-account-page"
-    ]
+    "allowed": ["my-orders", "my-cards", "my-account-page"]
   },
   "my-account-page": {
-    "component": "*"
+    "component": "*",
+    "extensibility": "public"
   },
   "my-account-menu": {
     "allowed": [
@@ -32,7 +29,8 @@
     ]
   },
   "my-account-link": {
-    "component": "*"
+    "component": "*",
+    "extensibility": "public"
   },
   "my-addresses-link": {
     "component": "MyAddressesLink"
@@ -41,19 +39,17 @@
     "component": "MyProfileLink"
   },
   "profile-display-container": {
-    "allowed": [
-      "profile-display"
-    ]
+    "allowed": ["profile-display"]
   },
   "profile-display": {
-    "component": "*"
+    "component": "*",
+    "extensibility": "public"
   },
   "profile-input-container": {
-    "allowed": [
-      "profile-input"
-    ]
+    "allowed": ["profile-input"]
   },
   "profile-input": {
-    "component": "*"
+    "component": "*",
+    "extensibility": "public"
   }
 }
