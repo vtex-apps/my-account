@@ -1,0 +1,19 @@
+query Profile @context(scope: "private") {
+  profile {
+    cacheId
+    firstName
+    lastName
+    birthDate
+    gender
+    homePhone
+    businessPhone
+    document
+    email
+    tradeName
+    corporateName
+    corporateDocument
+    stateRegistration
+    isCorporate
+    passwordLastUpdate
+  }
+}
