@@ -20,7 +20,6 @@ class PasswordFormBox extends Component {
     changeAttempts: 0,
     isLoading: false,
     error: null,
-    passwordState: null,
   }
 
   handleChange = (e, setPassword = () => {}) => {
