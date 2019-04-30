@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import { injectIntl } from 'react-intl'
 import { AuthService, AuthState } from 'vtex.react-vtexid'
-import { Input, Button, Spinner, InputPassword } from 'vtex.styleguide'
+import { Button, InputPassword } from 'vtex.styleguide'
 
 import PasswordValidator from './PasswordValidator'
-import { start } from 'repl';
 
 class RedefinePasswordForm extends Component {
   render() {
@@ -74,11 +73,9 @@ class RedefinePasswordForm extends Component {
           }}
         >
           {({
-            state,
             action: setPassword,
           }) => {
             let event = null
-            console.log(state, 'state')
             return (
               <AuthService.StartLoginSession
                 onSuccess={() => handleSubmit(event, setPassword)}

@@ -25,6 +25,8 @@
   "personalData.sendCode": "Trimite cod",
   "personalData.confirmCode": "Confirmați codul",
   "personalData.code": "Cod",
+  "personalData.definePassword": "Parola activată",
+  "personalData.noPassword": "Nu aveți încă o parolă definită.",
   "upload.loading": "Se incarca…",
   "upload.choosePhoto": "Alege o poza",
   "upload.chooseAgain": "Alegeți o altă imagine",

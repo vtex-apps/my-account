@@ -87,13 +87,11 @@ class PasswordFormBox extends Component {
     const {
       currentPassword,
       newPassword,
-      newPasswordTouched,
       newPasswordValid,
       isLoading,
       error,
     } = this.state
 
-    const passwordsTouched = newPasswordTouched
     const shouldEnableSubmit =
       (currentPassword || !passwordLastUpdate) && newPasswordValid
 
@@ -109,7 +107,9 @@ class PasswordFormBox extends Component {
           !passwordLastUpdate?
           <DefinePassword
             setToken={setToken}
-            currentToken={currentToken}/> :
+            currentToken={currentToken}
+            handleChange={this.handleChange}
+          /> :
           (
             <RedefinePasswordForm
               handleChange={this.handleChange}
@@ -125,6 +125,73 @@ class PasswordFormBox extends Component {
             />
           )
         }
+        <AuthState.Password>
+          {({
+            value,
+            setValue: setNewPassword,
+          }) => (
+            <Fragment>
+              <div className="mb7">
+                <InputPassword
+                  name="newPassword"
+                  value={value || ''}
+                  onChange={e => this.handleChange(e, setNewPassword)}
+                  onBlur={this.handleTouchField}
+                  type="password"
+                  label={intl.formatMessage({ id: 'personalData.newPassword' })}
+                />
+              </div>
+              <div className="mb7">
+                <PasswordValidator
+                  password={newPassword}
+                  onValidationChange={this.handleValidationChange}
+                />
+              </div>
+            </Fragment>
+          )}
+        </AuthState.Password>
+        <AuthService.SetPassword
+          onSuccess={() => {
+            this.handleSetPasswordSuccess(onPasswordChange)
+          }}
+          onFailure={error => {
+            this.handleSetPasswordError(error)
+          }}
+        >
+          {({
+            action: setPassword,
+          }) => {
+            let event = null
+            return (
+              <AuthService.StartLoginSession
+                onSuccess={() => this.handleSubmit(event, setPassword)}
+                onFailure={err =>
+                  setErrorAlertMessage(
+                    getErrorMessage(intl, err)
+                  )
+                }
+              >
+                {({
+                  loading: loadingStartSession,
+                  action: startSession,
+                }) => {
+                  return (
+                    <Button
+                      block
+                      size="small"
+                      onClick={(e) => {
+                        event = e
+                        startSession()
+                      }}
+                      isLoading={isLoading || loadingStartSession}
+                      disabled={!shouldEnableSubmit}>
+                      {intl.formatMessage({ id: 'personalData.savePassword' })}
+                    </Button>
+                  )
+                }}
+              </AuthService.StartLoginSession>
+            )}}
+        </AuthService.SetPassword>
       </ContentBox>
     )
   }

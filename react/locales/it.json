@@ -27,6 +27,8 @@
   "personalData.sendCode": "Invia il codice",
   "personalData.confirmCode": "Conferma il codice",
   "personalData.code": "Codice",
+  "personalData.definePassword": "Imposta la password",
+  "personalData.noPassword": "Non hai ancora una password definita.",
 
   "upload.loading": "Caricamento in corso…",
   "upload.choosePhoto": "Scegli una foto",

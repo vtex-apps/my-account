@@ -10,6 +10,7 @@ class DefinePassword extends Component {
       intl,
       setToken,
       currentToken,
+      handleChange,
     } = this.props
 
     return (
@@ -19,12 +20,7 @@ class DefinePassword extends Component {
         </div>
         <AuthService.SendAccessKey
           useNewSession
-          onSuccess={() => {
-            console.log('success send access key')
-          }}
-          onFailure={err =>
-            console.log(err,'error')
-          }>
+        >
           {({
             action,
             loading: loadingSendAccessKey,
@@ -41,7 +37,7 @@ class DefinePassword extends Component {
             </div>
           )}
         </AuthService.SendAccessKey>
-        <div className="pt4">
+        <div className="pt4 pb4">
           <Input
             value={currentToken || ''}
             onChange={e => {

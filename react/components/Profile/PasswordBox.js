@@ -13,7 +13,7 @@ const PasswordBox = ({ passwordLastUpdate, onEditClick, intl }) => {
       onLowerButtonClick={onEditClick}>
       <div className="vtex-account__password-box w-100">
         <DataEntry label={intl.formatMessage({ id: 'personalData.password' })}>
-          {passwordLastUpdate? '*******************': 'personalData.no-password'}
+          {passwordLastUpdate? '*******************': intl.formatMessage({ id: 'personalData.noPassword'})}
         </DataEntry>
       </div>
     </ContentBox>

@@ -25,6 +25,8 @@
   "personalData.sendCode": "Envia el codi",
   "personalData.confirmCode": "Confirmeu el codi",
   "personalData.code": "Codi",
+  "personalData.definePassword": "Estableix la contrassenya",
+  "personalData.noPassword": "Encara no teniu cap contrassenya definida.",
   "upload.loading": "Carregant...",
   "upload.choosePhoto": "Tria una imatge",
   "upload.chooseAgain": "Tria una altra imatge",
