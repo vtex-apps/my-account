@@ -1,14 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { intlShape, injectIntl, FormattedMessage } from 'react-intl'
-import { graphql } from 'react-apollo'
+import { intlShape, injectIntl } from 'react-intl'
 import { compose } from 'recompose'
-import { Input, Button, Spinner, InputPassword } from 'vtex.styleguide'
+import { Button, InputPassword } from 'vtex.styleguide'
 import { AuthState, AuthService } from 'vtex.react-vtexid'
 import { GenericError } from 'vtex.my-account-commons'
 
 import ContentBox from '../shared/ContentBox'
-import RedefinePassword from '../../graphql/redefinePassword.gql'
 import RedefinePasswordForm from './RedefinePassword'
 import DefinePassword from './DefinePassword'
 import PasswordValidator from './PasswordValidator'
@@ -43,7 +41,6 @@ class PasswordFormBox extends Component {
 
   handleSubmit = async (_, setNewPassword = () => {}) => {
     const {
-      newPassword,
       newPasswordValid,
       changeAttempts,
     } = this.state
@@ -200,12 +197,10 @@ class PasswordFormBox extends Component {
 PasswordFormBox.propTypes = {
   email: PropTypes.string.isRequired,
   onPasswordChange: PropTypes.func.isRequired,
-  redefinePassword: PropTypes.func.isRequired,
   intl: intlShape.isRequired,
 }
 
 const enhance = compose(
-  graphql(RedefinePassword, { name: 'redefinePassword' }),
   injectIntl
 )
 

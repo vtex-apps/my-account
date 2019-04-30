@@ -10,7 +10,6 @@ class DefinePassword extends Component {
       intl,
       setToken,
       currentToken,
-      handleChange,
     } = this.props
 
     return (
