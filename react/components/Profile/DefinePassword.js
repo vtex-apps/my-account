@@ -1,54 +1,42 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { injectIntl, FormattedMessage } from 'react-intl'
-import { AuthState, AuthService } from 'vtex.react-vtexid'
+import { AuthService } from 'vtex.react-vtexid'
 import { Input, Button } from 'vtex.styleguide'
-import PasswordValidator from './PasswordValidator'
 
-class DefinePassword extends Component {
-  render() {
-    const {
-      intl,
-      setToken,
-      currentToken,
-    } = this.props
-
-    return (
-      <Fragment>
-        <div className="t-heading-6 tc pb4">
-          <FormattedMessage id="personalData.editePassword.title" />
-        </div>
-        <AuthService.SendAccessKey
-          useNewSession
-        >
-          {({
-            action,
-            loading: loadingSendAccessKey,
-          }) => (
-            <div className="tc">
-              <Button
-                block
-                size="small"
-                onClick={action}
-                isLoading={loadingSendAccessKey}
-              >
-                <FormattedMessage id="personalData.sendCode" />
-              </Button>
-            </div>
-          )}
-        </AuthService.SendAccessKey>
-        <div className="pt4 pb4">
-          <Input
-            value={currentToken || ''}
-            onChange={e => {
-              const newToken = e.target.value
-              setToken(newToken) // check this in myuser code
-            }}
-            label={intl.formatMessage({ id: 'personalData.code' })}
-          />
-        </div>
-      </Fragment>
-    )
-  }
+const DefinePassword = ({ intl, setToken, currentToken }) => {
+  return (
+    <Fragment>
+      <div className="t-heading-6 tc pb4">
+        <FormattedMessage id="personalData.editePassword.title" />
+      </div>
+      <AuthService.SendAccessKey
+        useNewSession
+      >
+        {({
+          action,
+          loading: loadingSendAccessKey,
+        }) => (
+          <Button
+            block
+            size="small"
+            onClick={action}
+            isLoading={loadingSendAccessKey}
+          >
+            <FormattedMessage id="personalData.sendCode" />
+          </Button>
+        )}
+      </AuthService.SendAccessKey>
+      <div className="pt4 pb4">
+        <Input
+          value={currentToken || ''}
+          onChange={e => {
+            setToken(e.target.value)
+          }}
+          label={intl.formatMessage({ id: 'personalData.code' })}
+        />
+      </div>
+    </Fragment>
+  )
 }
 
 export default injectIntl(DefinePassword)

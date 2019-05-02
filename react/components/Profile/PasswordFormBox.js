@@ -11,6 +11,9 @@ import RedefinePasswordForm from './RedefinePassword'
 import DefinePassword from './DefinePassword'
 import PasswordValidator from './PasswordValidator'
 
+const WRONG_CREDENTIALS = 'Wrong credentials'
+const BLOCKED_USER = 'Blocked'
+
 class PasswordFormBox extends Component {
   state = {
     currentPassword: '',
@@ -23,11 +26,8 @@ class PasswordFormBox extends Component {
   }
 
   handleChange = (e, setPassword = () => {}) => {
-    const name = e.target.name
-    const value = e.target.value
-    this.setState({ [name]: value }, () => {
-      setPassword(this.state[name])
-    })
+    const { name, value } = e.target
+    this.setState({ [name]: value }, () => setPassword(this.state[name]))
   }
 
   handleTouchField = e => {
@@ -38,7 +38,7 @@ class PasswordFormBox extends Component {
     this.setState({ newPasswordValid: valid })
   }
 
-  handleSubmit = async (_, setNewPassword = () => {}) => {
+  handleSubmit = async (setNewPassword = () => {}) => {
     const {
       newPasswordValid,
       changeAttempts,
@@ -54,8 +54,8 @@ class PasswordFormBox extends Component {
   }
 
   handleSetPasswordError = (error) => {
-    const wrongPassword = error.toString().indexOf('Wrong credentials') > -1
-    const blockedUser = error.toString().indexOf('Blocked') > -1
+    const wrongPassword = error.toString().indexOf(WRONG_CREDENTIALS) > -1
+    const blockedUser = error.toString().indexOf(BLOCKED_USER) > -1
     this.setState(prevState => ({
       isLoading: false,
       error:
@@ -100,26 +100,15 @@ class PasswordFormBox extends Component {
         )}
 
         {
-          !passwordLastUpdate?
-          <DefinePassword
+          passwordLastUpdate?
+          <RedefinePasswordForm
+            handleChange={this.handleChange}
+          /> :
+            <DefinePassword
             setToken={setToken}
             currentToken={currentToken}
             handleChange={this.handleChange}
-          /> :
-          (
-            <RedefinePasswordForm
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-              handleTouchField={this.handleTouchField}
-              handleValidationChange={this.handleValidationChange}
-              handleSetPasswordError={this.handleSetPasswordError}
-              handleSetPasswordSuccess={this.handleSetPasswordSuccess}
-              isLoading={isLoading}
-              shouldEnableSubmit={shouldEnableSubmit}
-              newPassword={newPassword}
-              onPasswordChange={onPasswordChange}
-            />
-          )
+          />
         }
         <AuthState.Password>
           {({
@@ -147,25 +136,15 @@ class PasswordFormBox extends Component {
           )}
         </AuthState.Password>
         <AuthService.SetPassword
-          onSuccess={() => {
-            this.handleSetPasswordSuccess(onPasswordChange)
-          }}
-          onFailure={error => {
-            this.handleSetPasswordError(error)
-          }}
+          onSuccess={() => this.handleSetPasswordSuccess(onPasswordChange)}
+          onFailure={error => this.handleSetPasswordError(error)}
         >
           {({
             action: setPassword,
           }) => {
-            let event = null
             return (
               <AuthService.StartLoginSession
-                onSuccess={() => this.handleSubmit(event, setPassword)}
-                onFailure={err =>
-                  setErrorAlertMessage(
-                    getErrorMessage(intl, err)
-                  )
-                }
+                onSuccess={() => this.handleSubmit(setPassword)}
               >
                 {({
                   loading: loadingStartSession,
@@ -175,8 +154,7 @@ class PasswordFormBox extends Component {
                     <Button
                       block
                       size="small"
-                      onClick={(e) => {
-                        event = e
+                      onClick={() => {
                         startSession()
                       }}
                       isLoading={isLoading || loadingStartSession}

@@ -4,6 +4,8 @@ import { injectIntl, intlShape } from 'react-intl'
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
 
+const PASSWORD_MASK = '*******************'
+
 const PasswordBox = ({ passwordLastUpdate, onEditClick, intl }) => {
   const lowerButtonId = passwordLastUpdate? 'personalData.redefinePassword' : 'personalData.definePassword'
   return (
@@ -13,7 +15,7 @@ const PasswordBox = ({ passwordLastUpdate, onEditClick, intl }) => {
       onLowerButtonClick={onEditClick}>
       <div className="vtex-account__password-box w-100">
         <DataEntry label={intl.formatMessage({ id: 'personalData.password' })}>
-          {passwordLastUpdate? '*******************': intl.formatMessage({ id: 'personalData.noPassword'})}
+          {passwordLastUpdate? PASSWORD_MASK: intl.formatMessage({ id: 'personalData.noPassword'})}
         </DataEntry>
       </div>
     </ContentBox>
