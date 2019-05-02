@@ -10,12 +10,10 @@ import MenuLink from './MenuLink'
 import styles from '../../styles.css'
 
 class Menu extends Component {
-  state = {
-    hasExtension: null,
-  }
+  state = { isModalOpen: false }
 
-  handleExtension = hasExtension => {
-    this.setState({ hasExtension })
+  handleModalToggle = () => {
+    this.setState(prevState => ({ isModalOpen: !prevState.isModalOpen }))
   }
 
   render() {
