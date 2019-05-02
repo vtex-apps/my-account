@@ -66,7 +66,6 @@ class Profile extends Component {
                           onPasswordChange={this.handleFinishEditingPassword}
                           currentToken={value}
                           setToken={setValue}
-                          refetchProfile={this.refetchProfilex}
                         />
                       )
                     }

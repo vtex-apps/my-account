@@ -154,9 +154,7 @@ class PasswordFormBox extends Component {
                     <Button
                       block
                       size="small"
-                      onClick={() => {
-                        startSession()
-                      }}
+                      onClick={() => startSession()}
                       isLoading={isLoading || loadingStartSession}
                       disabled={!shouldEnableSubmit}>
                       {intl.formatMessage({ id: 'personalData.savePassword' })}
