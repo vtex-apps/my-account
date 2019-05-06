@@ -54,7 +54,7 @@ class MenuLinksList extends Component {
                 <div
                   className={`vtex-account_menu-link f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-muted-1 b--transparent pointer`}
                   onClick={this.handleModalToggle}>
-                  <FormattedMessage id="pages.logout" />
+                  { intl.formatMessage({ id: 'pages.logout' }) }
                 </div>
 
                 <ModalDialog

@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { intlShape, injectIntl } from 'react-intl'
+import { intlShape, injectIntl, FormattedMessage } from 'react-intl'
 import { compose } from 'recompose'
-import { Button, InputPassword } from 'vtex.styleguide'
+import { Button, InputPassword, Input } from 'vtex.styleguide'
 import { AuthState, AuthService } from 'vtex.react-vtexid'
 import { GenericError } from 'vtex.my-account-commons'
 
 import ContentBox from '../shared/ContentBox'
 import RedefinePasswordForm from './RedefinePassword'
-import DefinePassword from './DefinePassword'
+import SendAccCodeButton from './SendAccCodeButton'
 import PasswordValidator from './PasswordValidator'
 
 const WRONG_CREDENTIALS = 'Wrong credentials'
@@ -23,6 +23,7 @@ class PasswordFormBox extends Component {
     changeAttempts: 0,
     isLoading: false,
     error: null,
+    isCodeSent: false,
   }
 
   handleChange = (e, setPassword = () => {}) => {
@@ -78,6 +79,11 @@ class PasswordFormBox extends Component {
     onPasswordChange()
   }
 
+  toggleIsCodeSent = () => {
+    console.log('togle')
+    this.setState(prevState => ({ isCodeSent: !prevState.isCodeSent }))
+  }
+
   render() {
     const { intl, passwordLastUpdate, currentToken, setToken, onPasswordChange } = this.props
     const {
@@ -104,66 +110,98 @@ class PasswordFormBox extends Component {
           <RedefinePasswordForm
             handleChange={this.handleChange}
           /> :
-            <DefinePassword
-            setToken={setToken}
-            currentToken={currentToken}
-            handleChange={this.handleChange}
-          />
-        }
-        <AuthState.Password>
-          {({
-            value,
-            setValue: setNewPassword,
-          }) => (
+          this.state.isCodeSent?
             <Fragment>
-              <div className="mb7">
-                <InputPassword
-                  name="newPassword"
-                  value={value || ''}
-                  onChange={e => this.handleChange(e, setNewPassword)}
-                  onBlur={this.handleTouchField}
-                  type="password"
-                  label={intl.formatMessage({ id: 'personalData.newPassword' })}
+              <div className="pt4 pb4">
+                <Input
+                  value={currentToken || ''}
+                  onChange={e => {
+                    setToken(e.target.value)
+                  }}
+                  label={intl.formatMessage({ id: 'personalData.code' })}
                 />
               </div>
-              <div className="mb7">
-                <PasswordValidator
-                  password={newPassword}
-                  onValidationChange={this.handleValidationChange}
-                />
+              <div className="flex justify-end">
+                <SendAccCodeButton variation="tertiary">
+                 <FormattedMessage id="personalData.resendCode" />
+                </SendAccCodeButton>
+              </div>
+            </Fragment> :
+            <Fragment>
+              <div className="t-heading-6 tc pb4">
+                <FormattedMessage id="personalData.sendAccessCode.title" />
+              </div>
+              <div className="pt4 flex justify-center" >
+                <SendAccCodeButton
+                  variation="primary"
+                  onSuccess={this.toggleIsCodeSent}
+                >
+                  <FormattedMessage id="personalData.sendCode" />
+                </SendAccCodeButton>
               </div>
             </Fragment>
-          )}
-        </AuthState.Password>
-        <AuthService.SetPassword
-          onSuccess={() => this.handleSetPasswordSuccess(onPasswordChange)}
-          onFailure={error => this.handleSetPasswordError(error)}
-        >
-          {({
-            action: setPassword,
-          }) => {
-            return (
-              <AuthService.StartLoginSession
-                onSuccess={() => this.handleSubmit(setPassword)}
+        }
+        {
+          (this.state.isCodeSent || passwordLastUpdate) &&
+          (
+            <Fragment>
+              <AuthState.Password>
+                {({
+                  value,
+                  setValue: setNewPassword,
+                }) => (
+                  <Fragment>
+                    <div className="mb7 mt4">
+                      <InputPassword
+                        name="newPassword"
+                        value={value || ''}
+                        onChange={e => this.handleChange(e, setNewPassword)}
+                        onBlur={this.handleTouchField}
+                        type="password"
+                        label={intl.formatMessage({ id: 'personalData.newPassword' })}
+                      />
+                    </div>
+                    <div className="mb7">
+                      <PasswordValidator
+                        password={newPassword}
+                        onValidationChange={this.handleValidationChange}
+                      />
+                    </div>
+                  </Fragment>
+                )}
+              </AuthState.Password>
+              <AuthService.SetPassword
+                onSuccess={() => this.handleSetPasswordSuccess(onPasswordChange)}
+                onFailure={error => this.handleSetPasswordError(error)}
               >
                 {({
-                  loading: loadingStartSession,
-                  action: startSession,
+                  action: setPassword,
                 }) => {
                   return (
-                    <Button
-                      block
-                      size="small"
-                      onClick={() => startSession()}
-                      isLoading={isLoading || loadingStartSession}
-                      disabled={!shouldEnableSubmit}>
-                      {intl.formatMessage({ id: 'personalData.savePassword' })}
-                    </Button>
-                  )
-                }}
-              </AuthService.StartLoginSession>
-            )}}
-        </AuthService.SetPassword>
+                    <AuthService.StartLoginSession
+                      onSuccess={() => this.handleSubmit(setPassword)}
+                    >
+                      {({
+                        loading: loadingStartSession,
+                        action: startSession,
+                      }) => {
+                        return (
+                          <Button
+                            block
+                            size="small"
+                            onClick={() => startSession()}
+                            isLoading={isLoading || loadingStartSession}
+                            disabled={!shouldEnableSubmit}>
+                            {intl.formatMessage({ id: 'personalData.savePassword' })}
+                          </Button>
+                        )
+                      }}
+                    </AuthService.StartLoginSession>
+                  )}}
+              </AuthService.SetPassword>
+            </Fragment>
+          )
+        }
       </ContentBox>
     )
   }
