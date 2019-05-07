@@ -80,7 +80,6 @@ class PasswordFormBox extends Component {
   }
 
   toggleIsCodeSent = () => {
-    console.log('togle')
     this.setState(prevState => ({ isCodeSent: !prevState.isCodeSent }))
   }
 
