@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Logout button using anchor tag to keep compatibility with current customizations.
+- Logout button using anchor tag to keep compatibility with current customisations.
 
 ## [0.27.0] - 2019-05-07
 
