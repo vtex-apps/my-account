@@ -51,11 +51,11 @@ class MenuLinksList extends Component {
         <AuthService.RedirectLogout returnUrl="/">
             {({ action: logout }) => (
               <Fragment>
-                <div
+                <a
                   className={`vtex-account_menu-link f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-muted-1 b--transparent pointer`}
                   onClick={this.handleModalToggle}>
                   { intl.formatMessage({ id: 'pages.logout' }) }
-                </div>
+                </a>
 
                 <ModalDialog
                   centered
