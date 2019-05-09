@@ -4,7 +4,6 @@ import { graphql } from 'react-apollo'
 import { withRouter } from 'vtex.my-account-commons/Router'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import { ContentWrapper } from 'vtex.my-account-commons'
-import { AuthState } from 'vtex.react-vtexid'
 
 import ProfileLoading from '../loaders/ProfileLoading'
 import ProfileBox from '../Profile/ProfileBox'
@@ -41,7 +40,7 @@ class Profile extends Component {
   }
 
   handleFinishEditingPassword = () => {
-    this.setState({ isEditingPassword: false, showToast: true }, () => this.props.data.refetch())
+    this.setState({ isEditingPassword: false, showToast: true })
   }
 
   render() {
@@ -57,24 +56,12 @@ class Profile extends Component {
             </div>
             <div className="w-40-ns w-100-s">
               {isEditingPassword ? (
-                <AuthState email={profile.email} >
-                  {(<AuthState.Token>
-                    {({value, setValue}) => (
-                        <PasswordFormBox
-                          email={profile.email}
-                          passwordLastUpdate={profile.passwordLastUpdate}
-                          onPasswordChange={this.handleFinishEditingPassword}
-                          currentToken={value}
-                          setToken={setValue}
-                        />
-                      )
-                    }
-                  </AuthState.Token>)}
-                </AuthState>
+                <PasswordFormBox
+                  email={profile.email}
+                  onPasswordChange={this.handleFinishEditingPassword}
+                />
               ) : (
-                <PasswordBox
-                  passwordLastUpdate={profile.passwordLastUpdate}
-                  onEditClick={this.handleEditingPassword} />
+                <PasswordBox onEditClick={this.handleEditingPassword} />
               )}
             </div>
             {showToast && (
