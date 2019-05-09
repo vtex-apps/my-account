@@ -7,16 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.27.0] - 2019-05-07
-
-### Fixed
-
-- FormattedMessage to intl.formatMessage to keep customization
-
-### Changed
-
-- Manage password feature
-
 ## [0.26.1] - 2019-04-25
 
 ### Changed
