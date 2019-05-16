@@ -4,15 +4,18 @@ import { injectIntl, intlShape } from 'react-intl'
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
 
-const PasswordBox = ({ onEditClick, intl }) => {
+const PASSWORD_MASK = '*******************'
+
+const PasswordBox = ({ passwordLastUpdate, onEditClick, intl }) => {
+  const lowerButtonId = passwordLastUpdate? 'personalData.redefinePassword' : 'personalData.definePassword'
   return (
     <ContentBox
       shouldAllowGrowing
-      lowerButton={intl.formatMessage({ id: 'personalData.redefinePassword' })}
+      lowerButton={intl.formatMessage({ id: lowerButtonId })}
       onLowerButtonClick={onEditClick}>
       <div className="vtex-account__password-box w-100">
         <DataEntry label={intl.formatMessage({ id: 'personalData.password' })}>
-          *******************
+          {passwordLastUpdate? PASSWORD_MASK: intl.formatMessage({ id: 'personalData.noPassword'})}
         </DataEntry>
       </div>
     </ContentBox>

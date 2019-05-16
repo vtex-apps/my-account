@@ -14,5 +14,6 @@ query Profile @context(scope: "private") {
     corporateDocument
     stateRegistration
     isCorporate
+    passwordLastUpdate
   }
 }
