@@ -7,15 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.27.1] - 2019-05-08
+
+### Fixed
+
+- Logout button using anchor tag to keep compatibility with current customisations.
+
 ## [0.27.0] - 2019-05-07
 
 ### Fixed
 
-- FormattedMessage to intl.formatMessage to keep customization
+- FormattedMessage to intl.formatMessage to keep customization.
 
 ### Changed
 
-- Manage password feature
+- Manage password feature.
 
 ## [0.26.1] - 2019-04-25
 
@@ -27,7 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- `logout` feature
+- `logout` feature.
 
 ## [0.25.2] - 2019-04-08
 
@@ -39,7 +45,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- Instead of using `import react-router-dom` changed to `import vtex.my-account-commons`
+- Instead of using `import react-router-dom` changed to `import vtex.my-account-commons`.
 
 ## [0.25.0] - 2019-03-15
 
@@ -51,7 +57,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Italian translation
+- Italian translation.
 
 ## [0.23.2] - 2019-02-26
 
