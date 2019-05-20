@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Logout modal title french translation.
+
 ## [0.27.1] - 2019-05-08
 
 ### Fixed
