@@ -60,9 +60,10 @@ class AddressEditor extends Component {
     const { address } = this.state
     const intlId = isNew ? 'addresses.addAddress' : 'addresses.saveAddress'
 
-    const validGeoCoords = address.geoCoordinates &&
-    address.geoCoordinates.valid &&
-    address.geoCoordinates.geolocationAutoCompleted
+    const validGeoCoords =
+      address.geoCoordinates &&
+      address.geoCoordinates.valid &&
+      address.geoCoordinates.geolocationAutoCompleted
 
     const validPostalCode = isNew
       ? address.postalCode.valid && !address.postalCode.geolocationAutoCompleted
@@ -70,8 +71,8 @@ class AddressEditor extends Component {
 
     const hasAutoCompletedFields = Object.keys(address).some(
       fieldName =>
-        address && address[fieldName].geolocationAutoCompleted ||
-        address && address[fieldName].postalCodeAutoCompleted
+        (address && address[fieldName].geolocationAutoCompleted) ||
+        (address && address[fieldName].postalCodeAutoCompleted)
     )
 
     const shouldUseGoogleMaps =
@@ -85,12 +86,11 @@ class AddressEditor extends Component {
       value: code,
     }))
 
-    const country = shipsTo && shipsTo.length > 0 ? shipsTo[0] : address.country
+    const country =
+      shipsTo && shipsTo.length > 0 ? shipsTo[0] : address.country.value
 
     return (
-      <AddressRules
-        country={country}
-        shouldUseIOFetching>
+      <AddressRules country={country} shouldUseIOFetching>
         <AddressContainer
           address={address}
           Input={StyleguideInput}
