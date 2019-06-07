@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.27.3] - 2019-06-07
+
 ### Fix
 
 - Fix `country` fallback on add new address.
