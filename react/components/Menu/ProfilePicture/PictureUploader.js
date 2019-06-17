@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
-import { injectIntl, intlShape } from 'react-intl'
-import { compose } from 'recompose'
+import { FormattedMessage } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { Button, Spinner } from 'vtex.styleguide'
 import { GenericError } from 'vtex.my-account-commons'
@@ -44,7 +43,7 @@ class PictureUploader extends Component {
   }
 
   render() {
-    const { currentPicture, intl } = this.props
+    const { currentPicture } = this.props
     const { error, isLoading, finishedUpload } = this.state
     const boxText = finishedUpload
       ? 'upload.photoUpdated'
@@ -66,7 +65,7 @@ class PictureUploader extends Component {
               <Fragment>
                 <Spinner />
                 <div className="mt8 f5 tc gray">
-                  {intl.formatMessage({ id: 'upload.loading' })}
+                  <FormattedMessage id="upload.loading" />
                 </div>
               </Fragment>
             ) : (
@@ -75,7 +74,7 @@ class PictureUploader extends Component {
                   <PictureRenderer imagePath={currentPicture} />
                 </div>
                 <div className="mb6 f5 tc c-muted-1 lh-copy">
-                  {intl.formatMessage({ id: boxText })}
+                  <FormattedMessage id={boxText} />
                 </div>
                 {finishedUpload ? (
                   <Fragment>
@@ -84,11 +83,11 @@ class PictureUploader extends Component {
                         block
                         size="small"
                         onClick={this.handleCloseClick}>
-                        {intl.formatMessage({ id: 'upload.save' })}
+                        <FormattedMessage id="upload.save" />
                       </Button>
                     </div>
                     <Button block size="small" variation="secondary">
-                      {intl.formatMessage({ id: 'upload.chooseAgain' })}
+                      <FormattedMessage id="upload.chooseAgain" />
                     </Button>
                   </Fragment>
                 ) : (
@@ -96,12 +95,12 @@ class PictureUploader extends Component {
                     <div className="flex w-100 items-center mb6">
                       <div className="flex-auto bt b--muted-4" />
                       <span className="mh3 c-muted-1">
-                        {intl.formatMessage({ id: 'upload.or' })}
+                        <FormattedMessage if="upload.or" />
                       </span>
                       <div className="flex-auto bt b--muted-4" />
                     </div>
                     <Button block size="small">
-                      {intl.formatMessage({ id: 'upload.choosePhoto' })}
+                      <FormattedMessage id="upload.choosePhoto" />
                     </Button>
                   </Fragment>
                 )}
@@ -118,11 +117,8 @@ PictureUploader.propTypes = {
   updateProfilePicture: PropTypes.func.isRequired,
   currentPicture: PropTypes.string,
   onCloseClick: PropTypes.func.isRequired,
-  intl: intlShape.isRequired,
 }
 
-const enhance = compose(
-  graphql(UpdateProfilePicture, { name: 'updateProfilePicture' }),
-  injectIntl
+export default graphql(UpdateProfilePicture, { name: 'updateProfilePicture' })(
+  PictureUploader
 )
-export default enhance(PictureUploader)

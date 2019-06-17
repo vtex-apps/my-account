@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { intlShape, injectIntl } from 'react-intl'
-import { graphql, compose } from 'react-apollo'
+import { FormattedMessage } from 'react-intl'
+import { graphql } from 'react-apollo'
 import { Button } from 'vtex.styleguide'
 import DeleteAddress from '../../graphql/deleteAddress.gql'
 
@@ -25,7 +25,6 @@ class AddressDeleter extends Component {
   }
 
   render() {
-    const { intl } = this.props
     const { isLoading } = this.state
     return (
       <div className="mt5">
@@ -36,7 +35,7 @@ class AddressDeleter extends Component {
           size="small"
           onClick={this.handleDeleteClick}
           isLoading={isLoading}>
-          {intl.formatMessage({ id: 'addresses.deleteAddress' })}
+          <FormattedMessage id="addresses.deleteAddress" />
         </Button>
       </div>
     )
@@ -52,12 +51,6 @@ AddressDeleter.propTypes = {
   onError: PropTypes.func.isRequired,
   /** Id of the address to be deleted */
   addressId: PropTypes.string.isRequired,
-  /** React-intl utility */
-  intl: intlShape.isRequired,
 }
 
-const enhance = compose(
-  graphql(DeleteAddress, { name: 'deleteAddress' }),
-  injectIntl
-)
-export default enhance(AddressDeleter)
+export default graphql(DeleteAddress, { name: 'deleteAddress' })(AddressDeleter)

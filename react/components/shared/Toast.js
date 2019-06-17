@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { intlShape, injectIntl } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import { Alert } from 'vtex.styleguide'
 
 class Toast extends Component {
@@ -32,7 +32,7 @@ class Toast extends Component {
           isClosing ? 'fadeOutDown' : 'fadeInUp'
         }  slower bottom--1 fixed z-5 ma7-ns mb5-s left-2-ns w-100-s w-30-ns`}>
         <Alert type="success" onClose={onClose}>
-          {intl.formatMessage({ id: messageId })}
+          <FormattedMessage id="messageId" />
         </Alert>
       </div>
     )
@@ -47,7 +47,6 @@ Toast.propTypes = {
   autoClose: PropTypes.number,
   onClose: PropTypes.func.isRequired,
   messageId: PropTypes.string.isRequired,
-  intl: intlShape.isRequired,
 }
 
-export default injectIntl(Toast)
+export default Toast

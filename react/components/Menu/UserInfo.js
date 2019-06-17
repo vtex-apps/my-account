@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose, branch, withProps, renderComponent } from 'recompose'
-import { injectIntl, intlShape } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import UserInfoLoading from './UserInfoLoading'
 import GetGreeting from '../../graphql/getGreeting.gql'
 import UserPicture from './ProfilePicture/UserPicture'
@@ -16,30 +16,28 @@ const UserInfo = ({ profile, intl }) => {
       {profile.firstName ? (
         <div>
           <div className="vtex-account__user-greeting f5 fw3 c-muted-1 mb2 mt0-l mt2-m">
-            {intl.formatMessage({ id: 'userInfo.greeting' })},
+            <FormattedMessage id="userInfo.greeting" />,
           </div>
           <div className="vtex-account__user-name f4 c-on-base fw3 nowrap">
             {profile.firstName}!
           </div>
         </div>
       ) : (
-          <div className="vtex-account__user-greeting f4 fw3 nowrap">
-            {intl.formatMessage({ id: 'userInfo.greeting' })}!
+        <div className="vtex-account__user-greeting f4 fw3 nowrap">
+          <FormattedMessage id="userInfo.greeting" />!
         </div>
-        )}
+      )}
     </div>
   )
 }
 
 UserInfo.propTypes = {
   profile: PropTypes.object.isRequired,
-  intl: intlShape.isRequired,
 }
 
 const enhance = compose(
   graphql(GetGreeting),
   branch(({ data }) => data.profile == null, renderComponent(UserInfoLoading)),
-  withProps(({ data }) => ({ profile: data.profile })),
-  injectIntl
+  withProps(({ data }) => ({ profile: data.profile }))
 )
 export default enhance(UserInfo)
