@@ -1,5 +1,5 @@
 import React from 'react'
-import { injectIntl } from 'react-intl'
+import { injectIntl, defineMessages } from 'react-intl'
 import { AuthState } from 'vtex.react-vtexid'
 import { InputPassword } from 'vtex.styleguide'
 

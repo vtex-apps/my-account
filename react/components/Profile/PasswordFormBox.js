@@ -1,6 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { intlShape, injectIntl, FormattedMessage } from 'react-intl'
+import {
+  intlShape,
+  injectIntl,
+  FormattedMessage,
+  defineMessages,
+} from 'react-intl'
 import { Button, InputPassword, Input } from 'vtex.styleguide'
 import { AuthState, AuthService } from 'vtex.react-vtexid'
 import { GenericError } from 'vtex.my-account-commons'

@@ -1,5 +1,10 @@
 import React, { Component, Fragment } from 'react'
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
+import {
+  injectIntl,
+  intlShape,
+  FormattedMessage,
+  defineMessages,
+} from 'react-intl'
 import { ExtensionPoint } from 'render'
 import { AuthService } from 'vtex.react-vtexid'
 import { ModalDialog } from 'vtex.styleguide'
