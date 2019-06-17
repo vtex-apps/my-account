@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { intlShape, injectIntl } from 'react-intl'
+import { FormattedMessage, intlShape, injectIntl } from 'react-intl'
 import { Button } from 'vtex.styleguide'
 import { addValidation } from 'vtex.address-form/helpers'
 import {
@@ -128,7 +128,7 @@ class AddressEditor extends Component {
               <div className="pb7">
                 <AutoCompletedFields>
                   <a className="c-link pointer">
-                    {intl.formatMessage({ id: 'address-form.edit' })}
+                    <FormattedMessage id="address-form.edit" />
                   </a>
                 </AutoCompletedFields>
               </div>
@@ -144,7 +144,7 @@ class AddressEditor extends Component {
                   size="small"
                   isLoading={isLoading}
                   disabled={!(validGeoCoords || validPostalCode)}>
-                  {intl.formatMessage({ id: intlId })}
+                  <FormattedMessage id={intlId} />
                 </Button>
               )}
             </AddressSubmitter>

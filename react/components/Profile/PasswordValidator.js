@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { intlShape, injectIntl } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import { IconSuccess, IconFailure } from 'vtex.styleguide'
 
 class PasswordValidator extends Component {
@@ -51,26 +51,26 @@ class PasswordValidator extends Component {
     return (
       <div className="f6">
         <div className="mb5">
-          {intl.formatMessage({ id: 'personalData.yourPasswordMust' })}
+          <FormattedMessage id="personalData.yourPasswordMust" />
         </div>
         <div className="flex mb5">
           <div className="w-50 flex items-center">
             {getIcon(has8chars)}
-            <span>{intl.formatMessage({ id: 'personalData.8chars' })}</span>
+            <FormattedMessage id="personalData.8chars" />
           </div>
           <div className="w-50 flex items-center">
             {getIcon(hasLow)}
-            <span>{intl.formatMessage({ id: 'personalData.1lowLetter' })}</span>
+            <FormattedMessage id="personalData.1lowLetter" />
           </div>
         </div>
         <div className="flex">
           <div className="w-50 flex items-center">
             {getIcon(hasNumber)}
-            <span>{intl.formatMessage({ id: 'personalData.1number' })}</span>
+            <FormattedMessage id="personalData.1number" />
           </div>
           <div className="w-50 flex items-center">
             {getIcon(hasCaps)}
-            <span>{intl.formatMessage({ id: 'personalData.1upLetter' })}</span>
+            <FormattedMessage id="personalData.1upLetter" />
           </div>
         </div>
       </div>
@@ -81,7 +81,6 @@ class PasswordValidator extends Component {
 PasswordValidator.propTypes = {
   password: PropTypes.string.isRequired,
   onValidationChange: PropTypes.func.isRequired,
-  intl: intlShape.isRequired,
 }
 
-export default injectIntl(PasswordValidator)
+export default PasswordValidator

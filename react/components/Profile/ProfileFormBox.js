@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { intlShape, injectIntl } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
 import { ExtensionPoint } from 'render'
@@ -53,7 +53,9 @@ class ProfileFormBox extends Component {
         return
       }
 
-      const submit$ = this.submitterFunctions.map(submitter => submitter(profile))
+      const submit$ = this.submitterFunctions.map(submitter =>
+        submitter(profile)
+      )
       await Promise.all(submit$)
       this.setState({ isLoading: false })
       onDataSave()
@@ -66,7 +68,7 @@ class ProfileFormBox extends Component {
     return this.state.valid
   }
 
-  submit = (profile) => {
+  submit = profile => {
     const { updateProfile } = this.props
     return updateProfile({ variables: { profile } })
   }
@@ -88,7 +90,7 @@ class ProfileFormBox extends Component {
             shouldShowExtendedGenders={showGenders}
             SubmitButton={
               <Button type="submit" block size="small" isLoading={isLoading}>
-                {intl.formatMessage({ id: 'profile-form.save-changes' })}
+                <FormattedMessage id="profile-form.save-changes" />
               </Button>
             }>
             <ExtensionPoint
@@ -108,14 +110,12 @@ ProfileFormBox.propTypes = {
   updateProfile: PropTypes.func.isRequired,
   storeCountry: PropTypes.string.isRequired,
   settings: PropTypes.object.isRequired,
-  intl: intlShape.isRequired,
   onDataSave: PropTypes.func.isRequired,
   onError: PropTypes.func.isRequired,
 }
 
 const enhance = compose(
   graphql(UpdateProfile, { name: 'updateProfile' }),
-  injectIntl,
   withStoreCountry,
   withSettings
 )

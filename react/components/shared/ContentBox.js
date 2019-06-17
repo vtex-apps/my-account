@@ -38,7 +38,7 @@ ContentBox.propTypes = {
   children: PropTypes.any,
   maxWidthStep: PropTypes.number,
   shouldAllowGrowing: PropTypes.bool,
-  lowerButton: PropTypes.string,
+  lowerButton: PropTypes.any,
   onLowerButtonClick: PropTypes.func,
 }
 

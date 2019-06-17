@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { injectIntl, intlShape } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import { ExtensionPoint } from 'render'
 import { ProfileRules, ProfileSummary } from 'vtex.profile-form'
 import ContentBox from '../shared/ContentBox'
@@ -13,7 +13,7 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
   return (
     <ContentBox
       shouldAllowGrowing
-      lowerButton={intl.formatMessage({ id: 'commons.edit' })}
+      lowerButton={<FormattedMessage id="commons.edit" />}
       onLowerButtonClick={onEditClick}>
       <ProfileRules country={storeCountry} shouldUseIOFetching>
         <ProfileSummary profile={profile}>
@@ -44,9 +44,7 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
                   </DataEntry>
                 </div>
                 <div className="mb8 w-50-ns">
-                  <DataEntry label={lastName.label}>
-                    {lastName.value}
-                  </DataEntry>
+                  <DataEntry label={lastName.label}>{lastName.value}</DataEntry>
                 </div>
               </div>
               <div className="mb8">
@@ -137,7 +135,6 @@ ProfileBox.propTypes = {
   profile: PropTypes.object.isRequired,
   storeCountry: PropTypes.string.isRequired,
   onEditClick: PropTypes.func,
-  intl: intlShape.isRequired,
 }
 
-export default withStoreCountry(injectIntl(ProfileBox))
+export default withStoreCountry(ProfileBox)

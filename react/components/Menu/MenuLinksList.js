@@ -15,9 +15,12 @@ const links = [
     path: '/addresses',
   },
 ]
+const messages = defineMessages({
+  logout: { id: 'pages.logout', defaultMessage: '' },
+  cancel: { id: 'logoutModal.cancel', defaultMessage: '' },
+})
 
 class MenuLinksList extends Component {
-
   state = { isModalOpen: false }
 
   handleModalToggle = () => {
@@ -49,33 +52,32 @@ class MenuLinksList extends Component {
           }
         />
         <AuthService.RedirectLogout returnUrl="/">
-            {({ action: logout }) => (
-              <Fragment>
-                <a
-                  className={`vtex-account_menu-link f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-muted-1 b--transparent pointer`}
-                  onClick={this.handleModalToggle}>
-                  { intl.formatMessage({ id: 'pages.logout' }) }
-                </a>
+          {({ action: logout }) => (
+            <Fragment>
+              <a
+                className={`vtex-account_menu-link f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-muted-1 b--transparent pointer`}
+                onClick={this.handleModalToggle}>
+                <FormattedMessage id="pages.logout" />
+              </a>
 
-                <ModalDialog
-                  centered
-                  confirmation={{
-                    onClick: logout,
-                    label: intl.formatMessage({ id: "pages.logout" }),
-                  }}
-                  cancelation={{
-                    onClick: this.handleModalToggle,
-                    label: intl.formatMessage({ id: "logoutModal.cancel" }),
-                  }}
-                  isOpen={this.state.isModalOpen}
-                  onClose={this.handleModalToggle}
-                  >
-                  <span className="t-heading-5 pa6" >
-                    <FormattedMessage id="logoutModal.title" />
-                  </span>
-                </ModalDialog>
-              </Fragment>
-            )}
+              <ModalDialog
+                centered
+                confirmation={{
+                  onClick: logout,
+                  label: intl.formatMessage(messages.logout),
+                }}
+                cancelation={{
+                  onClick: this.handleModalToggle,
+                  label: intl.formatMessage(messages.cancel),
+                }}
+                isOpen={this.state.isModalOpen}
+                onClose={this.handleModalToggle}>
+                <span className="t-heading-5 pa6">
+                  <FormattedMessage id="logoutModal.title" />
+                </span>
+              </ModalDialog>
+            </Fragment>
+          )}
         </AuthService.RedirectLogout>
       </nav>
     )
