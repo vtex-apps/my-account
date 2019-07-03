@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
 import { AddressShape } from 'vtex.address-form/shapes'
+import { AddressRules } from 'vtex.address-form/components'
 import ContentBox from '../shared/ContentBox'
 import emptyAddress from './emptyAddress'
 import AddressEditor from './AddressEditor'
@@ -54,6 +55,7 @@ class AddressFormBox extends Component {
   }
 
   handleSubmit = (valid, address) => {
+    debugger
     if (!valid) return
 
     const {
@@ -89,19 +91,28 @@ class AddressFormBox extends Component {
 
     if (!baseAddress) return null
 
-    const address = this.prepareAddress(baseAddress)
+    const address = {
+      ...this.prepareAddress(baseAddress),
+      country:
+        shipsTo && shipsTo.length > 0 ? shipsTo[0] : baseAddress.country.value,
+    }
 
     const isLoading = false
 
+    const country =
+      shipsTo && shipsTo.length > 0 ? shipsTo[0] : address.country.value
+
     return (
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
-        <AddressEditor
-          address={address}
-          isNew={isNew}
-          isLoading={isLoading}
-          onSubmit={this.handleSubmit}
-          shipsTo={shipsTo}
-        />
+        <AddressRules country={country} shouldUseIOFetching>
+          <AddressEditor
+            address={address}
+            isNew={isNew}
+            isLoading={isLoading}
+            onSubmit={this.handleSubmit}
+            shipsTo={shipsTo}
+          />
+        </AddressRules>
         {!isNew && (
           <AddressDeleter
             addressId={address.addressId}

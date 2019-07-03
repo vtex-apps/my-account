@@ -1,0 +1,5 @@
+query StoreConfigs @context(scope: "private") {
+  storeConfigs {
+    googleMapsApiKey
+  }
+}

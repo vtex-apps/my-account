@@ -3,7 +3,7 @@ export default {
   addressType: 'residential',
   city: null,
   complement: null,
-  country: 'BRA',
+  country: 'ROU',
   geoCoordinates: [],
   neighborhood: null,
   number: null,
