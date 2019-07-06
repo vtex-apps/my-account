@@ -24,14 +24,18 @@ class AppRouter extends Component {
     // Possible fix, use this version of `history`:
     // https://github.com/ReactTraining/history/pull/578
     this.baseElement = document.querySelector('base')
-    this.baseHref = this.baseElement.href
-    this.baseElement.removeAttribute('href')
+    if (this.baseElement) {
+      this.baseHref = this.baseElement.href
+      this.baseElement.removeAttribute('href')
+    }
   }
 
   handleDefaultPath = path => {
     this.setState({ defaultPath: path }, () => {
       // From the workaround above
-      this.baseElement.setAttribute('href', this.baseHref)
+      if (this.baseElement) {
+        this.baseElement.setAttribute('href', this.baseHref)
+      }
     })
   }
 
