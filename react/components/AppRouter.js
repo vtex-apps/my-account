@@ -32,7 +32,6 @@ class AppRouter extends Component {
     this.setState({ defaultPath: path }, () => {
       // From the workaround above
       this.baseElement.setAttribute('href', this.baseHref)
-      debugger
     })
   }
 
@@ -74,7 +73,7 @@ class AppRouter extends Component {
                         shouldRedirectOrder ? '/orders' : this.state.defaultPath
                       }
                     />
-                    <ExtensionPoint id="my-account-pages" />
+                    <ExtensionPoint id="routes" />
                   </Switch>
                 ) : (
                   <Fragment>
