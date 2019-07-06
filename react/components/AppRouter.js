@@ -1,5 +1,10 @@
 import React, { Component, Fragment } from 'react'
-import { Route, Switch, Redirect, HashRouter } from 'vtex.my-account-commons/Router'
+import {
+  Route,
+  Switch,
+  Redirect,
+  HashRouter,
+} from 'vtex.my-account-commons/Router'
 import Media from 'react-media'
 import { ExtensionPoint } from 'render'
 import Menu from './Menu'
@@ -12,8 +17,23 @@ import AddressEdit from './pages/AddressEdit'
 class AppRouter extends Component {
   state = { defaultPath: null }
 
-  handleDefaultPath = (path) => {
-    this.setState({ defaultPath: path })
+  constructor(props) {
+    super(props)
+
+    // Workaround for bug in the package `history`
+    // Possible fix, use this version of `history`:
+    // https://github.com/ReactTraining/history/pull/578
+    this.baseElement = document.querySelector('base')
+    this.baseHref = this.baseElement.href
+    this.baseElement.removeAttribute('href')
+  }
+
+  handleDefaultPath = path => {
+    this.setState({ defaultPath: path }, () => {
+      // From the workaround above
+      this.baseElement.setAttribute('href', this.baseHref)
+      debugger
+    })
   }
 
   render() {
@@ -37,7 +57,8 @@ class AppRouter extends Component {
       <div className="w-100 mw9 pv7-m pv9-l flex">
         <ExtensionPoint
           id="defaultRoute"
-          onSetDefaultPath={this.handleDefaultPath} />
+          onSetDefaultPath={this.handleDefaultPath}
+        />
         {this.state.defaultPath && (
           <HashRouter>
             <Media query="(max-width: 45em)">
@@ -49,9 +70,11 @@ class AppRouter extends Component {
                     <Redirect
                       exact
                       from="/"
-                      to={shouldRedirectOrder ? '/orders' : this.state.defaultPath}
+                      to={
+                        shouldRedirectOrder ? '/orders' : this.state.defaultPath
+                      }
                     />
-                    <ExtensionPoint id="routes" />
+                    <ExtensionPoint id="my-account-pages" />
                   </Switch>
                 ) : (
                   <Fragment>
@@ -61,7 +84,11 @@ class AppRouter extends Component {
                       <Redirect
                         exact
                         from="/"
-                        to={shouldRedirectOrder ? '/orders' : this.state.defaultPath}
+                        to={
+                          shouldRedirectOrder
+                            ? '/orders'
+                            : this.state.defaultPath
+                        }
                       />
                       <ExtensionPoint id="routes" />
                     </Switch>
@@ -86,8 +113,8 @@ AppRouter.getSchema = () => {
         title: 'Default path',
         type: 'string',
         default: '/profile',
-      }
-    }
+      },
+    },
   }
 }
 
