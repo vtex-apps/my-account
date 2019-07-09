@@ -56,7 +56,7 @@ class PasswordValidator extends Component {
         <div className="flex mb5">
           <div className="w-50 flex items-center">
             {getIcon(has8chars)}
-            <FormattedMessage id="personalData.8chars" />
+            <FormattedMessage id="personalData.8chars" />
           </div>
           <div className="w-50 flex items-center">
             {getIcon(hasLow)}

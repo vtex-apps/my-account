@@ -95,7 +95,7 @@ class PictureUploader extends Component {
                     <div className="flex w-100 items-center mb6">
                       <div className="flex-auto bt b--muted-4" />
                       <span className="mh3 c-muted-1">
-                        <FormattedMessage if="upload.or" />
+                        <FormattedMessage id="upload.or" />
                       </span>
                       <div className="flex-auto bt b--muted-4" />
                     </div>

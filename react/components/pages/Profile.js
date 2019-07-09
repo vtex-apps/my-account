@@ -41,7 +41,9 @@ class Profile extends Component {
   }
 
   handleFinishEditingPassword = () => {
-    this.setState({ isEditingPassword: false, showToast: true }, () => this.props.data.refetch())
+    this.setState({ isEditingPassword: false, showToast: true }, () =>
+      this.props.data.refetch()
+    )
   }
 
   render() {
@@ -57,9 +59,10 @@ class Profile extends Component {
             </div>
             <div className="w-40-ns w-100-s">
               {isEditingPassword ? (
-                <AuthState email={profile.email} >
-                  {(<AuthState.Token>
-                    {({value, setValue}) => (
+                <AuthState email={profile.email}>
+                  {
+                    <AuthState.Token>
+                      {({ value, setValue }) => (
                         <PasswordFormBox
                           email={profile.email}
                           passwordLastUpdate={profile.passwordLastUpdate}
@@ -67,14 +70,15 @@ class Profile extends Component {
                           currentToken={value}
                           setToken={setValue}
                         />
-                      )
-                    }
-                  </AuthState.Token>)}
+                      )}
+                    </AuthState.Token>
+                  }
                 </AuthState>
               ) : (
                 <PasswordBox
                   passwordLastUpdate={profile.passwordLastUpdate}
-                  onEditClick={this.handleEditingPassword} />
+                  onEditClick={this.handleEditingPassword}
+                />
               )}
             </div>
             {showToast && (
