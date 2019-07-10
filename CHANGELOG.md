@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.27.7] - 2019-07-10
+
 ### Fixed
 
 - Typos in props being passed to **FormattedMessage** component and `intl.formatMessage` function.
