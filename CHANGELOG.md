@@ -7,9 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Typos in props being passed to **FormattedMessage** component and `intl.formatMessage` function.
+
 ## [0.27.6] - 2019-07-06
 
+### Fixed
+
+- Edge case for when there is no base tag in AppRouter.
+
 ## [0.27.5] - 2019-07-06
+
+### Added
+
+- HTML base tag handling in AppRouter.
 
 ## [0.27.4] - 2019-06-17
 

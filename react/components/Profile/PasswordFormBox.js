@@ -160,9 +160,7 @@ class PasswordFormBox extends Component {
                       onChange={e => this.handleChange(e, setNewPassword)}
                       onBlur={this.handleTouchField}
                       type="password"
-                      label={intl.formatMessage({
-                        id: messages.newPassword,
-                      })}
+                      label={intl.formatMessage(messages.newPassword)}
                     />
                   </div>
                   <div className="mb7">
