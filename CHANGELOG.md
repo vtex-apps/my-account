@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fix
+
+- Toast content not being correctly localized.
+
 ## [0.27.7] - 2019-07-10
 
 ### Fixed
