@@ -10,10 +10,8 @@ import {
   PostalCodeGetter,
   AddressForm,
   AutoCompletedFields,
-  AddressRules,
   AddressSubmitter,
   GoogleMapsContainer,
-  Map,
 } from 'vtex.address-form/components'
 import { StyleguideInput, GeolocationInput } from 'vtex.address-form/inputs'
 import { AddressShape } from 'vtex.address-form/shapes'
@@ -73,6 +71,8 @@ class AddressEditor extends Component {
       ? address.postalCode.valid && !address.postalCode.geolocationAutoCompleted
       : address.postalCode.value !== null
 
+    debugger
+
     const hasAutoCompletedFields = Object.keys(address).some(
       fieldName =>
         (address && address[fieldName].geolocationAutoCompleted) ||
@@ -93,7 +93,7 @@ class AddressEditor extends Component {
         address={address}
         Input={StyleguideInput}
         onChangeAddress={this.handleAddressChange}
-        rules={rules.geolocation}
+        rules={mapsAPIKey && rules.geolocation}
         autoCompletePostalCode>
         <Fragment>
           <CountrySelector shipsTo={shipCountries} />
@@ -111,9 +111,9 @@ class AddressEditor extends Component {
             </GoogleMapsContainer>
           )}
 
-          {/* {!validGeoCoords && !mapsAPIKey && <PostalCodeGetter />} */}
+          {!validGeoCoords && !mapsAPIKey && <PostalCodeGetter />}
 
-          {hasAutoCompletedFields && !mapsAPIKey && (
+          {hasAutoCompletedFields && (
             <div className="pb7">
               <AutoCompletedFields>
                 <a className="c-link pointer">
@@ -123,7 +123,13 @@ class AddressEditor extends Component {
             </div>
           )}
 
-          {/* {(validGeoCoords || validPostalCode) && <AddressForm />} */}
+          {(validGeoCoords ||
+            validPostalCode ||
+            (rules.geolocation &&
+              rules.geolocation.postalCode &&
+              !rules.geolocation.postalCode.isRequired)) && (
+            <AddressForm rules={mapsAPIKey && rules.geolocation} />
+          )}
 
           <AddressSubmitter onSubmit={onSubmit} rules={rules.geolocation}>
             {handleSubmit => (

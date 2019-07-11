@@ -97,8 +97,6 @@ class AddressFormBox extends Component {
         shipsTo && shipsTo.length > 0 ? shipsTo[0] : baseAddress.country.value,
     }
 
-    const isLoading = false
-
     const country =
       shipsTo && shipsTo.length > 0 ? shipsTo[0] : address.country.value
 
@@ -108,7 +106,7 @@ class AddressFormBox extends Component {
           <AddressEditor
             address={address}
             isNew={isNew}
-            isLoading={isLoading}
+            isLoading={this.state.isLoading}
             onSubmit={this.handleSubmit}
             shipsTo={shipsTo}
           />
