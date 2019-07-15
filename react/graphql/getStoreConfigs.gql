@@ -1,4 +1,4 @@
-query StoreConfigs @context(scope: "private") {
+query StoreConfigs @context(provider: "vtex.store-graphql") {
   storeConfigs {
     googleMapsApiKey
   }

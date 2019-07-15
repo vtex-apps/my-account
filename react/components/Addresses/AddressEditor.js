@@ -131,6 +131,7 @@ class AddressEditor extends Component {
           {(validGeoCoords || validPostalCode || !isNew) && (
             <AddressForm
               address={address}
+              Input={StyleguideInput}
               onChangeAddress={this.handleAddressChange}
               notApplicableLabel={intl.formatMessage({
                 id: 'addresses.notApplicable',
