@@ -95,8 +95,7 @@ class AddressFormBox extends Component {
 
     const address = {
       ...this.prepareAddress(baseAddress),
-      country:
-        shipsTo && shipsTo.length > 0 ? shipsTo[0] : baseAddress.country.value,
+      country: country,
     }
 
     return (
