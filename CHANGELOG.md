@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- GeolocationInput to automatically appear when store configurations are settled.
+
 ## [0.27.8] - 2019-07-11
 
 ### Fix

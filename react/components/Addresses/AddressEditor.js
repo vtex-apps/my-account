@@ -12,6 +12,7 @@ import {
   AutoCompletedFields,
   AddressSubmitter,
   GoogleMapsContainer,
+  Map,
 } from 'vtex.address-form/components'
 import { StyleguideInput, GeolocationInput } from 'vtex.address-form/inputs'
 import { AddressShape } from 'vtex.address-form/shapes'
@@ -25,18 +26,14 @@ class AddressEditor extends Component {
     super(props)
 
     this.state = {
-      address: {
-        ...addValidation(props.address),
-      },
+      address: addValidation(props.address),
     }
   }
 
   componentDidMount() {
     const { address } = this.props
     this.setState({
-      address: {
-        ...addValidation(address),
-      },
+      address: addValidation(address),
     })
   }
 
@@ -104,6 +101,16 @@ class AddressEditor extends Component {
                     loadingGoogle={loading}
                     googleMaps={googleMaps}
                   />
+
+                  {validGeoCoords && (
+                    <Map
+                      loadingGoogle={loading}
+                      googleMaps={googleMaps}
+                      mapProps={{
+                        className: 'mb7 br2 h4',
+                      }}
+                    />
+                  )}
                 </Fragment>
               )}
             </GoogleMapsContainer>
