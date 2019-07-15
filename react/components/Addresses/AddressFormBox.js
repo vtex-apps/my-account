@@ -5,7 +5,7 @@ import { compose } from 'recompose'
 import { AddressShape } from 'vtex.address-form/shapes'
 import { AddressRules } from 'vtex.address-form/components'
 import ContentBox from '../shared/ContentBox'
-import emptyAddress from './emptyAddress'
+import getEmptyAddress from './emptyAddress'
 import AddressEditor from './AddressEditor'
 import AddressDeleter from './AddressDeleter'
 import CREATE_ADDRESS from '../../graphql/createAddress.gql'
@@ -86,6 +86,9 @@ class AddressFormBox extends Component {
 
   render() {
     const { onAddressDeleted, isNew, shipsTo, onError } = this.props
+    const country =
+      shipsTo && shipsTo.length > 0 ? shipsTo[0] : address.country.value
+    const emptyAddress = getEmptyAddress(country)
     const baseAddress = isNew ? emptyAddress : this.props.address
 
     if (!baseAddress) return null
@@ -95,9 +98,6 @@ class AddressFormBox extends Component {
       country:
         shipsTo && shipsTo.length > 0 ? shipsTo[0] : baseAddress.country.value,
     }
-
-    const country =
-      shipsTo && shipsTo.length > 0 ? shipsTo[0] : address.country.value
 
     return (
       <ContentBox shouldAllowGrowing maxWidthStep={6}>

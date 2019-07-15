@@ -1,16 +1,18 @@
-export default {
-  addressId: '0',
-  addressType: 'residential',
-  city: null,
-  complement: null,
-  country: 'ROU',
-  geoCoordinates: [],
-  neighborhood: null,
-  number: null,
-  postalCode: null,
-  receiverName: null,
-  reference: null,
-  state: null,
-  street: null,
-  addressQuery: null,
+export default function getEmptyAddress(country) {
+  return {
+    addressId: '0',
+    addressType: 'residential',
+    city: null,
+    complement: null,
+    country: country,
+    geoCoordinates: [],
+    neighborhood: null,
+    number: null,
+    postalCode: null,
+    receiverName: null,
+    reference: null,
+    state: null,
+    street: null,
+    addressQuery: null,
+  }
 }
