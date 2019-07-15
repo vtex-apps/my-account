@@ -41,6 +41,7 @@
   "addresses.saveAddress": "Salvați adresa",
   "addresses.deleteAddress": "Ștergeți adresa",
   "addresses.notFound": "Încă nu aveți adrese!",
+  "addresses.notApplicable": "N/A",
   "commons.edit": "Editați",
   "alert.addressNotFound": "Adresa selectată nu a fost găsită.",
   "alert.success": "Informațiile dvs. au fost salvate cu succes.",

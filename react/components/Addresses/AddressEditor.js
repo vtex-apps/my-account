@@ -71,8 +71,6 @@ class AddressEditor extends Component {
       ? address.postalCode.valid && !address.postalCode.geolocationAutoCompleted
       : address.postalCode.value !== null
 
-    debugger
-
     const hasAutoCompletedFields = Object.keys(address).some(
       fieldName =>
         (address && address[fieldName].geolocationAutoCompleted) ||
@@ -111,7 +109,7 @@ class AddressEditor extends Component {
             </GoogleMapsContainer>
           )}
 
-          {!validGeoCoords && !mapsAPIKey && <PostalCodeGetter />}
+          {!validGeoCoords && <PostalCodeGetter />}
 
           {hasAutoCompletedFields && (
             <div className="pb7">
@@ -123,12 +121,14 @@ class AddressEditor extends Component {
             </div>
           )}
 
-          {(validGeoCoords ||
-            validPostalCode ||
-            (rules.geolocation &&
-              rules.geolocation.postalCode &&
-              !rules.geolocation.postalCode.isRequired)) && (
-            <AddressForm rules={mapsAPIKey && rules.geolocation} />
+          {(validGeoCoords || validPostalCode || !isNew) && (
+            <AddressForm
+              address={address}
+              onChangeAddress={this.handleAddressChange}
+              notApplicableLabel={intl.formatMessage({
+                id: 'addresses.notApplicable',
+              })}
+            />
           )}
 
           <AddressSubmitter onSubmit={onSubmit} rules={rules.geolocation}>
@@ -138,7 +138,7 @@ class AddressEditor extends Component {
                 block
                 size="small"
                 isLoading={isLoading}
-                disabled={!(validGeoCoords || validPostalCode)}>
+                disabled={!(validGeoCoords || validPostalCode || !isNew)}>
                 <FormattedMessage id={intlId} />
               </Button>
             )}

@@ -55,7 +55,6 @@ class AddressFormBox extends Component {
   }
 
   handleSubmit = (valid, address) => {
-    debugger
     if (!valid) return
 
     const {
