@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- GeolocationInput to be rendered based on geolocation flag
+
 ## [0.27.9] - 2019-07-16
 
 ### Fixed
@@ -15,7 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.27.8] - 2019-07-11
 
-### Fix
+### Fixed
 
 - Toast content not being correctly localized.
 
@@ -39,13 +43,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.27.4] - 2019-06-17
 
-### Fix
+### Fixed
 
 - intl.formatMessage to FormattedMessage.
 
 ## [0.27.3] - 2019-06-07
 
-### Fix
+### Fixed
 
 - Fix `country` fallback on add new address.
 
