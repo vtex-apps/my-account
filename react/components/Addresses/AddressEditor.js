@@ -89,7 +89,6 @@ class AddressEditor extends Component {
 
     const currentRules = isGeolocation && mapsAPIKey && rules.geolocation
 
-    debugger
     return (
       <AddressContainer
         address={address}
