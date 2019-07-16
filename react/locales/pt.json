@@ -41,6 +41,7 @@
   "addresses.saveAddress": "Salvar endereço",
   "addresses.deleteAddress": "Remover endereço",
   "addresses.notFound": "Você não tem nenhum endereço cadastrado!",
+  "addresses.notApplicable": "S/N",
   "commons.edit": "Editar",
   "alert.addressNotFound": "O endereço especificado não foi encontrado.",
   "alert.success": "Suas informações foram salvas com sucesso.",

@@ -1,26 +1,25 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { graphql } from 'react-apollo'
 import { FormattedMessage, intlShape, injectIntl } from 'react-intl'
 import { Button } from 'vtex.styleguide'
-import { addValidation } from 'vtex.address-form/helpers'
+import { addValidation, injectRules } from 'vtex.address-form/helpers'
 import {
   AddressContainer,
   CountrySelector,
   PostalCodeGetter,
   AddressForm,
   AutoCompletedFields,
-  AddressRules,
   AddressSubmitter,
-  GeolocationInput,
   GoogleMapsContainer,
   Map,
 } from 'vtex.address-form/components'
-import { StyleguideInput } from 'vtex.address-form/inputs'
+import { StyleguideInput, GeolocationInput } from 'vtex.address-form/inputs'
 import { AddressShape } from 'vtex.address-form/shapes'
 import { compose } from 'recompose'
 
-import { withSettings } from '../shared/withSettings'
 import { withLocale } from '../shared/withLocale'
+import GET_STORE_CONFIGS from '../../graphql/getStoreConfigs.gql'
 
 class AddressEditor extends Component {
   constructor(props) {
@@ -51,11 +50,11 @@ class AddressEditor extends Component {
     const {
       isNew,
       isLoading,
-      settings,
       locale,
       shipsTo,
       onSubmit,
       intl,
+      rules,
     } = this.props
     const { address } = this.state
     const intlId = isNew ? 'addresses.addAddress' : 'addresses.saveAddress'
@@ -75,82 +74,85 @@ class AddressEditor extends Component {
         (address && address[fieldName].postalCodeAutoCompleted)
     )
 
-    const shouldUseGoogleMaps =
-      settings && settings.addresses && settings.addresses.useMap
-
     const mapsAPIKey =
-      settings && settings.addresses && settings.addresses.apiKey
+      this.props.getStoreConfigs.storeConfigs &&
+      this.props.getStoreConfigs.storeConfigs.googleMapsApiKey
 
     const shipCountries = shipsTo.map(code => ({
       label: intl.formatMessage({ id: `country.${code}` }),
       value: code,
     }))
 
-    const country =
-      shipsTo && shipsTo.length > 0 ? shipsTo[0] : address.country.value
-
     return (
-      <AddressRules country={country} shouldUseIOFetching>
-        <AddressContainer
-          address={address}
-          Input={StyleguideInput}
-          onChangeAddress={this.handleAddressChange}
-          autoCompletePostalCode>
-          <Fragment>
-            <CountrySelector shipsTo={shipCountries} />
+      <AddressContainer
+        address={address}
+        Input={StyleguideInput}
+        onChangeAddress={this.handleAddressChange}
+        rules={mapsAPIKey && rules.geolocation}
+        autoCompletePostalCode>
+        <Fragment>
+          <CountrySelector shipsTo={shipCountries} />
 
-            {isNew && shouldUseGoogleMaps && !validPostalCode && (
-              <GoogleMapsContainer apiKey={mapsAPIKey} locale={locale}>
-                {({ loading, googleMaps }) => (
-                  <Fragment>
-                    <GeolocationInput
+          {isNew && mapsAPIKey && !validPostalCode && (
+            <GoogleMapsContainer apiKey={mapsAPIKey} locale={locale}>
+              {({ loading, googleMaps }) => (
+                <Fragment>
+                  <GeolocationInput
+                    loadingGoogle={loading}
+                    googleMaps={googleMaps}
+                  />
+
+                  {validGeoCoords && (
+                    <Map
                       loadingGoogle={loading}
                       googleMaps={googleMaps}
+                      mapProps={{
+                        className: 'mb7 br2 h4',
+                      }}
                     />
-
-                    {validGeoCoords && (
-                      <Map
-                        loadingGoogle={loading}
-                        googleMaps={googleMaps}
-                        mapProps={{
-                          className: 'mb7 br2 h4',
-                        }}
-                      />
-                    )}
-                  </Fragment>
-                )}
-              </GoogleMapsContainer>
-            )}
-
-            {!validGeoCoords && <PostalCodeGetter />}
-
-            {hasAutoCompletedFields && (
-              <div className="pb7">
-                <AutoCompletedFields>
-                  <a className="c-link pointer">
-                    <FormattedMessage id="address-form.edit" />
-                  </a>
-                </AutoCompletedFields>
-              </div>
-            )}
-
-            {(validGeoCoords || validPostalCode) && <AddressForm />}
-
-            <AddressSubmitter onSubmit={onSubmit}>
-              {handleSubmit => (
-                <Button
-                  onClick={handleSubmit}
-                  block
-                  size="small"
-                  isLoading={isLoading}
-                  disabled={!(validGeoCoords || validPostalCode)}>
-                  <FormattedMessage id={intlId} />
-                </Button>
+                  )}
+                </Fragment>
               )}
-            </AddressSubmitter>
-          </Fragment>
-        </AddressContainer>
-      </AddressRules>
+            </GoogleMapsContainer>
+          )}
+
+          {!validGeoCoords && <PostalCodeGetter />}
+
+          {hasAutoCompletedFields && (
+            <div className="pb7">
+              <AutoCompletedFields>
+                <a className="c-link pointer">
+                  <FormattedMessage id="address-form.edit" />
+                </a>
+              </AutoCompletedFields>
+            </div>
+          )}
+
+          {(validGeoCoords || validPostalCode || !isNew) && (
+            <AddressForm
+              address={address}
+              Input={StyleguideInput}
+              onChangeAddress={this.handleAddressChange}
+              notApplicableLabel={intl.formatMessage({
+                id: 'addresses.notApplicable',
+              })}
+            />
+          )}
+
+          <AddressSubmitter onSubmit={onSubmit} rules={rules.geolocation}>
+            {handleSubmit => (
+              <Button
+                onClick={handleSubmit}
+                block
+                size="small"
+                isLoading={isLoading}
+                disabled={!(validGeoCoords || validPostalCode || !isNew)}>
+                <FormattedMessage id={intlId} />
+              </Button>
+            )}
+          </AddressSubmitter>
+        </Fragment>
+      </AddressContainer>
     )
   }
 }
@@ -160,14 +162,14 @@ AddressEditor.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   address: AddressShape,
   shipsTo: PropTypes.array.isRequired,
-  settings: PropTypes.object.isRequired,
   locale: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
   intl: intlShape.isRequired,
 }
 const enhance = compose(
-  withSettings,
+  injectRules,
   withLocale,
-  injectIntl
+  injectIntl,
+  graphql(GET_STORE_CONFIGS, { name: 'getStoreConfigs' })
 )
 export default enhance(AddressEditor)

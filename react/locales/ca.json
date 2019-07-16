@@ -41,6 +41,7 @@
   "addresses.saveAddress": "Guardar adreça",
   "addresses.deleteAddress": "Esborrar adreça",
   "addresses.notFound": "No tens cap adreça guardada",
+  "addresses.notApplicable": "S/N",
   "commons.edit": "Editar",
   "alert.addressNotFound": "L'adreça seleccionada no s'ha trobat.",
   "alert.success": "La seva informació s'ha guardat amb èxit.",

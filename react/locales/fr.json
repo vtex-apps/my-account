@@ -41,6 +41,7 @@
   "addresses.saveAddress": "Sauvegarder addresse",
   "addresses.deleteAddress": "Supprimer addresse",
   "addresses.notFound": "Vous n'avez aucune adresse enregistré !",
+  "addresses.notApplicable": "S/N",
   "commons.edit": "Modifier",
   "alert.addressNotFound": "L'adresse sélectionnée n'a pas été trouvée.",
   "alert.success": "Vos informations ont été enregistrées avec succès.",

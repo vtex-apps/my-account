@@ -45,6 +45,7 @@
   "addresses.saveAddress": "Salva l'indirizzo",
   "addresses.deleteAddress": "Elimina l'indirizzo",
   "addresses.notFound": "Non hai ancora nessun indirizzo!",
+  "addresses.notApplicable": "N/N",
 
   "commons.edit": "Modifica",
 

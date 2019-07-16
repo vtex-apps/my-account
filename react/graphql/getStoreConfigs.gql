@@ -1,0 +1,5 @@
+query StoreConfigs @context(provider: "vtex.store-graphql") {
+  storeConfigs {
+    googleMapsApiKey
+  }
+}
