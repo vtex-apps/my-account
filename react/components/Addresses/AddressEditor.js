@@ -78,22 +78,29 @@ class AddressEditor extends Component {
       this.props.getStoreConfigs.storeConfigs &&
       this.props.getStoreConfigs.storeConfigs.googleMapsApiKey
 
+    const isGeolocation =
+      this.props.getStoreConfigs.storeConfigs &&
+      this.props.getStoreConfigs.storeConfigs.geolocation
+
     const shipCountries = shipsTo.map(code => ({
       label: intl.formatMessage({ id: `country.${code}` }),
       value: code,
     }))
 
+    const currentRules = isGeolocation && mapsAPIKey && rules.geolocation
+
+    debugger
     return (
       <AddressContainer
         address={address}
         Input={StyleguideInput}
         onChangeAddress={this.handleAddressChange}
-        rules={mapsAPIKey && rules.geolocation}
+        rules={currentRules}
         autoCompletePostalCode>
         <Fragment>
           <CountrySelector shipsTo={shipCountries} />
 
-          {isNew && mapsAPIKey && !validPostalCode && (
+          {isNew && isGeolocation && !validPostalCode && (
             <GoogleMapsContainer apiKey={mapsAPIKey} locale={locale}>
               {({ loading, googleMaps }) => (
                 <Fragment>
@@ -139,7 +146,7 @@ class AddressEditor extends Component {
             />
           )}
 
-          <AddressSubmitter onSubmit={onSubmit} rules={rules.geolocation}>
+          <AddressSubmitter onSubmit={onSubmit} rules={currentRules}>
             {handleSubmit => (
               <Button
                 onClick={handleSubmit}
