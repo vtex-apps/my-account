@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Use "Logout" in button translation instead of "Leave".
+
 ## [0.27.10] - 2019-07-16
 
 ### Added
