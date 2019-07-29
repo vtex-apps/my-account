@@ -17,26 +17,8 @@ import AddressEdit from './pages/AddressEdit'
 class AppRouter extends Component {
   state = { defaultPath: null }
 
-  constructor(props) {
-    super(props)
-
-    // Workaround for bug in the package `history`
-    // Possible fix, use this version of `history`:
-    // https://github.com/ReactTraining/history/pull/578
-    this.baseElement = document.querySelector('base')
-    if (this.baseElement) {
-      this.baseHref = this.baseElement.href
-      this.baseElement.removeAttribute('href')
-    }
-  }
-
   handleDefaultPath = path => {
-    this.setState({ defaultPath: path }, () => {
-      // From the workaround above
-      if (this.baseElement) {
-        this.baseElement.setAttribute('href', this.baseHref)
-      }
-    })
+    this.setState({ defaultPath: path })
   }
 
   render() {
