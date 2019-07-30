@@ -7,11 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Get changes made at version `v0.27.13`.
+
 ## [0.27.13] - 2019-07-31
 
 ### Fixed
 
 - Rendering on IE11 by bumping `query-string` version to 5.x.
+
+## [1.8.11] - 2019-07-30
 
 ## [1.8.10] - 2019-07-29
 
