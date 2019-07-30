@@ -17,8 +17,8 @@ import AddressEdit from './pages/AddressEdit'
 class AppRouter extends Component {
   state = { defaultPath: null }
 
-  handleDefaultPath = path => {
-    this.setState({ defaultPath: path })
+  handleDefaultPath = defaultPath => {
+    this.setState({ defaultPath })
   }
 
   render() {
