@@ -18,7 +18,5 @@
     "referenceLocale": "en",
     "localeDirectory": "react/locales/"
   },
-  "dependencies": {
-    "splunk-events": "^1.3.0"
-  }
+  "dependencies": {}
 }

@@ -10,7 +10,6 @@ class Menu extends Component {
 
   handleExtension = hasExtension => {
     this.setState({ hasExtension })
-    throw new Error('um erro de teste')
   }
 
   render() {
