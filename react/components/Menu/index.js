@@ -5,11 +5,12 @@ import { ExtensionPoint } from 'render'
 
 class Menu extends Component {
   state = {
-    hasExtension: null
+    hasExtension: null,
   }
 
-  handleExtension = (hasExtension) => {
+  handleExtension = hasExtension => {
     this.setState({ hasExtension })
+    throw new Error('um erro de teste')
   }
 
   render() {

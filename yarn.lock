@@ -447,6 +447,11 @@ spdx-license-ids@^3.0.0:
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.3.tgz#81c0ce8f21474756148bbb5f3bfc0f36bf15d76e"
   integrity sha512-uBIcIl3Ih6Phe3XHK1NqboJLdGfwr1UN3k6wSD1dZpmPsIkb8AGNbZYJ1fOBk834+Gxy8rpfDxrS6XLEMZMY2g==
 
+splunk-events@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/splunk-events/-/splunk-events-1.3.0.tgz#8dbb6216c5b02a9cd920cfc9beb1fcd62a324b9d"
+  integrity sha512-1sxtP0FLJYZ3ZN2rqBo9EEFkLjR+iJjc+nB/BZNvQGgMIOGZkzuxSTMpVuYXwW/3IMhHlc/5NBjc1sYV17kkCg==
+
 sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Log in Splunk if URL that points to My Account is `/account/orders`.
+- Log if some error occurs, as a way of creating some deployment process.
+
 ## [0.27.13] - 2019-07-31
 
 ### Fixed
