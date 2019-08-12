@@ -17,5 +17,6 @@
   "intl-equalizer": {
     "referenceLocale": "en",
     "localeDirectory": "react/locales/"
-  }
+  },
+  "dependencies": {}
 }
