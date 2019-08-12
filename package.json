@@ -1,5 +1,5 @@
 {
-  "version": "1.8.12",
+  "version": "1.8.13",
   "devDependencies": {
     "@types/exenv": "^1.2.0",
     "@vtex/intl-equalizer": "^2.0.1",
