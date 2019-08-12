@@ -10,13 +10,18 @@ class bootstrap extends Component {
   constructor(props) {
     super(props)
 
-    if (window.location.href.match('/account/orders')) {
+    if (
+      window.location.href.match('/account/orders') &&
+      window.__RUNTIME__.workspace === 'master'
+    ) {
       logMyAccountURL()
     }
   }
 
   componentDidCatch(error, info) {
-    logGeneralErrors(error, info)
+    if (window.__RUNTIME__.workspace === 'master') {
+      logGeneralErrors(error, info)
+    }
   }
 
   render() {
