@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Using `messages` builder v1.
 
+## [1.8.13] - 2019-08-12
+
 ### Changed
 
 - Get changes made at version `v0.27.14`.
