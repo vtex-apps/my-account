@@ -22,7 +22,7 @@
     "react": "2.x",
     "pages": "0.x",
     "node": "3.x",
-    "messages": "0.x"
+    "messages": "1.x"
   },
   "scripts": {
     "postreleasy": "vtex publish --verbose"
