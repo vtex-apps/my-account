@@ -1,6 +1,5 @@
 {
   "userInfo.greeting": "Ciao",
-
   "pages.addresses": "Indirizzi",
   "pages.addressCreate": "Aggiungi indirizzo",
   "pages.addressEdit": "Modifica indirizzo",
@@ -10,7 +9,6 @@
   "pages.logout": "Lasciare",
   "logoutModal.cancel": "Annullare",
   "logoutModal.title": "Vuoi veramente smettere?",
-
   "personalData.redefinePassword": "Ridefinisci la password",
   "personalData.saveData": "Salva le modifiche",
   "personalData.password": "Password",
@@ -32,7 +30,6 @@
   "personalData.definePassword.title": "Imposta password",
   "personalData.editPassword.title": "Modifica password",
   "personalData.resendCode": "Invia nuovamente il codice",
-
   "upload.loading": "Caricamento in corso…",
   "upload.choosePhoto": "Scegli una foto",
   "upload.chooseAgain": "Scegli un'altra immagine",
@@ -40,15 +37,12 @@
   "upload.dragYourPhoto": "Trascina qui la tua nuova immagine del profilo",
   "upload.photoUpdated": "La tua immagine del profilo è stata aggiornata con successo.",
   "upload.or": "o",
-
   "addresses.addAddress": "Aggiungi indirizzo",
   "addresses.saveAddress": "Salva l'indirizzo",
   "addresses.deleteAddress": "Elimina l'indirizzo",
   "addresses.notFound": "Non hai ancora nessun indirizzo!",
   "addresses.notApplicable": "N/N",
-
   "commons.edit": "Modifica",
-
   "alert.addressNotFound": "L'indirizzo selezionato non è stato trovato.",
   "alert.success": "Le tue informazioni sono state salvate correttamente.",
   "alert.fileTooBig": "Questa immagine è al di sopra del limite di 4 MB, scegli una più piccola.",
@@ -56,7 +50,6 @@
   "alert.wrongPassword": "La password corrente è sbagliata.",
   "alert.wrongAndAboutToBlock": "La password corrente è sbagliata. Un altro tentativo non valido bloccherà il tuo account per un'ora.",
   "alert.blockedUser": "Sei stato bloccato, riprova più tardi.",
-
   "editor.defaultRoute.name": "Il mio Account - Home",
   "editor.defaultRoute.description": "Pagina di default della pagina: Il mio Account",
   "editor.defaultRoute.field": "Percorso predefinito della pagina: Il mio Account",
