@@ -21,7 +21,7 @@ git rebase master
 
 ##### Resolving conflicts
 
-**File:** `manifest.json` 
+**File:** `manifest.json`
 
 Keep the version from branch `1.x`, example: between `0.3.4` and `1.2.1`, keep `1.2.1`. That will help when bumping a new version.
 
@@ -47,6 +47,7 @@ Add to the Unreleased section, something like:
 
 ```md
 ### Changed
+
 - Get changes made at version `v0.3.0`.
 ```
 
@@ -68,4 +69,3 @@ git push origin 1.x -f
 ```
 
 Then, use releasy as usual to release a new patch and push it again.
-
