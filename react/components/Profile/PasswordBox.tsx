@@ -1,11 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FunctionComponent } from 'react'
 import {
   injectIntl,
-  intlShape,
+  InjectedIntlProps,
   FormattedMessage,
   defineMessages,
 } from 'react-intl'
+
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
 
@@ -16,7 +16,11 @@ const messages = defineMessages({
   password: { id: 'personalData.password', defaultMessage: '' },
 })
 
-const PasswordBox = ({ passwordLastUpdate, onEditClick, intl }) => {
+const PasswordBox: FunctionComponent<Props> = ({
+  passwordLastUpdate,
+  onEditClick,
+  intl,
+}) => {
   const lowerButtonId = passwordLastUpdate
     ? 'personalData.redefinePassword'
     : 'personalData.definePassword'
@@ -39,9 +43,9 @@ const PasswordBox = ({ passwordLastUpdate, onEditClick, intl }) => {
   )
 }
 
-PasswordBox.propTypes = {
-  onEditClick: PropTypes.func,
-  intl: intlShape.isRequired,
+interface Props extends InjectedIntlProps {
+  onEditClick: () => void
+  passwordLastUpdate?: string
 }
 
 export default injectIntl(PasswordBox)

@@ -1,7 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FunctionComponent } from 'react'
 
-const DataEntry = ({ label, children }) => {
+const DataEntry: FunctionComponent<Props> = ({ label, children }) => {
   return (
     <div>
       <label className="db c-on-base mb3">{label}</label>
@@ -10,9 +9,8 @@ const DataEntry = ({ label, children }) => {
   )
 }
 
-DataEntry.propTypes = {
-  label: PropTypes.string,
-  children: PropTypes.any,
+interface Props {
+  label: string
 }
 
 export default DataEntry

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'vtex.my-account-commons/Router'
 import { compose, branch, renderComponent, withProps } from 'recompose'
@@ -19,36 +18,36 @@ export const headerConfig = () => {
   return { namespace: `${styles.profile}`, titleId: 'pages.profile' }
 }
 
-class Profile extends Component {
-  state = {
+class ProfileContainer extends Component<Props> {
+  public state = {
     isEditingPassword: false,
     showToast: false,
   }
 
-  componentDidMount = () => {
+  public componentDidMount = () => {
     const { location } = this.props
     this.setState({ showToast: location.search.indexOf('success=true') > -1 })
   }
 
-  handleCloseToast = () => {
+  private handleCloseToast = () => {
     this.setState({ showToast: false })
   }
 
-  handleGoToEdit = () => {
+  private handleGoToEdit = () => {
     this.props.history.push('/profile/edit')
   }
 
-  handleEditingPassword = () => {
+  private handleEditingPassword = () => {
     this.setState({ isEditingPassword: true })
   }
 
-  handleFinishEditingPassword = () => {
+  private handleFinishEditingPassword = () => {
     this.setState({ isEditingPassword: false, showToast: true }, () =>
       this.props.data.refetch()
     )
   }
 
-  render() {
+  public render() {
     const { profile } = this.props
     const { isEditingPassword, showToast } = this.state
 
@@ -64,7 +63,7 @@ class Profile extends Component {
                 <AuthState email={profile.email}>
                   {
                     <AuthState.Token>
-                      {({ value, setValue }) => (
+                      {({ value, setValue }: any) => (
                         <PasswordFormBox
                           email={profile.email}
                           passwordLastUpdate={profile.passwordLastUpdate}
@@ -96,16 +95,24 @@ class Profile extends Component {
   }
 }
 
-Profile.propTypes = {
-  location: PropTypes.any,
-  history: PropTypes.object,
-  profile: PropTypes.object.isRequired,
+interface Props {
+  location: any
+  history: any
+  profile: Profile
+  data: {
+    profile: Profile
+    refetch: () => void
+  }
 }
 
-const enhance = compose(
+const enhance = compose<Props, void>(
   graphql(GET_PROFILE),
-  branch(({ data }) => data.profile == null, renderComponent(ProfileLoading)),
-  withProps(({ data }) => ({ profile: data.profile })),
+  branch<Props>(
+    ({ data }) => data.profile == null,
+    renderComponent(ProfileLoading)
+  ),
+  withProps(({ data }: Props) => ({ profile: data.profile })),
   withRouter
 )
-export default enhance(Profile)
+
+export default enhance(ProfileContainer)

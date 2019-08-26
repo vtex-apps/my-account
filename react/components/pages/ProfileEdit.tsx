@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
-import { withRouter } from 'vtex.my-account-commons/Router'
 import { compose, branch, renderComponent, withProps } from 'recompose'
+import { withRouter } from 'vtex.my-account-commons/Router'
 import { ContentWrapper } from 'vtex.my-account-commons'
 
 import ProfileEditLoading from '../loaders/ProfileEditLoading'
 import ProfileFormBox from '../Profile/ProfileFormBox'
 import GET_PROFILE from '../../graphql/getProfile.gql'
-
 import styles from '../../styles.css'
 
-export const headerConfig = () => {
+export function headerConfig() {
   return {
     namespace: `${styles.profileEdit}`,
     titleId: 'pages.profileEdit',
@@ -22,17 +20,17 @@ export const headerConfig = () => {
   }
 }
 
-class ProfileEdit extends Component {
-  handleGoBack = () => {
+class ProfileEdit extends Component<Props> {
+  private handleGoBack = () => {
     this.props.history.push('/profile?success=true')
   }
 
-  render() {
+  public render() {
     const { profile } = this.props
 
     return (
       <ContentWrapper {...headerConfig()}>
-        {({ handleError }) => (
+        {({ handleError }: any) => (
           <ProfileFormBox
             profile={profile}
             onDataSave={this.handleGoBack}
@@ -44,18 +42,19 @@ class ProfileEdit extends Component {
   }
 }
 
-ProfileEdit.propTypes = {
-  profile: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
+interface Props {
+  data: { profile: Profile }
+  profile: Profile
+  history: any
 }
 
-const enhance = compose(
+const enhance = compose<Props, void>(
   graphql(GET_PROFILE),
-  branch(
+  branch<Props>(
     ({ data }) => data.profile == null,
     renderComponent(ProfileEditLoading)
   ),
-  withProps(({ data }) => ({ profile: data.profile })),
+  withProps(({ data }: Props) => ({ profile: data.profile })),
   withRouter
 )
 export default enhance(ProfileEdit)

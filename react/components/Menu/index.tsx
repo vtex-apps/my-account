@@ -1,22 +1,23 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { Component, Fragment } from 'react'
-import { injectIntl, FormattedMessage } from 'react-intl'
+import { injectIntl, FormattedMessage, InjectedIntlProps } from 'react-intl'
 import { ExtensionPoint } from 'vtex.render-runtime'
 import { AuthService } from 'vtex.react-vtexid'
 import { ModalDialog } from 'vtex.styleguide'
 
 import UserInfo from './UserInfo'
 import MenuLink from './MenuLink'
-
 import styles from '../../styles.css'
 
-class Menu extends Component {
-  state = { isModalOpen: false }
+class Menu extends Component<InjectedIntlProps, { isModalOpen: boolean }> {
+  public state = { isModalOpen: false }
 
-  handleModalToggle = () => {
+  private handleModalToggle = () => {
     this.setState(prevState => ({ isModalOpen: !prevState.isModalOpen }))
   }
 
-  render() {
+  public render() {
     const { intl } = this.props
 
     return (
@@ -26,14 +27,14 @@ class Menu extends Component {
         <nav className={`${styles.menuLinks}`}>
           <ExtensionPoint
             id="my-account-menu"
-            render={links =>
-              links.map(({ name, path }) => (
+            render={(links: any) =>
+              links.map(({ name, path }: any) => (
                 <MenuLink path={path} name={name} key={name} />
               ))
             }
           />
           <AuthService.RedirectLogout returnUrl="/">
-            {({ action: logout }) => (
+            {({ action: logout }: any) => (
               <Fragment>
                 <div
                   className={`

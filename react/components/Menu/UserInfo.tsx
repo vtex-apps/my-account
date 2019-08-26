@@ -1,15 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FunctionComponent } from 'react'
 import { graphql } from 'react-apollo'
 import { compose, branch, withProps, renderComponent } from 'recompose'
 import { FormattedMessage } from 'react-intl'
-import UserInfoLoading from './UserInfoLoading'
+
 import GetGreeting from '../../graphql/getGreeting.gql'
 import UserPicture from './ProfilePicture/UserPicture'
-
+import UserInfoLoading from './UserInfoLoading'
 import styles from '../../styles.css'
 
-const UserInfo = ({ profile, intl }) => {
+const UserInfo: FunctionComponent<Props> = ({ profile }) => {
   return (
     <div className={`${styles.userInfo} flex flex-wrap items-end mb7`}>
       <div className={`${styles.userImage} relative mr5 h3 w3`}>
@@ -36,13 +35,23 @@ const UserInfo = ({ profile, intl }) => {
   )
 }
 
-UserInfo.propTypes = {
-  profile: PropTypes.object.isRequired,
+interface ProfileData {
+  firstName: string
+  lastName: string
+  profilePicture?: string
 }
 
-const enhance = compose(
+interface Props {
+  profile: ProfileData
+  data: { profile: ProfileData }
+}
+
+const enhance = compose<Props, {}>(
   graphql(GetGreeting),
-  branch(({ data }) => data.profile == null, renderComponent(UserInfoLoading)),
-  withProps(({ data }) => ({ profile: data.profile }))
+  branch<Props>(
+    ({ data }) => data.profile == null,
+    renderComponent(UserInfoLoading)
+  ),
+  withProps(({ data }: Props) => ({ profile: data.profile }))
 )
 export default enhance(UserInfo)
