@@ -1,4 +1,4 @@
-export default function getEmptyAddress(country) {
+export default function getEmptyAddress(country: string) {
   return {
     addressId: '0',
     addressType: 'residential',

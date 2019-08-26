@@ -1,11 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FunctionComponent } from 'react'
 import { BaseLoading } from 'vtex.my-account-commons'
 
 import { headerConfig } from '../pages/AddressEdit'
 import FormLoader from './FormLoader'
 
-const AddressEditLoading = ({ data }) => {
+const AddressEditLoading: FunctionComponent<Props> = ({ data }) => {
   return (
     <BaseLoading queryData={data} headerConfig={headerConfig()}>
       <FormLoader />
@@ -13,8 +12,8 @@ const AddressEditLoading = ({ data }) => {
   )
 }
 
-AddressEditLoading.propTypes = {
-  data: PropTypes.object.isRequired,
+interface Props {
+  data: any
 }
 
 export default AddressEditLoading

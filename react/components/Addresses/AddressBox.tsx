@@ -1,10 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FunctionComponent } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { AddressSummary, AddressRules } from 'vtex.address-form'
+
 import ContentBox from '../shared/ContentBox'
 
-const AddressBox = ({ address, onEditClick, intl }) => {
+const AddressBox: FunctionComponent<Props> = ({ address, onEditClick }) => {
   return (
     <ContentBox
       lowerButton={<FormattedMessage id="commons.edit" />}
@@ -18,9 +18,9 @@ const AddressBox = ({ address, onEditClick, intl }) => {
   )
 }
 
-AddressBox.propTypes = {
-  address: PropTypes.object,
-  onEditClick: PropTypes.func,
+interface Props {
+  address: Address
+  onEditClick: () => void
 }
 
 export default AddressBox

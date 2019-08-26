@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import { ContentWrapper } from 'vtex.my-account-commons'
 import queryString from 'query-string'
+import { ContentWrapper } from 'vtex.my-account-commons'
 
 import AddressCreateLoading from '../loaders/AddressCreateLoading'
 import AddressFormBox from '../Addresses/AddressFormBox'
 import GET_NEW_ADDRESS_DATA from '../../graphql/getNewAddressData.gql'
-
 import styles from '../../styles.css'
 
-export const headerConfig = () => {
+export function headerConfig() {
   return {
     namespace: `${styles.addressCreate}`,
     titleId: 'pages.addressCreate',
@@ -22,8 +20,8 @@ export const headerConfig = () => {
   }
 }
 
-class AddressCreate extends Component {
-  handleGoBack = () => {
+class AddressCreate extends Component<Props> {
+  private handleGoBack = () => {
     const { history } = this.props
 
     const parsed = queryString.parse(history.location.search)
@@ -33,12 +31,12 @@ class AddressCreate extends Component {
     )
   }
 
-  render() {
+  public render() {
     const { profile, shipsTo } = this.props
 
     return (
       <ContentWrapper {...headerConfig()}>
-        {({ handleError }) => (
+        {({ handleError }: any) => (
           <AddressFormBox
             isNew
             onAddressSaved={this.handleGoBack}
@@ -52,19 +50,31 @@ class AddressCreate extends Component {
   }
 }
 
-AddressCreate.propTypes = {
-  profile: PropTypes.object.isRequired,
-  shipsTo: PropTypes.array.isRequired,
-  history: PropTypes.object,
+interface Data {
+  profile: Profile
+  logistics: {
+    shipsTo: string[]
+  }
 }
 
-const enhance = compose(
+interface Profile {
+  firstName: string
+  lastName: string
+}
+
+interface Props {
+  profile: Profile
+  shipsTo: string[]
+  history: any
+}
+
+const enhance = compose<Props, void>(
   graphql(GET_NEW_ADDRESS_DATA),
   branch(
-    ({ data }) => data.profile == null,
+    ({ data }: { data: Data }) => data.profile == null,
     renderComponent(AddressCreateLoading)
   ),
-  withProps(({ data }) => ({
+  withProps(({ data }: { data: Data }) => ({
     profile: data.profile,
     shipsTo: data.logistics.shipsTo,
   }))

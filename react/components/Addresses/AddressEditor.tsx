@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
-import { FormattedMessage, intlShape, injectIntl } from 'react-intl'
+import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl'
 import { Button } from 'vtex.styleguide'
 import { addValidation, injectRules } from 'vtex.address-form/helpers'
 import {
@@ -15,14 +14,12 @@ import {
   Map,
 } from 'vtex.address-form/components'
 import { StyleguideInput, GeolocationInput } from 'vtex.address-form/inputs'
-import { AddressShape } from 'vtex.address-form/shapes'
 import { compose } from 'recompose'
 
-import { withLocale } from '../shared/withLocale'
 import GET_STORE_CONFIGS from '../../graphql/getStoreConfigs.gql'
 
-class AddressEditor extends Component {
-  constructor(props) {
+class AddressEditor extends Component<InnerProps & OutterProps, State> {
+  public constructor(props: InnerProps & OutterProps) {
     super(props)
 
     this.state = {
@@ -30,14 +27,14 @@ class AddressEditor extends Component {
     }
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     const { address } = this.props
     this.setState({
       address: addValidation(address),
     })
   }
 
-  handleAddressChange = newAddress => {
+  private handleAddressChange = (newAddress: Address) => {
     const address = {
       ...this.state.address,
       ...newAddress,
@@ -46,16 +43,8 @@ class AddressEditor extends Component {
     this.setState({ address })
   }
 
-  render() {
-    const {
-      isNew,
-      isLoading,
-      locale,
-      shipsTo,
-      onSubmit,
-      intl,
-      rules,
-    } = this.props
+  public render() {
+    const { isNew, isLoading, shipsTo, onSubmit, intl, rules } = this.props
     const { address } = this.state
     const intlId = isNew ? 'addresses.addAddress' : 'addresses.saveAddress'
 
@@ -100,8 +89,14 @@ class AddressEditor extends Component {
           <CountrySelector shipsTo={shipCountries} />
 
           {isNew && isGeolocation && !validPostalCode && (
-            <GoogleMapsContainer apiKey={mapsAPIKey} locale={locale}>
-              {({ loading, googleMaps }) => (
+            <GoogleMapsContainer apiKey={mapsAPIKey} locale={intl.locale}>
+              {({
+                loading,
+                googleMaps,
+              }: {
+                loading: boolean
+                googleMaps: string
+              }) => (
                 <Fragment>
                   <GeolocationInput
                     loadingGoogle={loading}
@@ -127,9 +122,9 @@ class AddressEditor extends Component {
           {hasAutoCompletedFields && (
             <div className="pb7">
               <AutoCompletedFields>
-                <a className="c-link pointer">
+                <span className="c-link pointer">
                   <FormattedMessage id="address-form.edit" />
-                </a>
+                </span>
               </AutoCompletedFields>
             </div>
           )}
@@ -146,7 +141,7 @@ class AddressEditor extends Component {
           )}
 
           <AddressSubmitter onSubmit={onSubmit} rules={currentRules}>
-            {handleSubmit => (
+            {(handleSubmit: () => void) => (
               <Button
                 onClick={handleSubmit}
                 block
@@ -163,19 +158,32 @@ class AddressEditor extends Component {
   }
 }
 
-AddressEditor.propTypes = {
-  isNew: PropTypes.bool.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  address: AddressShape,
-  shipsTo: PropTypes.array.isRequired,
-  locale: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  intl: intlShape.isRequired,
+interface State {
+  address: any
 }
-const enhance = compose(
+
+interface InnerProps extends InjectedIntlProps {
+  getStoreConfigs: {
+    storeConfigs: {
+      googleMapsApiKey: string
+      geolocation: boolean
+    }
+  }
+  rules: any
+}
+
+interface OutterProps {
+  shipsTo: string[]
+  isLoading: boolean
+  isNew: boolean
+  onSubmit: (valid: boolean, address: Address) => void
+  address: Address
+}
+
+const enhance = compose<InnerProps & OutterProps, OutterProps>(
   injectRules,
-  withLocale,
   injectIntl,
   graphql(GET_STORE_CONFIGS, { name: 'getStoreConfigs' })
 )
+
 export default enhance(AddressEditor)
