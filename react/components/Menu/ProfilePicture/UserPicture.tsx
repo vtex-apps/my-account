@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Modal } from 'vtex.styleguide'
+
 import PictureUploader from './PictureUploader'
 import PictureRenderer from './PictureRenderer'
 
-class UserPicture extends Component {
-  state = {
+class UserPicture extends Component<Props> {
+  public state = {
     isModalOpen: false,
   }
 
-  handleOpenModal = () => {
+  private handleOpenModal = () => {
     this.setState({ isModalOpen: true })
   }
 
-  handleCloseModal = () => {
+  private handleCloseModal = () => {
     this.setState({ isModalOpen: false })
   }
 
-  render() {
+  public render() {
     const { imagePath } = this.props
     const { isModalOpen } = this.state
 
@@ -42,8 +42,8 @@ class UserPicture extends Component {
   }
 }
 
-UserPicture.propTypes = {
-  imagePath: PropTypes.string,
+interface Props {
+  imagePath?: string
 }
 
 export default UserPicture

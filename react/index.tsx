@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
+
 import AppRouter from './components/AppRouter'
 import ClientSide from './components/ClientSide'
-import { logMyAccountURL, logGeneralErrors } from './SplunkUtils'
+import { logMyAccountURL, logGeneralErrors } from './utils/splunk'
 
 import 'vtex.country-codes/locales'
 import './style.global.css'
 
-class bootstrap extends Component {
-  constructor(props) {
+class MyAccount extends Component {
+  public constructor(props: any) {
     super(props)
 
     if (
@@ -18,13 +19,13 @@ class bootstrap extends Component {
     }
   }
 
-  componentDidCatch(error, info) {
+  public componentDidCatch(error: any, info: any) {
     if (window.__RUNTIME__.workspace === 'master') {
       logGeneralErrors(error, info)
     }
   }
 
-  render() {
+  public render() {
     return (
       <div className="vtex-account helvetica flex justify-around">
         <ClientSide>
@@ -35,4 +36,4 @@ class bootstrap extends Component {
   }
 }
 
-export default bootstrap
+export default MyAccount

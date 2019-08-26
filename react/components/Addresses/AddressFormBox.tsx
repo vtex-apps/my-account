@@ -137,11 +137,7 @@ interface OutterProps {
 interface InnerProps {
   createAddress: (args: Variables<CreateAddressArgs>) => Promise<void>
   updateAddress: (args: Variables<UpdateAddressArgs>) => Promise<void>
-  runtime: {
-    culture: {
-      country: string
-    }
-  }
+  runtime: Runtime
 }
 
 const enhance = compose<InnerProps & OutterProps, OutterProps>(

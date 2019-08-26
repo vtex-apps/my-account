@@ -1,18 +1,20 @@
+/* eslint-disable react/jsx-handler-names */
 import React, { Component } from 'react'
-import UserInfo from './UserInfo'
-import MenuLinksList from './MenuLinksList'
 import { ExtensionPoint } from 'render'
 
+import UserInfo from './UserInfo'
+import MenuLinksList from './MenuLinksList'
+
 class Menu extends Component {
-  state = {
+  public state = {
     hasExtension: null,
   }
 
-  handleExtension = hasExtension => {
+  private handleExtension = (hasExtension: any) => {
     this.setState({ hasExtension })
   }
 
-  render() {
+  public render() {
     const { hasExtension } = this.state
 
     return (

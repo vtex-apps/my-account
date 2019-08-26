@@ -1,28 +1,27 @@
-import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ReactDropzone from 'react-dropzone'
 
 const MAX_SIZE = 4 * 1024 * 1024
 
-class BaseDropzone extends Component {
-  state = {
+class BaseDropzone extends Component<Props> {
+  public state = {
     isHovering: false,
   }
 
-  handleStartHovering = () => {
+  private handleStartHovering = () => {
     this.setState({ isHovering: true })
   }
 
-  handleStopHovering = () => {
+  private handleStopHovering = () => {
     this.setState({ isHovering: false })
   }
 
-  handleDrop = files => {
+  private handleDrop = (files: any) => {
     this.setState({ isHovering: false })
     this.props.onDrop(files)
   }
 
-  render() {
+  public render() {
     const { disabled, children, onClick } = this.props
     const { isHovering } = this.state
     return (
@@ -46,11 +45,10 @@ class BaseDropzone extends Component {
   }
 }
 
-BaseDropzone.propTypes = {
-  children: PropTypes.element,
-  disabled: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
-  onDrop: PropTypes.func.isRequired,
+interface Props {
+  disabled: boolean
+  onClick: () => void
+  onDrop: (files: any) => void
 }
 
 export default BaseDropzone

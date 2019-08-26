@@ -14,7 +14,7 @@ export function logMyAccountURL() {
   })
 }
 
-export function logGeneralErrors(error, info) {
+export function logGeneralErrors(error: any, info: any) {
   const { account } = window.__RUNTIME__
   splunkEvents.logEvent(
     'Critical',
