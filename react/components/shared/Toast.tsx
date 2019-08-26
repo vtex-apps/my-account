@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { Alert } from 'vtex.styleguide'
 
-class Toast extends Component {
-  state = {
+class Toast extends Component<Props> {
+  public state = {
     isClosing: false,
   }
 
-  componentDidMount() {
+  public static defaultProps = {
+    autoClose: 3000,
+  }
+
+  private openTimeout: any
+  private closeTimeout: any
+
+  public componentDidMount() {
     this.openTimeout = setTimeout(() => {
       this.setState({ isClosing: true }, () => {
         this.closeTimeout = setTimeout(() => {
@@ -18,14 +24,14 @@ class Toast extends Component {
     }, this.props.autoClose)
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount() {
     clearTimeout(this.openTimeout)
     clearTimeout(this.closeTimeout)
   }
 
-  render() {
+  public render() {
     const { isClosing } = this.state
-    const { onClose, messageId, intl } = this.props
+    const { onClose, messageId } = this.props
     return (
       <div
         className={`animated ${
@@ -39,14 +45,10 @@ class Toast extends Component {
   }
 }
 
-Toast.defaultProps = {
-  autoClose: 3000,
-}
-
-Toast.propTypes = {
-  autoClose: PropTypes.number,
-  onClose: PropTypes.func.isRequired,
-  messageId: PropTypes.string.isRequired,
+interface Props {
+  autoClose: number
+  onClose: () => void
+  messageId: string
 }
 
 export default Toast

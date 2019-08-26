@@ -1,11 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FunctionComponent, ReactElement } from 'react'
 import { Button } from 'vtex.styleguide'
 
-const ContentBox = ({
+const ContentBox: FunctionComponent<Props> = ({
   children,
   maxWidthStep,
-  shouldAllowGrowing,
+  shouldAllowGrowing = false,
   lowerButton,
   onLowerButtonClick,
 }) => {
@@ -30,16 +29,11 @@ const ContentBox = ({
   )
 }
 
-ContentBox.defaultProps = {
-  shouldAllowGrowing: false,
-}
-
-ContentBox.propTypes = {
-  children: PropTypes.any,
-  maxWidthStep: PropTypes.number,
-  shouldAllowGrowing: PropTypes.bool,
-  lowerButton: PropTypes.any,
-  onLowerButtonClick: PropTypes.func,
+interface Props {
+  maxWidthStep?: number
+  shouldAllowGrowing?: boolean
+  lowerButton?: ReactElement
+  onLowerButtonClick?: () => void
 }
 
 export default ContentBox

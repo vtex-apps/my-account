@@ -1,16 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { injectIntl, intlShape } from 'react-intl'
+import React, { FunctionComponent } from 'react'
 import {
   SkeletonPiece,
   SkeletonBox,
   BaseLoading,
 } from 'vtex.my-account-commons'
+
 import { headerConfig } from '../pages/Addresses'
 
-const AddressesLoading = ({ data, intl }) => {
+const AddressesLoading: FunctionComponent<Props> = ({ data }) => {
   return (
-    <BaseLoading queryData={data} headerConfig={headerConfig(intl)}>
+    <BaseLoading queryData={data} headerConfig={headerConfig()}>
       <main className="mt7 flex-ns flex-wrap-ns items-start-ns">
         {[0, 1].map(i => (
           <SkeletonBox shouldShowLowerButton key={i}>
@@ -30,9 +29,8 @@ const AddressesLoading = ({ data, intl }) => {
   )
 }
 
-AddressesLoading.propTypes = {
-  data: PropTypes.object.isRequired,
-  intl: intlShape.isRequired,
+interface Props {
+  data: any
 }
 
-export default injectIntl(AddressesLoading)
+export default AddressesLoading

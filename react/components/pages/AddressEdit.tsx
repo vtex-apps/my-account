@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import { ContentWrapper, GenericError } from 'vtex.my-account-commons'
@@ -8,7 +7,7 @@ import AddressEditLoading from '../loaders/AddressEditLoading'
 import AddressFormBox from '../Addresses/AddressFormBox'
 import GET_ADDRESS from '../../graphql/getAddresses.gql'
 
-export const headerConfig = () => {
+export function headerConfig() {
   return {
     namespace: 'vtex-account__address-edit',
     titleId: 'pages.addressEdit',
@@ -19,21 +18,22 @@ export const headerConfig = () => {
   }
 }
 
-class AddressEdit extends Component {
-  handleGoBack = () => {
+class AddressEdit extends Component<Props> {
+  private handleGoBack = () => {
     this.props.history.push('/addresses?success=true')
   }
 
-  render() {
+  public render() {
     const { addresses, addressId, shipsTo } = this.props
     const address = addresses.find(current => current.addressId === addressId)
 
     return (
       <ContentWrapper {...headerConfig()}>
-        {({ handleError }) => (
+        {({ handleError }: any) => (
           <Fragment>
             {address ? (
               <AddressFormBox
+                isNew={false}
                 address={address}
                 onAddressSaved={this.handleGoBack}
                 onAddressDeleted={this.handleGoBack}
@@ -50,20 +50,29 @@ class AddressEdit extends Component {
   }
 }
 
-AddressEdit.propTypes = {
-  history: PropTypes.object.isRequired,
-  addresses: PropTypes.array.isRequired,
-  addressId: PropTypes.string.isRequired,
-  shipsTo: PropTypes.array.isRequired,
+interface Data {
+  profile: {
+    addresses: Address[]
+  }
+  logistics: {
+    shipsTo: string[]
+  }
 }
 
-const enhance = compose(
+interface Props {
+  history: any
+  addresses: Address[]
+  addressId: string
+  shipsTo: string[]
+}
+
+const enhance = compose<Props, void>(
   graphql(GET_ADDRESS),
   branch(
-    ({ data }) => data.profile == null,
+    ({ data }: { data: Data }) => data.profile == null,
     renderComponent(AddressEditLoading)
   ),
-  withProps(({ data, match }) => ({
+  withProps(({ data, match }: { data: Data; match: any }) => ({
     addresses: data.profile.addresses,
     addressId: match.params.id,
     shipsTo: data.logistics.shipsTo,

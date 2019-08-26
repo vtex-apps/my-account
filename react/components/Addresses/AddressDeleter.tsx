@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { Button } from 'vtex.styleguide'
-import DeleteAddress from '../../graphql/deleteAddress.gql'
 
-class AddressDeleter extends Component {
-  state = {
+import MUTATION from '../../graphql/deleteAddress.gql'
+
+class AddressDeleter extends Component<OutterProps & InnerProps> {
+  public state = {
     isLoading: false,
   }
 
-  handleDeleteClick = async () => {
+  private handleDeleteClick = async () => {
     const { addressId, onAddressDeleted, deleteAddress, onError } = this.props
     if (this.state.isLoading) return
 
@@ -24,7 +24,7 @@ class AddressDeleter extends Component {
     }
   }
 
-  render() {
+  public render() {
     const { isLoading } = this.state
     return (
       <div className="mt5">
@@ -42,15 +42,20 @@ class AddressDeleter extends Component {
   }
 }
 
-AddressDeleter.propTypes = {
-  /** Mutation for deleting an address */
-  deleteAddress: PropTypes.func.isRequired,
+interface OutterProps {
   /** Callback for address deletion */
-  onAddressDeleted: PropTypes.func.isRequired,
+  onAddressDeleted: () => void
   /** Callback for error during deletion */
-  onError: PropTypes.func.isRequired,
+  onError: () => void
   /** Id of the address to be deleted */
-  addressId: PropTypes.string.isRequired,
+  addressId: string
 }
 
-export default graphql(DeleteAddress, { name: 'deleteAddress' })(AddressDeleter)
+interface InnerProps {
+  /** Mutation for deleting an address */
+  deleteAddress: (args: Variables<DeleteAddressArgs>) => void
+}
+
+export default graphql<OutterProps, {}, {}, InnerProps>(MUTATION, {
+  name: 'deleteAddress',
+})(AddressDeleter)

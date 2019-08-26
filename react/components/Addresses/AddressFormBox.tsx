@@ -1,26 +1,30 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
-import { AddressShape } from 'vtex.address-form/shapes'
+import { withRuntimeContext } from 'render'
 import { AddressRules } from 'vtex.address-form/components'
+
+import CREATE_ADDRESS from '../../graphql/createAddress.gql'
+import UPDATE_ADDRESS from '../../graphql/updateAddress.gql'
 import ContentBox from '../shared/ContentBox'
 import getEmptyAddress from './emptyAddress'
 import AddressEditor from './AddressEditor'
 import AddressDeleter from './AddressDeleter'
-import CREATE_ADDRESS from '../../graphql/createAddress.gql'
-import UPDATE_ADDRESS from '../../graphql/updateAddress.gql'
 
-const generateRandomName = () => {
+function generateRandomName() {
   return (1 + Math.random()).toString(36).substring(2)
 }
 
-class AddressFormBox extends Component {
-  state = {
+class AddressFormBox extends Component<InnerProps & OutterProps> {
+  public state = {
     isLoading: false,
   }
 
-  prepareAddress = address => {
+  public static defaultProps = {
+    isNew: false,
+  }
+
+  private prepareAddress = (address: any) => {
     const { profile } = this.props
 
     let defaultReceiver
@@ -29,24 +33,23 @@ class AddressFormBox extends Component {
 
       if (profile.lastName) defaultReceiver += ` ${profile.lastName}`
     }
-    // eslint-disable-next-line
+
     const { __typename, ...addr } = address
 
     return {
       ...addr,
-      addressQuery: '',
+      addressQuery: null,
       receiverName: addr.receiverName || defaultReceiver,
     }
   }
 
-  reshapeAddress = address => {
+  private reshapeAddress = (address: Address): AddressInput => {
     const { isNew } = this.props
-    // eslint-disable-next-line
-    const { addressId, addressQuery, geoCoordinates, ...reshapedAddr } = address
+
+    const { addressId, addressQuery, ...reshapedAddr } = address
 
     const result = {
       ...reshapedAddr,
-      geoCoordinates: address.geoCoordinates,
     }
 
     if (isNew) result.addressName = generateRandomName()
@@ -54,7 +57,7 @@ class AddressFormBox extends Component {
     return result
   }
 
-  handleSubmit = (valid, address) => {
+  private handleSubmit = (valid: boolean, address: Address) => {
     if (!valid) return
 
     const {
@@ -84,10 +87,10 @@ class AddressFormBox extends Component {
       })
   }
 
-  render() {
-    const { onAddressDeleted, isNew, shipsTo, onError } = this.props
+  public render() {
+    const { onAddressDeleted, isNew, shipsTo, onError, runtime } = this.props
     const country =
-      shipsTo && shipsTo.length > 0 ? shipsTo[0] : address.country.value
+      shipsTo && shipsTo.length > 0 ? shipsTo[0] : runtime.culture.country
     const emptyAddress = getEmptyAddress(country)
     const baseAddress = isNew ? emptyAddress : this.props.address
 
@@ -109,7 +112,7 @@ class AddressFormBox extends Component {
             shipsTo={shipsTo}
           />
         </AddressRules>
-        {!isNew && (
+        {!isNew && onAddressDeleted && (
           <AddressDeleter
             addressId={address.addressId}
             onAddressDeleted={onAddressDeleted}
@@ -121,24 +124,30 @@ class AddressFormBox extends Component {
   }
 }
 
-AddressFormBox.defaultProps = {
-  isNew: false,
+interface OutterProps {
+  isNew: boolean
+  onAddressDeleted?: () => void
+  onAddressSaved: () => void
+  onError: () => void
+  profile?: { firstName: string; lastName?: string }
+  address?: Address
+  shipsTo: string[]
 }
 
-AddressFormBox.propTypes = {
-  isNew: PropTypes.bool.isRequired,
-  onAddressDeleted: PropTypes.func,
-  createAddress: PropTypes.func.isRequired,
-  updateAddress: PropTypes.func.isRequired,
-  onAddressSaved: PropTypes.func.isRequired,
-  onError: PropTypes.func,
-  address: AddressShape,
-  profile: PropTypes.object,
-  shipsTo: PropTypes.array.isRequired,
+interface InnerProps {
+  createAddress: (args: Variables<CreateAddressArgs>) => Promise<void>
+  updateAddress: (args: Variables<UpdateAddressArgs>) => Promise<void>
+  runtime: {
+    culture: {
+      country: string
+    }
+  }
 }
 
-const enhance = compose(
+const enhance = compose<InnerProps & OutterProps, OutterProps>(
   graphql(UPDATE_ADDRESS, { name: 'updateAddress' }),
-  graphql(CREATE_ADDRESS, { name: 'createAddress' })
+  graphql(CREATE_ADDRESS, { name: 'createAddress' }),
+  withRuntimeContext
 )
+
 export default enhance(AddressFormBox)
