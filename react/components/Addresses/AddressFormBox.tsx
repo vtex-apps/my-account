@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
-import { withRuntimeContext } from 'render'
+import { withRuntimeContext } from 'vtex.render-runtime'
 import { AddressRules } from 'vtex.address-form/components'
 
 import CREATE_ADDRESS from '../../graphql/createAddress.gql'
