@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { graphql } from 'react-apollo'
@@ -9,14 +8,14 @@ import UpdateProfilePicture from '../../../graphql/updateProfilePicture.gql'
 import BaseDropzone from './BaseDropzone'
 import PictureRenderer from './PictureRenderer'
 
-class PictureUploader extends Component {
-  state = {
+class PictureUploader extends Component<Props> {
+  public state = {
     error: null,
     isLoading: false,
     finishedUpload: false,
   }
 
-  handleImageDrop = async acceptedFiles => {
+  private handleImageDrop = async (acceptedFiles: any) => {
     const { updateProfilePicture } = this.props
 
     if (acceptedFiles && acceptedFiles[0]) {
@@ -33,16 +32,16 @@ class PictureUploader extends Component {
     }
   }
 
-  handleErrorReset = () => {
+  private handleErrorReset = () => {
     this.setState({ error: null })
   }
 
-  handleCloseClick = event => {
+  private handleCloseClick = (event: any) => {
     event.stopPropagation()
     this.props.onCloseClick()
   }
 
-  render() {
+  public render() {
     const { currentPicture } = this.props
     const { error, isLoading, finishedUpload } = this.state
     const boxText = finishedUpload
@@ -113,12 +112,12 @@ class PictureUploader extends Component {
   }
 }
 
-PictureUploader.propTypes = {
-  updateProfilePicture: PropTypes.func.isRequired,
-  currentPicture: PropTypes.string,
-  onCloseClick: PropTypes.func.isRequired,
+interface Props {
+  updateProfilePicture: (args: Variables<UpdateProfilePicture>) => void
+  currentPicture?: string
+  onCloseClick: () => void
 }
 
-export default graphql(UpdateProfilePicture, { name: 'updateProfilePicture' })(
-  PictureUploader
-)
+export default graphql<any, {}, {}, Props>(UpdateProfilePicture, {
+  name: 'updateProfilePicture',
+})(PictureUploader)

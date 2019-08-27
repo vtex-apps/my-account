@@ -1,13 +1,17 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component, Fragment } from 'react'
 import {
   injectIntl,
-  intlShape,
   FormattedMessage,
   defineMessages,
+  InjectedIntlProps,
 } from 'react-intl'
 import { ExtensionPoint } from 'render'
 import { AuthService } from 'vtex.react-vtexid'
 import { ModalDialog } from 'vtex.styleguide'
+
 import MenuLink from './MenuLink'
 
 const links = [
@@ -25,21 +29,23 @@ const messages = defineMessages({
   cancel: { id: 'logoutModal.cancel', defaultMessage: '' },
 })
 
-class MenuLinksList extends Component {
-  state = { isModalOpen: false }
+class MenuLinksList extends Component<InjectedIntlProps> {
+  public state = { isModalOpen: false }
 
-  handleModalToggle = () => {
-    this.setState(prevState => ({ isModalOpen: !prevState.isModalOpen }))
+  private handleModalToggle = () => {
+    this.setState((prevState: { isModalOpen: boolean }) => ({
+      isModalOpen: !prevState.isModalOpen,
+    }))
   }
 
-  render() {
+  public render() {
     const { intl } = this.props
 
     return (
       <nav className="vtex-account__menu-links">
         <ExtensionPoint
           id="menu-links-before"
-          render={links =>
+          render={(links: any[]) =>
             links.map(({ name, path }) => (
               <MenuLink path={path} name={name} key={name} />
             ))
@@ -50,21 +56,20 @@ class MenuLinksList extends Component {
         ))}
         <ExtensionPoint
           id="menu-links-after"
-          render={links =>
+          render={(links: any[]) =>
             links.map(({ name, path }) => (
               <MenuLink path={path} name={name} key={name} />
             ))
           }
         />
         <AuthService.RedirectLogout returnUrl="/">
-          {({ action: logout }) => (
+          {({ action: logout }: any) => (
             <Fragment>
               <a
                 className={`vtex-account_menu-link f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-muted-1 b--transparent pointer`}
                 onClick={this.handleModalToggle}>
                 <FormattedMessage id="pages.logout" />
               </a>
-
               <ModalDialog
                 centered
                 confirmation={{
@@ -87,10 +92,6 @@ class MenuLinksList extends Component {
       </nav>
     )
   }
-}
-
-MenuLinksList.propTypes = {
-  intl: intlShape.isRequired,
 }
 
 export default injectIntl(MenuLinksList)

@@ -1,46 +1,49 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
-import { ExtensionPoint } from 'render'
-import { Button } from 'vtex.styleguide'
+import { ExtensionPoint, withRuntimeContext } from 'render'
 import { ProfileRules, ProfileContainer } from 'vtex.profile-form'
+import { Button } from 'vtex.styleguide'
+
 import ContentBox from '../shared/ContentBox'
 import UpdateProfile from '../../graphql/updateProfile.gql'
-import { withStoreCountry } from '../shared/withStoreCountry'
 import { withSettings } from '../shared/withSettings'
 
-class ProfileFormBox extends Component {
-  constructor(props) {
+class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
+  private validatorFunctions: any[]
+  private submitterFunctions: any[]
+
+  public constructor(props: InnerProps & OutterProps) {
     super(props)
     this.state = {
       isLoading: false,
+      valid: true,
     }
     this.validatorFunctions = []
     this.submitterFunctions = []
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     this.registerValidator(this.validate)
     this.registerSubmitter(this.submit)
   }
 
-  setStateAsync(state) {
+  private setStateAsync(state: any) {
     return new Promise(resolve => {
       this.setState(state, resolve)
     })
   }
 
-  registerValidator = validator => {
+  private registerValidator = (validator: any) => {
     this.validatorFunctions.push(validator)
   }
 
-  registerSubmitter = submitter => {
+  private registerSubmitter = (submitter: any) => {
     this.submitterFunctions.push(submitter)
   }
 
-  handleSubmit = async ({ valid, profile }) => {
+  private handleSubmit = async ({ valid, profile }: any) => {
     const { onDataSave, onError } = this.props
     await this.setStateAsync({ isLoading: true, valid, profile })
     try {
@@ -64,17 +67,17 @@ class ProfileFormBox extends Component {
     }
   }
 
-  validate = () => {
+  private validate = () => {
     return this.state.valid
   }
 
-  submit = profile => {
+  private submit = (profile: ProfileInput) => {
     const { updateProfile } = this.props
     return updateProfile({ variables: { profile } })
   }
 
-  render() {
-    const { intl, profile, settings, storeCountry } = this.props
+  public render() {
+    const { profile, settings, runtime } = this.props
     const { isLoading } = this.state
     const showGenders =
       settings && settings.profile && settings.profile.showGenders
@@ -83,7 +86,7 @@ class ProfileFormBox extends Component {
 
     return (
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
-        <ProfileRules country={storeCountry} shouldUseIOFetching>
+        <ProfileRules country={runtime.culture.country} shouldUseIOFetching>
           <ProfileContainer
             defaultProfile={profile}
             onSubmit={this.handleSubmit}
@@ -105,18 +108,25 @@ class ProfileFormBox extends Component {
   }
 }
 
-ProfileFormBox.propTypes = {
-  profile: PropTypes.object.isRequired,
-  updateProfile: PropTypes.func.isRequired,
-  storeCountry: PropTypes.string.isRequired,
-  settings: PropTypes.object.isRequired,
-  onDataSave: PropTypes.func.isRequired,
-  onError: PropTypes.func.isRequired,
+interface State {
+  isLoading: boolean
+  valid: boolean
 }
 
-const enhance = compose(
+interface InnerProps {
+  settings: any
+  runtime: Runtime
+  updateProfile: (args: Variables<UpdateProfileArgs>) => void
+}
+interface OutterProps {
+  onDataSave: () => void
+  onError: (error: any) => void
+  profile: Profile
+}
+
+const enhance = compose<InnerProps & OutterProps, OutterProps>(
   graphql(UpdateProfile, { name: 'updateProfile' }),
-  withStoreCountry,
+  withRuntimeContext,
   withSettings
 )
 export default enhance(ProfileFormBox)

@@ -1,27 +1,44 @@
+/* eslint-disable no-undef */
 import React, { Component, Fragment } from 'react'
+import Media from 'react-media'
+import { ExtensionPoint } from 'render'
 import {
   Route,
   Switch,
   Redirect,
   HashRouter,
 } from 'vtex.my-account-commons/Router'
-import Media from 'react-media'
-import { ExtensionPoint } from 'render'
-import Menu from './Menu'
+
 import Addresses from './pages/Addresses'
 import Profile from './pages/Profile'
 import ProfileEdit from './pages/ProfileEdit'
 import AddressCreate from './pages/AddressCreate'
 import AddressEdit from './pages/AddressEdit'
+import Menu from './Menu'
 
 class AppRouter extends Component {
-  state = { defaultPath: null }
+  public state = { defaultPath: null }
 
-  handleDefaultPath = defaultPath => {
+  private handleDefaultPath = (defaultPath: string) => {
     this.setState({ defaultPath })
   }
 
-  render() {
+  public static getSchema = () => {
+    return {
+      title: 'My Account Home',
+      description: 'Home',
+      type: 'object',
+      properties: {
+        defaultPath: {
+          title: 'Default path',
+          type: 'string',
+          default: '/profile',
+        },
+      },
+    }
+  }
+
+  public render() {
     const routes = [
       { path: '/addresses', component: Addresses },
       { path: '/addresses/new', component: AddressCreate },
@@ -30,12 +47,10 @@ class AppRouter extends Component {
       { path: '/profile/edit', component: ProfileEdit },
     ]
 
-    // eslint-disable-next-line
-    const toRouteComponent = ({ path, component }) => (
+    const toRouteComponent = ({ path, component }: any) => (
       <Route exact key={path} path={path} component={component} />
     )
 
-    // eslint-disable-next-line
     const shouldRedirectOrder = vtex && vtex.orderListRendered
 
     return (
@@ -85,21 +100,6 @@ class AppRouter extends Component {
         )}
       </div>
     )
-  }
-}
-
-AppRouter.getSchema = () => {
-  return {
-    title: 'My Account Home',
-    description: 'Home',
-    type: 'object',
-    properties: {
-      defaultPath: {
-        title: 'Default path',
-        type: 'string',
-        default: '/profile',
-      },
-    },
   }
 }
 

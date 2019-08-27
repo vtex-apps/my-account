@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
 import {
-  intlShape,
+  InjectedIntlProps,
   injectIntl,
   FormattedMessage,
   defineMessages,
@@ -22,8 +21,8 @@ const messages = defineMessages({
   newPassword: { id: 'personalData.newPassword', defaultMessage: '' },
 })
 
-class PasswordFormBox extends Component {
-  state = {
+class PasswordFormBox extends Component<Props, State> {
+  public state = {
     currentPassword: '',
     newPassword: '',
     newPasswordTouched: false,
@@ -34,20 +33,23 @@ class PasswordFormBox extends Component {
     isCodeSent: false,
   }
 
-  handleChange = (e, setPassword = () => {}) => {
+  private handleChange = (
+    e: any,
+    setPassword: (args: any) => any = () => {}
+  ) => {
     const { name, value } = e.target
-    this.setState({ [name]: value }, () => setPassword(this.state[name]))
+    this.setState({ [name]: value }, () => setPassword(value))
   }
 
-  handleTouchField = e => {
+  private handleTouchField = (e: any) => {
     this.setState({ [`${e.target.name}Touched`]: true })
   }
 
-  handleValidationChange = ({ valid }) => {
+  private handleValidationChange = ({ valid }: any) => {
     this.setState({ newPasswordValid: valid })
   }
 
-  handleSubmit = async (setNewPassword = () => {}) => {
+  private handleSubmit = async (setNewPassword = () => {}) => {
     const { newPasswordValid, changeAttempts } = this.state
     if (!newPasswordValid) return
 
@@ -59,10 +61,10 @@ class PasswordFormBox extends Component {
     setNewPassword()
   }
 
-  handleSetPasswordError = error => {
+  private handleSetPasswordError = (error: any) => {
     const wrongPassword = error.toString().indexOf(WRONG_CREDENTIALS) > -1
     const blockedUser = error.toString().indexOf(BLOCKED_USER) > -1
-    this.setState(prevState => ({
+    this.setState((prevState: any) => ({
       isLoading: false,
       error:
         wrongPassword && prevState.changeAttempts === 3
@@ -75,20 +77,20 @@ class PasswordFormBox extends Component {
     }))
   }
 
-  handleDismissError = () => {
+  private handleDismissError = () => {
     this.setState({ error: null })
   }
 
-  handleSetPasswordSuccess = onPasswordChange => {
+  private handleSetPasswordSuccess = (onPasswordChange: () => void) => {
     this.setState({ isLoading: false, changeAttempts: 0 })
     onPasswordChange()
   }
 
-  toggleIsCodeSent = () => {
-    this.setState(prevState => ({ isCodeSent: !prevState.isCodeSent }))
+  private handleIsCodeSent = () => {
+    this.setState((prevState: any) => ({ isCodeSent: !prevState.isCodeSent }))
   }
 
-  render() {
+  public render() {
     const {
       intl,
       passwordLastUpdate,
@@ -116,13 +118,13 @@ class PasswordFormBox extends Component {
         )}
 
         {passwordLastUpdate ? (
-          <RedefinePasswordForm handleChange={this.handleChange} />
+          <RedefinePasswordForm onChange={this.handleChange} />
         ) : this.state.isCodeSent ? (
           <Fragment>
             <div className="pt4 pb4">
               <Input
                 value={currentToken || ''}
-                onChange={e => {
+                onChange={(e: any) => {
                   setToken(e.target.value)
                 }}
                 label={intl.formatMessage(messages.code)}
@@ -142,7 +144,7 @@ class PasswordFormBox extends Component {
             <div className="pt4 flex justify-center">
               <SendAccCodeButton
                 variation="primary"
-                onSuccess={this.toggleIsCodeSent}>
+                onSuccess={this.handleIsCodeSent}>
                 <FormattedMessage id="personalData.sendCode" />
               </SendAccCodeButton>
             </div>
@@ -151,13 +153,15 @@ class PasswordFormBox extends Component {
         {(this.state.isCodeSent || passwordLastUpdate) && (
           <Fragment>
             <AuthState.Password>
-              {({ value, setValue: setNewPassword }) => (
+              {({ value, setValue: setNewPassword }: any) => (
                 <Fragment>
                   <div className="mb7 mt4">
                     <InputPassword
                       name="newPassword"
                       value={value || ''}
-                      onChange={e => this.handleChange(e, setNewPassword)}
+                      onChange={(e: any) =>
+                        this.handleChange(e, setNewPassword)
+                      }
                       onBlur={this.handleTouchField}
                       type="password"
                       label={intl.formatMessage(messages.newPassword)}
@@ -174,15 +178,15 @@ class PasswordFormBox extends Component {
             </AuthState.Password>
             <AuthService.SetPassword
               onSuccess={() => this.handleSetPasswordSuccess(onPasswordChange)}
-              onFailure={error => this.handleSetPasswordError(error)}>
-              {({ action: setPassword }) => {
+              onFailure={(error: any) => this.handleSetPasswordError(error)}>
+              {({ action: setPassword }: any) => {
                 return (
                   <AuthService.StartLoginSession
                     onSuccess={() => this.handleSubmit(setPassword)}>
                     {({
                       loading: loadingStartSession,
                       action: startSession,
-                    }) => {
+                    }: any) => {
                       return (
                         <Button
                           block
@@ -205,10 +209,24 @@ class PasswordFormBox extends Component {
   }
 }
 
-PasswordFormBox.propTypes = {
-  email: PropTypes.string.isRequired,
-  onPasswordChange: PropTypes.func.isRequired,
-  intl: intlShape.isRequired,
+interface State {
+  currentPassword: string
+  newPassword: string
+  newPasswordTouched: boolean
+  newPasswordValid: boolean
+  changeAttempts: number
+  isLoading: boolean
+  error: any
+  isCodeSent: boolean
+  [key: string]: any
+}
+
+interface Props extends InjectedIntlProps {
+  email: string
+  onPasswordChange: () => void
+  setToken: (value: string) => void
+  passwordLastUpdate?: string
+  currentToken?: string
 }
 
 export default injectIntl(PasswordFormBox)

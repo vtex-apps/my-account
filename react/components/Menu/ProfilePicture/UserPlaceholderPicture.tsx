@@ -19,7 +19,6 @@ const UserPlaceholderPicture = () => {
       />
       <mask
         id="mask0"
-        masktype="alpha"
         maskUnits="userSpaceOnUse"
         x="0"
         y="0"

@@ -1,13 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FunctionComponent } from 'react'
 import {
   SkeletonPiece,
   SkeletonBox,
   BaseLoading,
 } from 'vtex.my-account-commons'
+
 import { headerConfig } from '../pages/Profile'
 
-const ProfileLoading = ({ data }) => {
+const ProfileLoading: FunctionComponent<Props> = ({ data }) => {
   return (
     <BaseLoading queryData={data} headerConfig={headerConfig()}>
       <main className="flex flex-column-s flex-row-ns">
@@ -40,8 +40,8 @@ const ProfileLoading = ({ data }) => {
   )
 }
 
-ProfileLoading.propTypes = {
-  data: PropTypes.object.isRequired,
+interface Props {
+  data: any
 }
 
 export default ProfileLoading

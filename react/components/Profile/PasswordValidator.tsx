@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { IconSuccess, IconFailure } from 'vtex.styleguide'
 
-class PasswordValidator extends Component {
-  state = {
+class PasswordValidator extends Component<Props> {
+  public state = {
     has8chars: false,
     hasNumber: false,
     hasCaps: false,
     hasLow: false,
   }
 
-  componentDidUpdate(prevProps) {
+  public componentDidUpdate(prevProps: Props) {
     const { password, onValidationChange } = this.props
     if (password === prevProps.password) return
 
@@ -33,11 +32,10 @@ class PasswordValidator extends Component {
     }
   }
 
-  render() {
-    const { intl } = this.props
+  public render() {
     const { has8chars, hasNumber, hasCaps, hasLow } = this.state
 
-    const getIcon = condition =>
+    const getIcon = (condition: boolean) =>
       condition ? (
         <div className="mr3 c-success">
           <IconSuccess solid block />
@@ -78,9 +76,9 @@ class PasswordValidator extends Component {
   }
 }
 
-PasswordValidator.propTypes = {
-  password: PropTypes.string.isRequired,
-  onValidationChange: PropTypes.func.isRequired,
+interface Props {
+  password: string
+  onValidationChange: (args: { valid: boolean }) => void
 }
 
 export default PasswordValidator

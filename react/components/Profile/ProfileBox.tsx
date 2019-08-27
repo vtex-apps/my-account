@@ -1,13 +1,16 @@
-import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
+import React, { Fragment, FunctionComponent } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { ExtensionPoint } from 'render'
+import { ExtensionPoint, withRuntimeContext } from 'render'
 import { ProfileRules, ProfileSummary } from 'vtex.profile-form'
+
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
-import { withStoreCountry } from '../shared/withStoreCountry'
 
-const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
+const ProfileBox: FunctionComponent<Props> = ({
+  profile,
+  onEditClick,
+  runtime,
+}) => {
   if (!profile) return null
 
   return (
@@ -15,7 +18,7 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
       shouldAllowGrowing
       lowerButton={<FormattedMessage id="commons.edit" />}
       onLowerButtonClick={onEditClick}>
-      <ProfileRules country={storeCountry} shouldUseIOFetching>
+      <ProfileRules country={runtime.culture.country} shouldUseIOFetching>
         <ProfileSummary profile={profile}>
           {({
             personalData: {
@@ -35,7 +38,7 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
               stateRegistration,
             },
             isCorporate,
-          }) => (
+          }: any) => (
             <Fragment>
               <div className="flex-ns flex-wrap">
                 <div className="mb8 flex-auto">
@@ -117,13 +120,15 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
       </ProfileRules>
       <ExtensionPoint
         id="profile/display"
-        render={fields => (
+        render={(fields: { label: string; value: string }[]) => (
           <div className="flex-ns flex-wrap">
-            {fields.map(({ label, value }) => (
-              <div className="mb8 w-50-ns" key={label}>
-                <DataEntry label={label}>{value}</DataEntry>
-              </div>
-            ))}
+            {fields.map(
+              ({ label, value }: { label: string; value: string }) => (
+                <div className="mb8 w-50-ns" key={label}>
+                  <DataEntry label={label}>{value}</DataEntry>
+                </div>
+              )
+            )}
           </div>
         )}
       />
@@ -131,10 +136,10 @@ const ProfileBox = ({ profile, storeCountry, onEditClick, intl }) => {
   )
 }
 
-ProfileBox.propTypes = {
-  profile: PropTypes.object.isRequired,
-  storeCountry: PropTypes.string.isRequired,
-  onEditClick: PropTypes.func,
+interface Props {
+  profile: Profile
+  runtime: Runtime
+  onEditClick: () => void
 }
 
-export default withStoreCountry(ProfileBox)
+export default withRuntimeContext(ProfileBox)
