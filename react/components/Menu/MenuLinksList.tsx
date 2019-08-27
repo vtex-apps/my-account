@@ -8,7 +8,7 @@ import {
   defineMessages,
   InjectedIntlProps,
 } from 'react-intl'
-import { ExtensionPoint } from 'render'
+import { ExtensionPoint } from 'vtex.render-runtime'
 import { AuthService } from 'vtex.react-vtexid'
 import { ModalDialog } from 'vtex.styleguide'
 
@@ -24,6 +24,7 @@ const links = [
     path: '/addresses',
   },
 ]
+
 const messages = defineMessages({
   logout: { id: 'pages.logout', defaultMessage: '' },
   cancel: { id: 'logoutModal.cancel', defaultMessage: '' },
