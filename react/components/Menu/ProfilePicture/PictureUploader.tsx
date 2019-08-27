@@ -114,7 +114,7 @@ class PictureUploader extends Component<Props> {
 
 interface Props {
   updateProfilePicture: (args: Variables<UpdateProfilePicture>) => void
-  currentPicture: string
+  currentPicture?: string
   onCloseClick: () => void
 }
 
