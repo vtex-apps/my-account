@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Event accountView on Pixel.
+
 ## [1.8.14] - 2019-09-03
 
 ### Fixed
