@@ -4,9 +4,7 @@
   "version": "0.29.4",
   "title": "My Account",
   "description": "User's my account page.",
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "dependencies": {
     "vtex.my-cards": "0.x",
     "vtex.my-orders-app": "2.x",
@@ -23,7 +21,8 @@
     "pages": "0.x",
     "node": "4.x",
     "graphql": "1.x",
-    "messages": "1.x"
+    "messages": "1.x",
+    "docs": "0.x"
   },
   "scripts": {
     "postreleasy": "vtex publish --verbose"
@@ -59,25 +58,19 @@
               {
                 "properties": {
                   "useMap": {
-                    "enum": [
-                      true
-                    ]
+                    "enum": [true]
                   },
                   "apiKey": {
                     "title": "Your Google Maps API Key",
                     "type": "string"
                   }
                 },
-                "required": [
-                  "apiKey"
-                ]
+                "required": ["apiKey"]
               },
               {
                 "properties": {
                   "useMap": {
-                    "enum": [
-                      false
-                    ]
+                    "enum": [false]
                   }
                 }
               }
