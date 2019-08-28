@@ -2,11 +2,6 @@ declare global {
   interface Constructable<T> {
     new (): T
   }
-
-  interface A {
-    a: string
-  }
-
   interface Variables<A> {
     variables: A
   }
