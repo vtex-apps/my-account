@@ -91,15 +91,10 @@ class AddressFormBox extends Component<InnerProps & OutterProps> {
     const { onAddressDeleted, isNew, shipsTo, onError, runtime } = this.props
     const country =
       shipsTo && shipsTo.length > 0 ? shipsTo[0] : runtime.culture.country
-    const emptyAddress = getEmptyAddress(country)
-    const baseAddress = isNew ? emptyAddress : this.props.address
 
-    if (!baseAddress) return null
-
-    const address = {
-      ...this.prepareAddress(baseAddress),
-      country: country,
-    }
+    const address = this.prepareAddress(
+      isNew ? getEmptyAddress(country) : this.props.address
+    )
 
     return (
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
