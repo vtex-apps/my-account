@@ -15,9 +15,12 @@
     "splunk-events": "^1.3.0"
   },
   "devDependencies": {
+    "@types/exenv": "^1.2.0",
     "@types/graphql": "^14.2.2",
+    "@types/query-string": "5.x",
     "@types/react": "^16.8.22",
     "@types/react-intl": "^2.3.18",
+    "@types/recompose": "^0.30.7",
     "@vtex/test-tools": "^0.3.2",
     "eslint": "5.x",
     "eslint-config-vtex-react": "4.x",
