@@ -1,12 +1,14 @@
 {
   "name": "my-account",
   "vendor": "vtex",
-  "version": "1.8.13",
+  "version": "1.8.14",
   "title": "My Account",
   "description": "",
   "mustUpdateAt": "2019-07-09",
   "categories": [],
-  "registries": ["smartcheckout"],
+  "registries": [
+    "smartcheckout"
+  ],
   "dependencies": {
     "vtex.my-cards": "1.x",
     "vtex.my-orders-app": "3.x",
@@ -48,7 +50,10 @@
           "useMap": {
             "title": "Use Google Maps to fill address data",
             "type": "boolean",
-            "enum": [false, true],
+            "enum": [
+              false,
+              true
+            ],
             "default": false
           }
         },
@@ -58,19 +63,25 @@
               {
                 "properties": {
                   "useMap": {
-                    "enum": [true]
+                    "enum": [
+                      true
+                    ]
                   },
                   "apiKey": {
                     "title": "Your Google Maps API Key",
                     "type": "string"
                   }
                 },
-                "required": ["apiKey"]
+                "required": [
+                  "apiKey"
+                ]
               },
               {
                 "properties": {
                   "useMap": {
-                    "enum": [false]
+                    "enum": [
+                      false
+                    ]
                   }
                 }
               }
