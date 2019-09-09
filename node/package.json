@@ -1,8 +1,15 @@
 {
-  "name": "vtex.my-account",
-  "version": "0.18.0",
-  "main": "index.js",
+  "scripts": {
+    "lint": "tsc --noEmit && eslint --quiet --fix --ext ts,tsx ."
+  },
   "devDependencies": {
-    "@types/node": "^10.12.20"
+    "@types/node": "^12.7.4",
+    "eslint": "5.x",
+    "eslint-config-vtex": "10.x",
+    "prettier": "^1.18.2",
+    "typescript": "3.5.2"
+  },
+  "dependencies": {
+    "@vtex/api": "^3.48.2"
   }
 }
