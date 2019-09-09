@@ -3,9 +3,7 @@
   "vendor": "vtex",
   "version": "1.9.0",
   "title": "My Account",
-  "description": "",
-  "mustUpdateAt": "2019-07-09",
-  "categories": [],
+  "description": "User's my account page.",
   "registries": ["smartcheckout"],
   "dependencies": {
     "vtex.my-cards": "1.x",
@@ -22,6 +20,8 @@
   "builders": {
     "react": "3.x",
     "store": "0.x",
+    "node": "4.x",
+    "graphql": "1.x",
     "messages": "1.x"
   },
   "scripts": {
@@ -76,6 +76,17 @@
                 }
               }
             ]
+          }
+        }
+      },
+      "cards": {
+        "type": "object",
+        "title": "Cards",
+        "properties": {
+          "showMyCards": {
+            "type": "boolean",
+            "title": "Visible",
+            "default": true
           }
         }
       }

@@ -1,0 +1,9 @@
+type Query {
+  appSettings: Settings
+}
+
+type Settings {
+  useMap: Boolean
+  showGenders: Boolean
+  showMyCards: Boolean
+}

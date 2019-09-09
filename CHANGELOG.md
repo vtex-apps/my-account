@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **appSettings** query.
+- **cards.showMyCards** app setting.
+
 ## [1.8.15] - 2019-09-03 [YANKED]
 
 ### Fixed
