@@ -1,8 +1,9 @@
 type Query {
-  appSettings: Settings
+  appSettings: AppSettings
 }
 
-type Settings {
+type AppSettings {
+  cacheId: ID
   useMap: Boolean
   showGenders: Boolean
   showMyCards: Boolean
