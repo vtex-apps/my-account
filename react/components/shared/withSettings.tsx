@@ -1,17 +1,26 @@
-import React, { Component, ComponentType } from 'react'
-import PropTypes from 'prop-types'
+import React, { ComponentType } from 'react'
+import { Query } from 'react-apollo'
+
+import QUERY from '../../graphql/settings.gql'
 
 export function withSettings(
-  WrappedComponent: ComponentType<{ settings: any }>
+  WrappedComponent: ComponentType<{ settings?: Settings }>
 ) {
-  return class SettingsApplied extends Component {
-    public static contextTypes = {
-      getSettings: PropTypes.func,
-    }
-
-    public render() {
-      const settings = this.context.getSettings('vtex.my-account')
-      return <WrappedComponent {...this.props} settings={settings} />
-    }
+  return function SettingsApplied(props: any) {
+    return (
+      <Query query={QUERY}>
+        {({
+          data: { loading, settings },
+        }: {
+          data: { settings: Settings; loading: boolean }
+        }) => <WrappedComponent {...props} settings={!loading && settings} />}
+      </Query>
+    )
   }
+}
+
+export interface Settings {
+  showGenders: boolean
+  showMyCards: boolean | null
+  useMap: boolean
 }
