@@ -5,9 +5,12 @@ import {
   FormattedMessage,
   defineMessages,
 } from 'react-intl'
+import { compose } from 'recompose'
 import { Button, InputPassword, Input } from 'vtex.styleguide'
 import { AuthState, AuthService } from 'vtex.react-vtexid'
 import { GenericError } from 'vtex.my-account-commons'
+import { withRuntimeContext } from 'vtex.render-runtime'
+import { withPixel, PixelData } from 'vtex.pixel-manager/PixelContext'
 
 import ContentBox from '../shared/ContentBox'
 import RedefinePasswordForm from './RedefinePassword'
@@ -83,6 +86,20 @@ class PasswordFormBox extends Component<Props, State> {
 
   private handleSetPasswordSuccess = (onPasswordChange: () => void) => {
     this.setState({ isLoading: false, changeAttempts: 0 })
+
+    const { runtime, push } = this.props
+
+    const event: PixelData = {
+      event: 'pageView',
+      eventType: 'passwordReset',
+      accountName: runtime.account,
+      pageTitle: document.title,
+      pageUrl: location.href,
+      pageCategory: 'MyAccount',
+    }
+
+    push(event)
+
     onPasswordChange()
   }
 
@@ -227,6 +244,12 @@ interface Props extends InjectedIntlProps {
   setToken: (value: string) => void
   passwordLastUpdate?: string
   currentToken?: string
+  runtime: Runtime
+  push: (args: PixelData) => void
 }
 
-export default injectIntl(PasswordFormBox)
+export default compose<Props, Omit<Props, 'intl' | 'runtime' | 'push'>>(
+  injectIntl,
+  withRuntimeContext,
+  withPixel
+)(PasswordFormBox)
