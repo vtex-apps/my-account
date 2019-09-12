@@ -2,15 +2,28 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { Component, Fragment } from 'react'
 import { injectIntl, FormattedMessage, InjectedIntlProps } from 'react-intl'
+import { compose } from 'recompose'
 import { ExtensionPoint } from 'vtex.render-runtime'
 import { AuthService } from 'vtex.react-vtexid'
 import { ModalDialog } from 'vtex.styleguide'
 
 import UserInfo from './UserInfo'
 import MenuLink from './MenuLink'
+import { withSettings, Settings } from '../shared/withSettings'
 import styles from '../../styles.css'
 
-class Menu extends Component<InjectedIntlProps, { isModalOpen: boolean }> {
+function renderLinks(links: Link[], displayMyCards: boolean | null) {
+  let linksToDisplay = links
+  if (displayMyCards === false) {
+    linksToDisplay = links.filter(link => link.path !== '/cards')
+  }
+
+  return linksToDisplay.map(({ name, path }) => (
+    <MenuLink path={path} name={name} key={name} />
+  ))
+}
+
+class Menu extends Component<Props, { isModalOpen: boolean }> {
   public state = { isModalOpen: false }
 
   private handleModalToggle = () => {
@@ -18,7 +31,7 @@ class Menu extends Component<InjectedIntlProps, { isModalOpen: boolean }> {
   }
 
   public render() {
-    const { intl } = this.props
+    const { intl, settings } = this.props
 
     return (
       <aside
@@ -27,10 +40,8 @@ class Menu extends Component<InjectedIntlProps, { isModalOpen: boolean }> {
         <nav className={`${styles.menuLinks}`}>
           <ExtensionPoint
             id="my-account-menu"
-            render={(links: any) =>
-              links.map(({ name, path }: any) => (
-                <MenuLink path={path} name={name} key={name} />
-              ))
+            render={(links: Link[]) =>
+              renderLinks(links, settings ? settings.showMyCards : false)
             }
           />
           <AuthService.RedirectLogout returnUrl="/">
@@ -69,4 +80,16 @@ class Menu extends Component<InjectedIntlProps, { isModalOpen: boolean }> {
   }
 }
 
-export default injectIntl(Menu)
+interface Link {
+  name: string
+  path: string
+}
+
+interface Props extends InjectedIntlProps {
+  settings?: Settings
+}
+
+export default compose<Props, {}>(
+  injectIntl,
+  withSettings
+)(Menu)
