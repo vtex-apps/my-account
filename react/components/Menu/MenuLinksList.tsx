@@ -9,27 +9,32 @@ import {
   InjectedIntlProps,
 } from 'react-intl'
 import { ExtensionPoint } from 'render'
+import { compose } from 'recompose'
 import { AuthService } from 'vtex.react-vtexid'
 import { ModalDialog } from 'vtex.styleguide'
 
 import MenuLink from './MenuLink'
+import { withSettings, Settings } from '../shared/withSettings'
 
-const links = [
-  {
-    id: 'pages.profile',
-    path: '/profile',
-  },
-  {
-    id: 'pages.addresses',
-    path: '/addresses',
-  },
-]
 const messages = defineMessages({
   logout: { id: 'pages.logout', defaultMessage: '' },
+  addresses: { id: 'pages.addresses', defaultMessage: '' },
+  profile: { id: 'pages.profile', defaultMessage: '' },
   cancel: { id: 'logoutModal.cancel', defaultMessage: '' },
 })
 
-class MenuLinksList extends Component<InjectedIntlProps> {
+function renderLinks(links: Link[], displayMyCards: boolean | null) {
+  let linksToDisplay = links
+  if (displayMyCards === false) {
+    linksToDisplay = links.filter(link => link.path !== '/cards')
+  }
+
+  return linksToDisplay.map(({ name, path }) => (
+    <MenuLink path={path} name={name} key={name} />
+  ))
+}
+
+class MenuLinksList extends Component<Props> {
   public state = { isModalOpen: false }
 
   private handleModalToggle = () => {
@@ -39,27 +44,32 @@ class MenuLinksList extends Component<InjectedIntlProps> {
   }
 
   public render() {
-    const { intl } = this.props
+    const { intl, settings } = this.props
+
+    const defaultLinks = [
+      {
+        name: intl.formatMessage(messages.profile),
+        path: '/profile',
+      },
+      {
+        name: intl.formatMessage(messages.addresses),
+        path: '/addresses',
+      },
+    ]
 
     return (
       <nav className="vtex-account__menu-links">
         <ExtensionPoint
           id="menu-links-before"
-          render={(links: any[]) =>
-            links.map(({ name, path }) => (
-              <MenuLink path={path} name={name} key={name} />
-            ))
+          render={(links: Link[]) =>
+            renderLinks(links, settings ? settings.showMyCards : false)
           }
         />
-        {links.map(({ path, id }) => (
-          <MenuLink path={path} name={intl.formatMessage({ id })} key={id} />
-        ))}
+        {renderLinks(defaultLinks, settings ? settings.showMyCards : false)}
         <ExtensionPoint
           id="menu-links-after"
-          render={(links: any[]) =>
-            links.map(({ name, path }) => (
-              <MenuLink path={path} name={name} key={name} />
-            ))
+          render={(links: Link[]) =>
+            renderLinks(links, settings ? settings.showMyCards : false)
           }
         />
         <AuthService.RedirectLogout returnUrl="/">
@@ -94,4 +104,16 @@ class MenuLinksList extends Component<InjectedIntlProps> {
   }
 }
 
-export default injectIntl(MenuLinksList)
+interface Link {
+  name: string
+  path: string
+}
+
+interface Props extends InjectedIntlProps {
+  settings?: Settings
+}
+
+export default compose<Props, {}>(
+  injectIntl,
+  withSettings
+)(MenuLinksList)

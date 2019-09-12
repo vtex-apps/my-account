@@ -8,7 +8,7 @@ import { Button } from 'vtex.styleguide'
 
 import ContentBox from '../shared/ContentBox'
 import UpdateProfile from '../../graphql/updateProfile.gql'
-import { withSettings } from '../shared/withSettings'
+import { withSettings, Settings } from '../shared/withSettings'
 
 class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
   private validatorFunctions: any[]
@@ -79,8 +79,7 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
   public render() {
     const { profile, settings, runtime } = this.props
     const { isLoading } = this.state
-    const showGenders =
-      settings && settings.profile && settings.profile.showGenders
+    const showGenders = settings && settings.showGenders
 
     if (!profile) return null
 
@@ -114,7 +113,7 @@ interface State {
 }
 
 interface InnerProps {
-  settings: any
+  settings?: Settings
   runtime: Runtime
   updateProfile: (args: Variables<UpdateProfileArgs>) => void
 }
