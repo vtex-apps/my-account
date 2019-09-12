@@ -8,7 +8,7 @@ declare var process: {
 
 const appId = process.env.VTEX_APP_ID
 
-async function settings(_: void, __: void, ctx: ServiceContext) {
+async function settings(_: unknown, __: unknown, ctx: ServiceContext) {
   const result = (await ctx.clients.apps.getAppSettings(appId)) as Settings
 
   return {
