@@ -67,6 +67,7 @@ declare global {
   }
 
   interface Runtime {
+    account: string
     culture: {
       country: string
     }

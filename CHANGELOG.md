@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Event accountView on Pixel.
+- Event `accountView` and `passwordReset` on Pixel.
 
 ## [0.28.0] - 2019-08-22
 
