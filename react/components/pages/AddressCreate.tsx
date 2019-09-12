@@ -2,22 +2,20 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import queryString from 'query-string'
-import { ContentWrapper } from 'vtex.my-account-commons'
+import { withContentWrapper } from '../shared/withContentWrapper'
 
 import AddressCreateLoading from '../loaders/AddressCreateLoading'
 import AddressFormBox from '../Addresses/AddressFormBox'
 import GET_NEW_ADDRESS_DATA from '../../graphql/getNewAddressData.gql'
 import styles from '../../styles.css'
 
-export function headerConfig() {
-  return {
-    namespace: `${styles.addressCreate}`,
-    titleId: 'pages.addressCreate',
-    backButton: {
-      titleId: 'pages.addresses',
-      path: '/addresses',
-    },
-  }
+export const headerConfig = {
+  namespace: `${styles.addressCreate}`,
+  titleId: 'pages.addressCreate',
+  backButton: {
+    titleId: 'pages.addresses',
+    path: '/addresses',
+  },
 }
 
 class AddressCreate extends Component<Props> {
@@ -35,17 +33,13 @@ class AddressCreate extends Component<Props> {
     const { profile, shipsTo } = this.props
 
     return (
-      <ContentWrapper {...headerConfig()}>
-        {({ handleError }: any) => (
-          <AddressFormBox
-            isNew
-            onAddressSaved={this.handleGoBack}
-            onError={handleError}
-            profile={profile}
-            shipsTo={shipsTo}
-          />
-        )}
-      </ContentWrapper>
+      <AddressFormBox
+        isNew
+        onAddressSaved={this.handleGoBack}
+        onError={this.props.handleError}
+        profile={profile}
+        shipsTo={shipsTo}
+      />
     )
   }
 }
@@ -66,9 +60,11 @@ interface Props {
   profile: Profile
   shipsTo: string[]
   history: any
+  handleError: () => void
 }
 
 const enhance = compose<Props, void>(
+  withContentWrapper(headerConfig),
   graphql(GET_NEW_ADDRESS_DATA),
   branch(
     ({ data }: { data: Data }) => data.profile == null,

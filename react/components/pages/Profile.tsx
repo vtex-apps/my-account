@@ -14,8 +14,9 @@ import GET_PROFILE from '../../graphql/getProfile.gql'
 
 import styles from '../../styles.css'
 
-export const headerConfig = () => {
-  return { namespace: `${styles.profile}`, titleId: 'pages.profile' }
+export const headerConfig = {
+  namespace: `${styles.profile}`,
+  titleId: 'pages.profile',
 }
 
 class ProfileContainer extends Component<Props> {
@@ -52,7 +53,7 @@ class ProfileContainer extends Component<Props> {
     const { isEditingPassword, showToast } = this.state
 
     return (
-      <ContentWrapper {...headerConfig()}>
+      <ContentWrapper {...headerConfig}>
         {() => (
           <main className="flex flex-column-s flex-row-ns">
             <div className="w-60-ns w-100-s">

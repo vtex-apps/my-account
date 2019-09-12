@@ -23,7 +23,7 @@
     "@types/recompose": "^0.30.7",
     "@vtex/test-tools": "^0.3.2",
     "eslint": "5.x",
-    "eslint-config-vtex-react": "4.x",
+    "eslint-config-vtex-react": "^5.0.1",
     "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
     "typescript": "3.5.2"
