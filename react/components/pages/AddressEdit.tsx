@@ -5,6 +5,7 @@ import { GenericError } from 'vtex.my-account-commons'
 
 import AddressEditLoading from '../loaders/AddressEditLoading'
 import AddressForm from '../Addresses/AddressForm'
+import AddressDeleter from '../Addresses/AddressDeleter'
 import { withContentWrapper } from '../shared/withContentWrapper'
 import ContentBox from '../shared/ContentBox'
 
@@ -31,27 +32,24 @@ class AddressEdit extends Component<Props> {
     isLoading: false,
   }
 
+  private handleDelete = () => this.handleGoBack()
+
   private handleSave = (address: Address) => {
     const { updateAddress, handleError } = this.props
     const { addressId, addressQuery, ...addressFields } = address
 
     this.setState({ isLoading: true })
 
-    console.log('saving', addressFields)
     updateAddress({
       variables: {
         addressId,
         addressFields: addressFields as AddressInput,
       },
     })
-      .then(() => {
+      .then(() => this.handleGoBack())
+      .catch(() => handleError())
+      .finally(() => {
         this.setState({ isLoading: false })
-        this.handleGoBack()
-      })
-      .catch(() => {
-        console.log('deu ruim')
-        this.setState({ isLoading: false })
-        handleError()
       })
   }
 
@@ -73,6 +71,11 @@ class AddressEdit extends Component<Props> {
           address={normalizedAddress}
           onSubmit={this.handleSave}
           shipsTo={shipsTo}
+          onError={this.props.handleError}
+        />
+        <AddressDeleter
+          addressId={addressId}
+          onAddressDeleted={this.handleDelete}
           onError={this.props.handleError}
         />
       </ContentBox>
