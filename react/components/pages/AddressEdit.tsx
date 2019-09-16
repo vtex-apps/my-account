@@ -47,8 +47,8 @@ class AddressEdit extends Component<Props> {
       },
     })
       .then(() => this.handleGoBack())
-      .catch(() => handleError())
-      .finally(() => {
+      .catch(() => {
+        handleError()
         this.setState({ isLoading: false })
       })
   }

@@ -14,7 +14,7 @@ import { addValidation } from 'vtex.address-form/helpers'
 import { StyleguideInput, GeolocationInput } from 'vtex.address-form/inputs'
 
 interface OuterProps {
-  isLoading: boolean
+  isLoading?: boolean
   submitLabelId: string
   address: any
   shipsTo: unknown[]

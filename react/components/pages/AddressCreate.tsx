@@ -2,12 +2,22 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import queryString from 'query-string'
-import { withContentWrapper } from '../shared/withContentWrapper'
+import { withRuntimeContext } from 'vtex.render-runtime'
 
+import AddressForm from '../Addresses/AddressForm'
+import getEmptyAddress from '../Addresses/emptyAddress'
+import { withContentWrapper } from '../shared/withContentWrapper'
+import ContentBox from '../shared/ContentBox'
 import AddressCreateLoading from '../loaders/AddressCreateLoading'
-import AddressFormBox from '../Addresses/AddressFormBox'
+
+import CREATE_ADDRESS from '../../graphql/createAddress.gql'
 import GET_NEW_ADDRESS_DATA from '../../graphql/getNewAddressData.gql'
+
 import styles from '../../styles.css'
+
+function generateRandomName() {
+  return (1 + Math.random()).toString(36).substring(2)
+}
 
 export const headerConfig = {
   namespace: `${styles.addressCreate}`,
@@ -18,7 +28,20 @@ export const headerConfig = {
   },
 }
 
-class AddressCreate extends Component<Props> {
+class AddressCreate extends Component<Props, State> {
+  public constructor(props: Props) {
+    super(props)
+    const { runtime, shipsTo } = props
+
+    const country =
+      shipsTo && shipsTo.length > 0 ? shipsTo[0] : runtime.culture.country
+
+    this.state = {
+      isLoading: false,
+      address: getEmptyAddress(country),
+    }
+  }
+
   private handleGoBack = () => {
     const { history } = this.props
 
@@ -29,17 +52,41 @@ class AddressCreate extends Component<Props> {
     )
   }
 
+  private handleCreate = (address: Address) => {
+    const { createAddress, handleError } = this.props
+    const { addressId, addressQuery, ...addressFields } = address
+
+    addressFields.addressName = generateRandomName()
+
+    this.setState({ isLoading: true })
+
+    createAddress({
+      variables: {
+        addressFields: addressFields as AddressInput,
+      },
+    })
+      .then(() => this.handleGoBack())
+      .catch(() => {
+        handleError()
+        this.setState({ isLoading: false })
+      })
+  }
+
   public render() {
-    const { profile, shipsTo } = this.props
+    const { isLoading, address } = this.state
+    const { shipsTo } = this.props
 
     return (
-      <AddressFormBox
-        isNew
-        onAddressSaved={this.handleGoBack}
-        onError={this.props.handleError}
-        profile={profile}
-        shipsTo={shipsTo}
-      />
+      <ContentBox shouldAllowGrowing maxWidthStep={6}>
+        <AddressForm
+          isLoading={isLoading}
+          submitLabelId="addresses.addAddress"
+          address={address}
+          onSubmit={this.handleCreate}
+          shipsTo={shipsTo}
+          onError={this.props.handleError}
+        />
+      </ContentBox>
     )
   }
 }
@@ -61,11 +108,19 @@ interface Props {
   shipsTo: string[]
   history: any
   handleError: () => void
+  runtime: Runtime
+  createAddress: (args: Variables<CreateAddressArgs>) => Promise<void>
+}
+
+interface State {
+  address: any
+  isLoading: boolean
 }
 
 const enhance = compose<Props, void>(
   withContentWrapper(headerConfig),
   graphql(GET_NEW_ADDRESS_DATA),
+  graphql(CREATE_ADDRESS, { name: 'createAddress' }),
   branch(
     ({ data }: { data: Data }) => data.profile == null,
     renderComponent(AddressCreateLoading)
@@ -73,7 +128,8 @@ const enhance = compose<Props, void>(
   withProps(({ data }: { data: Data }) => ({
     profile: data.profile,
     shipsTo: data.logistics.shipsTo,
-  }))
+  })),
+  withRuntimeContext
 )
 
 export default enhance(AddressCreate)
