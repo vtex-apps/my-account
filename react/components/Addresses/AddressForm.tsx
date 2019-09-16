@@ -1,17 +1,33 @@
 import React, { Component, Fragment } from 'react'
 import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl'
+import { compose } from 'recompose'
+import { graphql } from 'react-apollo'
+
 import {
   AddressContainer,
   AddressForm as AddressFields,
-  AddressSubmitter,
   AddressRules,
-  CountrySelector,
-  PostalCodeGetter,
+  AddressSubmitter,
   AutoCompletedFields,
+  CountrySelector,
+  GoogleMapsContainer,
+  Map,
+  PostalCodeGetter,
 } from 'vtex.address-form/components'
 import { Button } from 'vtex.styleguide'
 import { addValidation } from 'vtex.address-form/helpers'
 import { StyleguideInput, GeolocationInput } from 'vtex.address-form/inputs'
+
+import GET_STORE_CONFIGS from '../../graphql/getStoreConfigs.gql'
+
+interface InnerProps extends InjectedIntlProps {
+  getStoreConfigs: {
+    storeConfigs: {
+      googleMapsApiKey: string
+      geolocation: boolean
+    }
+  }
+}
 
 interface OuterProps {
   isLoading?: boolean
@@ -26,8 +42,8 @@ interface State {
   address: any
 }
 
-class AddressForm extends Component<InjectedIntlProps & OuterProps, State> {
-  public constructor(props: OuterProps & InjectedIntlProps) {
+class AddressForm extends Component<InnerProps & OuterProps, State> {
+  public constructor(props: InnerProps & OuterProps) {
     super(props)
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -35,8 +51,8 @@ class AddressForm extends Component<InjectedIntlProps & OuterProps, State> {
 
     this.state = {
       address: addValidation({
-        ...addr,
         addressQuery: null,
+        ...addr,
       }),
     }
   }
@@ -58,27 +74,52 @@ class AddressForm extends Component<InjectedIntlProps & OuterProps, State> {
     this.setState({ address })
   }
 
-  public render() {
+  private hasValidGeoCoords() {
     const { address } = this.state
-    const { intl, shipsTo, submitLabelId, isLoading } = this.props
-
-    const shipCountries = shipsTo.map(code => ({
-      label: intl.formatMessage({ id: `country.${code}` }),
-      value: code,
-    }))
-
-    const validGeoCoords =
+    return (
       address.geoCoordinates &&
       address.geoCoordinates.valid &&
       address.geoCoordinates.geolocationAutoCompleted
+    )
+  }
 
-    const validPostalCode = address.postalCode.value !== null
+  private hasValidPostalCode() {
+    const { address } = this.state
+    return address.postalCode.value !== null
+  }
 
-    const hasAutoCompletedFields = Object.keys(address).some(
+  private hasAutoCompletedFields() {
+    const { address } = this.state
+    return Object.keys(address).some(
       fieldName =>
         (address && address[fieldName].geolocationAutoCompleted) ||
         (address && address[fieldName].postalCodeAutoCompleted)
     )
+  }
+
+  private getLocalizedShipsTo() {
+    const { shipsTo, intl } = this.props
+    return shipsTo.map(code => ({
+      label: intl.formatMessage({ id: `country.${code}` }),
+      value: code,
+    }))
+  }
+
+  public render() {
+    const { address } = this.state
+    const { intl, submitLabelId, isLoading, getStoreConfigs } = this.props
+
+    const shipCountries = this.getLocalizedShipsTo()
+    const hasValidGeoCoords = this.hasValidGeoCoords()
+    const hasValidPostalCode = this.hasValidPostalCode()
+    const hasAutoCompletedFields = this.hasAutoCompletedFields()
+
+    const mapsAPIKey =
+      getStoreConfigs.storeConfigs &&
+      getStoreConfigs.storeConfigs.googleMapsApiKey
+
+    const isGeolocation =
+      getStoreConfigs.storeConfigs && getStoreConfigs.storeConfigs.geolocation
 
     return (
       <Fragment>
@@ -91,7 +132,34 @@ class AddressForm extends Component<InjectedIntlProps & OuterProps, State> {
             <Fragment>
               <CountrySelector shipsTo={shipCountries} />
 
-              <PostalCodeGetter />
+              {isGeolocation && (
+                <GoogleMapsContainer apiKey={mapsAPIKey} locale={intl.locale}>
+                  {({
+                    loading,
+                    googleMaps,
+                  }: {
+                    loading: boolean
+                    googleMaps: string
+                  }) => (
+                    <Fragment>
+                      <GeolocationInput
+                        loadingGoogle={loading}
+                        googleMaps={googleMaps}
+                      />
+
+                      {hasValidGeoCoords && (
+                        <Map
+                          loadingGoogle={loading}
+                          googleMaps={googleMaps}
+                          mapProps={{ className: 'mb7 br2 h4' }}
+                        />
+                      )}
+                    </Fragment>
+                  )}
+                </GoogleMapsContainer>
+              )}
+
+              {isGeolocation === false && <PostalCodeGetter />}
 
               {hasAutoCompletedFields && (
                 <div className="pb7">
@@ -103,7 +171,7 @@ class AddressForm extends Component<InjectedIntlProps & OuterProps, State> {
                 </div>
               )}
 
-              {(validGeoCoords || validPostalCode) && (
+              {(hasValidGeoCoords || hasValidPostalCode) && (
                 <AddressFields
                   address={address}
                   Input={StyleguideInput}
@@ -121,7 +189,7 @@ class AddressForm extends Component<InjectedIntlProps & OuterProps, State> {
                     block
                     size="small"
                     isLoading={isLoading}
-                    disabled={!validGeoCoords && !validPostalCode}>
+                    disabled={!hasValidGeoCoords && !hasValidPostalCode}>
                     <FormattedMessage id={submitLabelId} />
                   </Button>
                 )}
@@ -134,4 +202,7 @@ class AddressForm extends Component<InjectedIntlProps & OuterProps, State> {
   }
 }
 
-export default injectIntl(AddressForm)
+export default compose<InnerProps & OuterProps, OuterProps>(
+  graphql(GET_STORE_CONFIGS, { name: 'getStoreConfigs' }),
+  injectIntl
+)(AddressForm)

@@ -9,7 +9,7 @@ import AddressDeleter from '../Addresses/AddressDeleter'
 import { withContentWrapper } from '../shared/withContentWrapper'
 import ContentBox from '../shared/ContentBox'
 
-import GET_ADDRESS from '../../graphql/getAddresses.gql'
+import GET_ADDRESSES from '../../graphql/getAddresses.gql'
 import UPDATE_ADDRESS from '../../graphql/updateAddress.gql'
 
 import styles from '../../styles.css'
@@ -63,6 +63,10 @@ class AddressEdit extends Component<Props> {
     }
 
     const { addressName, ...normalizedAddress } = address
+
+    const { street, number, neighborhood, city, state } = normalizedAddress
+    normalizedAddress.addressQuery = `${street}, ${number} - ${neighborhood}, ${city} - ${state}`
+
     return (
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
         <AddressForm
@@ -103,7 +107,7 @@ interface Props {
 
 const enhance = compose<Props, void>(
   withContentWrapper(headerConfig),
-  graphql(GET_ADDRESS),
+  graphql(GET_ADDRESSES),
   graphql(UPDATE_ADDRESS, { name: 'updateAddress' }),
   branch(
     ({ data }: { data: Data }) => data.profile == null,

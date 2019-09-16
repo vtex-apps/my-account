@@ -15,10 +15,6 @@ import GET_NEW_ADDRESS_DATA from '../../graphql/getNewAddressData.gql'
 
 import styles from '../../styles.css'
 
-function generateRandomName() {
-  return (1 + Math.random()).toString(36).substring(2)
-}
-
 export const headerConfig = {
   namespace: `${styles.addressCreate}`,
   titleId: 'pages.addressCreate',
@@ -31,14 +27,14 @@ export const headerConfig = {
 class AddressCreate extends Component<Props, State> {
   public constructor(props: Props) {
     super(props)
-    const { runtime, shipsTo } = props
+    const { runtime, shipsTo, profile } = props
 
     const country =
       shipsTo && shipsTo.length > 0 ? shipsTo[0] : runtime.culture.country
 
     this.state = {
       isLoading: false,
-      address: getEmptyAddress(country),
+      address: getEmptyAddress(country, profile),
     }
   }
 
@@ -55,8 +51,6 @@ class AddressCreate extends Component<Props, State> {
   private handleCreate = (address: Address) => {
     const { createAddress, handleError } = this.props
     const { addressId, addressQuery, ...addressFields } = address
-
-    addressFields.addressName = generateRandomName()
 
     this.setState({ isLoading: true })
 
