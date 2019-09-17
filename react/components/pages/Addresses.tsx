@@ -12,24 +12,20 @@ import Toast from '../shared/Toast'
 
 import GET_ADRESSES from '../../graphql/getAddresses.gql'
 
-export function headerConfig() {
-  const headerContent = (
+export const headerConfig = {
+  namespace: 'vtex-account__address-list',
+  titleId: 'pages.addresses',
+  headerContent: (
     <Link to="/addresses/new">
       <Button variation="primary" block size="small">
         <FormattedMessage id="addresses.addAddress" />
       </Button>
     </Link>
-  )
-
-  return {
-    namespace: 'vtex-account__address-list',
-    titleId: 'pages.addresses',
-    headerContent,
-  }
+  ),
 }
 
 function renderWrapper(children: any) {
-  return <ContentWrapper {...headerConfig()}>{() => children}</ContentWrapper>
+  return <ContentWrapper {...headerConfig}>{() => children}</ContentWrapper>
 }
 
 function EmptyAddresses() {

@@ -8,15 +8,13 @@ import ProfileEditLoading from '../loaders/ProfileEditLoading'
 import ProfileFormBox from '../Profile/ProfileFormBox'
 import GET_PROFILE from '../../graphql/getProfile.gql'
 
-export function headerConfig() {
-  return {
-    namespace: 'vtex-account__profile-edit',
-    titleId: 'pages.profileEdit',
-    backButton: {
-      titleId: 'pages.profile',
-      path: '/profile',
-    },
-  }
+export const headerConfig = {
+  namespace: 'vtex-account__profile-edit',
+  titleId: 'pages.profileEdit',
+  backButton: {
+    titleId: 'pages.profile',
+    path: '/profile',
+  },
 }
 
 class ProfileEdit extends Component<Props> {
@@ -28,7 +26,7 @@ class ProfileEdit extends Component<Props> {
     const { profile } = this.props
 
     return (
-      <ContentWrapper {...headerConfig()}>
+      <ContentWrapper {...headerConfig}>
         {({ handleError }: any) => (
           <ProfileFormBox
             profile={profile}

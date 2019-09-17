@@ -9,3 +9,8 @@ declare module 'vtex.address-form/components' {
   export const GoogleMapsContainer
   export const Map
 }
+
+interface GoogleMapsContainerArgs {
+  loading: boolean
+  googleMaps: string
+}
