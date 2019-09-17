@@ -64,9 +64,6 @@ class AddressEdit extends Component<Props> {
 
     const { addressName, ...normalizedAddress } = address
 
-    const { street, number, neighborhood, city, state } = normalizedAddress
-    normalizedAddress.addressQuery = `${street}, ${number} - ${neighborhood}, ${city} - ${state}`
-
     return (
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
         <AddressForm
