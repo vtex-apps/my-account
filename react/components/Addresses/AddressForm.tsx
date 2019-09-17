@@ -44,7 +44,6 @@ interface State {
 
 const AUTO_COMPLETABLE_FIELDS = [
   'city',
-  'geoCoordinates',
   'neighborhood',
   'number',
   'postalCode',
@@ -108,8 +107,9 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
   private hasGeoCoords() {
     const { address } = this.state
     return (
-      address.geoCoordinates.geolocationAutoCompleted &&
-      address.geoCoordinates.value
+      address.geoCoordinates.geolocationAutoCompleted ||
+      (Array.isArray(address.geoCoordinates.value) &&
+        address.geoCoordinates.value.length === 2)
     )
   }
 
