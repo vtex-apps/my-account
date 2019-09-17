@@ -1,5 +1,6 @@
 declare module 'vtex.address-form/components' {
   export const AddressRules
+  export const AddressSummary
   export const AddressContainer
   export const CountrySelector
   export const PostalCodeGetter
@@ -8,4 +9,9 @@ declare module 'vtex.address-form/components' {
   export const AddressSubmitter
   export const GoogleMapsContainer
   export const Map
+}
+
+interface GoogleMapsContainerArgs {
+  loading: boolean
+  googleMaps: string
 }
