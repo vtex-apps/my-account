@@ -45,8 +45,9 @@ declare global {
 
   interface Address {
     addressId: stirng
+    addressQuery: string | null
     addressType: string
-    addressName: string
+    addressName?: string
     city: string
     complement: string
     country: string
@@ -58,7 +59,7 @@ declare global {
     reference: string
     state: string
     street: string
-    addressQuery: string
+    __typename?: string
   }
 
   interface Runtime {

@@ -10,26 +10,23 @@ import AddressesLoading from '../loaders/AddressesLoading'
 import AddressBox from '../Addresses/AddressBox'
 import Toast from '../shared/Toast'
 import GET_ADRESSES from '../../graphql/getAddresses.gql'
+
 import styles from '../../styles.css'
 
-export function headerConfig() {
-  const headerContent = (
+export const headerConfig = {
+  namespace: `${styles.addressList}`,
+  titleId: 'pages.addresses',
+  headerContent: (
     <Link to="/addresses/new">
       <Button variation="primary" block size="small">
         <FormattedMessage id="addresses.addAddress" />
       </Button>
     </Link>
-  )
-
-  return {
-    namespace: `${styles.addressList}`,
-    titleId: 'pages.addresses',
-    headerContent,
-  }
+  ),
 }
 
 function renderWrapper(children: any) {
-  return <ContentWrapper {...headerConfig()}>{() => children}</ContentWrapper>
+  return <ContentWrapper {...headerConfig}>{() => children}</ContentWrapper>
 }
 
 function EmptyAddresses() {

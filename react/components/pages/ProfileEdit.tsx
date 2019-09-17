@@ -7,17 +7,16 @@ import { ContentWrapper } from 'vtex.my-account-commons'
 import ProfileEditLoading from '../loaders/ProfileEditLoading'
 import ProfileFormBox from '../Profile/ProfileFormBox'
 import GET_PROFILE from '../../graphql/getProfile.gql'
+
 import styles from '../../styles.css'
 
-export function headerConfig() {
-  return {
-    namespace: `${styles.profileEdit}`,
-    titleId: 'pages.profileEdit',
-    backButton: {
-      titleId: 'pages.profile',
-      path: '/profile',
-    },
-  }
+export const headerConfig = {
+  namespace: `${styles.profileEdit}`,
+  titleId: 'pages.profileEdit',
+  backButton: {
+    titleId: 'pages.profile',
+    path: '/profile',
+  },
 }
 
 class ProfileEdit extends Component<Props> {
@@ -29,7 +28,7 @@ class ProfileEdit extends Component<Props> {
     const { profile } = this.props
 
     return (
-      <ContentWrapper {...headerConfig()}>
+      <ContentWrapper {...headerConfig}>
         {({ handleError }: any) => (
           <ProfileFormBox
             profile={profile}
