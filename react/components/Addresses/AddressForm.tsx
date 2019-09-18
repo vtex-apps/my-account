@@ -39,7 +39,7 @@ interface OuterProps {
 }
 
 interface State {
-  address: any
+  address: AddressFormFields
 }
 
 const AUTO_COMPLETABLE_FIELDS = [
@@ -82,7 +82,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
     }
   }
 
-  private handleAddressChange = (newAddress: any) => {
+  private handleAddressChange = (newAddress: AddressFormFields) => {
     const curAddress = this.state.address
 
     // allow to edit only with geolocation component

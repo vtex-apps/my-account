@@ -49,7 +49,7 @@ declare global {
   }
 
   interface Address {
-    addressId: stirng
+    addressId: string
     addressQuery: string | null
     addressType: string
     addressName?: string
@@ -67,10 +67,23 @@ declare global {
     __typename?: string
   }
 
+  interface AddressFormFields {
+    [key: string]: {
+      value: null | string | number | number[]
+      valid?: boolean
+      geolocationAutoCompleted?: boolean
+      postalCodeAutoCompleted?: boolean
+    }
+  }
+
   interface Runtime {
     culture: {
       country: string
     }
+  }
+
+  interface ContentWrapperProps {
+    handleError: () => void
   }
 
   interface Profile {
