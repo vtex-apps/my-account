@@ -23,17 +23,8 @@ export const headerConfig = {
 }
 
 class AddressCreate extends Component<Props, State> {
-  public constructor(props: Props) {
-    super(props)
-    const { runtime, shipsTo, profile } = props
-
-    const country =
-      shipsTo && shipsTo.length > 0 ? shipsTo[0] : runtime.culture.country
-
-    this.state = {
-      isLoading: false,
-      address: getEmptyAddress(country, profile),
-    }
+  public state = {
+    isLoading: false,
   }
 
   private handleGoBack = () => {
@@ -65,8 +56,13 @@ class AddressCreate extends Component<Props, State> {
   }
 
   public render() {
-    const { isLoading, address } = this.state
-    const { shipsTo } = this.props
+    const { isLoading } = this.state
+    const { runtime, shipsTo, profile } = this.props
+
+    const country =
+      shipsTo && shipsTo.length > 0 ? shipsTo[0] : runtime.culture.country
+
+    const address = getEmptyAddress(country, profile)
 
     return (
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
@@ -104,7 +100,6 @@ interface Props extends InjectedContentWrapperProps {
 }
 
 interface State {
-  address: any
   isLoading: boolean
 }
 
