@@ -7,14 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [1.10.0] - 2019-09-17
-
 ### Fixed
 
 - Address editing when using geolocation.
 - Country change not affecting the address form rules.
 
-## [0.29.0] - 2019-09-12
+## [1.10.0] - 2019-09-17
 
 ### Added
 

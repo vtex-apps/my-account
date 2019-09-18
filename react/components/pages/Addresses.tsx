@@ -52,7 +52,7 @@ class Addresses extends Component<Props> {
   public render() {
     return (
       <div
-        className={`${styles.addressBox} flex-wrap-ns items-start-ns relative tl`}>
+        className={`${styles.addressBox} flex flex-wrap-ns items-start-ns relative tl`}>
         {this.props.addresses.map(address => (
           <AddressBox
             key={address.addressId}
