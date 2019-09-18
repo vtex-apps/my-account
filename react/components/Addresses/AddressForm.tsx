@@ -22,6 +22,7 @@ import GET_STORE_CONFIGS from '../../graphql/getStoreConfigs.gql'
 
 const AUTO_COMPLETABLE_FIELDS = [
   'city',
+  'geoCoordinates',
   'neighborhood',
   'number',
   'postalCode',
@@ -43,9 +44,11 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
     // if editing an existing address (address id exists), all fields start as valid
     if (addressValues.addressId) {
       AUTO_COMPLETABLE_FIELDS.forEach(field => {
-        address[field].geolocationAutoCompleted = true
-        address[field].postalCodeAutoCompleted = true
-        address[field].valid = true
+        if (address[field].value != null) {
+          address[field].geolocationAutoCompleted = true
+          address[field].postalCodeAutoCompleted = true
+          address[field].valid = true
+        }
       })
     }
 
@@ -73,8 +76,8 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
     ) {
       AUTO_COMPLETABLE_FIELDS.forEach(field => {
         newAddress[field].value = null
-        newAddress[field].geolocationAutoCompleted = false
-        newAddress[field].valid = false
+        delete newAddress[field].geolocationAutoCompleted
+        delete newAddress[field].valid
       })
     }
 
