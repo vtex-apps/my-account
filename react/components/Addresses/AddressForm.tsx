@@ -20,28 +20,6 @@ import { StyleguideInput, GeolocationInput } from 'vtex.address-form/inputs'
 
 import GET_STORE_CONFIGS from '../../graphql/getStoreConfigs.gql'
 
-interface InnerProps extends InjectedIntlProps {
-  getStoreConfigs: {
-    storeConfigs: {
-      googleMapsApiKey: string
-      geolocation: boolean
-    }
-  }
-}
-
-interface OuterProps {
-  isLoading?: boolean
-  submitLabelId: string
-  address: Address
-  shipsTo: string[]
-  onError: () => void
-  onSubmit: (address: Address) => void
-}
-
-interface State {
-  address: AddressFormFields
-}
-
 const AUTO_COMPLETABLE_FIELDS = [
   'city',
   'neighborhood',
@@ -237,6 +215,28 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
       </AddressRules>
     )
   }
+}
+
+interface InnerProps extends InjectedIntlProps {
+  getStoreConfigs: {
+    storeConfigs: {
+      googleMapsApiKey: string
+      geolocation: boolean
+    }
+  }
+}
+
+interface OuterProps {
+  isLoading?: boolean
+  submitLabelId: string
+  address: Address
+  shipsTo: string[]
+  onError: () => void
+  onSubmit: (address: Address) => void
+}
+
+interface State {
+  address: AddressFormFields
 }
 
 export default compose<InnerProps & OuterProps, OuterProps>(
