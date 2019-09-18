@@ -30,7 +30,7 @@ const AddressesLoading: FunctionComponent<Props> = ({ data }) => {
 }
 
 interface Props {
-  data: any
+  data: unknown
 }
 
 export default AddressesLoading

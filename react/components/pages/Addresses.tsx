@@ -3,9 +3,9 @@ import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
 import { FormattedMessage } from 'react-intl'
 import { EmptyState, Button } from 'vtex.styleguide'
-import { ContentWrapper } from 'vtex.my-account-commons'
 import { withRouter, Link } from 'vtex.my-account-commons/Router'
 
+import { withContentWrapper } from '../shared/withContentWrapper'
 import AddressesLoading from '../loaders/AddressesLoading'
 import AddressBox from '../Addresses/AddressBox'
 import Toast from '../shared/Toast'
@@ -25,16 +25,10 @@ export const headerConfig = {
   ),
 }
 
-function renderWrapper(children: any) {
-  return <ContentWrapper {...headerConfig}>{() => children}</ContentWrapper>
-}
-
 function EmptyAddresses() {
   const title = <FormattedMessage id="addresses.notFound" />
 
-  const content = <EmptyState title={title} />
-
-  return renderWrapper(content)
+  return <EmptyState title={title} />
 }
 
 class Addresses extends Component<Props> {
@@ -56,11 +50,9 @@ class Addresses extends Component<Props> {
   }
 
   public render() {
-    const content = (
+    return (
       <div
-        className={`
-          ${styles.addressBox} flex-ns flex-wrap-ns items-start-ns relative tl
-        `}>
+        className={`${styles.addressBox} flex-wrap-ns items-start-ns relative tl`}>
         {this.props.addresses.map(address => (
           <AddressBox
             key={address.addressId}
@@ -74,8 +66,6 @@ class Addresses extends Component<Props> {
         )}
       </div>
     )
-
-    return renderWrapper(content)
   }
 }
 
@@ -98,6 +88,7 @@ const enhance = compose<Props, void>(
     ({ data }: { data: Data }) => data.loading,
     renderComponent(AddressesLoading)
   ),
+  withContentWrapper(headerConfig),
   branch(
     ({ data }: { data: { profile: { addresses: Address[] } } }) =>
       data.profile == null || data.profile.addresses.length === 0,
