@@ -50,17 +50,17 @@ declare global {
     addressQuery: string | null
     addressType: string
     addressName?: string
-    city: string
-    complement: string
+    city: string | null
+    complement: string | null
     country: string
-    neighborhood: string
-    number: string
-    postalCode: string
-    geoCoordinates: number[]
+    neighborhood: string | null
+    number: string | null
+    postalCode: string | null
+    geoCoordinates: number[] | null
     receiverName: string
-    reference: string
-    state: string
-    street: string
+    reference: string | null
+    state: string | null
+    street: string | null
     __typename?: string
   }
 
