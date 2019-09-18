@@ -1,12 +1,12 @@
 import React, { ComponentType } from 'react'
 import { ContentWrapper } from 'vtex.my-account-commons'
 
-export const withContentWrapper = (headerConfig: any) => (
-  WrappedComponent: ComponentType<ContentWrapperProps>
+export const withContentWrapper = (headerConfig: ContentWrapperProps) => (
+  WrappedComponent: ComponentType<InjectedContentWrapperProps>
   // eslint-disable-next-line react/display-name
-) => (props: {}) => (
+) => (props: { [key: string]: unknown }) => (
   <ContentWrapper {...headerConfig}>
-    {({ handleError }: ContentWrapperProps) => (
+    {({ handleError }: InjectedContentWrapperProps) => (
       <WrappedComponent {...props} handleError={handleError} />
     )}
   </ContentWrapper>

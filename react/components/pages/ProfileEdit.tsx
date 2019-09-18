@@ -35,7 +35,7 @@ class ProfileEdit extends Component<Props> {
   }
 }
 
-interface Props extends ContentWrapperProps {
+interface Props extends InjectedContentWrapperProps {
   data: { profile: Profile }
   profile: Profile
   history: any
@@ -49,6 +49,6 @@ const enhance = compose<Props, void>(
   ),
   withProps(({ data }: Props) => ({ profile: data.profile })),
   withRouter,
-  withContentWrapper
+  withContentWrapper(headerConfig)
 )
 export default enhance(ProfileEdit)
