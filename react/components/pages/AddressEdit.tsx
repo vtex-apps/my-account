@@ -93,13 +93,12 @@ interface Data {
   }
 }
 
-interface Props {
+interface Props extends InjectedContentWrapperProps {
   history: any
   addresses: Address[]
   addressId: string
   shipsTo: string[]
   updateAddress: (args: Variables<UpdateAddressArgs>) => Promise<void>
-  handleError: () => void
 }
 
 const enhance = compose<Props, void>(

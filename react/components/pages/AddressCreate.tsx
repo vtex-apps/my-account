@@ -97,11 +97,10 @@ interface Profile {
   lastName: string
 }
 
-interface Props {
+interface Props extends InjectedContentWrapperProps {
   profile: Profile
   shipsTo: string[]
   history: any
-  handleError: () => void
   runtime: Runtime
   createAddress: (args: Variables<CreateAddressArgs>) => Promise<void>
 }

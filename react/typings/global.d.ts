@@ -1,3 +1,5 @@
+import { ComponentType } from 'react'
+
 declare global {
   interface Constructable<T> {
     new (): T
@@ -78,8 +80,18 @@ declare global {
     }
   }
 
-  interface ContentWrapperProps {
+  interface InjectedContentWrapperProps {
     handleError: () => void
+  }
+
+  interface ContentWrapperProps {
+    namespace: string
+    titleId: string
+    backButton?: {
+      titleId: string
+      path: string
+    }
+    headerContent?: JSX.Element
   }
 
   interface Profile {
