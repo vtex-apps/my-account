@@ -6,7 +6,7 @@ import FormLoader from './FormLoader'
 
 const AddressCreateLoading: FunctionComponent<Props> = ({ data }) => {
   return (
-    <BaseLoading queryData={data} headerConfig={headerConfig()}>
+    <BaseLoading queryData={data} headerConfig={headerConfig}>
       <FormLoader />
     </BaseLoading>
   )

@@ -9,7 +9,7 @@ import { headerConfig } from '../pages/Profile'
 
 const ProfileLoading: FunctionComponent<Props> = ({ data }) => {
   return (
-    <BaseLoading queryData={data} headerConfig={headerConfig()}>
+    <BaseLoading queryData={data} headerConfig={headerConfig}>
       <main className="flex flex-column-s flex-row-ns">
         <div className="w-60-ns w-100-s">
           <SkeletonBox shouldAllowGrowing shouldShowLowerButton>
