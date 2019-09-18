@@ -154,7 +154,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
           <Fragment>
             <CountrySelector shipsTo={shipCountries} />
 
-            {prefersGeolocation === true && (
+            {prefersGeolocation && (
               <GoogleMapsContainer apiKey={mapsAPIKey} locale={intl.locale}>
                 {({ loading, googleMaps }: GoogleMapsContainerArgs) => (
                   <Fragment>
