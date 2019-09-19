@@ -1,3 +1,5 @@
+import { ComponentType } from 'react'
+
 declare global {
   interface Constructable<T> {
     new (): T
@@ -44,21 +46,31 @@ declare global {
   }
 
   interface Address {
-    addressId: stirng
+    addressId: string
+    addressQuery: string | null
     addressType: string
-    addressName: string
-    city: string
-    complement: string
+    addressName?: string
+    city: string | null
+    complement: string | null
     country: string
-    neighborhood: string
-    number: string
-    postalCode: string
-    geoCoordinates: number[]
+    neighborhood: string | null
+    number: string | null
+    postalCode: string | null
+    geoCoordinates: number[] | null
     receiverName: string
-    reference: string
-    state: string
-    street: string
-    addressQuery: string
+    reference: string | null
+    state: string | null
+    street: string | null
+    __typename?: string
+  }
+
+  interface AddressFormFields {
+    [key: string]: {
+      value: null | string | number | number[]
+      valid?: boolean
+      geolocationAutoCompleted?: boolean
+      postalCodeAutoCompleted?: boolean
+    }
   }
 
   interface Runtime {
@@ -66,6 +78,20 @@ declare global {
     culture: {
       country: string
     }
+  }
+
+  interface InjectedContentWrapperProps {
+    handleError: () => void
+  }
+
+  interface ContentWrapperProps {
+    namespace: string
+    titleId: string
+    backButton?: {
+      titleId: string
+      path: string
+    }
+    headerContent?: JSX.Element
   }
 
   interface Profile {

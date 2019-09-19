@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'vtex.my-account-commons/Router'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import { ContentWrapper } from 'vtex.my-account-commons'
 import { AuthState } from 'vtex.react-vtexid'
 
+import { withContentWrapper } from '../shared/withContentWrapper'
 import ProfileLoading from '../loaders/ProfileLoading'
 import ProfileBox from '../Profile/ProfileBox'
 import PasswordBox from '../Profile/PasswordBox'
@@ -14,8 +14,9 @@ import GET_PROFILE from '../../graphql/getProfile.gql'
 
 import styles from '../../styles.css'
 
-export const headerConfig = () => {
-  return { namespace: `${styles.profile}`, titleId: 'pages.profile' }
+export const headerConfig = {
+  namespace: `${styles.profile}`,
+  titleId: 'pages.profile',
 }
 
 class ProfileContainer extends Component<Props> {
@@ -52,45 +53,36 @@ class ProfileContainer extends Component<Props> {
     const { isEditingPassword, showToast } = this.state
 
     return (
-      <ContentWrapper {...headerConfig()}>
-        {() => (
-          <main className="flex flex-column-s flex-row-ns">
-            <div className="w-60-ns w-100-s">
-              <ProfileBox profile={profile} onEditClick={this.handleGoToEdit} />
-            </div>
-            <div className="w-40-ns w-100-s">
-              {isEditingPassword ? (
-                <AuthState email={profile.email}>
-                  {
-                    <AuthState.Token>
-                      {({ value, setValue }: any) => (
-                        <PasswordFormBox
-                          email={profile.email}
-                          passwordLastUpdate={profile.passwordLastUpdate}
-                          onPasswordChange={this.handleFinishEditingPassword}
-                          currentToken={value}
-                          setToken={setValue}
-                        />
-                      )}
-                    </AuthState.Token>
-                  }
-                </AuthState>
-              ) : (
-                <PasswordBox
-                  passwordLastUpdate={profile.passwordLastUpdate}
-                  onEditClick={this.handleEditingPassword}
-                />
-              )}
-            </div>
-            {showToast && (
-              <Toast
-                messageId="alert.success"
-                onClose={this.handleCloseToast}
-              />
-            )}
-          </main>
+      <main className="flex flex-column-s flex-row-ns">
+        <div className="w-60-ns w-100-s">
+          <ProfileBox profile={profile} onEditClick={this.handleGoToEdit} />
+        </div>
+        <div className="w-40-ns w-100-s">
+          {isEditingPassword ? (
+            <AuthState email={profile.email}>
+              <AuthState.Token>
+                {({ value, setValue }: any) => (
+                  <PasswordFormBox
+                    email={profile.email}
+                    passwordLastUpdate={profile.passwordLastUpdate}
+                    onPasswordChange={this.handleFinishEditingPassword}
+                    currentToken={value}
+                    setToken={setValue}
+                  />
+                )}
+              </AuthState.Token>
+            </AuthState>
+          ) : (
+            <PasswordBox
+              passwordLastUpdate={profile.passwordLastUpdate}
+              onEditClick={this.handleEditingPassword}
+            />
+          )}
+        </div>
+        {showToast && (
+          <Toast messageId="alert.success" onClose={this.handleCloseToast} />
         )}
-      </ContentWrapper>
+      </main>
     )
   }
 }
@@ -111,6 +103,7 @@ const enhance = compose<Props, void>(
     ({ data }) => data.profile == null,
     renderComponent(ProfileLoading)
   ),
+  withContentWrapper(headerConfig),
   withProps(({ data }: Props) => ({ profile: data.profile })),
   withRouter
 )

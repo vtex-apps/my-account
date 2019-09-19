@@ -6,14 +6,14 @@ import FormLoader from './FormLoader'
 
 const AddressEditLoading: FunctionComponent<Props> = ({ data }) => {
   return (
-    <BaseLoading queryData={data} headerConfig={headerConfig()}>
+    <BaseLoading queryData={data} headerConfig={headerConfig}>
       <FormLoader />
     </BaseLoading>
   )
 }
 
 interface Props {
-  data: any
+  data: unknown
 }
 
 export default AddressEditLoading

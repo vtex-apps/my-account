@@ -9,7 +9,7 @@ import { headerConfig } from '../pages/Addresses'
 
 const AddressesLoading: FunctionComponent<Props> = ({ data }) => {
   return (
-    <BaseLoading queryData={data} headerConfig={headerConfig()}>
+    <BaseLoading queryData={data} headerConfig={headerConfig}>
       <main className="mt7 flex-ns flex-wrap-ns items-start-ns">
         {[0, 1].map(i => (
           <SkeletonBox shouldShowLowerButton key={i}>
@@ -30,7 +30,7 @@ const AddressesLoading: FunctionComponent<Props> = ({ data }) => {
 }
 
 interface Props {
-  data: any
+  data: unknown
 }
 
 export default AddressesLoading
