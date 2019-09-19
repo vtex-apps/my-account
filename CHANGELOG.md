@@ -7,31 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.10.1] - 2019-09-19
+
+## [0.29.1] - 2019-09-18
+
 ### Fixed
 
 - Address editing when using geolocation.
 - Country change not affecting the address form rules.
 
-## [1.10.0] - 2019-09-17
+## [0.29.0] - 2019-09-12
 
 ### Added
 
 - **appSettings** query.
 - **cards.showMyCards** app setting.
 
-## [1.8.15] - 2019-09-03 [YANKED]
-
-### Fixed
-
-- Release 1.9.0 didn't caught the changes from version 1.8.14.
-
-## [1.9.0] - 2019-09-12 [YANKED]
-
-### Added
-
-- Event `accountView` and `passwordReset` on Pixel.
-
-## [1.8.14] - 2019-09-03
+## [0.28.1] - 2019-09-02
 
 ### Fixed
 
@@ -43,12 +35,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Using `messages` builder v1.
 
-## [1.8.13] - 2019-08-12
-
-### Changed
-
-- Get changes made at version `v0.27.14`.
-
 ## [0.27.14] - 2019-08-12
 
 ### Added
@@ -56,25 +42,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Log on Splunk if the URL that points to My Account is `/account/orders`.
 - Log whenever some error occurs so we can create some deployment analysis process.
 
-## [1.8.12] - 2019-07-31
-
-### Changed
-
-- Get changes made at version `v0.27.13`.
-
 ## [0.27.13] - 2019-07-31
 
 ### Fixed
 
 - Rendering on IE11 by bumping `query-string` version to 5.x.
-
-## [1.8.11] - 2019-07-30
-
-## [1.8.10] - 2019-07-29
-
-### Changed
-
-- Get changes made at version `v0.27.12`.
 
 ## [0.27.12] - 2019-07-30
 
@@ -82,23 +54,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Remove unused get base HTML tag.
 
-## [1.8.10] - 2019-07-29
-
-### Changed
-
-- Get changes made at version `v0.27.11`.
-
 ## [0.27.11] - 2019-07-29
 
 ### Fixed
 
 - Use "Logout" in button translation instead of "Leave".
-
-## [1.8.9] - 2019-07-16
-
-### Changed
-
-- Get changes made at version `v0.27.10`.
 
 ## [0.27.10] - 2019-07-16
 
@@ -106,35 +66,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - GeolocationInput to be rendered based on geolocation flag.
 
-## [1.8.8] - 2019-07-16
-
-### Changed
-
-- Get changes made at version `v0.27.9`.
-
 ## [0.27.9] - 2019-07-16
 
 ### Fixed
 
 - GeolocationInput to automatically appear when store configurations are settled.
 
-## [1.8.7] - 2019-07-11
-
-### Changed
-
-- Get changes made at version `v0.27.8`.
-
 ## [0.27.8] - 2019-07-11
 
 ### Fixed
 
 - Toast content not being correctly localized.
-
-## [1.8.6] - 2019-07-10
-
-### Changed
-
-- Get changes made at version `v0.27.7`.
 
 ## [0.27.7] - 2019-07-10
 
@@ -148,23 +90,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Edge case for when there is no base tag in AppRouter.
 
-## [1.8.5] - 2019-07-05
-
-### Changed
-
-- Get changes made at version `v0.27.5`.
-
 ## [0.27.5] - 2019-07-06
 
 ### Added
 
 - HTML base tag handling in AppRouter.
-
-## [1.8.4] - 2019-06-17
-
-### Changed
-
-- Get changes made at version `v0.27.4`.
 
 ## [0.27.4] - 2019-06-17
 
@@ -172,23 +102,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - intl.formatMessage to FormattedMessage.
 
-## [1.8.3] - 2019-06-07
-
-### Changed
-
-- Get changes made at version `v0.27.3`.
-
 ## [0.27.3] - 2019-06-07
 
 ### Fixed
 
 - Fix `country` fallback on add new address.
-
-## [1.8.2] - 2019-05-20
-
-### Changed
-
-- Get changes made at version `v0.27.2`.
 
 ## [0.27.2] - 2019-05-20
 
@@ -196,23 +114,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Logout modal title french translation.
 
-## [1.8.1] - 2019-05-08
-
-### Changed
-
-- Get changes made at version `v0.27.1`.
-
 ## [0.27.1] - 2019-05-08
 
 ### Fixed
 
 - Logout button using anchor tag to keep compatibility with current customisations.
-
-## [1.8.0] - 2019-05-07
-
-### Changed
-
-- Get changes made at version `v0.27.0`.
 
 ## [0.27.0] - 2019-05-07
 
@@ -224,47 +130,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Manage password feature.
 
-## [1.7.2] - 2019-05-02
-
-### Fixed
-
-- Logout button
-
-## [1.7.1] - 2019-04-26
-
-### Added
-
-- Allow any app to plugged in into `my-account` abstract interfaces.
-
-## [1.7.0] - 2019-04-26
-
-### Added
-
-- Support to CSS override.
-
-## [1.6.1] - 2019-04-25
-
-### Changed
-
-- Get changes made at version `v0.26.1`.
-
 ## [0.26.1] - 2019-04-25
 
 ### Changed
 
 - Loaders to be consistent with the new api of the `SkeletonPiece` component.
-
-## [1.6.0] - 2019-04-24
-
-### Changed
-
-- Get changes made at version `v0.26.0`.
-
-## [1.5.0] - 2019-04-16
-
-### Changed
-
-- Support plugins architecture in `my-account-pages` and `my-account-links`
 
 ## [0.26.0] - 2019-04-22
 
@@ -272,29 +142,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `logout` feature.
 
-## [1.4.5] - 2019-04-08
-
-### Changed
-
-- Get changes made at version `v0.25.2`.
-
 ## [0.25.2] - 2019-04-08
 
 ### Fixed
 
 - The word 'contrasenya' to 'contrassenya'.
-
-## [1.4.4] - 2019-03-22
-
-### Fixed
-
-- `render-runtime` import.
-
-## [1.4.3] - 2019-03-21
-
-### Changed
-
-- Get changes made at version `v0.25.1`.
 
 ## [0.25.1] - 2019-03-21
 
@@ -302,41 +154,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Instead of using `import react-router-dom` changed to `import vtex.my-account-commons`.
 
-## [1.4.2] - 2019-03-15
-
-### Fix
-
-- Delete node/ directory
-
-## [1.4.1] - 2019-03-15
-
-### Changed
-
-- Get changes made at version `v0.25.0`.
-
 ## [0.25.0] - 2019-03-15
 
 ### Changed
 
 - Returning to the `returnUrl` if it is present on the url.
 
-## [1.4.0] - 2019-03-13
-
-### Changed
-
-- Get changes made at version `v0.24.0`.
-
 ## [0.24.0] - 2019-03-13
 
 ### Added
 
 - Italian translation.
-
-## [1.3.2] - 2019-02-26
-
-### Changed
-
-- Add changes from versions `v0.23.2` and `v0.23.1`
 
 ## [0.23.2] - 2019-02-26
 
@@ -349,29 +177,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Add missing required prop, resulting in a error in address form
-
-## [1.3.1] - 2019-02-19
-
-### Changed
-
-- Get changes made between versions `v0.20.0` and `v0.23.0`.
-
-## [1.3.0] - 2019-01-22
-
-## [1.2.0] - 2019-01-22
-
-## [1.1.0] - 2019-01-18
-
-### Changed
-
-- Update React builder to 3.x.
-- Bump vtex.styleguide to 9.x.
-
-## [1.0.0] - 2018-12-28
-
-### Changed
-
-- New builders are in town! Add messages and store builders.
 
 ## [0.23.0] - 2019-02-12
 
