@@ -1,0 +1,15 @@
+{
+  "profile-form.save-changes": "Guardar alterações",
+  "profile-form.field.firstName": "Nome",
+  "profile-form.field.lastName": "Apelido",
+  "profile-form.field.gender": "Género",
+  "profile-form.field.custom-gender": "Género Personalizado",
+  "profile-form.field.birthDate": "Data de nascimento",
+  "profile-form.field.homePhone": "Telefone de casa",
+  "profile-form.field.businessPhone": "Telefone do Trabalho",
+  "profile-form.field.corporateDocument": "Documento Comprovativo de Trabalho",
+  "profile-form.field.corporateName": "Nome da Entidade Empregadora",
+  "profile-form.field.stateRegistration": "Registro Civil",
+  "profile-form.field.tradeName": "Nome fantasia",
+  "profile-form.error.INVALID_FIELD": "Conteúdo de Campo Inválido."
+}
