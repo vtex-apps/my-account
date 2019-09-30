@@ -25,10 +25,10 @@ class UserPicture extends Component<Props> {
       <React.Fragment>
         <PictureRenderer imagePath={imagePath} />
         <button
-          className="absolute bottom-0 right-0 pa0 c-on-base--inverted bg-action-primary br-100 f4 bn pointer flex justify-center items-center"
-          style={{ lineHeight: 0, width: 26, height: 26 }}
+          className="absolute bottom-0 right-0 pa0 c-on-base--inverted bg-action-primary br-100 f5 bn pointer flex justify-center items-center"
+          style={{ width: 26, height: 26 }}
           onClick={this.handleOpenModal}>
-          +
+          ＋
         </button>
         <Modal centered isOpen={isModalOpen} onClose={this.handleCloseModal}>
           <div className="pv4 ph4">
