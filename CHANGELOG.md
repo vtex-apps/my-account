@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Fixewd
+### Fixed
 
 - Fix profile photo plus sign button size.
 
