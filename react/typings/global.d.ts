@@ -135,10 +135,9 @@ declare global {
       workspace: string
       account: string
     }
-  }
-
-  export const vtex: {
-    orderListRendered: boolean
+    vtex: {
+      orderListRendered?: boolean
+    }
   }
 }
 
