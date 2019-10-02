@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React, { Component, Fragment } from 'react'
 import Media from 'react-media'
 import {
@@ -51,7 +50,8 @@ class AppRouter extends Component {
       <Route exact key={path} path={path} component={component} />
     )
 
-    const shouldRedirectOrder = vtex && vtex.orderListRendered
+    const shouldRedirectOrder =
+      window && window.vtex && window.vtex.orderListRendered
 
     return (
       <div className="w-100 mw9 pv7-m pv9-l flex">

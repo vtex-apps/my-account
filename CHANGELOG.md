@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Use `window.vtex` instead of only `vtex`.
+
 ## [1.10.2] - 2019-09-30
 
 ### Fixed
