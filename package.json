@@ -1,8 +1,8 @@
 {
   "version": "0.28.0",
   "devDependencies": {
-    "@vtex/intl-equalizer": "^2.3.0",
-    "husky": "^2.4.1"
+    "@vtex/intl-equalizer": "^2.4.1",
+    "husky": "^3.0.8"
   },
   "scripts": {
     "lint": "cd ./react && yarn lint",
