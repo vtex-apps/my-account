@@ -12,6 +12,7 @@ class MyAccount extends Component {
     super(props)
 
     if (
+      window.location &&
       window.location.href.match('/account/orders') &&
       window.__RUNTIME__.workspace === 'master'
     ) {
