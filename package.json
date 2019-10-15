@@ -1,8 +1,8 @@
 {
-  "version": "0.28.0",
+  "version": "0.29.4",
   "devDependencies": {
     "@vtex/intl-equalizer": "^2.4.1",
-    "husky": "^3.0.8"
+    "husky": "^3.0.9"
   },
   "scripts": {
     "lint": "cd ./react && yarn lint",
@@ -19,6 +19,9 @@
   },
   "intl-equalizer": {
     "referenceLocale": "en",
-    "localeDirectory": "messages"
+    "localeDirectory": "messages",
+    "filesToIgnore": [
+      "context.json"
+    ]
   }
 }
