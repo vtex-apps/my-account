@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import 'vtex.country-codes/locales'
 
 import AppRouter from './components/AppRouter'
-import ClientSide from './components/ClientSide'
 import Wrapper from './components/MyAccountWrapper'
 import { logMyAccountURL, logGeneralErrors } from './utils/splunk'
 
@@ -28,9 +27,7 @@ class MyAccount extends Component {
     return (
       <Wrapper>
         <div className="vtex-account helvetica flex justify-around">
-          <ClientSide>
-            <AppRouter />
-          </ClientSide>
+          <AppRouter />
         </div>
       </Wrapper>
     )
