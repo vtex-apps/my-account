@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment, ComponentClass } from 'react'
 import Media from 'react-media'
 import {
   Route,
@@ -37,6 +37,14 @@ class AppRouter extends Component {
     }
   }
 
+  public mapRouteComponent = ({
+    path,
+    component,
+  }: {
+    path: string
+    component: ComponentClass<void, unknown>
+  }) => <Route exact key={path} path={path} component={component} />
+
   public render() {
     const routes = [
       { path: '/addresses', component: Addresses },
@@ -45,13 +53,6 @@ class AppRouter extends Component {
       { path: '/profile', component: Profile },
       { path: '/profile/edit', component: ProfileEdit },
     ]
-
-    const toRouteComponent = ({ path, component }: any) => (
-      <Route exact key={path} path={path} component={component} />
-    )
-
-    const shouldRedirectOrder =
-      window && window.vtex && window.vtex.orderListRendered
 
     return (
       <div className="w-100 mw9 pv7-m pv9-l flex">
@@ -66,30 +67,16 @@ class AppRouter extends Component {
                 matches ? (
                   <Switch>
                     <Route exact path="/" component={Menu} />
-                    {routes.map(toRouteComponent)}
-                    <Redirect
-                      exact
-                      from="/"
-                      to={
-                        shouldRedirectOrder ? '/orders' : this.state.defaultPath
-                      }
-                    />
+                    {routes.map(this.mapRouteComponent)}
+                    <Redirect exact from="/" to={this.state.defaultPath} />
                     <ExtensionPoint id="my-account-pages" />
                   </Switch>
                 ) : (
                   <Fragment>
                     <Menu />
                     <Switch>
-                      {routes.map(toRouteComponent)}
-                      <Redirect
-                        exact
-                        from="/"
-                        to={
-                          shouldRedirectOrder
-                            ? '/orders'
-                            : this.state.defaultPath
-                        }
-                      />
+                      {routes.map(this.mapRouteComponent)}
+                      <Redirect exact from="/" to={this.state.defaultPath} />
                       <ExtensionPoint id="my-account-pages" />
                     </Switch>
                   </Fragment>
