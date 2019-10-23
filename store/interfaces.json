@@ -7,7 +7,8 @@
       "my-account-menu",
       "profile-display-container",
       "profile-input-container"
-    ]
+    ],
+    "render": "client"
   },
   "my-account-defaultPage": {
     "component": "DefaultPage"

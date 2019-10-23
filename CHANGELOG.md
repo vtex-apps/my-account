@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.10.4] - 2019-10-23
+
+### Fixed
+
+- SSR rendering.
+
 ## [1.10.3] - 2019-10-02
 
 ### Fixed

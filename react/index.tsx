@@ -2,23 +2,11 @@ import React, { Component } from 'react'
 import 'vtex.country-codes/locales'
 
 import AppRouter from './components/AppRouter'
-import ClientSide from './components/ClientSide'
 import Wrapper from './components/MyAccountWrapper'
-import { logMyAccountURL, logGeneralErrors } from './utils/splunk'
+import { logGeneralErrors } from './utils/splunk'
 
 class MyAccount extends Component {
-  public constructor(props: any) {
-    super(props)
-
-    if (
-      window.location.href.match('/account/orders') &&
-      window.__RUNTIME__.workspace === 'master'
-    ) {
-      logMyAccountURL()
-    }
-  }
-
-  public componentDidCatch(error: any, info: any) {
+  public componentDidCatch(error: unknown, info: unknown) {
     if (window.__RUNTIME__.workspace === 'master') {
       logGeneralErrors(error, info)
     }
@@ -28,9 +16,7 @@ class MyAccount extends Component {
     return (
       <Wrapper>
         <div className="vtex-account helvetica flex justify-around">
-          <ClientSide>
-            <AppRouter />
-          </ClientSide>
+          <AppRouter />
         </div>
       </Wrapper>
     )
