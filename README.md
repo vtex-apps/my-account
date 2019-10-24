@@ -20,7 +20,7 @@ To add new pages to My Account, your app must define in it `pages.json` file the
     },
     "store/account/account/routes/{YOUR_APP}": {
       "component": "ExtensionRouter"
-    },
+    }
   }
 }
 ```
@@ -59,7 +59,6 @@ There are two ways to customize the menu of My Account:
 2. Opting-out of the menu entirely (DEPRECATED)
 
 It's **highly recommended** that you follow the first option. The second option will make your menu out of future updates and will not create links automatically with other apps that extends My Account, like My Subscriptions, My Cards and [Customer Credit](https://github.com/vtex/customer-credit). Also this method is not supported in v1 of My Account, so don't do anything crazy here, this is not a future proof solution!
-
 
 #### Adding links to the top or bottom of the list
 
@@ -136,7 +135,7 @@ Use the `Link` component from `react-router-dom` (check [React Router `Link` doc
 
 You can also wrap your component with `withRouter` (check [React Router `withRouter` docs](https://reacttraining.com/react-router/web/api/withRouter)), so you can mark a link as active.
 
-Check the example of an implementation of a custom menu: 
+Check the example of an implementation of a custom menu:
 
 ```js
 import React from 'react'
@@ -193,7 +192,7 @@ Now add this React component to the root directory of your app and reference it 
     },
     "my-account-portal/menu/customMenu": {
       "component": "CustomMenu"
-    },
+    }
   }
 }
 ```

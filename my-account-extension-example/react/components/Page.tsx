@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { ContentWrapper } from 'vtex.my-account-commons'
 
-const Example: FunctionComponent<Props> = ({
+const ExamplePage: FunctionComponent<Props> = ({
   match: {
     params: { param },
   },
@@ -21,4 +21,4 @@ type Props = {
   }
 }
 
-export default Example
+export default ExamplePage
