@@ -11,6 +11,12 @@
     },
     "my-account-portal/menu-links-after/my-orders": {
       "component": "ExtensionLinks"
+    },
+    "my-account-portal/profile/display": {
+      "component": "DisplayExtraInfo"
+    },
+    "store/account/account/profile/display": {
+      "component": "DisplayExtraInfo"
     }
   }
 }
