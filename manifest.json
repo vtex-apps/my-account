@@ -4,12 +4,10 @@
   "version": "1.10.4",
   "title": "My Account",
   "description": "User's my account page.",
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "dependencies": {
     "vtex.my-cards": "1.x",
-    "vtex.my-orders-app": "3.x",
+    "vtex.my-orders": "4.x",
     "vtex.my-account-commons": "1.x",
     "vtex.store-graphql": "2.x",
     "vtex.styleguide": "9.x",
@@ -60,25 +58,19 @@
               {
                 "properties": {
                   "useMap": {
-                    "enum": [
-                      true
-                    ]
+                    "enum": [true]
                   },
                   "apiKey": {
                     "title": "Your Google Maps API Key",
                     "type": "string"
                   }
                 },
-                "required": [
-                  "apiKey"
-                ]
+                "required": ["apiKey"]
               },
               {
                 "properties": {
                   "useMap": {
-                    "enum": [
-                      false
-                    ]
+                    "enum": [false]
                   }
                 }
               }
