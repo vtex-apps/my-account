@@ -12,5 +12,5 @@
   "dependencies": {
     "@vtex/api": "^3.48.2"
   },
-  "version": "0.29.4"
+  "version": "0.29.5"
 }
