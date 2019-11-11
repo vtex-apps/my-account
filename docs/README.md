@@ -6,7 +6,7 @@
 
 ## Intro
 
-MyAccount is a canonical app builtin to all VTEX stores. This app actually serves as a hub of apps, meaning that it is the entry point for all apps that want to be available for the store's customers.
+MyAccount is a canonical app built in all VTEX stores. This app serves as a hub of apps, meaning that it is the entry point for all apps that want to be available for the store's customers.
 
 The app is responsible for handling customer's personal data such as: profile info, passwords, addresses, orders and credit cards. Orders and credit cards are responsibilities of other two apps that come per default with the MyAccount, respectively, these apps are: `vtex.my-orders-app` and `vtex.my-cards`.
 
@@ -295,7 +295,7 @@ class FavColor extends Component {
 
 ### Example
 
-You can see theese features in action by runing `vtex link` on the `my-account-extension-example` folder.
+You can see these features in action by running `vtex link` on the `my-account-extension-example` folder.
 
 ## Author
 
