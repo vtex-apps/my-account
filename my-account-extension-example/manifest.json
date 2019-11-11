@@ -1,0 +1,20 @@
+{
+  "name": "my-account-extension-example",
+  "vendor": "vtex",
+  "version": "0.0.0",
+  "title": "My Account Extension Example",
+  "description": "Example on how to extend the MyAccount page.",
+  "dependencies": {
+    "vtex.my-account-commons": "0.x",
+    "vtex.store-graphql": "2.x"
+  },
+  "builders": {
+    "react": "2.x",
+    "messages": "1.x",
+    "pages": "0.x"
+  },
+  "scripts": {
+    "postreleasy": "vtex publish --verbose"
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+}

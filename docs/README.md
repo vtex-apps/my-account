@@ -1,12 +1,18 @@
-# My Account
+# MyAccount - Portal version
 
-My account is a canonical app that any VTEX store can use. This app is responsible for managing the customer's personal data such as his addresses and credit cards.
+> Notice: React: 2.x | Pages: 0.x
 
-## Extension points
+[Store v2](http://https://github.com/vtex-apps/my-account/tree/1.x 'StoreV2 version')
 
-This app provides a few extension points in order to allow apps to customize stores' experience as needed. You can increment this app with more pages with your own custom navigation using `react-router-dom`.
+## Intro
 
-It's also important to add `"react-router-dom": "^4.3.1",` to your `react/package.json` dependencies.
+MyAccount is a canonical app built in all VTEX stores. This app serves as a hub of apps, meaning that it is the entry point for all apps that want to be available for the store's customers.
+
+The app is responsible for handling customer's personal data such as: profile info, passwords, addresses, orders and credit cards. Orders and credit cards are responsibilities of other two apps that come per default with the MyAccount, respectively, these apps are: `vtex.my-orders-app` and `vtex.my-cards`.
+
+## Features
+
+This app provides a few extension points in order to allow apps to customize stores' experience as needed.
 
 ### Adding a new page to My Account
 
@@ -17,15 +23,10 @@ To add new pages to My Account, your app must define in it `pages.json` file the
   "extensions": {
     "my-account-portal/routes/{YOUR_APP}": {
       "component": "ExtensionRouter"
-    },
-    "store/account/account/routes/{YOUR_APP}": {
-      "component": "ExtensionRouter"
-    },
+    }
   }
 }
 ```
-
-The first will be used in the legacy platform, and the latter on the Dreamstore v1.
 
 #### Creating the ExtensionRouter component
 
@@ -33,7 +34,7 @@ Now create a new file in the root of the "react" folder with the name "Extension
 
 ```js
 import React, { Fragment } from 'react'
-import { Route } from 'react-router-dom'
+import { Route } from 'vtex.my-account-commons/Router'
 // Your component pages
 import UserSupport from './components/UserSupport'
 import UserPoints from './components/UserPoints'
@@ -60,7 +61,6 @@ There are two ways to customize the menu of My Account:
 
 It's **highly recommended** that you follow the first option. The second option will make your menu out of future updates and will not create links automatically with other apps that extends My Account, like My Subscriptions, My Cards and [Customer Credit](https://github.com/vtex/customer-credit). Also this method is not supported in v1 of My Account, so don't do anything crazy here, this is not a future proof solution!
 
-
 #### Adding links to the top or bottom of the list
 
 To add links to the bottom of the menu add to your `pages.json`:
@@ -69,9 +69,6 @@ To add links to the bottom of the menu add to your `pages.json`:
 {
   "extensions": {
     "my-account-portal/menu-links-after/{YOUR_APP}": {
-      "component": "ExtensionLinks"
-    },
-    "store/account/account/menu-links-after/{YOUR_APP}": {
       "component": "ExtensionLinks"
     }
   }
@@ -84,9 +81,6 @@ To add links to the top:
 {
   "extensions": {
     "my-account-portal/menu-links-before/{YOUR_APP}": {
-      "component": "ExtensionLinks"
-    },
-    "store/account/account/menu-links-before/{YOUR_APP}": {
       "component": "ExtensionLinks"
     }
   }
@@ -130,18 +124,18 @@ You can also opt-out from the default sidebar Menu implemented by this app. To d
 
 ##### Implementing your own Menu
 
-First, make sure you have `"react-router-dom": "^4.3.1",` in your `react/package.json` dependencies.
+First, make sure you use the `react-router-dom` that we export in `vtex.my-account-commons`.
 
 Use the `Link` component from `react-router-dom` (check [React Router `Link` docs](https://reacttraining.com/react-router/web/api/Link)) to link to other pages.
 
 You can also wrap your component with `withRouter` (check [React Router `withRouter` docs](https://reacttraining.com/react-router/web/api/withRouter)), so you can mark a link as active.
 
-Check the example of an implementation of a custom menu: 
+Check the example of an implementation of a custom menu:
 
 ```js
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'vtex.my-account-commons/Router'
 
 function CustomMenu(props) {
   return (
@@ -188,12 +182,9 @@ Now add this React component to the root directory of your app and reference it 
 ```json
 {
   "extensions": {
-    "store/account/account/menu/customMenu": {
-      "component": "CustomMenu"
-    },
     "my-account-portal/menu/customMenu": {
       "component": "CustomMenu"
-    },
+    }
   }
 }
 ```
@@ -205,12 +196,12 @@ Note that the name `CustomMenu` is the name of the React component filename.
 1. Open the Storefront admin (`/admin/cms/storefront`).
 2. Navigate to the My Account page
 3. Click on the "My Account - Menu" extension point on the Storefront's Components menu
-4. The field "Menu's Extension Point" will make My Account load the following extension point: "store/account/account/menu/<VALUE>". So add the value `customMenu`, this will make it load the extension "store/account/account/menu/customMenu" defined in `pages.json`.
+4. The field "Menu's Extension Point" will make My Account load the following extension point: "my-account-portal/menu/<VALUE>". So add the value `customMenu`, this will make it load the extension "my-account-portal/menu/customMenu" defined in `pages.json`.
 5. Save the settings.
 
 Now, your store will render the custom menu instead of the default menu of My Account. It's important to acknowledge that this makes your menu completely indenpendent and out of future updates.
 
-### Defining the default home page of My Account
+##### Defining the default home page of My Account
 
 After [creating a new page](#adding-a-new-page-to-my-acccount), you can define the default path that will be rendered when the user opens the URL `/account/`.
 
@@ -223,7 +214,7 @@ Following the previous examples, we could fill it with "/points", to open the Us
 
 ### Display personal info
 
-Inside the Profile page, right above the `edit` button, there is another extension point, with ID `my-account-portal/profile/display` or `store/account/account/profile/display`. This one is intended for stores that collect custom data from their customers (such as their hair color or their pet's name). This extension point allows your component to display such information without breaking the page layout.
+Inside the Profile page, right above the `edit` button, there is another extension point, with ID `my-account-portal/profile/display`. This one is intended for stores that collect custom data from their customers (such as their hair color or their pet's name). This extension point allows your component to display such information without breaking the page layout.
 
 **Usage:** Your component shall not render anything: you will simply call the `render` prop with the appropriate data and it will be displayed together with the user's default information. You should pass in an array of objects containing `label` and `value` props. `label` is the name of the field you which to display (such as `Hair color`) and `value` is the value for such field (such as `brown`). Keep in mind that you must run any necessary preprocessing in your data by yourself before displaying, such as masking or localizing your texts. Also, it is up to you to fetch the data from wherever it is.
 
@@ -301,6 +292,10 @@ class FavColor extends Component {
   }
 }
 ```
+
+### Example
+
+You can see these features in action by running `vtex link` on the `my-account-extension-example` folder.
 
 ## Author
 
