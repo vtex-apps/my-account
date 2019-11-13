@@ -29,7 +29,7 @@
     "typescript": "3.5.2"
   },
   "scripts": {
-    "lint": "tsc --noEmit && eslint --fix --ext ts,tsx .",
+    "lint": "tsc --noEmit && eslint --ext ts,tsx .",
     "test": "vtex-test-tools test"
   },
   "version": "0.29.5"
