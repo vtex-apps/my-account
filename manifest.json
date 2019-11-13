@@ -1,7 +1,7 @@
 {
   "name": "my-account",
   "vendor": "vtex",
-  "version": "1.10.5",
+  "version": "1.11.0",
   "title": "My Account",
   "description": "User's my account page.",
   "registries": ["smartcheckout"],
