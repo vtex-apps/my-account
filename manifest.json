@@ -1,10 +1,12 @@
 {
   "name": "my-account",
   "vendor": "vtex",
-  "version": "0.29.5",
+  "version": "0.30.0",
   "title": "My Account",
   "description": "User's my account page.",
-  "registries": ["smartcheckout"],
+  "registries": [
+    "smartcheckout"
+  ],
   "dependencies": {
     "vtex.my-cards": "0.x",
     "vtex.my-orders-app": "2.x",
