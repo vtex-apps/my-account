@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.30.1] - 2019-11-18
+
 ### Fixed
 
 - Invisible postal code invalidation when editing an address.
