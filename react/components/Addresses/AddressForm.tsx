@@ -69,14 +69,11 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
     // allow to edit only with geolocation component
     if (
       this.hasGeolocationPreference() &&
-      curAddress.postalCode &&
-      curAddress.postalCode.geolocationAutoCompleted &&
-      newAddress.postalCode &&
-      !newAddress.postalCode.geolocationAutoCompleted
+      newAddress.addressQuery &&
+      !newAddress.addressQuery.geolocationAutoCompleted
     ) {
       AUTO_COMPLETABLE_FIELDS.forEach(field => {
         newAddress[field].value = null
-        delete newAddress[field].geolocationAutoCompleted
         delete newAddress[field].valid
       })
     }
@@ -145,7 +142,10 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
     const hasAutoCompletedFields = this.hasAutoCompletedFields()
 
     return (
-      <AddressRules country={address.country.value} shouldUseIOFetching>
+      <AddressRules
+        country={address.country.value}
+        shouldUseIOFetching
+        useGeolocation={prefersGeolocation}>
         <AddressContainer
           address={address}
           Input={StyleguideInput}
