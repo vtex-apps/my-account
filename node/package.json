@@ -11,5 +11,6 @@
   },
   "dependencies": {
     "@vtex/api": "^3.48.2"
-  }
+  },
+  "version": "1.10.5"
 }
