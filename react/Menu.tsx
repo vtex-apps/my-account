@@ -12,7 +12,7 @@ class Menu extends Component<Props> {
     }
   }
 
-  public getSchema() {
+  public static getSchema() {
     return {
       title: 'editor.menu.name',
       description: 'editor.menu.description',
