@@ -5,7 +5,7 @@ class DefaultPage extends Component<Props> {
     this.props.onSetDefaultPath(this.props.defaultRoute || '/profile')
   }
 
-  public getSchema() {
+  public static getSchema() {
     return {
       title: 'editor.defaultRoute.name',
       description: 'editor.defaultRoute.description',

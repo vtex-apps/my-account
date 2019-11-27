@@ -103,9 +103,9 @@ export default injectIntl(MyAppLink)
 
 After [creating a new page](#adding-a-new-page-to-my-acccount), you can define the default path that will be rendered when the user opens the URL `/account/`.
 
-1. Open the Storefront admin (`/admin/cms/storefront`).
+1. Open the Site Editor admin (`/admin/cms/site-editor`).
 2. Navigate to the My Account page
-3. Click on the "My Account - Home" extension point on the Storefront's Components menu
+3. Click on the "My Account - Home" extension point on the Site Editor's menu
 4. Fill the field "My Account's default path" to the new path
 
 Following the previous examples, we could fill it with "/points", to open the UserPoints page.
