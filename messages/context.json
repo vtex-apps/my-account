@@ -1,5 +1,4 @@
 {
-  "userInfo.greeting": "Hi",
   "pages.addresses": "Addresses",
   "pages.addressCreate": "Add address",
   "pages.addressEdit": "Edit address",
@@ -55,5 +54,6 @@
   "editor.defaultRoute.field": "My Account's default path",
   "editor.menu.name": "My Account - Menu",
   "editor.menu.description": "My Account's side menu",
-  "editor.menu.field": "Menu's Extension Point"
+  "editor.menu.field": "Menu's Extension Point",
+  "vtex.store-messages@0.x::userInfo.greeting": "Message provided by app: vtex.store-messages@0.x"
 }

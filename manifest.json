@@ -17,7 +17,8 @@
     "vtex.country-codes": "2.x",
     "vtex.address-form": "4.x",
     "vtex.react-vtexid": "4.x",
-    "vtex.pixel-manager": "1.x"
+    "vtex.pixel-manager": "1.x",
+    "vtex.store-messages": "0.x"
   },
   "builders": {
     "react": "3.x",
