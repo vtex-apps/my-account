@@ -2,7 +2,7 @@
 
 > Notice: React: 2.x | Pages: 0.x
 
-[Store v2](http://https://github.com/vtex-apps/my-account/tree/1.x 'StoreV2 version')
+[Store v2](https://github.com/vtex-apps/my-account/tree/1.x 'StoreV2 version')
 
 ## Intro
 
