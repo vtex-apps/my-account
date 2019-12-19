@@ -119,5 +119,6 @@ interface Props {
 }
 
 export default graphql<any, {}, {}, Props>(UpdateProfilePicture, {
+  options: { refetchQueries: ['Greeting'] },
   name: 'updateProfilePicture',
 })(PictureUploader)
