@@ -20,7 +20,8 @@ const UserInfo: FunctionComponent<Props> = ({ profile }) => {
             className={`
               ${styles.userGreeting} f5 fw3 c-muted-1 mb2 mt0-l mt2-m
             `}>
-            <FormattedMessage id="userInfo.greeting" />,
+            <FormattedMessage id="vtex.store-messages@0.x::userInfo.greeting" />
+            ,
           </div>
           <div className={`${styles.userName} f4 c-on-base fw3 nowrap`}>
             {profile.firstName}!
@@ -28,7 +29,7 @@ const UserInfo: FunctionComponent<Props> = ({ profile }) => {
         </div>
       ) : (
         <div className={`${styles.userGreeting} f4 fw3 nowrap`}>
-          <FormattedMessage id="userInfo.greeting" />!
+          <FormattedMessage id="vtex.store-messages@0.x::userInfo.greeting" />!
         </div>
       )}
     </div>

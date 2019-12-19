@@ -53,22 +53,26 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
                     f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-muted-1 b--transparent pointer
                   `}
                   onClick={this.handleModalToggle}>
-                  <FormattedMessage id="pages.logout" />
+                  <FormattedMessage id="vtex.store-messages@0.x::pages.logout" />
                 </div>
                 <ModalDialog
                   centered
                   confirmation={{
                     onClick: logout,
-                    label: intl.formatMessage({ id: 'pages.logout' }),
+                    label: intl.formatMessage({
+                      id: 'vtex.store-messages@0.x::pages.logout',
+                    }),
                   }}
                   cancelation={{
                     onClick: this.handleModalToggle,
-                    label: intl.formatMessage({ id: 'logoutModal.cancel' }),
+                    label: intl.formatMessage({
+                      id: 'vtex.store-messages@0.x::logoutModal.cancel',
+                    }),
                   }}
                   isOpen={this.state.isModalOpen}
                   onClose={this.handleModalToggle}>
                   <span className="t-heading-5 pa6">
-                    <FormattedMessage id="logoutModal.title" />
+                    <FormattedMessage id="vtex.store-messages@0.x::logoutModal.title" />
                   </span>
                 </ModalDialog>
               </Fragment>

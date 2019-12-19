@@ -13,7 +13,9 @@ import styles from '../../styles.css'
 
 const PASSWORD_MASK = '*******************'
 const messages = defineMessages({
-  password: { id: 'personalData.password', defaultMessage: '' },
+  password: {
+    id: 'vtex.store-messages@0.x::personalData.password',
+  },
 })
 
 const PasswordBox: FunctionComponent<Props> = ({
@@ -22,8 +24,8 @@ const PasswordBox: FunctionComponent<Props> = ({
   intl,
 }) => {
   const lowerButtonId = passwordLastUpdate
-    ? 'personalData.redefinePassword'
-    : 'personalData.definePassword'
+    ? 'vtex.store-messages@0.x::personalData.redefinePassword'
+    : 'vtex.store-messages@0.x::personalData.definePassword'
 
   return (
     <ContentBox
@@ -35,7 +37,7 @@ const PasswordBox: FunctionComponent<Props> = ({
           {passwordLastUpdate ? (
             PASSWORD_MASK
           ) : (
-            <FormattedMessage id="personalData.noPassword" />
+            <FormattedMessage id="vtex.store-messages@0.x::personalData.noPassword" />
           )}
         </DataEntry>
       </div>

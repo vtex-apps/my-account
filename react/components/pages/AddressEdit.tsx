@@ -16,9 +16,9 @@ import styles from '../../styles.css'
 
 export const headerConfig = {
   namespace: `${styles.addressEdit}`,
-  titleId: 'pages.addressEdit',
+  titleId: 'vtex.store-messages@0.x::pages.addressEdit',
   backButton: {
-    titleId: 'pages.addresses',
+    titleId: 'vtex.store-messages@0.x::pages.addresses',
     path: '/addresses',
   },
 }
@@ -59,7 +59,9 @@ class AddressEdit extends Component<Props> {
     const address = addresses.find(current => current.addressId === addressId)
 
     if (!address) {
-      return <GenericError errorId="alert.addressNotFound" />
+      return (
+        <GenericError errorId="vtex.store-messages@0.x::alert.addressNotFound" />
+      )
     }
 
     const { addressName, ...normalizedAddress } = address
@@ -68,7 +70,7 @@ class AddressEdit extends Component<Props> {
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
         <AddressForm
           isLoading={isLoading}
-          submitLabelId="addresses.saveAddress"
+          submitLabelId="vtex.store-messages@0.x::addresses.saveAddress"
           address={normalizedAddress}
           onSubmit={this.handleSave}
           shipsTo={shipsTo}

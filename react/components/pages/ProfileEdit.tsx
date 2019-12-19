@@ -12,7 +12,7 @@ import styles from '../../styles.css'
 
 export const headerConfig = {
   namespace: `${styles.profileEdit}`,
-  titleId: 'pages.profileEdit',
+  titleId: 'vtex.store-messages@0.x::pages.profileEdit',
   backButton: {
     titleId: 'pages.profile',
     path: '/profile',

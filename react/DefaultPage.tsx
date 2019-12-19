@@ -7,12 +7,12 @@ class DefaultPage extends Component<Props> {
 
   public static getSchema() {
     return {
-      title: 'editor.defaultRoute.name',
-      description: 'editor.defaultRoute.description',
+      title: 'vtex.store-messages@0.x::editor.defaultRoute.name',
+      description: 'vtex.store-messages@0.x::editor.defaultRoute.description',
       type: 'object',
       properties: {
         defaultRoute: {
-          title: 'editor.defaultRoute.field',
+          title: 'vtex.store-messages@0.x::editor.defaultRoute.field',
           type: 'string',
           default: '/profile',
         },

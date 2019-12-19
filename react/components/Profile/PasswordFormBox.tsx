@@ -20,8 +20,12 @@ import PasswordValidator from './PasswordValidator'
 const WRONG_CREDENTIALS = 'Wrong credentials'
 const BLOCKED_USER = 'Blocked'
 const messages = defineMessages({
-  code: { id: 'personalData.code', defaultMessage: '' },
-  newPassword: { id: 'personalData.newPassword', defaultMessage: '' },
+  code: {
+    id: 'vtex.store-messages@0.x::personalData.code',
+  },
+  newPassword: {
+    id: 'vtex.store-messages@0.x::personalData.newPassword',
+  },
 })
 
 class PasswordFormBox extends Component<Props, State> {
@@ -71,12 +75,12 @@ class PasswordFormBox extends Component<Props, State> {
       isLoading: false,
       error:
         wrongPassword && prevState.changeAttempts === 3
-          ? 'alert.wrongAndAboutToBlock'
+          ? 'vtex.store-messages@0.x::alert.wrongAndAboutToBlock'
           : wrongPassword
-          ? 'alert.wrongPassword'
+          ? 'vtex.store-messages@0.x::alert.wrongPassword'
           : blockedUser
-          ? 'alert.blockedUser'
-          : 'alert.unknownError',
+          ? 'vtex.store-messages@0.x::alert.blockedUser'
+          : 'vtex.store-messages@0.x::alert.unknownError',
     }))
   }
 
@@ -149,20 +153,20 @@ class PasswordFormBox extends Component<Props, State> {
             </div>
             <div className="flex justify-end">
               <SendAccCodeButton variation="tertiary">
-                <FormattedMessage id="personalData.resendCode" />
+                <FormattedMessage id="vtex.store-messages@0.x::personalData.resendCode" />
               </SendAccCodeButton>
             </div>
           </Fragment>
         ) : (
           <Fragment>
             <div className="t-heading-6 tc pb4">
-              <FormattedMessage id="personalData.sendAccessCode.title" />
+              <FormattedMessage id="vtex.store-messages@0.x::personalData.sendAccessCode.title" />
             </div>
             <div className="pt4 flex justify-center">
               <SendAccCodeButton
                 variation="primary"
                 onSuccess={this.handleIsCodeSent}>
-                <FormattedMessage id="personalData.sendCode" />
+                <FormattedMessage id="vtex.store-messages@0.x::personalData.sendCode" />
               </SendAccCodeButton>
             </div>
           </Fragment>
@@ -211,7 +215,7 @@ class PasswordFormBox extends Component<Props, State> {
                           onClick={() => startSession()}
                           isLoading={isLoading || loadingStartSession}
                           disabled={!shouldEnableSubmit}>
-                          <FormattedMessage id="personalData.savePassword" />
+                          <FormattedMessage id="vtex.store-messages@0.x::personalData.savePassword" />
                         </Button>
                       )
                     }}

@@ -16,7 +16,7 @@ import styles from '../../styles.css'
 
 export const headerConfig = {
   namespace: `${styles.profile}`,
-  titleId: 'pages.profile',
+  titleId: 'vtex.store-messages@0.x::pages.profile',
 }
 
 class ProfileContainer extends Component<Props> {
@@ -80,7 +80,10 @@ class ProfileContainer extends Component<Props> {
           )}
         </div>
         {showToast && (
-          <Toast messageId="alert.success" onClose={this.handleCloseToast} />
+          <Toast
+            messageId="vtex.store-messages@0.x::alert.success"
+            onClose={this.handleCloseToast}
+          />
         )}
       </main>
     )
