@@ -26,7 +26,7 @@
     "eslint-config-vtex-react": "^5.0.1",
     "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
-    "typescript": "3.5.2",
+    "typescript": "3.7.3",
     "vtex.pixel-manager": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.pixel-manager@1.1.3/public/_types/react",
     "vtex.country-codes": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.country-codes@2.0.1/public/_types/react",
     "vtex.store-graphql": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store-graphql@2.105.1/public/_types/react",

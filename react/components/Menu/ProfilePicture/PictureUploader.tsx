@@ -13,20 +13,18 @@ class PictureUploader extends Component<Props> {
     error: null,
     isLoading: false,
     finishedUpload: false,
+    previewPicture: null,
+    file: null,
   }
 
   private handleImageDrop = async (acceptedFiles: any) => {
-    const { updateProfilePicture } = this.props
-
     if (acceptedFiles && acceptedFiles[0]) {
-      this.setState({ isLoading: true, error: null })
-
-      try {
-        await updateProfilePicture({ variables: { file: acceptedFiles[0] } })
-        this.setState({ isLoading: false, finishedUpload: true })
-      } catch (e) {
-        this.setState({ error: 'alert.unknownError', isLoading: false })
-      }
+      this.setState({
+        error: null,
+        finishedUpload: true,
+        previewPicture: URL.createObjectURL(acceptedFiles[0]),
+        file: acceptedFiles[0],
+      })
     } else {
       this.setState({ error: 'alert.fileTooBig' })
     }
@@ -36,14 +34,24 @@ class PictureUploader extends Component<Props> {
     this.setState({ error: null })
   }
 
-  private handleCloseClick = (event: any) => {
+  private handleSaveClick = async (event: any) => {
     event.stopPropagation()
+    const { updateProfilePicture } = this.props
+    const { file } = this.state
+    this.setState({ isLoading: true, finishedUpload: false })
+    try {
+      await updateProfilePicture({ variables: { file } })
+      this.setState({ isLoading: false, finishedUpload: true })
+    } catch (e) {
+      this.setState({ error: 'alert.unknownError', isLoading: false })
+    }
+
     this.props.onCloseClick()
   }
 
   public render() {
     const { currentPicture } = this.props
-    const { error, isLoading, finishedUpload } = this.state
+    const { error, isLoading, finishedUpload, previewPicture } = this.state
     const boxText = finishedUpload
       ? 'upload.photoUpdated'
       : 'upload.dragYourPhoto'
@@ -70,7 +78,9 @@ class PictureUploader extends Component<Props> {
             ) : (
               <Fragment>
                 <div className="h4 w4 mb8">
-                  <PictureRenderer imagePath={currentPicture} />
+                  <PictureRenderer
+                    imagePath={previewPicture || currentPicture}
+                  />
                 </div>
                 <div className="mb6 f5 tc c-muted-1 lh-copy">
                   <FormattedMessage id={boxText} />
@@ -78,10 +88,7 @@ class PictureUploader extends Component<Props> {
                 {finishedUpload ? (
                   <Fragment>
                     <div className="mb4 w-100">
-                      <Button
-                        block
-                        size="small"
-                        onClick={this.handleCloseClick}>
+                      <Button block size="small" onClick={this.handleSaveClick}>
                         <FormattedMessage id="upload.save" />
                       </Button>
                     </div>
@@ -119,5 +126,6 @@ interface Props {
 }
 
 export default graphql<any, {}, {}, Props>(UpdateProfilePicture, {
+  options: { refetchQueries: ['Greeting'] },
   name: 'updateProfilePicture',
 })(PictureUploader)
