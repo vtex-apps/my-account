@@ -1,0 +1,6 @@
+{
+  "my-account-pages > my-account-page": "my-account-page.test-page",
+  "my-account-menu > my-account-link": "my-account-link.test-link",
+  "profile-display-container > profile-display": "profile-display.test-display",
+  "profile-input-container > profile-input": "profile-input.test-input"
+}
