@@ -92,7 +92,7 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
             shouldShowExtendedGenders={showGenders}
             SubmitButton={
               <Button type="submit" block size="small" isLoading={isLoading}>
-                <FormattedMessage id="profile-form.save-changes" />
+                <FormattedMessage id="vtex.profile-form@3.x::profile-form.save-changes" />
               </Button>
             }>
             <ExtensionPoint

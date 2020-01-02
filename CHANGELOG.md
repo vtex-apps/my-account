@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Save profile changes button message.
+
 ## [1.11.2] - 2019-12-23
 
 ### Fixed
