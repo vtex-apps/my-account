@@ -1,0 +1,14 @@
+{
+  "my-account-page.test-page": {
+    "component": "MyAppPage"
+  },
+  "my-account-link.test-link": {
+    "component": "MyAppLink"
+  },
+  "profile-display.test-display": {
+    "component": "BeautyData"
+  },
+  "profile-input.test-input": {
+    "component": "FavColor"
+  }
+}

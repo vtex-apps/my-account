@@ -1,16 +1,22 @@
-# My Account
+# My Account - StoreV2 version
 
-My account is a canonical app that any VTEX store can use. This app is responsible for managing the customer's personal data such as his addresses and credit cards.
+> Notice: React: 3.x | Store: 0.x
 
-## Extension points
+[Portal](https://github.com/vtex-apps/my-account/tree/master 'Portal version')
 
-This app provides a few extension points in order to allow apps to customize stores' experience as needed. You can increment this app with more pages with your own custom navigation using `react-router-dom`.
+## Intro
 
-It's also important to add `"react-router-dom": "^4.3.1",` to your `react/package.json` dependencies.
+MyAccount is a canonical app built in all VTEX stores. This app serves as a hub of apps, meaning that it is the entry point for all apps that want to be available for the store's customers.
+
+The app is responsible for handling customer's personal data such as: profile info, passwords, addresses, orders and credit cards. Orders and credit cards are responsibilities of other two apps that come per default with the MyAccount, respectively, these apps are: `vtex.my-orders-app` and `vtex.my-cards`.
+
+## Features
+
+This app provides a few extension points in order to allow apps to customize stores' experience as needed.
 
 ### Adding a new page to My Account
 
-First, make sure you have the store-builder as a dependency in you `manifest.json`:\
+First, make sure you have the store-builder as a dependency in you `manifest.json`:
 
 ```diff
     "builders": {
@@ -50,7 +56,7 @@ Now create a new file in the root of the "react" folder with the name "MyAppPage
 
 ```js
 import React, { Fragment } from 'react'
-import { Route } from 'react-router-dom'
+import { Route } from 'vtex.my-account-commons/Router'
 // Your component pages
 import UserSupport from './components/UserSupport'
 import UserPoints from './components/UserPoints'
@@ -142,10 +148,10 @@ If you are going to display tailored data inside your customer's profile, you pr
 **Example**
 
 ```js
-import React, { Component }  from 'react'
+import React, { Component } from 'react'
 import { Input } from 'vtex.styleguide'
 
- class FavColor extends Component {
+class FavColor extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -154,16 +160,16 @@ import { Input } from 'vtex.styleguide'
     }
   }
 
-   componentDidMount() {
+  componentDidMount() {
     this.props.registerValidator(this.validate)
     this.props.registerSubmitter(this.submit)
   }
 
-   onChange = e => {
+  onChange = e => {
     this.setState({ color: e.target.value })
   }
 
-   validate = () => {
+  validate = () => {
     const { color } = this.state
     this.setState({ error: null })
     if (color !== 'yellow') {
@@ -173,11 +179,11 @@ import { Input } from 'vtex.styleguide'
     return true
   }
 
-   submit = () => {
+  submit = () => {
     console.log('Success! Your information is saved.')
   }
 
-   render() {
+  render() {
     const { error, color } = this.state
     return (
       <div className="mb8">
@@ -193,7 +199,7 @@ import { Input } from 'vtex.styleguide'
   }
 }
 
- export default FavColor
+export default FavColor
 ```
 
 ## Author
