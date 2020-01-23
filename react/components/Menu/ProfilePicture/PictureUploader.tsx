@@ -1,10 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { graphql } from 'react-apollo'
 import { Button, Spinner } from 'vtex.styleguide'
 import { GenericError } from 'vtex.my-account-commons'
 
-import UpdateProfilePicture from '../../../graphql/updateProfilePicture.gql'
 import BaseDropzone from './BaseDropzone'
 import PictureRenderer from './PictureRenderer'
 
@@ -113,11 +111,8 @@ class PictureUploader extends Component<Props> {
 }
 
 interface Props {
-  updateProfilePicture: (args: Variables<UpdateProfilePicture>) => void
   currentPicture?: string
   onCloseClick: () => void
 }
 
-export default graphql<any, {}, {}, Props>(UpdateProfilePicture, {
-  name: 'updateProfilePicture',
-})(PictureUploader)
+export default PictureUploader

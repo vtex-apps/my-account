@@ -1,6 +1,0 @@
-mutation UpdateProfilePicture($file: Upload!) {
-  updateProfilePicture(file: $file) {
-    cacheId
-    profilePicture
-  }
-}
