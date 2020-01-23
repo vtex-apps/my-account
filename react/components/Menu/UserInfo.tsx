@@ -4,15 +4,15 @@ import { compose, branch, withProps, renderComponent } from 'recompose'
 import { FormattedMessage } from 'react-intl'
 
 import GetGreeting from '../../graphql/getGreeting.gql'
-import UserPicture from './ProfilePicture/UserPicture'
 import UserInfoLoading from './UserInfoLoading'
 import styles from '../../styles.css'
+import PictureRenderer from './ProfilePicture/PictureRenderer'
 
 const UserInfo: FunctionComponent<Props> = ({ profile }) => {
   return (
     <div className={`${styles.userInfo} flex flex-wrap items-end mb7`}>
       <div className={`${styles.userImage} relative mr5 h3 w3`}>
-        <UserPicture imagePath={profile.profilePicture} />
+        <PictureRenderer imagePath={profile.profilePicture} />
       </div>
       {profile.firstName ? (
         <div>

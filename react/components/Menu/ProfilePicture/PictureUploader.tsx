@@ -1,10 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { graphql } from 'react-apollo'
 import { Button, Spinner } from 'vtex.styleguide'
 import { GenericError } from 'vtex.my-account-commons'
 
-import UpdateProfilePicture from '../../../graphql/updateProfilePicture.gql'
 import BaseDropzone from './BaseDropzone'
 import PictureRenderer from './PictureRenderer'
 
@@ -36,16 +34,6 @@ class PictureUploader extends Component<Props> {
 
   private handleSaveClick = async (event: any) => {
     event.stopPropagation()
-    const { updateProfilePicture } = this.props
-    const { file } = this.state
-    this.setState({ isLoading: true, finishedUpload: false })
-    try {
-      await updateProfilePicture({ variables: { file } })
-      this.setState({ isLoading: false, finishedUpload: true })
-    } catch (e) {
-      this.setState({ error: 'alert.unknownError', isLoading: false })
-    }
-
     this.props.onCloseClick()
   }
 
@@ -120,12 +108,8 @@ class PictureUploader extends Component<Props> {
 }
 
 interface Props {
-  updateProfilePicture: (args: Variables<UpdateProfilePicture>) => void
   currentPicture?: string
   onCloseClick: () => void
 }
 
-export default graphql<any, {}, {}, Props>(UpdateProfilePicture, {
-  options: { refetchQueries: ['Greeting'] },
-  name: 'updateProfilePicture',
-})(PictureUploader)
+export default PictureUploader
