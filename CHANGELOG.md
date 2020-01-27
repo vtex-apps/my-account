@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Migrate messages to `store-messages`.
+
 ## [1.11.5] - 2020-01-28
 
 ### Removed
