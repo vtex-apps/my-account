@@ -4,14 +4,14 @@ import { compose, branch, withProps, renderComponent } from 'recompose'
 import { FormattedMessage } from 'react-intl'
 
 import GetGreeting from '../../graphql/getGreeting.gql'
-import UserPicture from './ProfilePicture/UserPicture'
 import UserInfoLoading from './UserInfoLoading'
+import PictureRenderer from './ProfilePicture/PictureRenderer'
 
 const UserInfo: FunctionComponent<Props> = ({ profile }) => {
   return (
     <div className="vtex-account__user-info flex flex-wrap items-end mb7">
       <div className="vtex-account__user-image relative mr5 h3 w3">
-        <UserPicture imagePath={profile.profilePicture} />
+        <PictureRenderer imagePath={profile.profilePicture} />
       </div>
       {profile.firstName ? (
         <div>
