@@ -14,7 +14,7 @@ export const headerConfig = {
   namespace: `${styles.profileEdit}`,
   titleId: 'vtex.store-messages@0.x::pages.profileEdit',
   backButton: {
-    titleId: 'vtex.store-messages@0.x::pages.profileEdit',
+    titleId: 'vtex.store-messages@0.x::pages.profile',
     path: '/profile',
   },
 }
