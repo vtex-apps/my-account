@@ -22,9 +22,11 @@ const BLOCKED_USER = 'Blocked'
 const messages = defineMessages({
   code: {
     id: 'vtex.store-messages@0.x::personalData.code',
+    defaultMessage: '',
   },
   newPassword: {
     id: 'vtex.store-messages@0.x::personalData.newPassword',
+    defaultMessage: '',
   },
 })
 
