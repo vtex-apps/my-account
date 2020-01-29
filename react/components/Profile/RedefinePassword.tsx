@@ -6,6 +6,7 @@ import { InputPassword } from 'vtex.styleguide'
 const messages = defineMessages({
   currentPassword: {
     id: 'vtex.store-messages@0.x::personalData.currentPassword',
+    defaultMessage: '',
   },
 })
 

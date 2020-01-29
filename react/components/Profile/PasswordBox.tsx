@@ -15,6 +15,7 @@ const PASSWORD_MASK = '*******************'
 const messages = defineMessages({
   password: {
     id: 'vtex.store-messages@0.x::personalData.password',
+    defaultMessage: '',
   },
 })
 
