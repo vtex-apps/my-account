@@ -4,7 +4,10 @@ import { AuthState } from 'vtex.react-vtexid'
 import { InputPassword } from 'vtex.styleguide'
 
 const messages = defineMessages({
-  currentPassword: { id: 'personalData.currentPassword', defaultMessage: '' },
+  currentPassword: {
+    id: 'vtex.store-messages@0.x::personalData.currentPassword',
+    defaultMessage: '',
+  },
 })
 
 const RedefinePasswordForm: FunctionComponent<Props> = ({ onChange, intl }) => {

@@ -14,12 +14,12 @@ class Menu extends Component<Props> {
 
   public static getSchema() {
     return {
-      title: 'editor.menu.name',
-      description: 'editor.menu.description',
+      title: 'vtex.store-messages@0.x::editor.menu.name',
+      description: 'vtex.store-messages@0.x::editor.menu.description',
       type: 'object',
       properties: {
         extensionPoint: {
-          title: 'editor.menu.field',
+          title: 'vtex.store-messages@0.x::editor.menu.field',
           type: 'string',
           default: '',
         },

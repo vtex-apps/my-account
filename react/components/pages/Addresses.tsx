@@ -15,18 +15,20 @@ import styles from '../../styles.css'
 
 export const headerConfig = {
   namespace: `${styles.addressList}`,
-  titleId: 'pages.addresses',
+  titleId: 'vtex.store-messages@0.x::pages.addresses',
   headerContent: (
     <Link to="/addresses/new">
       <Button variation="primary" block size="small">
-        <FormattedMessage id="addresses.addAddress" />
+        <FormattedMessage id="vtex.store-messages@0.x::addresses.addAddress" />
       </Button>
     </Link>
   ),
 }
 
 function EmptyAddresses() {
-  const title = <FormattedMessage id="addresses.notFound" />
+  const title = (
+    <FormattedMessage id="vtex.store-messages@0.x::addresses.notFound" />
+  )
 
   return <EmptyState title={title} />
 }
@@ -62,7 +64,10 @@ class Addresses extends Component<Props> {
         ))}
 
         {this.state.showToast && (
-          <Toast messageId="alert.success" onClose={this.handleCloseToast} />
+          <Toast
+            messageId="vtex.store-messages@0.x::alert.success"
+            onClose={this.handleCloseToast}
+          />
         )}
       </div>
     )

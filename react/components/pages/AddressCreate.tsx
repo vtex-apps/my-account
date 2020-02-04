@@ -17,9 +17,9 @@ import styles from '../../styles.css'
 
 export const headerConfig = {
   namespace: `${styles.addressCreate}`,
-  titleId: 'pages.addressCreate',
+  titleId: 'vtex.store-messages@0.x::pages.addressCreate',
   backButton: {
-    titleId: 'pages.addresses',
+    titleId: 'vtex.store-messages@0.x::pages.addresses',
     path: '/addresses',
   },
 }
@@ -71,7 +71,7 @@ class AddressCreate extends Component<Props, State> {
         <AddressForm
           address={address}
           isLoading={isLoading}
-          submitLabelId="addresses.addAddress"
+          submitLabelId="vtex.store-messages@0.x::addresses.addAddress"
           onSubmit={this.handleCreate}
           shipsTo={shipsTo}
           onError={this.props.handleError}

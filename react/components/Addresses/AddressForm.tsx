@@ -195,7 +195,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
                   Input={StyleguideInput}
                   onChangeAddress={this.handleAddressChange}
                   notApplicableLabel={intl.formatMessage({
-                    id: 'addresses.notApplicable',
+                    id: 'vtex.store-messages@0.x::addresses.notApplicable',
                   })}
                 />
               </Fragment>

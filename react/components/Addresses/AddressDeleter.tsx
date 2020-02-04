@@ -35,7 +35,7 @@ class AddressDeleter extends Component<OutterProps & InnerProps> {
           size="small"
           onClick={this.handleDeleteClick}
           isLoading={isLoading}>
-          <FormattedMessage id="addresses.deleteAddress" />
+          <FormattedMessage id="vtex.store-messages@0.x::addresses.deleteAddress" />
         </Button>
       </div>
     )

@@ -16,7 +16,9 @@ const ProfileBox: FunctionComponent<Props> = ({
   return (
     <ContentBox
       shouldAllowGrowing
-      lowerButton={<FormattedMessage id="commons.edit" />}
+      lowerButton={
+        <FormattedMessage id="vtex.store-messages@0.x::commons.edit" />
+      }
       onLowerButtonClick={onEditClick}>
       <ProfileRules country={runtime.culture.country} shouldUseIOFetching>
         <ProfileSummary profile={profile}>

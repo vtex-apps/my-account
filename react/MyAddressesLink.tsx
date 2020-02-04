@@ -4,7 +4,9 @@ import { InjectedIntlProps, injectIntl } from 'react-intl'
 const MyAddressesLink: FunctionComponent<Props> = ({ render, intl }) => {
   return render([
     {
-      name: intl.formatMessage({ id: 'pages.addresses' }),
+      name: intl.formatMessage({
+        id: 'vtex.store-messages@0.x::pages.addresses',
+      }),
       path: '/addresses',
     },
   ])
