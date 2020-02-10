@@ -25,8 +25,7 @@
     "store": "0.x",
     "node": "4.x",
     "graphql": "1.x",
-    "docs": "0.x",
-    "messages": "1.x"
+    "docs": "0.x"
   },
   "scripts": {
     "postreleasy": "vtex publish --verbose"

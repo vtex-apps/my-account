@@ -9,12 +9,24 @@ import ProfileFormBox from '../Profile/ProfileFormBox'
 import GET_PROFILE from '../../graphql/getProfile.gql'
 
 import styles from '../../styles.css'
+import { defineMessages } from 'react-intl'
+
+const messages = defineMessages({
+  profileEdit: {
+    id:'pages.profileEdit'
+    from: 'vtex.store-messages',
+  },
+  profile: {
+    id: 'pages.profile'
+    from: 'vtex.store-messages',
+  },
+})
 
 export const headerConfig = {
   namespace: `${styles.profileEdit}`,
-  titleId: 'vtex.store-messages@0.x::pages.profileEdit',
+  titleId: messages.profileEdit.id,
   backButton: {
-    titleId: 'vtex.store-messages@0.x::pages.profile',
+    titleId: messages.profile.id,
     path: '/profile',
   },
 }

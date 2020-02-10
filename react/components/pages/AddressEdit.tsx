@@ -1,24 +1,42 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
-import { compose, branch, renderComponent, withProps } from 'recompose'
+import { defineMessages } from 'react-intl'
+import { branch, compose, renderComponent, withProps } from 'recompose'
 import { GenericError } from 'vtex.my-account-commons'
-
-import AddressEditLoading from '../loaders/AddressEditLoading'
-import AddressForm from '../Addresses/AddressForm'
-import AddressDeleter from '../Addresses/AddressDeleter'
-import { withContentWrapper } from '../shared/withContentWrapper'
-import ContentBox from '../shared/ContentBox'
 
 import GET_ADDRESSES from '../../graphql/getAddresses.gql'
 import UPDATE_ADDRESS from '../../graphql/updateAddress.gql'
-
 import styles from '../../styles.css'
+import AddressDeleter from '../Addresses/AddressDeleter'
+import AddressForm from '../Addresses/AddressForm'
+import AddressEditLoading from '../loaders/AddressEditLoading'
+import ContentBox from '../shared/ContentBox'
+import { withContentWrapper } from '../shared/withContentWrapper'
+
+const messages = defineMessages({
+  addressEdit: {
+    id: 'pages.addressEdit',
+    from: 'vtex.store-messages',
+  },
+  addresses: {
+    id: 'pages.addresses',
+    from: 'vtex.store-messages',
+  },
+  addressNotFound: {
+    id: 'alert.addressNotFound',
+    from: 'vtex.store-messages',
+  },
+  saveAddress: {
+    id: 'addresses.saveAddress',
+    from: 'vtex.store-messages',
+  },
+})
 
 export const headerConfig = {
   namespace: `${styles.addressEdit}`,
-  titleId: 'vtex.store-messages@0.x::pages.addressEdit',
+  titleId: messages.addressEdit.id,
   backButton: {
-    titleId: 'vtex.store-messages@0.x::pages.addresses',
+    titleId: messages.addresses.id,
     path: '/addresses',
   },
 }
@@ -59,9 +77,7 @@ class AddressEdit extends Component<Props> {
     const address = addresses.find(current => current.addressId === addressId)
 
     if (!address) {
-      return (
-        <GenericError errorId="vtex.store-messages@0.x::alert.addressNotFound" />
-      )
+      return <GenericError errorId={messages.addressNotFound.id} />
     }
 
     const { addressName, ...normalizedAddress } = address
@@ -70,7 +86,7 @@ class AddressEdit extends Component<Props> {
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
         <AddressForm
           isLoading={isLoading}
-          submitLabelId="vtex.store-messages@0.x::addresses.saveAddress"
+          submitLabelId={messages.saveAddress.id}
           address={normalizedAddress}
           onSubmit={this.handleSave}
           shipsTo={shipsTo}

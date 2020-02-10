@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, defineMessages } from 'react-intl'
 import { EmptyState, Button } from 'vtex.styleguide'
 import { withRouter, Link } from 'vtex.my-account-commons/Router'
 
@@ -13,13 +13,27 @@ import GET_ADRESSES from '../../graphql/getAddresses.gql'
 
 import styles from '../../styles.css'
 
+const messages = defineMessages({
+  addresses: {
+    id: 'pages.addresses',
+    from: 'vtex.store-messages',
+  },
+  success: {
+    id: 'alert.success',
+    from: 'vtex.store-messages',
+  },
+})
+
 export const headerConfig = {
   namespace: `${styles.addressList}`,
-  titleId: 'vtex.store-messages@0.x::pages.addresses',
+  titleId: messages.addresses.id,
   headerContent: (
     <Link to="/addresses/new">
       <Button variation="primary" block size="small">
-        <FormattedMessage id="vtex.store-messages@0.x::addresses.addAddress" />
+        <FormattedMessage
+          id="addresses.addAddress"
+          from="vtex.store-messages"
+        />
       </Button>
     </Link>
   ),
@@ -27,7 +41,7 @@ export const headerConfig = {
 
 function EmptyAddresses() {
   const title = (
-    <FormattedMessage id="vtex.store-messages@0.x::addresses.notFound" />
+    <FormattedMessage id="addresses.notFound" from="vtex.store-messages" />
   )
 
   return <EmptyState title={title} />
@@ -65,7 +79,7 @@ class Addresses extends Component<Props> {
 
         {this.state.showToast && (
           <Toast
-            messageId="vtex.store-messages@0.x::alert.success"
+            messageId={messages.success.id}
             onClose={this.handleCloseToast}
           />
         )}

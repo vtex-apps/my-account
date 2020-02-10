@@ -49,26 +49,41 @@ class PasswordValidator extends Component<Props> {
     return (
       <div className="f6">
         <div className="mb5">
-          <FormattedMessage id="vtex.store-messages@0.x::personalData.yourPasswordMust" />
+          <FormattedMessage
+            id="personalData.yourPasswordMust"
+            from="vtex.store-messages"
+          />
         </div>
         <div className="flex mb5">
           <div className="w-50 flex items-center">
             {getIcon(has8chars)}
-            <FormattedMessage id="vtex.store-messages@0.x::personalData.8chars" />
+            <FormattedMessage
+              id="personalData.8chars"
+              from="vtex.store-messages"
+            />
           </div>
           <div className="w-50 flex items-center">
             {getIcon(hasLow)}
-            <FormattedMessage id="vtex.store-messages@0.x::personalData.1lowLetter" />
+            <FormattedMessage
+              id="personalData.1lowLetter"
+              from="vtex.store-messages"
+            />
           </div>
         </div>
         <div className="flex">
           <div className="w-50 flex items-center">
             {getIcon(hasNumber)}
-            <FormattedMessage id="vtex.store-messages@0.x::personalData.1number" />
+            <FormattedMessage
+              id="personalData.1number"
+              from="vtex.store-messages"
+            />
           </div>
           <div className="w-50 flex items-center">
             {getIcon(hasCaps)}
-            <FormattedMessage id="vtex.store-messages@0.x::personalData.1upLetter" />
+            <FormattedMessage
+              id="personalData.1upLetter"
+              from="vtex.store-messages"
+            />
           </div>
         </div>
       </div>

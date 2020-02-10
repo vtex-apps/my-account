@@ -8,7 +8,7 @@ const AddressBox: FunctionComponent<Props> = ({ address, onEditClick }) => {
   return (
     <ContentBox
       lowerButton={
-        <FormattedMessage id="vtex.store-messages@0.x::commons.edit" />
+        <FormattedMessage id="commons.edit" from="vtex.store-messages" />
       }
       onLowerButtonClick={onEditClick}>
       <div className="lighter c-muted-2 lh-copy pv4 w5 h4">

@@ -1,5 +1,21 @@
 import React, { Component } from 'react'
 import { ExtensionPoint } from 'vtex.render-runtime'
+import { defineMessages } from 'react-intl'
+
+const messages = defineMessages({
+  name: {
+    id: 'editor.menu.name'
+    from: 'vtex.store-messages',
+  },
+  description: {
+    id: 'editor.menu.description'
+    from: 'vtex.store-messages',
+  },
+  field: {
+    id: 'editor.menu.field'
+    from: 'vtex.store-messages',
+  }
+})
 
 class Menu extends Component<Props> {
   public componentDidMount() {
@@ -14,12 +30,12 @@ class Menu extends Component<Props> {
 
   public static getSchema() {
     return {
-      title: 'vtex.store-messages@0.x::editor.menu.name',
-      description: 'vtex.store-messages@0.x::editor.menu.description',
+      title: messages.name.id,
+      description: messages.description.id,
       type: 'object',
       properties: {
         extensionPoint: {
-          title: 'vtex.store-messages@0.x::editor.menu.field',
+          title: messages.field.id,
           type: 'string',
           default: '',
         },

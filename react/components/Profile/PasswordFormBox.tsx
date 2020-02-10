@@ -21,12 +21,28 @@ const WRONG_CREDENTIALS = 'Wrong credentials'
 const BLOCKED_USER = 'Blocked'
 const messages = defineMessages({
   code: {
-    id: 'vtex.store-messages@0.x::personalData.code',
-    defaultMessage: '',
+    id: 'personalData.code',
+    from: 'vtex.store-messages',
   },
   newPassword: {
-    id: 'vtex.store-messages@0.x::personalData.newPassword',
-    defaultMessage: '',
+    id: 'personalData.newPassword',
+    from: 'vtex.store-messages',
+  },
+  wrongAndAboutToBlock: {
+    id: 'alert.wrongAndAboutToBlock',
+    from: 'vtex.store-messages',
+  },
+  wrongPassword: {
+    id: 'alert.wrongPassword',
+    from: 'vtex.store-messages',
+  },
+  blockedUser: {
+    id: 'alert.blockedUser',
+    from: 'vtex.store-messages',
+  },
+  unknownError: {
+    id: 'alert.unknownError',
+    from: 'vtex.store-messages',
   },
 })
 
@@ -77,12 +93,12 @@ class PasswordFormBox extends Component<Props, State> {
       isLoading: false,
       error:
         wrongPassword && prevState.changeAttempts === 3
-          ? 'vtex.store-messages@0.x::alert.wrongAndAboutToBlock'
+          ? messages.wrongAndAboutToBlock.id
           : wrongPassword
-          ? 'vtex.store-messages@0.x::alert.wrongPassword'
+          ? messages.wrongPassword.id
           : blockedUser
-          ? 'vtex.store-messages@0.x::alert.blockedUser'
-          : 'vtex.store-messages@0.x::alert.unknownError',
+          ? messages.blockedUser.id
+          : messages.unknownError.id,
     }))
   }
 
@@ -155,20 +171,29 @@ class PasswordFormBox extends Component<Props, State> {
             </div>
             <div className="flex justify-end">
               <SendAccCodeButton variation="tertiary">
-                <FormattedMessage id="vtex.store-messages@0.x::personalData.resendCode" />
+                <FormattedMessage
+                  id="personalData.resendCode"
+                  from="vtex.store-messages"
+                />
               </SendAccCodeButton>
             </div>
           </Fragment>
         ) : (
           <Fragment>
             <div className="t-heading-6 tc pb4">
-              <FormattedMessage id="vtex.store-messages@0.x::personalData.sendAccessCode.title" />
+              <FormattedMessage
+                id="personalData.sendAccessCode.title"
+                from="vtex.store-messages"
+              />
             </div>
             <div className="pt4 flex justify-center">
               <SendAccCodeButton
                 variation="primary"
                 onSuccess={this.handleIsCodeSent}>
-                <FormattedMessage id="vtex.store-messages@0.x::personalData.sendCode" />
+                <FormattedMessage
+                  id="personalData.sendCode"
+                  from="vtex.store-messages"
+                />
               </SendAccCodeButton>
             </div>
           </Fragment>
@@ -217,7 +242,10 @@ class PasswordFormBox extends Component<Props, State> {
                           onClick={() => startSession()}
                           isLoading={isLoading || loadingStartSession}
                           disabled={!shouldEnableSubmit}>
-                          <FormattedMessage id="vtex.store-messages@0.x::personalData.savePassword" />
+                          <FormattedMessage
+                            id="personalData.savePassword"
+                            from="vtex.store-messages"
+                          />
                         </Button>
                       )
                     }}

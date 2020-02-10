@@ -1,4 +1,20 @@
 import { Component } from 'react'
+import { defineMessages } from 'react-intl'
+
+const messages = defineMessages({
+  name: {
+    id: 'editor.defaultRoute.name',
+    from: 'vtex.store-messages',
+  },
+  description: {
+    id: 'editor.defaultRoute.description',
+    from: 'vtex.store-messages',
+  },
+  field: {
+    id: 'editor.defaultRoute.field',
+    from: 'vtex.store-messages',
+  },
+})
 
 class DefaultPage extends Component<Props> {
   public componentDidMount() {
@@ -7,12 +23,12 @@ class DefaultPage extends Component<Props> {
 
   public static getSchema() {
     return {
-      title: 'vtex.store-messages@0.x::editor.defaultRoute.name',
-      description: 'vtex.store-messages@0.x::editor.defaultRoute.description',
+      title: messages.name.id,
+      description: messages.description.id,
       type: 'object',
       properties: {
         defaultRoute: {
-          title: 'vtex.store-messages@0.x::editor.defaultRoute.field',
+          title: messages.field.id,
           type: 'string',
           default: '/profile',
         },

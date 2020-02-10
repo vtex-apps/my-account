@@ -1,23 +1,34 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
+import { defineMessages } from 'react-intl'
+import { branch, compose, renderComponent, withProps } from 'recompose'
 import { withRouter } from 'vtex.my-account-commons/Router'
-import { compose, branch, renderComponent, withProps } from 'recompose'
 import { AuthState } from 'vtex.react-vtexid'
 
-import { withContentWrapper } from '../shared/withContentWrapper'
+import GET_PROFILE from '../../graphql/getProfile.gql'
+import styles from '../../styles.css'
 import ProfileLoading from '../loaders/ProfileLoading'
-import ProfileBox from '../Profile/ProfileBox'
 import PasswordBox from '../Profile/PasswordBox'
 import PasswordFormBox from '../Profile/PasswordFormBox'
+import ProfileBox from '../Profile/ProfileBox'
 import Toast from '../shared/Toast'
-import GET_PROFILE from '../../graphql/getProfile.gql'
-
-import styles from '../../styles.css'
+import { withContentWrapper } from '../shared/withContentWrapper'
 import NewsletterBox from '../Profile/NewsletterBox'
+
+const messages = defineMessages({
+  profile: {
+    id: 'pages.profile',
+    from: 'vtex.store-messages',
+  },
+  success: {
+    id: 'alert.success',
+    from: 'vtex.store-messages',
+  },
+})
 
 export const headerConfig = {
   namespace: `${styles.profile}`,
-  titleId: 'vtex.store-messages@0.x::pages.profile',
+  titleId: messages.profile.id,
 }
 
 class ProfileContainer extends Component<Props> {
@@ -94,7 +105,7 @@ class ProfileContainer extends Component<Props> {
         </div>
         {showToast && (
           <Toast
-            messageId="vtex.store-messages@0.x::alert.success"
+            messageId={messages.success.id}
             onClose={this.handleCloseToast}
           />
         )}

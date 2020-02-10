@@ -185,7 +185,10 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
                   <div className="mb7">
                     <AutoCompletedFields>
                       <span className="c-link pointer">
-                        <FormattedMessage id="address-form.edit" />
+                        <FormattedMessage
+                          id="address-form.edit"
+                          from="vtex.store-messages"
+                        />
                       </span>
                     </AutoCompletedFields>
                   </div>
@@ -195,7 +198,8 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
                   Input={StyleguideInput}
                   onChangeAddress={this.handleAddressChange}
                   notApplicableLabel={intl.formatMessage({
-                    id: 'vtex.store-messages@0.x::addresses.notApplicable',
+                    id: 'addresses.notApplicable',
+                    from: 'vtex.store-messages',
                   })}
                 />
               </Fragment>

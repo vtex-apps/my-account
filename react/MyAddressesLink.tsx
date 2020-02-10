@@ -5,7 +5,8 @@ const MyAddressesLink: FunctionComponent<Props> = ({ render, intl }) => {
   return render([
     {
       name: intl.formatMessage({
-        id: 'vtex.store-messages@0.x::pages.addresses',
+        id: 'pages.addresses',
+        from: 'vtex.store-messages',
       }),
       path: '/addresses',
     },

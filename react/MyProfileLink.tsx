@@ -5,7 +5,8 @@ const MyProfileLink: FunctionComponent<Props> = ({ render, intl }) => {
   return render([
     {
       name: intl.formatMessage({
-        id: 'vtex.store-messages@0.x::pages.profile',
+        id: 'pages.profile',
+        from: 'vtex.store-messages',
       }),
       path: '/profile',
     },
