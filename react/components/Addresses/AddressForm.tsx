@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl'
+import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl'
 import { compose } from 'recompose'
 import { graphql } from 'react-apollo'
 
@@ -224,7 +224,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
   }
 }
 
-interface InnerProps extends InjectedIntlProps {
+interface InnerProps extends WrappedComponentProps {
   getStoreConfigs: {
     storeConfigs: {
       googleMapsApiKey: string

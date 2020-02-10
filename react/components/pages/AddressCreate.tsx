@@ -16,17 +16,17 @@ import { withContentWrapper } from '../shared/withContentWrapper'
 
 const messages = defineMessages({
   addressCreate: {
-    id: 'pages.addressCreate'
+    id: 'pages.addressCreate',
     from: 'vtex.store-messages',
   },
   addresses: {
-    id: 'pages.addresses'
+    id: 'pages.addresses',
     from: 'vtex.store-messages',
   },
   addAddress: {
-    id: 'addresses.addAddress'
+    id: 'addresses.addAddress',
     from: 'vtex.store-messages',
-  }
+  },
 })
 
 export const headerConfig = {

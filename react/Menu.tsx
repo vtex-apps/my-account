@@ -4,17 +4,17 @@ import { defineMessages } from 'react-intl'
 
 const messages = defineMessages({
   name: {
-    id: 'editor.menu.name'
+    id: 'editor.menu.name',
     from: 'vtex.store-messages',
   },
   description: {
-    id: 'editor.menu.description'
+    id: 'editor.menu.description',
     from: 'vtex.store-messages',
   },
   field: {
-    id: 'editor.menu.field'
+    id: 'editor.menu.field',
     from: 'vtex.store-messages',
-  }
+  },
 })
 
 class Menu extends Component<Props> {

@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { injectIntl, defineMessages, InjectedIntlProps } from 'react-intl'
+import { injectIntl, defineMessages, WrappedComponentProps } from 'react-intl'
 import { AuthState } from 'vtex.react-vtexid'
 import { InputPassword } from 'vtex.styleguide'
 
@@ -28,7 +28,7 @@ const RedefinePasswordForm: FunctionComponent<Props> = ({ onChange, intl }) => {
   )
 }
 
-interface Props extends InjectedIntlProps {
+interface Props extends WrappedComponentProps {
   onChange: (e: any, arg: (value: string) => void) => void
 }
 

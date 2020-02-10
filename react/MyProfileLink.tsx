@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react'
-import { InjectedIntlProps, injectIntl } from 'react-intl'
+import { WrappedComponentProps, injectIntl } from 'react-intl'
 
 const MyProfileLink: FunctionComponent<Props> = ({ render, intl }) => {
   return render([
@@ -13,7 +13,7 @@ const MyProfileLink: FunctionComponent<Props> = ({ render, intl }) => {
   ])
 }
 
-interface Props extends InjectedIntlProps {
+interface Props extends WrappedComponentProps {
   render: (args: { name: string; path: string }[]) => any
 }
 

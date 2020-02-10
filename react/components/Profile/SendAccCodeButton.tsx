@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react'
-import { injectIntl } from 'react-intl'
 import { AuthService } from 'vtex.react-vtexid'
 import { Button } from 'vtex.styleguide'
 
@@ -28,4 +27,4 @@ interface Props {
   onSuccess?: () => void
 }
 
-export default injectIntl(SendAccCodeButton)
+export default SendAccCodeButton

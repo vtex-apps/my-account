@@ -13,11 +13,11 @@ import { defineMessages } from 'react-intl'
 
 const messages = defineMessages({
   profileEdit: {
-    id:'pages.profileEdit'
+    id: 'pages.profileEdit',
     from: 'vtex.store-messages',
   },
   profile: {
-    id: 'pages.profile'
+    id: 'pages.profile',
     from: 'vtex.store-messages',
   },
 })

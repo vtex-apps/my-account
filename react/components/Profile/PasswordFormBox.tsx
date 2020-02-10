@@ -1,21 +1,21 @@
 import React, { Component, Fragment } from 'react'
 import {
-  InjectedIntlProps,
-  injectIntl,
-  FormattedMessage,
   defineMessages,
+  FormattedMessage,
+  injectIntl,
+  WrappedComponentProps,
 } from 'react-intl'
 import { compose } from 'recompose'
-import { Button, InputPassword, Input } from 'vtex.styleguide'
-import { AuthState, AuthService } from 'vtex.react-vtexid'
 import { GenericError } from 'vtex.my-account-commons'
+import { PixelData, withPixel } from 'vtex.pixel-manager/PixelContext'
+import { AuthService, AuthState } from 'vtex.react-vtexid'
 import { withRuntimeContext } from 'vtex.render-runtime'
-import { withPixel, PixelData } from 'vtex.pixel-manager/PixelContext'
+import { Button, Input, InputPassword } from 'vtex.styleguide'
 
 import ContentBox from '../shared/ContentBox'
+import PasswordValidator from './PasswordValidator'
 import RedefinePasswordForm from './RedefinePassword'
 import SendAccCodeButton from './SendAccCodeButton'
-import PasswordValidator from './PasswordValidator'
 
 const WRONG_CREDENTIALS = 'Wrong credentials'
 const BLOCKED_USER = 'Blocked'
@@ -272,7 +272,7 @@ interface State {
   [key: string]: any
 }
 
-interface Props extends InjectedIntlProps {
+interface Props extends WrappedComponentProps {
   email: string
   onPasswordChange: () => void
   setToken: (value: string) => void

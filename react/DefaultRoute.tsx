@@ -3,17 +3,17 @@ import { defineMessages } from 'react-intl'
 
 const messages = defineMessages({
   name: {
-    id: 'editor.defaultRoute.name'
+    id: 'editor.defaultRoute.name',
     from: 'vtex.store-messages',
   },
   description: {
-    id: 'editor.defaultRoute.description'
+    id: 'editor.defaultRoute.description',
     from: 'vtex.store-messages',
   },
   field: {
-    id: 'editor.defaultRoute.field'
+    id: 'editor.defaultRoute.field',
     from: 'vtex.store-messages',
-  }
+  },
 })
 
 class DefaultRoute extends Component<Props> {

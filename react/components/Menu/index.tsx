@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { Component, Fragment } from 'react'
-import { injectIntl, FormattedMessage, InjectedIntlProps } from 'react-intl'
+import { injectIntl, FormattedMessage, WrappedComponentProps } from 'react-intl'
 import { compose } from 'recompose'
 import { ExtensionPoint } from 'vtex.render-runtime'
 import { AuthService } from 'vtex.react-vtexid'
@@ -97,7 +97,7 @@ interface Link {
   path: string
 }
 
-interface Props extends InjectedIntlProps {
+interface Props extends WrappedComponentProps {
   settings?: Settings
 }
 

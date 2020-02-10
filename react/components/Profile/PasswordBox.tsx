@@ -1,15 +1,14 @@
 import React, { FunctionComponent } from 'react'
 import {
-  injectIntl,
-  InjectedIntlProps,
-  FormattedMessage,
   defineMessages,
+  FormattedMessage,
+  injectIntl,
+  WrappedComponentProps,
 } from 'react-intl'
 
+import styles from '../../styles.css'
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
-
-import styles from '../../styles.css'
 
 const PASSWORD_MASK = '*******************'
 const messages = defineMessages({
@@ -57,7 +56,7 @@ const PasswordBox: FunctionComponent<Props> = ({
   )
 }
 
-interface Props extends InjectedIntlProps {
+interface Props extends WrappedComponentProps {
   onEditClick: () => void
   passwordLastUpdate?: string
 }
