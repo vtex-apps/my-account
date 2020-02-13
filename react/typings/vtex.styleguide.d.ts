@@ -9,4 +9,5 @@ declare module 'vtex.styleguide' {
   export const Modal
   export const Spinner
   export const ModalDialog
+  export const Checkbox
 }

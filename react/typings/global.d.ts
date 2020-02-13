@@ -21,6 +21,11 @@ declare global {
     addressFields: AddressInput
   }
 
+  interface SetOptInNewsletterArgs {
+    email: string
+    isNewsletterOptIn: boolean
+  }
+
   interface UpdateAddressArgs {
     addressId: string
     addressFields: AddressInput
@@ -113,6 +118,12 @@ declare global {
     stateRegistration: string
     isCorporate: string
     passwordLastUpdate?: string
+    customFields?: CustomFields[]
+  }
+
+  interface CustomFields {
+    key: string
+    value: string
   }
 
   interface ProfileInput {
