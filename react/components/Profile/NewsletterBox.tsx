@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
-import ContentBox from '../shared/ContentBox'
-import { Checkbox } from 'vtex.styleguide'
-import styles from '../../styles.css'
 import { defineMessages, InjectedIntlProps, injectIntl } from 'react-intl'
-import { compose } from 'recompose'
 import { graphql } from 'react-apollo'
+import { compose } from 'recompose'
+import { Checkbox } from 'vtex.styleguide'
+
+import ContentBox from '../shared/ContentBox'
 import NEWSLETTER_MUTATION from '../../graphql/setOptInNewsletter.gql'
+import styles from '../../styles.css'
 
 const messages = defineMessages({
   optinNewsLetter: {
-    id: 'vtex.store-messages@0.x::personalData.isNewsletterOptIn',
-    defaultMessage: 'I want to receive the newsletter',
+    id: 'vtex.store-messages@0.x::personalData.newsletterOptIn',
+    defaultMessage: '',
   },
   newsletter: {
     id: 'vtex.store-messages@0.x::personalData.newsletter',
-    defaultMessage: 'Newsletter',
+    defaultMessage: '',
   },
   newsletterQuestion: {
     id: 'vtex.store-messages@0.x::personalData.newsletterQuestion',
-    defaultMessage: 'Do you want to receive promotional emails?',
+    defaultMessage: '',
   },
 })
 
@@ -64,9 +65,9 @@ class NewsletterBox extends Component<Props, State> {
         <div className={`${styles.passwordBox} w-100`}>
           <Checkbox
             checked={checked}
-            id="isNewsletterOptIn"
+            id="newsletterOptIn"
             label={formatMessage(messages.optinNewsLetter)}
-            name="isNewsletterOptIn"
+            name="newsletterOptIn"
             onChange={this.handleCheck}
           />
         </div>
