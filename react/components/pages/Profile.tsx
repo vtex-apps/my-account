@@ -13,6 +13,7 @@ import Toast from '../shared/Toast'
 import GET_PROFILE from '../../graphql/getProfile.gql'
 
 import styles from '../../styles.css'
+import NewsletterBox from '../Profile/NewsletterBox'
 
 export const headerConfig = {
   namespace: `${styles.profile}`,
@@ -48,9 +49,17 @@ class ProfileContainer extends Component<Props> {
     )
   }
 
+  private getIsNewsletterOptIn = (profile: Profile) => {
+    const isNewsletterOptIn = profile.customFields?.find(
+      ({ key }) => key === 'isNewsletterOptIn'
+    )?.value
+    return isNewsletterOptIn === 'true'
+  }
+
   public render() {
     const { profile } = this.props
     const { isEditingPassword, showToast } = this.state
+    const isNewsletterOptIn = this.getIsNewsletterOptIn(profile)
 
     return (
       <main className="flex flex-column-s flex-row-ns">
@@ -78,6 +87,12 @@ class ProfileContainer extends Component<Props> {
               onEditClick={this.handleEditingPassword}
             />
           )}
+          <div>
+            <NewsletterBox
+              isNewsletterOptIn={isNewsletterOptIn}
+              userEmail={profile.email}
+            />
+          </div>
         </div>
         {showToast && (
           <Toast
@@ -101,7 +116,9 @@ interface Props {
 }
 
 const enhance = compose<Props, void>(
-  graphql(GET_PROFILE),
+  graphql(GET_PROFILE, {
+    options: { variables: { customFields: 'isNewsletterOptIn' } },
+  }),
   branch<Props>(
     ({ data }) => data.profile == null,
     renderComponent(ProfileLoading)

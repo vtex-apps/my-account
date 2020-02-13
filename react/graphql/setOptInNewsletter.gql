@@ -1,0 +1,5 @@
+mutation subscribeNewsletter($email: String!, $isNewsletterOptIn: Boolean) {
+  subscribeNewsletter(email: $email, isNewsletterOptIn: $isNewsletterOptIn)
+    @context(provider: "vtex.store-graphql")
+    @context(scope: "private")
+}
