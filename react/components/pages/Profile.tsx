@@ -53,7 +53,7 @@ class ProfileContainer extends Component<Props> {
     const isNewsletterOptIn = profile.customFields?.find(
       ({ key }) => key === 'isNewsletterOptIn'
     )?.value
-    return isNewsletterOptIn === 'true'
+    return isNewsletterOptIn?.toLowerCase() === 'true'
   }
 
   public render() {
@@ -87,12 +87,10 @@ class ProfileContainer extends Component<Props> {
               onEditClick={this.handleEditingPassword}
             />
           )}
-          <div>
-            <NewsletterBox
-              isNewsletterOptIn={isNewsletterOptIn}
-              userEmail={profile.email}
-            />
-          </div>
+          <NewsletterBox
+            isNewsletterOptIn={isNewsletterOptIn}
+            userEmail={profile.email}
+          />
         </div>
         {showToast && (
           <Toast
