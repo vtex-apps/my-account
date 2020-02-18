@@ -6,19 +6,18 @@ import { Checkbox } from 'vtex.styleguide'
 
 import ContentBox from '../shared/ContentBox'
 import NEWSLETTER_MUTATION from '../../graphql/setOptInNewsletter.gql'
-import styles from '../../styles.css'
 
 const messages = defineMessages({
   optinNewsLetter: {
-    id: 'vtex.store-messages@0.x::personalData.newsletterOptIn',
+    id: 'personalData.newsletterOptIn',
     defaultMessage: '',
   },
   newsletter: {
-    id: 'vtex.store-messages@0.x::personalData.newsletter',
+    id: 'personalData.newsletter',
     defaultMessage: '',
   },
   newsletterQuestion: {
-    id: 'vtex.store-messages@0.x::personalData.newsletterQuestion',
+    id: 'personalData.newsletterQuestion',
     defaultMessage: '',
   },
 })
@@ -62,7 +61,7 @@ class NewsletterBox extends Component<Props, State> {
         <div className="c-muted-2 pt2 pb6">
           {formatMessage(messages.newsletterQuestion)}
         </div>
-        <div className={`${styles.passwordBox} w-100`}>
+        <div className="vtex-account__password-box w-100">
           <Checkbox
             checked={checked}
             id="newsletterOptIn"

@@ -7,7 +7,7 @@
     "eslint": "5.x",
     "eslint-config-vtex": "10.x",
     "prettier": "^1.18.2",
-    "typescript": "3.5.2"
+    "typescript": "3.7.3"
   },
   "dependencies": {
     "@vtex/api": "^3.48.2"
