@@ -86,7 +86,7 @@ interface Props extends InjectedIntlProps {
   setOptInNewsletter: (args: Variables<SetOptInNewsletterArgs>) => Promise<void>
 }
 
-const enhance = compose<Props, any>(
+const enhance = compose<Props, Pick<Props, 'isNewsletterOptIn' | 'userEmail'>>(
   graphql(NEWSLETTER_MUTATION, { name: 'setOptInNewsletter' }),
   injectIntl
 )
