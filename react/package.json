@@ -4,6 +4,7 @@
     "apollo-client": "^2.6.4",
     "exenv": "^1.2.2",
     "graphql": "^14.0.2",
+    "prettier": "^1.19.1",
     "query-string": "5.x",
     "react": "^16.4.1",
     "react-apollo": "^2.3.2",
@@ -24,9 +25,8 @@
     "@vtex/test-tools": "^0.3.2",
     "eslint": "5.x",
     "eslint-config-vtex-react": "^5.0.1",
-    "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
-    "typescript": "3.5.2"
+    "typescript": "3.7.3"
   },
   "scripts": {
     "lint": "tsc --noEmit && eslint --ext ts,tsx .",

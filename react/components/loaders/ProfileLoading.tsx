@@ -34,6 +34,9 @@ const ProfileLoading: FunctionComponent<Props> = ({ data }) => {
           <SkeletonBox shouldAllowGrowing shouldShowLowerButton>
             <SkeletonPiece size="4" />
           </SkeletonBox>
+          <SkeletonBox shouldAllowGrowing shouldShowLowerButton>
+            <SkeletonPiece size="4" />
+          </SkeletonBox>
         </div>
       </main>
     </BaseLoading>
