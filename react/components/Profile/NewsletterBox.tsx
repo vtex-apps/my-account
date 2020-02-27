@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { defineMessages, InjectedIntlProps, injectIntl } from 'react-intl'
+import { defineMessages, WrappedComponentProps, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
 import { Checkbox } from 'vtex.styleguide'
@@ -10,16 +10,16 @@ import styles from '../../styles.css'
 
 const messages = defineMessages({
   optinNewsLetter: {
-    id: 'vtex.store-messages@0.x::personalData.newsletterOptIn',
-    defaultMessage: '',
+    id: 'personalData.newsletterOptIn',
+    from: 'vtex.store-messages',
   },
   newsletter: {
-    id: 'vtex.store-messages@0.x::personalData.newsletter',
-    defaultMessage: '',
+    id: 'personalData.newsletter',
+    from: 'vtex.store-messages',
   },
   newsletterQuestion: {
-    id: 'vtex.store-messages@0.x::personalData.newsletterQuestion',
-    defaultMessage: '',
+    id: 'personalData.newsletterQuestion',
+    from: 'vtex.store-messages',
   },
 })
 
@@ -80,7 +80,7 @@ interface State {
   checked: boolean
 }
 
-interface Props extends InjectedIntlProps {
+interface Props extends WrappedComponentProps {
   userEmail: string
   isNewsletterOptIn: boolean
   setOptInNewsletter: (args: Variables<SetOptInNewsletterArgs>) => Promise<void>
