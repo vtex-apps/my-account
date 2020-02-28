@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Messages import from `vtex.store-messages`.
+
+### Removed
+
+- `messages` builder.
+
 ## [1.13.0] - 2020-02-18
 
 ### Added
