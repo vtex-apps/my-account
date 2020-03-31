@@ -5,6 +5,7 @@ import { compose } from 'recompose'
 import { Checkbox } from 'vtex.styleguide'
 
 import ContentBox from '../shared/ContentBox'
+import GET_NEWSLETTER from '../../graphql/getNewsletterOpt.gql'
 import NEWSLETTER_MUTATION from '../../graphql/setOptInNewsletter.gql'
 import styles from '../../styles.css'
 
@@ -24,10 +25,13 @@ const messages = defineMessages({
 })
 
 class NewsletterBox extends Component<Props, State> {
-  public constructor(props: Props) {
-    super(props)
-    this.state = {
-      checked: this.props.isNewsletterOptIn,
+  public state = {
+    checked: false,
+  }
+
+  public componentDidUpdate(oldProps: Props) {
+    if (oldProps.isNewsletterOptIn !== this.props.isNewsletterOptIn) {
+      this.setState({ checked: this.props.isNewsletterOptIn })
     }
   }
 
@@ -80,13 +84,37 @@ interface State {
   checked: boolean
 }
 
-interface Props extends InjectedIntlProps {
+type Props = ExternalProps & QueryResult & Mutations & InjectedIntlProps
+
+interface ExternalProps {
   userEmail: string
+}
+
+interface QueryData {
+  profile: Pick<Profile, 'customFields'>
+  loading: boolean
+}
+
+interface QueryResult {
+  loading?: boolean
   isNewsletterOptIn: boolean
+}
+
+interface Mutations {
   setOptInNewsletter: (args: Variables<SetOptInNewsletterArgs>) => Promise<void>
 }
 
-const enhance = compose<Props, Pick<Props, 'isNewsletterOptIn' | 'userEmail'>>(
+const enhance = compose<Props, ExternalProps>(
+  graphql<Props, QueryData, unknown, QueryResult>(GET_NEWSLETTER, {
+    props: ({ data }) => ({
+      isNewsletterOptIn:
+        data?.profile?.customFields?.[0].value.toLowerCase() === 'true',
+      loading: data?.loading,
+    }),
+    options: {
+      fetchPolicy: 'cache-and-network',
+    },
+  }),
   graphql(NEWSLETTER_MUTATION, { name: 'setOptInNewsletter' }),
   injectIntl
 )
