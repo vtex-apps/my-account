@@ -47,17 +47,9 @@ class ProfileContainer extends Component<Props> {
     )
   }
 
-  private getIsNewsletterOptIn = (profile: Profile) => {
-    const isNewsletterOptIn = profile.customFields?.find(
-      ({ key }) => key === 'isNewsletterOptIn'
-    )?.value
-    return isNewsletterOptIn?.toLowerCase() === 'true'
-  }
-
   public render() {
     const { profile } = this.props
     const { isEditingPassword, showToast } = this.state
-    const isNewsletterOptIn = this.getIsNewsletterOptIn(profile)
 
     return (
       <main className="flex flex-column-s flex-row-ns">
@@ -85,10 +77,7 @@ class ProfileContainer extends Component<Props> {
               onEditClick={this.handleEditingPassword}
             />
           )}
-          <NewsletterBox
-            isNewsletterOptIn={isNewsletterOptIn}
-            userEmail={profile.email}
-          />
+          <NewsletterBox userEmail={profile.email} />
         </div>
         {showToast && (
           <Toast messageId="alert.success" onClose={this.handleCloseToast} />
@@ -109,9 +98,7 @@ interface Props {
 }
 
 const enhance = compose<Props, void>(
-  graphql(GET_PROFILE, {
-    options: { variables: { customFields: 'isNewsletterOptIn' } },
-  }),
+  graphql(GET_PROFILE),
   branch<Props>(
     ({ data }) => data.profile == null,
     renderComponent(ProfileLoading)

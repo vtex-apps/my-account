@@ -1,0 +1,8 @@
+query NewsletterOpt @context(scope: "private") {
+  profile(customFields: "isNewsletterOptIn") {
+    customFields {
+      key
+      value
+    }
+  }
+}
