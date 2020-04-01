@@ -25,8 +25,11 @@ const messages = defineMessages({
 })
 
 class NewsletterBox extends Component<Props, State> {
-  public state = {
-    checked: false,
+  public constructor(props: Props) {
+    super(props)
+    this.state = {
+      checked: props.isNewsletterOptIn,
+    }
   }
 
   public componentDidUpdate(oldProps: Props) {
@@ -49,7 +52,7 @@ class NewsletterBox extends Component<Props, State> {
             isNewsletterOptIn: !checked,
           },
         }),
-      1000
+      500
     )
     this.setState({ checked: !checked })
   }
@@ -92,11 +95,9 @@ interface ExternalProps {
 
 interface QueryData {
   profile: Pick<Profile, 'customFields'>
-  loading: boolean
 }
 
 interface QueryResult {
-  loading?: boolean
   isNewsletterOptIn: boolean
 }
 
@@ -107,15 +108,15 @@ interface Mutations {
 const enhance = compose<Props, ExternalProps>(
   graphql<Props, QueryData, unknown, QueryResult>(GET_NEWSLETTER, {
     props: ({ data }) => ({
-      isNewsletterOptIn:
-        data?.profile?.customFields?.[0].value.toLowerCase() === 'true',
-      loading: data?.loading,
+      isNewsletterOptIn: data?.profile?.customFields?.[0].value === 'true',
     }),
+  }),
+  graphql(NEWSLETTER_MUTATION, {
+    name: 'setOptInNewsletter',
     options: {
-      fetchPolicy: 'cache-and-network',
+      refetchQueries: ['NewsletterOpt'],
     },
   }),
-  graphql(NEWSLETTER_MUTATION, { name: 'setOptInNewsletter' }),
   injectIntl
 )
 
