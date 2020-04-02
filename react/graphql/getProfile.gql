@@ -1,5 +1,5 @@
-query Profile($customFields: String) @context(scope: "private") {
-  profile(customFields: $customFields) {
+query Profile @context(scope: "private") {
+  profile {
     cacheId
     firstName
     lastName
@@ -15,9 +15,5 @@ query Profile($customFields: String) @context(scope: "private") {
     stateRegistration
     isCorporate
     passwordLastUpdate
-    customFields {
-      key
-      value
-    }
   }
 }

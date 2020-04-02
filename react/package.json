@@ -26,7 +26,7 @@
     "eslint": "5.x",
     "eslint-config-vtex-react": "^5.0.1",
     "prop-types": "^15.7.2",
-    "typescript": "3.7.3",
+    "typescript": "3.8.3",
     "vtex.address-form": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.address-form@4.2.0/public/_types/react",
     "vtex.country-codes": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.country-codes@2.0.1/public/_types/react",
     "vtex.my-account-commons": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.my-account-commons@1.2.2/public/_types/react",
