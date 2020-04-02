@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Newsletter opt in update cache by refetching query.
+
 ## [1.13.0] - 2020-02-18
 
 ### Added
