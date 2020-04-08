@@ -185,7 +185,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
                   <div className="mb7">
                     <AutoCompletedFields>
                       <span className="c-link pointer">
-                        <FormattedMessage id="address-form.edit" />
+                        <FormattedMessage id="vtex.address-form@4.x::address-form.edit" />
                       </span>
                     </AutoCompletedFields>
                   </div>
