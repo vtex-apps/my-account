@@ -10,7 +10,7 @@ import {
 } from 'react-intl'
 import { ExtensionPoint } from 'render'
 import { compose } from 'recompose'
-import { AuthService } from 'vtex.react-vtexid'
+import { AuthService, AuthState } from 'vtex.react-vtexid'
 import { ModalDialog } from 'vtex.styleguide'
 
 import MenuLink from './MenuLink'
@@ -72,33 +72,35 @@ class MenuLinksList extends Component<Props> {
             renderLinks(links, settings ? settings.showMyCards : false)
           }
         />
-        <AuthService.RedirectLogout returnUrl="/">
-          {({ action: logout }: any) => (
-            <Fragment>
-              <a
-                className={`vtex-account_menu-link f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-muted-1 b--transparent pointer`}
-                onClick={this.handleModalToggle}>
-                <FormattedMessage id="pages.logout" />
-              </a>
-              <ModalDialog
-                centered
-                confirmation={{
-                  onClick: logout,
-                  label: intl.formatMessage(messages.logout),
-                }}
-                cancelation={{
-                  onClick: this.handleModalToggle,
-                  label: intl.formatMessage(messages.cancel),
-                }}
-                isOpen={this.state.isModalOpen}
-                onClose={this.handleModalToggle}>
-                <span className="t-heading-5 pa6">
-                  <FormattedMessage id="logoutModal.title" />
-                </span>
-              </ModalDialog>
-            </Fragment>
-          )}
-        </AuthService.RedirectLogout>
+        <AuthState>
+          <AuthService.RedirectLogout returnUrl="/">
+            {({ action: logout }: any) => (
+              <Fragment>
+                <a
+                  className={`vtex-account_menu-link f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-muted-1 b--transparent pointer`}
+                  onClick={this.handleModalToggle}>
+                  <FormattedMessage id="pages.logout" />
+                </a>
+                <ModalDialog
+                  centered
+                  confirmation={{
+                    onClick: logout,
+                    label: intl.formatMessage(messages.logout),
+                  }}
+                  cancelation={{
+                    onClick: this.handleModalToggle,
+                    label: intl.formatMessage(messages.cancel),
+                  }}
+                  isOpen={this.state.isModalOpen}
+                  onClose={this.handleModalToggle}>
+                  <span className="t-heading-5 pa6">
+                    <FormattedMessage id="logoutModal.title" />
+                  </span>
+                </ModalDialog>
+              </Fragment>
+            )}
+          </AuthService.RedirectLogout>
+        </AuthState>
       </nav>
     )
   }
@@ -113,7 +115,4 @@ interface Props extends InjectedIntlProps {
   settings?: Settings
 }
 
-export default compose<Props, {}>(
-  injectIntl,
-  withSettings
-)(MenuLinksList)
+export default compose<Props, {}>(injectIntl, withSettings)(MenuLinksList)
