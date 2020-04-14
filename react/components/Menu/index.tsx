@@ -4,7 +4,7 @@ import React, { Component, Fragment } from 'react'
 import { injectIntl, FormattedMessage, InjectedIntlProps } from 'react-intl'
 import { compose } from 'recompose'
 import { ExtensionPoint } from 'vtex.render-runtime'
-import { AuthService } from 'vtex.react-vtexid'
+import { AuthService, AuthState } from 'vtex.react-vtexid'
 import { ModalDialog } from 'vtex.styleguide'
 
 import UserInfo from './UserInfo'
@@ -44,40 +44,42 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
               renderLinks(links, settings ? settings.showMyCards : false)
             }
           />
-          <AuthService.RedirectLogout returnUrl="/">
-            {({ action: logout }: any) => (
-              <Fragment>
-                <div
-                  className={`
+          <AuthState>
+            <AuthService.RedirectLogout returnUrl="/">
+              {({ action: logout }: any) => (
+                <Fragment>
+                  <div
+                    className={`
                     ${styles.menuLink}
                     f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-muted-1 b--transparent pointer
                   `}
-                  onClick={this.handleModalToggle}>
-                  <FormattedMessage id="vtex.store-messages@0.x::pages.logout" />
-                </div>
-                <ModalDialog
-                  centered
-                  confirmation={{
-                    onClick: logout,
-                    label: intl.formatMessage({
-                      id: 'vtex.store-messages@0.x::pages.logout',
-                    }),
-                  }}
-                  cancelation={{
-                    onClick: this.handleModalToggle,
-                    label: intl.formatMessage({
-                      id: 'vtex.store-messages@0.x::logoutModal.cancel',
-                    }),
-                  }}
-                  isOpen={this.state.isModalOpen}
-                  onClose={this.handleModalToggle}>
-                  <span className="t-heading-5 pa6">
-                    <FormattedMessage id="vtex.store-messages@0.x::logoutModal.title" />
-                  </span>
-                </ModalDialog>
-              </Fragment>
-            )}
-          </AuthService.RedirectLogout>
+                    onClick={this.handleModalToggle}>
+                    <FormattedMessage id="vtex.store-messages@0.x::pages.logout" />
+                  </div>
+                  <ModalDialog
+                    centered
+                    confirmation={{
+                      onClick: logout,
+                      label: intl.formatMessage({
+                        id: 'vtex.store-messages@0.x::pages.logout',
+                      }),
+                    }}
+                    cancelation={{
+                      onClick: this.handleModalToggle,
+                      label: intl.formatMessage({
+                        id: 'vtex.store-messages@0.x::logoutModal.cancel',
+                      }),
+                    }}
+                    isOpen={this.state.isModalOpen}
+                    onClose={this.handleModalToggle}>
+                    <span className="t-heading-5 pa6">
+                      <FormattedMessage id="vtex.store-messages@0.x::logoutModal.title" />
+                    </span>
+                  </ModalDialog>
+                </Fragment>
+              )}
+            </AuthService.RedirectLogout>
+          </AuthState>
         </nav>
       </aside>
     )
