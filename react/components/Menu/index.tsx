@@ -44,7 +44,7 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
               renderLinks(links, settings ? settings.showMyCards : false)
             }
           />
-          <AuthState>
+          <AuthState skip scope="STORE">
             <AuthService.RedirectLogout returnUrl="/">
               {({ action: logout }: any) => (
                 <Fragment>
