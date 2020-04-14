@@ -72,7 +72,7 @@ class MenuLinksList extends Component<Props> {
             renderLinks(links, settings ? settings.showMyCards : false)
           }
         />
-        <AuthState>
+        <AuthState skip scope="STORE">
           <AuthService.RedirectLogout returnUrl="/">
             {({ action: logout }: any) => (
               <Fragment>
