@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Password error message.
+
 ## [1.13.3] - 2020-04-14
 
 ### Fixed
