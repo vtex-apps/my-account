@@ -17,8 +17,8 @@ import RedefinePasswordForm from './RedefinePassword'
 import SendAccCodeButton from './SendAccCodeButton'
 import PasswordValidator from './PasswordValidator'
 
-const WRONG_CREDENTIALS = 'WrongCredentials'
-const BLOCKED_USER = 'Blocked'
+const WRONG_CREDENTIALS = 'wrongcredentials'
+const BLOCKED_USER = 'blocked'
 const messages = defineMessages({
   code: {
     id: 'vtex.store-messages@0.x::personalData.code',
@@ -71,8 +71,9 @@ class PasswordFormBox extends Component<Props, State> {
   }
 
   private handleSetPasswordError = (error: any) => {
-    const wrongPassword = error.code.toString().indexOf(WRONG_CREDENTIALS) > -1
-    const blockedUser = error.code.toString().indexOf(BLOCKED_USER) > -1
+    const wrongPassword =
+      error.code.toLowerCase().indexOf(WRONG_CREDENTIALS) > -1
+    const blockedUser = error.code.toLowerCase().indexOf(BLOCKED_USER) > -1
     this.setState((prevState: any) => ({
       isLoading: false,
       error:
