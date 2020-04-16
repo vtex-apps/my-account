@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.13.5] - 2020-04-16
+
 ### Fixed
 
 - String comparing at password error message.
