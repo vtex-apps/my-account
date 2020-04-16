@@ -17,7 +17,7 @@ import RedefinePasswordForm from './RedefinePassword'
 import SendAccCodeButton from './SendAccCodeButton'
 import PasswordValidator from './PasswordValidator'
 
-const WRONG_CREDENTIALS = 'Wrong credentials'
+const WRONG_CREDENTIALS = 'WrongCredentials'
 const BLOCKED_USER = 'Blocked'
 const messages = defineMessages({
   code: {
@@ -71,8 +71,8 @@ class PasswordFormBox extends Component<Props, State> {
   }
 
   private handleSetPasswordError = (error: any) => {
-    const wrongPassword = error.toString().indexOf(WRONG_CREDENTIALS) > -1
-    const blockedUser = error.toString().indexOf(BLOCKED_USER) > -1
+    const wrongPassword = error.code.toString().indexOf(WRONG_CREDENTIALS) > -1
+    const blockedUser = error.code.toString().indexOf(BLOCKED_USER) > -1
     this.setState((prevState: any) => ({
       isLoading: false,
       error:
