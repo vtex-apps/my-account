@@ -5324,6 +5324,46 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
+"vtex.address-form@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@3.10.0/public/_types/react":
+  version "0.0.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@3.10.0/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
+
+"vtex.country-codes@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.country-codes@1.1.2/public/_types/react":
+  version "0.0.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.country-codes@1.1.2/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
+
+"vtex.my-account-commons@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-account-commons@0.11.0/public/@types/vtex.my-account-commons":
+  version "0.11.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-account-commons@0.11.0/public/@types/vtex.my-account-commons#9a2164916bec6c4b3c62b0b34ef95d7a50d71531"
+
+"vtex.my-cards@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-cards@0.10.0/public/@types/vtex.my-cards":
+  version "0.10.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-cards@0.10.0/public/@types/vtex.my-cards#f92c7f23a5d68f47ef620f7c3b0b84582366116b"
+
+"vtex.my-orders-app@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-orders-app@2.11.0/public/_types/react":
+  version "0.0.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-orders-app@2.11.0/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
+
+"vtex.profile-form@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.profile-form@2.7.1/public/_types/react":
+  version "0.0.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.profile-form@2.7.1/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
+
+"vtex.react-vtexid@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.react-vtexid@3.2.2/public/_types/react":
+  version "0.0.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.react-vtexid@3.2.2/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
+
+"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@7.41.1/public/@types/vtex.render-runtime":
+  version "7.41.1"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@7.41.1/public/@types/vtex.render-runtime#3695d40d1d538b10f95616db096b258df7cb8c8a"
+
+"vtex.store-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.122.0/public/@types/vtex.store-graphql":
+  version "2.122.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.122.0/public/@types/vtex.store-graphql#9bfa1a2159fcc7576a79d47f818eb77154c62c40"
+
+"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@8.73.11/public/@types/vtex.styleguide":
+  version "8.73.11"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@8.73.11/public/@types/vtex.styleguide#806533020add947e28159d8b7bb9d770c7913f99"
+
 w3c-hr-time@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/w3c-hr-time/-/w3c-hr-time-1.0.1.tgz#82ac2bff63d950ea9e3189a58a65625fedf19045"

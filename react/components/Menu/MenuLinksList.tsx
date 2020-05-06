@@ -113,7 +113,4 @@ interface Props extends InjectedIntlProps {
   settings?: Settings
 }
 
-export default compose<Props, {}>(
-  injectIntl,
-  withSettings
-)(MenuLinksList)
+export default compose<Props, {}>(injectIntl, withSettings)(MenuLinksList)
