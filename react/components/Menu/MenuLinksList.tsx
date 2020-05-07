@@ -76,8 +76,9 @@ class MenuLinksList extends Component<Props> {
           {({ action: logout }: any) => (
             <Fragment>
               <a
-                className={`vtex-account_menu-link f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-muted-1 b--transparent pointer`}
-                onClick={this.handleModalToggle}>
+                className="vtex-account_menu-link f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-muted-1 b--transparent pointer"
+                onClick={this.handleModalToggle}
+              >
                 <FormattedMessage id="pages.logout" />
               </a>
               <ModalDialog
@@ -91,7 +92,8 @@ class MenuLinksList extends Component<Props> {
                   label: intl.formatMessage(messages.cancel),
                 }}
                 isOpen={this.state.isModalOpen}
-                onClose={this.handleModalToggle}>
+                onClose={this.handleModalToggle}
+              >
                 <span className="t-heading-5 pa6">
                   <FormattedMessage id="logoutModal.title" />
                 </span>

@@ -10,7 +10,8 @@ const MenuLink: FunctionComponent<Props> = ({ path, name, location }) => {
           location.pathname.indexOf(path) === -1
             ? 'c-muted-1 b--transparent'
             : 'c-on-base b b--action-primary'
-        }`}>
+        }`}
+    >
       {name}
     </Link>
   )

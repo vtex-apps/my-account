@@ -14,7 +14,7 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
   private validatorFunctions: any[]
   private submitterFunctions: any[]
 
-  public constructor(props: InnerProps & OutterProps) {
+  constructor(props: InnerProps & OutterProps) {
     super(props)
     this.state = {
       isLoading: false,
@@ -79,7 +79,7 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
   public render() {
     const { profile, settings, runtime } = this.props
     const { isLoading } = this.state
-    const showGenders = settings && settings.showGenders
+    const showGenders = settings?.showGenders
 
     if (!profile) return null
 
@@ -94,7 +94,8 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
               <Button type="submit" block size="small" isLoading={isLoading}>
                 <FormattedMessage id="profile-form.save-changes" />
               </Button>
-            }>
+            }
+          >
             <ExtensionPoint
               id="profile/input"
               registerValidator={this.registerValidator}

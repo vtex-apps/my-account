@@ -9,7 +9,6 @@ import { withContentWrapper } from '../shared/withContentWrapper'
 import AddressesLoading from '../loaders/AddressesLoading'
 import AddressBox from '../Addresses/AddressBox'
 import Toast from '../shared/Toast'
-
 import GET_ADRESSES from '../../graphql/getAddresses.gql'
 
 export const headerConfig = {

@@ -8,7 +8,7 @@ import 'vtex.country-codes/locales'
 import './style.global.css'
 
 class MyAccount extends Component {
-  public constructor(props: any) {
+  constructor(props: any) {
     super(props)
 
     if (

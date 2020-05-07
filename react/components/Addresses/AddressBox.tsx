@@ -8,7 +8,8 @@ const AddressBox: FunctionComponent<Props> = ({ address, onEditClick }) => {
   return (
     <ContentBox
       lowerButton={<FormattedMessage id="commons.edit" />}
-      onLowerButtonClick={onEditClick}>
+      onLowerButtonClick={onEditClick}
+    >
       <div className="lighter c-muted-2 lh-copy pv4 w5 h4">
         <AddressRules country={address.country} shouldUseIOFetching>
           <AddressSummary address={address} />

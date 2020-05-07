@@ -50,8 +50,7 @@ class AppRouter extends Component {
       <Route exact key={path} path={path} component={component} />
     )
 
-    const shouldRedirectOrder =
-      window && window.vtex && window.vtex.orderListRendered
+    const shouldRedirectOrder = window?.vtex?.orderListRendered
 
     return (
       <div className="w-100 mw9 pv7-m pv9-l flex">

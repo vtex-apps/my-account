@@ -2,7 +2,7 @@ export default function getEmptyAddress(
   country: string,
   profile: Partial<Profile>
 ) {
-  let receiverName = profile.firstName || ''
+  let receiverName = profile.firstName ?? ''
   if (profile.lastName) {
     receiverName += ` ${profile.lastName}`
   }
@@ -12,7 +12,7 @@ export default function getEmptyAddress(
     addressType: 'residential',
     city: null,
     complement: null,
-    country: country,
+    country,
     geoCoordinates: [],
     neighborhood: null,
     number: null,
