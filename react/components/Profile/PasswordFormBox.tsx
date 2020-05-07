@@ -180,7 +180,7 @@ class PasswordFormBox extends Component<Props, State> {
             </AuthState.Password>
             <AuthService.SetPassword
               onSuccess={() => this.handleSetPasswordSuccess(onPasswordChange)}
-              onFailure={(error: any) => this.handleSetPasswordError(error)}
+              onFailure={(e: any) => this.handleSetPasswordError(e)}
             >
               {({ action: setPassword }: any) => {
                 return (
