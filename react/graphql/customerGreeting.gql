@@ -1,0 +1,8 @@
+query CustomerGreeting {
+  profile @context(provider: "vtex.store-graphql") {
+    cacheId
+    firstName
+    lastName
+    profilePicture
+  }
+}

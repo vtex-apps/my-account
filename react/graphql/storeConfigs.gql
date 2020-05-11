@@ -1,0 +1,10 @@
+query StoreConfigs {
+  configs: storeConfigs @context(provider: "vtex.store-graphql") {
+    geolocation
+    googleMapsApiKey
+  }
+
+  logistics @context(provider: "vtex.store-graphql") {
+    shipsTo
+  }
+}

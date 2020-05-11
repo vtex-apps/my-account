@@ -1,8 +1,0 @@
-query Greeting @context(scope: "private") {
-  profile {
-    cacheId
-    firstName
-    lastName
-    profilePicture
-  }
-}

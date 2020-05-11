@@ -1,5 +1,0 @@
-query LogisticsInfo {
-  logistics @context(provider: "vtex.store-graphql") {
-    shipsTo
-  }
-}
