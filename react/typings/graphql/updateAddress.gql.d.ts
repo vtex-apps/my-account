@@ -1,4 +1,4 @@
-declare module '*.gql' {
+declare module '*/updateAddress.gql' {
   import { DocumentNode } from 'graphql'
 
   const value: DocumentNode

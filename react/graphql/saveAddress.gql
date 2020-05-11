@@ -1,0 +1,6 @@
+mutation SaveAddress($address: AddressInput!) {
+  saveAddress(address: $address) @context(provider: "vtex.store-graphql") {
+    id
+    cacheId
+  }
+}
