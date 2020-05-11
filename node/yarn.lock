@@ -2092,17 +2092,17 @@ uuid@^3.1.0:
   version "0.11.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-account-commons@0.11.0/public/@types/vtex.my-account-commons#9a2164916bec6c4b3c62b0b34ef95d7a50d71531"
 
-"vtex.my-account@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-account@0.31.2/public/@types/vtex.my-account":
+"vtex.my-account@https://storev1--recorrenciaqa.myvtex.com/_v/private/typings/linked/v1/vtex.my-account@0.31.2+build1589209707/public/@types/vtex.my-account":
   version "0.31.2"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-account@0.31.2/public/@types/vtex.my-account#b2b60ad7ced8167710291a7b88a744b5f06ab045"
+  resolved "https://storev1--recorrenciaqa.myvtex.com/_v/private/typings/linked/v1/vtex.my-account@0.31.2+build1589209707/public/@types/vtex.my-account#6086db16f5de858f0e8a19b6b744d42b94bbb0ce"
 
-"vtex.my-cards@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-cards@0.10.0/public/@types/vtex.my-cards":
-  version "0.10.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-cards@0.10.0/public/@types/vtex.my-cards#f92c7f23a5d68f47ef620f7c3b0b84582366116b"
+"vtex.my-cards@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-cards@0.12.0/public/@types/vtex.my-cards":
+  version "0.12.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-cards@0.12.0/public/@types/vtex.my-cards#a9abf092fe8304e42de2889cf166c69af9876ce7"
 
-"vtex.my-orders-app@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-orders-app@2.11.0/public/_types/react":
+"vtex.my-orders-app@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-orders-app@2.11.1/public/_types/react":
   version "0.0.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-orders-app@2.11.0/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-orders-app@2.11.1/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
 
 "vtex.profile-form@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.profile-form@2.7.1/public/_types/react":
   version "0.0.0"
@@ -2112,9 +2112,9 @@ uuid@^3.1.0:
   version "0.0.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.react-vtexid@3.2.2/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
 
-"vtex.store-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.122.0/public/@types/vtex.store-graphql":
-  version "2.122.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.122.0/public/@types/vtex.store-graphql#9bfa1a2159fcc7576a79d47f818eb77154c62c40"
+"vtex.store-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.123.0/public/@types/vtex.store-graphql":
+  version "2.123.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.123.0/public/@types/vtex.store-graphql#79f11746c99279e434100f588489023ffdfb0c1e"
 
 "vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@8.73.11/public/@types/vtex.styleguide":
   version "8.73.11"
