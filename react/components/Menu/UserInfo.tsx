@@ -1,20 +1,20 @@
 import React, { FunctionComponent } from 'react'
 import { graphql } from 'react-apollo'
-import { compose, branch, withProps, renderComponent } from 'recompose'
+import { compose, branch, renderComponent } from 'recompose'
 import { FormattedMessage } from 'react-intl'
 
-import GetGreeting from '../../graphql/getGreeting.gql'
-import UserInfoLoading from './UserInfoLoading'
+import GREETING, { Result } from '../../graphql/customerGreeting.gql'
+import Loading from './UserInfoLoading'
 import styles from '../../styles.css'
 import PictureRenderer from './ProfilePicture/PictureRenderer'
 
-const UserInfo: FunctionComponent<Props> = ({ profile }) => {
+const UserInfo: FunctionComponent<Props> = ({ profilePicture, firstName }) => {
   return (
     <div className={`${styles.userInfo} flex flex-wrap items-end mb7`}>
       <div className={`${styles.userImage} relative mr5 h3 w3`}>
-        <PictureRenderer imagePath={profile.profilePicture} />
+        <PictureRenderer imagePath={profilePicture} />
       </div>
-      {profile.firstName ? (
+      {firstName ? (
         <div>
           <div
             className={`
@@ -25,7 +25,7 @@ const UserInfo: FunctionComponent<Props> = ({ profile }) => {
             ,
           </div>
           <div className={`${styles.userName} f4 c-on-base fw3 nowrap`}>
-            {profile.firstName}!
+            {firstName}!
           </div>
         </div>
       ) : (
@@ -37,23 +37,21 @@ const UserInfo: FunctionComponent<Props> = ({ profile }) => {
   )
 }
 
-interface ProfileData {
-  firstName: string
-  lastName: string
-  profilePicture?: string
-}
-
 interface Props {
-  profile: ProfileData
-  data: { profile: ProfileData }
+  firstName: string
+  profilePicture?: string
+  loading: boolean
 }
 
 const enhance = compose<Props, {}>(
-  graphql(GetGreeting),
-  branch<Props>(
-    ({ data }) => data.profile == null,
-    renderComponent(UserInfoLoading)
-  ),
-  withProps(({ data }: Props) => ({ profile: data.profile }))
+  graphql<{}, Result, {}, Props>(GREETING, {
+    props: ({ data }) => ({
+      firstName: data?.profile?.firstName ?? '',
+      profilePicture: data?.profile?.profilePicture ?? undefined,
+      loading: data ? data.loading : false,
+    }),
+  }),
+  branch<Props>(({ loading }) => loading, renderComponent(Loading))
 )
+
 export default enhance(UserInfo)

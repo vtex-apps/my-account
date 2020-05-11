@@ -53,7 +53,7 @@ class AddressEdit extends Component<Props> {
 
   public render() {
     const { isLoading } = this.state
-    const { addresses, addressId, shipsTo } = this.props
+    const { addresses, addressId } = this.props
     const address = addresses.find(current => current.addressId === addressId)
 
     if (!address) {
@@ -71,7 +71,6 @@ class AddressEdit extends Component<Props> {
           submitLabelId="vtex.store-messages@0.x::addresses.saveAddress"
           address={normalizedAddress}
           onSubmit={this.handleSave}
-          shipsTo={shipsTo}
           onError={this.props.handleError}
         />
         <AddressDeleter
@@ -87,9 +86,6 @@ class AddressEdit extends Component<Props> {
 interface Data {
   profile: {
     addresses: Address[]
-  }
-  logistics: {
-    shipsTo: string[]
   }
 }
 
@@ -111,7 +107,6 @@ const enhance = compose<Props, void>(
   withProps(({ data, match }: { data: Data; match: any }) => ({
     addresses: data.profile.addresses,
     addressId: match.params.id,
-    shipsTo: data.logistics.shipsTo,
   })),
   withContentWrapper(headerConfig)
 )

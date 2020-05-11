@@ -10,10 +10,6 @@ declare global {
     addressId: string
   }
 
-  interface CreateAddressArgs {
-    addressFields: AddressInput
-  }
-
   interface SetOptInNewsletterArgs {
     email: string
     isNewsletterOptIn: boolean
@@ -64,6 +60,7 @@ declare global {
     reference: string | null
     state: string | null
     street: string | null
+    [key: string]: any
     __typename?: string
   }
 
