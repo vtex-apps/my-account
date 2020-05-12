@@ -27,11 +27,7 @@ export const headerConfig = {
 }
 
 function buildReceiverName(profile: CustomerInfo['profile']): string {
-  let lastName = ''
-  if (profile.lastName) {
-    lastName += ` ${profile.lastName}`
-  }
-
+  const lastName = profile.lastName ? ` ${profile.lastName}` : ''
   return `${profile.firstName ?? ''}${lastName}`
 }
 
@@ -106,7 +102,7 @@ type Props = MappedResult &
 const enhance = compose<Props, void>(
   graphql<{}, CustomerInfo, {}, MappedResult>(CREATE_ADDRESS_INFO, {
     props: props => ({
-      loading: props.data ? props.data.loading : true,
+      loading: props.data?.loading ?? true,
       data: props.data as DataValue<unknown>,
       receiverName: props.data?.profile
         ? buildReceiverName(props.data?.profile)
