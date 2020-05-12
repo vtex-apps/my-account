@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Passing the newly created addressId to the return url.
+
 ## [0.31.2] - 2020-04-16
 
 ### Fixed

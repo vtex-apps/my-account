@@ -15,7 +15,8 @@ const SendAccCodeButton: FunctionComponent<Props> = ({
           size="small"
           onClick={action}
           isLoading={loadingSendAccessKey}
-          variation={variation}>
+          variation={variation}
+        >
           {children}
         </Button>
       )}

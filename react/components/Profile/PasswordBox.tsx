@@ -27,7 +27,8 @@ const PasswordBox: FunctionComponent<Props> = ({
     <ContentBox
       shouldAllowGrowing
       lowerButton={<FormattedMessage id={lowerButtonId} />}
-      onLowerButtonClick={onEditClick}>
+      onLowerButtonClick={onEditClick}
+    >
       <div className="vtex-account__password-box w-100">
         <DataEntry label={intl.formatMessage(messages.password)}>
           {passwordLastUpdate ? (

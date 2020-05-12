@@ -10,7 +10,7 @@ splunkEvents.config({
 export function logMyAccountURL() {
   const { account } = window.__RUNTIME__
   splunkEvents.logEvent('Important', 'Info', 'MyAccount', 'MyAccountURL', {
-    account: account,
+    account,
   })
 }
 

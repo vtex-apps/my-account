@@ -8,7 +8,8 @@ const UserPlaceholderPicture = () => {
       height="110"
       viewBox="0 0 110 110"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg">
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <rect width="110" height="110" fill="black" fillOpacity="0" />
       <rect width="110" height="110" fill="black" fillOpacity="0" />
       <path
@@ -23,7 +24,8 @@ const UserPlaceholderPicture = () => {
         x="0"
         y="0"
         width="110"
-        height="110">
+        height="110"
+      >
         <path
           fillRule="evenodd"
           clipRule="evenodd"

@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl'
-import { compose } from 'recompose'
+import { compose, branch, renderComponent } from 'recompose'
 import { graphql } from 'react-apollo'
-
 import {
   AddressContainer,
   AddressForm as AddressFields,
@@ -17,8 +16,11 @@ import {
 import { Button } from 'vtex.styleguide'
 import { addValidation } from 'vtex.address-form/helpers'
 import { StyleguideInput, GeolocationInput } from 'vtex.address-form/inputs'
+import { withRuntimeContext } from 'render'
 
-import GET_STORE_CONFIGS from '../../graphql/getStoreConfigs.gql'
+import STORE_CONFIGS, { Result } from '../../graphql/storeConfigs.gql'
+import Loading from '../loaders/FormContent'
+import getEmptyAddress from './emptyAddress'
 
 const AUTO_COMPLETABLE_FIELDS = [
   'city',
@@ -31,12 +33,23 @@ const AUTO_COMPLETABLE_FIELDS = [
 ]
 
 class AddressForm extends Component<InnerProps & OuterProps, State> {
-  public constructor(props: InnerProps & OuterProps) {
+  constructor(props: InnerProps & OuterProps) {
     super(props)
 
-    let { __typename, addressName, ...addressValues } = props.address
+    let address: Address
+    if (props.address === undefined) {
+      const { runtime, shipsTo, receiverName } = props
 
-    const address = addValidation({
+      const country = shipsTo.length > 0 ? shipsTo[0] : runtime.culture.country
+
+      address = getEmptyAddress(country, receiverName ?? '')
+    } else {
+      address = props.address
+    }
+
+    const { __typename, addressName, ...addressValues } = address
+
+    const addressWithValidation = addValidation({
       addressQuery: null,
       ...addressValues,
     })
@@ -44,15 +57,15 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
     // if editing an existing address (address id exists), all fields start as valid
     if (addressValues.addressId) {
       AUTO_COMPLETABLE_FIELDS.forEach(field => {
-        if (address[field].value != null) {
-          address[field].geolocationAutoCompleted = true
-          address[field].postalCodeAutoCompleted = true
-          address[field].valid = true
-        }
+        if (address[field].value === null) return
+
+        addressWithValidation[field].geolocationAutoCompleted = true
+        addressWithValidation[field].postalCodeAutoCompleted = true
+        addressWithValidation[field].valid = true
       })
     }
 
-    this.state = { address }
+    this.state = { address: addressWithValidation }
   }
 
   private handleSubmit = (isValid: boolean, address: Address) => {
@@ -68,7 +81,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
 
     // allow to edit only with geolocation component
     if (
-      this.hasGeolocationPreference() &&
+      this.props.useGeolocation &&
       newAddress.addressQuery &&
       !newAddress.addressQuery.geolocationAutoCompleted
     ) {
@@ -94,7 +107,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
   private hasValidPostalCode() {
     const { address } = this.state
     return (
-      address.postalCode.geolocationAutoCompleted || address.postalCode.valid
+      address.postalCode.geolocationAutoCompleted ?? address.postalCode.valid
     )
   }
 
@@ -102,19 +115,12 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
     const { address } = this.state
     return AUTO_COMPLETABLE_FIELDS.some(
       fieldName =>
-        (address && address[fieldName].geolocationAutoCompleted) ||
-        (address && address[fieldName].postalCodeAutoCompleted)
+        address?.[fieldName].geolocationAutoCompleted ??
+        address?.[fieldName].postalCodeAutoCompleted
     )
   }
 
-  private hasGeolocationPreference() {
-    const { getStoreConfigs } = this.props
-    return (
-      getStoreConfigs.storeConfigs && getStoreConfigs.storeConfigs.geolocation
-    )
-  }
-
-  private getLocalizedShipsTo() {
+  private translateCountries() {
     const { shipsTo, intl } = this.props
     return shipsTo.map(code => ({
       label: intl.formatMessage({ id: `country.${code}` }),
@@ -122,21 +128,17 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
     }))
   }
 
-  private getMapsAPIKey() {
-    const { getStoreConfigs } = this.props
-    return (
-      getStoreConfigs.storeConfigs &&
-      getStoreConfigs.storeConfigs.googleMapsApiKey
-    )
-  }
-
   public render() {
     const { address } = this.state
-    const { intl, submitLabelId, isLoading } = this.props
+    const {
+      intl,
+      submitLabelId,
+      isLoading,
+      googleMapsApiKey,
+      useGeolocation,
+    } = this.props
 
-    const shipCountries = this.getLocalizedShipsTo()
-    const mapsAPIKey = this.getMapsAPIKey()
-    const prefersGeolocation = this.hasGeolocationPreference()
+    const shipCountries = this.translateCountries()
     const hasGeoCoords = this.hasGeoCoords()
     const hasValidPostalCode = this.hasValidPostalCode()
     const hasAutoCompletedFields = this.hasAutoCompletedFields()
@@ -145,17 +147,22 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
       <AddressRules
         country={address.country.value}
         shouldUseIOFetching
-        useGeolocation={prefersGeolocation}>
+        useGeolocation={useGeolocation}
+      >
         <AddressContainer
           address={address}
           Input={StyleguideInput}
           onChangeAddress={this.handleAddressChange}
-          autoCompletePostalCode>
+          autoCompletePostalCode
+        >
           <Fragment>
             <CountrySelector shipsTo={shipCountries} />
 
-            {prefersGeolocation && (
-              <GoogleMapsContainer apiKey={mapsAPIKey} locale={intl.locale}>
+            {useGeolocation && (
+              <GoogleMapsContainer
+                apiKey={googleMapsApiKey}
+                locale={intl.locale}
+              >
                 {({ loading, googleMaps }: GoogleMapsContainerArgs) => (
                   <Fragment>
                     {!hasAutoCompletedFields && (
@@ -177,7 +184,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
               </GoogleMapsContainer>
             )}
 
-            {prefersGeolocation === false && <PostalCodeGetter />}
+            {useGeolocation === false && <PostalCodeGetter />}
 
             {(hasGeoCoords || hasValidPostalCode) && (
               <Fragment>
@@ -208,7 +215,8 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
                   block
                   size="small"
                   isLoading={isLoading}
-                  disabled={!hasGeoCoords && !hasValidPostalCode}>
+                  disabled={!hasGeoCoords && !hasValidPostalCode}
+                >
                   <FormattedMessage id={submitLabelId} />
                 </Button>
               )}
@@ -220,29 +228,42 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
   }
 }
 
-interface InnerProps extends InjectedIntlProps {
-  getStoreConfigs: {
-    storeConfigs: {
-      googleMapsApiKey: string
-      geolocation: boolean
-    }
-  }
+interface MappedResult {
+  googleMapsApiKey?: string
+  useGeolocation: boolean
+  shipsTo: string[]
+  loading: boolean
+}
+
+interface InnerProps extends InjectedIntlProps, MappedResult {
+  runtime: Runtime
 }
 
 interface OuterProps {
   isLoading?: boolean
   submitLabelId: string
-  address: Address
-  shipsTo: string[]
+  address?: Address
+  receiverName?: string
   onError: () => void
   onSubmit: (address: Address) => void
 }
+
+type Props = InnerProps & OuterProps
 
 interface State {
   address: AddressFormFields
 }
 
-export default compose<InnerProps & OuterProps, OuterProps>(
-  graphql(GET_STORE_CONFIGS, { name: 'getStoreConfigs' }),
+export default compose<Props, OuterProps>(
+  graphql<{}, Result, {}, MappedResult>(STORE_CONFIGS, {
+    props: ({ data }) => ({
+      loading: data?.loading ?? false,
+      googleMapsApiKey: data?.configs?.googleMapsApiKey,
+      useGeolocation: data?.configs?.geolocation ?? false,
+      shipsTo: data?.logistics?.shipsTo ?? [],
+    }),
+  }),
+  branch<Props>(({ loading }) => loading, renderComponent(Loading)),
+  withRuntimeContext,
   injectIntl
 )(AddressForm)

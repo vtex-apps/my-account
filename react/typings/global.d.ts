@@ -1,12 +1,6 @@
-import { ComponentType } from 'react'
-
 declare global {
   interface Constructable<T> {
     new (): T
-  }
-
-  interface A {
-    a: string
   }
 
   interface Variables<A> {
@@ -15,10 +9,6 @@ declare global {
 
   interface DeleteAddressArgs {
     addressId: string
-  }
-
-  interface CreateAddressArgs {
-    addressFields: AddressInput
   }
 
   interface SetOptInNewsletterArgs {
@@ -71,6 +61,7 @@ declare global {
     reference: string | null
     state: string | null
     street: string | null
+    [key: string]: any
     __typename?: string
   }
 

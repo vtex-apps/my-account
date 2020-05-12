@@ -34,7 +34,8 @@ class AddressDeleter extends Component<OutterProps & InnerProps> {
           block
           size="small"
           onClick={this.handleDeleteClick}
-          isLoading={isLoading}>
+          isLoading={isLoading}
+        >
           <FormattedMessage id="addresses.deleteAddress" />
         </Button>
       </div>
