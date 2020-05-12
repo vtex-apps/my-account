@@ -16,7 +16,7 @@ import {
 import { Button } from 'vtex.styleguide'
 import { addValidation } from 'vtex.address-form/helpers'
 import { StyleguideInput, GeolocationInput } from 'vtex.address-form/inputs'
-import { withRuntimeContext } from 'render'
+import { withRuntimeContext } from 'vtex.render-runtime'
 
 import STORE_CONFIGS, { Result } from '../../graphql/storeConfigs.gql'
 import Loading from '../loaders/FormContent'
