@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl'
 import { compose } from 'recompose'
 import { graphql } from 'react-apollo'
-
 import {
   AddressContainer,
   AddressForm as AddressFields,
@@ -31,10 +30,10 @@ const AUTO_COMPLETABLE_FIELDS = [
 ]
 
 class AddressForm extends Component<InnerProps & OuterProps, State> {
-  public constructor(props: InnerProps & OuterProps) {
+  constructor(props: InnerProps & OuterProps) {
     super(props)
 
-    let { __typename, addressName, ...addressValues } = props.address
+    const { __typename, addressName, ...addressValues } = props.address
 
     const address = addValidation({
       addressQuery: null,
@@ -94,7 +93,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
   private hasValidPostalCode() {
     const { address } = this.state
     return (
-      address.postalCode.geolocationAutoCompleted || address.postalCode.valid
+      address.postalCode.geolocationAutoCompleted ?? address.postalCode.valid
     )
   }
 
@@ -102,8 +101,8 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
     const { address } = this.state
     return AUTO_COMPLETABLE_FIELDS.some(
       fieldName =>
-        (address && address[fieldName].geolocationAutoCompleted) ||
-        (address && address[fieldName].postalCodeAutoCompleted)
+        address?.[fieldName].geolocationAutoCompleted ??
+        address?.[fieldName].postalCodeAutoCompleted
     )
   }
 
@@ -145,12 +144,14 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
       <AddressRules
         country={address.country.value}
         shouldUseIOFetching
-        useGeolocation={prefersGeolocation}>
+        useGeolocation={prefersGeolocation}
+      >
         <AddressContainer
           address={address}
           Input={StyleguideInput}
           onChangeAddress={this.handleAddressChange}
-          autoCompletePostalCode>
+          autoCompletePostalCode
+        >
           <Fragment>
             <CountrySelector shipsTo={shipCountries} />
 
@@ -208,7 +209,8 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
                   block
                   size="small"
                   isLoading={isLoading}
-                  disabled={!hasGeoCoords && !hasValidPostalCode}>
+                  disabled={!hasGeoCoords && !hasValidPostalCode}
+                >
                   <FormattedMessage id={submitLabelId} />
                 </Button>
               )}

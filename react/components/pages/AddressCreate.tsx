@@ -9,10 +9,8 @@ import AddressCreateLoading from '../loaders/AddressCreateLoading'
 import AddressForm from '../Addresses/AddressForm'
 import ContentBox from '../shared/ContentBox'
 import getEmptyAddress from '../Addresses/emptyAddress'
-
 import CREATE_ADDRESS from '../../graphql/createAddress.gql'
 import GET_NEW_ADDRESS_DATA from '../../graphql/getNewAddressData.gql'
-
 import styles from '../../styles.css'
 
 export const headerConfig = {

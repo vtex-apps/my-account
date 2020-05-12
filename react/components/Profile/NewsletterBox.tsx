@@ -25,7 +25,7 @@ const messages = defineMessages({
 })
 
 class NewsletterBox extends Component<Props, State> {
-  public constructor(props: Props) {
+  constructor(props: Props) {
     super(props)
     this.state = {
       checked: props.isNewsletterOptIn,

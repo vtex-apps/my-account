@@ -35,7 +35,8 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
 
     return (
       <aside
-        className={`${styles.menu} pv9 pv0-m-2 ph9 ph7-m ph8-l w-20-m w-100`}>
+        className={`${styles.menu} pv9 pv0-m-2 ph9 ph7-m ph8-l w-20-m w-100`}
+      >
         <UserInfo />
         <nav className={`${styles.menuLinks}`}>
           <ExtensionPoint
@@ -53,7 +54,8 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
                     ${styles.menuLink}
                     f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-muted-1 b--transparent pointer
                   `}
-                    onClick={this.handleModalToggle}>
+                    onClick={this.handleModalToggle}
+                  >
                     <FormattedMessage id="vtex.store-messages@0.x::pages.logout" />
                   </div>
                   <ModalDialog
@@ -71,7 +73,8 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
                       }),
                     }}
                     isOpen={this.state.isModalOpen}
-                    onClose={this.handleModalToggle}>
+                    onClose={this.handleModalToggle}
+                  >
                     <span className="t-heading-5 pa6">
                       <FormattedMessage id="vtex.store-messages@0.x::logoutModal.title" />
                     </span>

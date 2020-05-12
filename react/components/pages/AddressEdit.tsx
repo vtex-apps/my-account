@@ -8,10 +8,8 @@ import AddressForm from '../Addresses/AddressForm'
 import AddressDeleter from '../Addresses/AddressDeleter'
 import { withContentWrapper } from '../shared/withContentWrapper'
 import ContentBox from '../shared/ContentBox'
-
 import GET_ADDRESSES from '../../graphql/getAddresses.gql'
 import UPDATE_ADDRESS from '../../graphql/updateAddress.gql'
-
 import styles from '../../styles.css'
 
 export const headerConfig = {

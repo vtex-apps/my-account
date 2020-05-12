@@ -1,5 +1,3 @@
-import { ComponentType } from 'react'
-
 declare global {
   interface Constructable<T> {
     new (): T

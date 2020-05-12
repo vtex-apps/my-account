@@ -19,7 +19,8 @@ const ProfileBox: FunctionComponent<Props> = ({
       lowerButton={
         <FormattedMessage id="vtex.store-messages@0.x::commons.edit" />
       }
-      onLowerButtonClick={onEditClick}>
+      onLowerButtonClick={onEditClick}
+    >
       <ProfileRules country={runtime.culture.country} shouldUseIOFetching>
         <ProfileSummary profile={profile}>
           {({
@@ -56,7 +57,7 @@ const ProfileBox: FunctionComponent<Props> = ({
                 <DataEntry label={email.label}>{email.value}</DataEntry>
               </div>
               <div className="flex-ns flex-wrap">
-                {document && document.label && (
+                {document?.label && (
                   <div className="mb8 flex-auto">
                     <DataEntry label={document.label}>
                       {document.value}
@@ -86,14 +87,14 @@ const ProfileBox: FunctionComponent<Props> = ({
                       {corporateName.value}
                     </DataEntry>
                   </div>
-                  {tradeName && tradeName.label && (
+                  {tradeName?.label && (
                     <div className="mb8">
                       <DataEntry label={tradeName.label}>
                         {tradeName.value}
                       </DataEntry>
                     </div>
                   )}
-                  {corporateDocument && corporateDocument.label && (
+                  {corporateDocument?.label && (
                     <div className="mb8">
                       <DataEntry label={corporateDocument.label}>
                         {corporateDocument.value}
@@ -106,7 +107,7 @@ const ProfileBox: FunctionComponent<Props> = ({
                         {businessPhone.value}
                       </DataEntry>
                     </div>
-                    {stateRegistration && stateRegistration.label && (
+                    {stateRegistration?.label && (
                       <div className="mb8 w-50-ns">
                         <DataEntry label={stateRegistration.label}>
                           {stateRegistration.value}
@@ -122,7 +123,7 @@ const ProfileBox: FunctionComponent<Props> = ({
       </ProfileRules>
       <ExtensionPoint
         id="profile-display-container"
-        render={(fields: { label: string; value: string }[]) => (
+        render={(fields: Array<{ label: string; value: string }>) => (
           <div className="flex-ns flex-wrap">
             {fields.map(
               ({ label, value }: { label: string; value: string }) => (

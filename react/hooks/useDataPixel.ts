@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+// eslint-disable-next-line no-restricted-imports
 import { isEmpty } from 'ramda'
 import { usePixel } from 'vtex.pixel-manager/PixelContext'
 

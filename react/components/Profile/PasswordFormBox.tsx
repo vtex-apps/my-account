@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { Component, Fragment } from 'react'
 import {
   InjectedIntlProps,
@@ -147,7 +148,7 @@ class PasswordFormBox extends Component<Props, State> {
           <Fragment>
             <div className="pt4 pb4">
               <Input
-                value={currentToken || ''}
+                value={currentToken ?? ''}
                 onChange={(e: any) => {
                   setToken(e.target.value)
                 }}
@@ -168,7 +169,8 @@ class PasswordFormBox extends Component<Props, State> {
             <div className="pt4 flex justify-center">
               <SendAccCodeButton
                 variation="primary"
-                onSuccess={this.handleIsCodeSent}>
+                onSuccess={this.handleIsCodeSent}
+              >
                 <FormattedMessage id="vtex.store-messages@0.x::personalData.sendCode" />
               </SendAccCodeButton>
             </div>
@@ -202,11 +204,13 @@ class PasswordFormBox extends Component<Props, State> {
             </AuthState.Password>
             <AuthService.SetPassword
               onSuccess={() => this.handleSetPasswordSuccess(onPasswordChange)}
-              onFailure={(error: any) => this.handleSetPasswordError(error)}>
+              onFailure={(e: any) => this.handleSetPasswordError(e)}
+            >
               {({ action: setPassword }: any) => {
                 return (
                   <AuthService.StartLoginSession
-                    onSuccess={() => this.handleSubmit(setPassword)}>
+                    onSuccess={() => this.handleSubmit(setPassword)}
+                  >
                     {({
                       loading: loadingStartSession,
                       action: startSession,
@@ -217,7 +221,8 @@ class PasswordFormBox extends Component<Props, State> {
                           size="small"
                           onClick={() => startSession()}
                           isLoading={isLoading || loadingStartSession}
-                          disabled={!shouldEnableSubmit}>
+                          disabled={!shouldEnableSubmit}
+                        >
                           <FormattedMessage id="vtex.store-messages@0.x::personalData.savePassword" />
                         </Button>
                       )

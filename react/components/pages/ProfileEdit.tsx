@@ -7,7 +7,6 @@ import { withContentWrapper } from '../shared/withContentWrapper'
 import ProfileEditLoading from '../loaders/ProfileEditLoading'
 import ProfileFormBox from '../Profile/ProfileFormBox'
 import GET_PROFILE from '../../graphql/getProfile.gql'
-
 import styles from '../../styles.css'
 
 export const headerConfig = {

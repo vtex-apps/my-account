@@ -19,7 +19,8 @@ const UserInfo: FunctionComponent<Props> = ({ profile }) => {
           <div
             className={`
               ${styles.userGreeting} f5 fw3 c-muted-1 mb2 mt0-l mt2-m
-            `}>
+            `}
+          >
             <FormattedMessage id="vtex.store-messages@0.x::userInfo.greeting" />
             ,
           </div>

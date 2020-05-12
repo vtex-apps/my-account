@@ -13,7 +13,7 @@ const MyAddressesLink: FunctionComponent<Props> = ({ render, intl }) => {
 }
 
 interface Props extends InjectedIntlProps {
-  render: (args: { name: string; path: string }[]) => any
+  render: (args: Array<{ name: string; path: string }>) => any
 }
 
 export default injectIntl(MyAddressesLink)
