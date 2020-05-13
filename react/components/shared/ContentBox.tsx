@@ -19,7 +19,8 @@ const ContentBox: FunctionComponent<Props> = ({
             <Button
               variation="tertiary"
               size="small"
-              onClick={onLowerButtonClick}>
+              onClick={onLowerButtonClick}
+            >
               {lowerButton}
             </Button>
           </footer>

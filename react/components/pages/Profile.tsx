@@ -11,7 +11,6 @@ import PasswordBox from '../Profile/PasswordBox'
 import PasswordFormBox from '../Profile/PasswordFormBox'
 import Toast from '../shared/Toast'
 import GET_PROFILE from '../../graphql/getProfile.gql'
-
 import styles from '../../styles.css'
 import NewsletterBox from '../Profile/NewsletterBox'
 

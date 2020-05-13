@@ -8,7 +8,6 @@ import {
 
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
-
 import styles from '../../styles.css'
 
 const PASSWORD_MASK = '*******************'
@@ -32,7 +31,8 @@ const PasswordBox: FunctionComponent<Props> = ({
     <ContentBox
       shouldAllowGrowing
       lowerButton={<FormattedMessage id={lowerButtonId} />}
-      onLowerButtonClick={onEditClick}>
+      onLowerButtonClick={onEditClick}
+    >
       <div className={`${styles.passwordBox} w-100`}>
         <DataEntry label={intl.formatMessage(messages.password)}>
           {passwordLastUpdate ? (

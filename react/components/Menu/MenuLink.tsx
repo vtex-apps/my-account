@@ -1,5 +1,9 @@
 import React, { FunctionComponent } from 'react'
-import { Link, withRouter } from 'vtex.my-account-commons/Router'
+import {
+  Link,
+  withRouter,
+  RouteComponentProps,
+} from 'vtex.my-account-commons/Router'
 
 const MenuLink: FunctionComponent<Props> = ({ path, name, location }) => {
   return (
@@ -10,18 +14,16 @@ const MenuLink: FunctionComponent<Props> = ({ path, name, location }) => {
           location.pathname.indexOf(path) === -1
             ? 'c-muted-1 b--transparent'
             : 'c-on-base b b--action-primary'
-        }`}>
+        }`}
+    >
       {name}
     </Link>
   )
 }
 
-interface Props {
+interface Props extends RouteComponentProps {
   path: string
   name: string
-  location: {
-    pathname: string
-  }
 }
 
 export default withRouter(MenuLink)

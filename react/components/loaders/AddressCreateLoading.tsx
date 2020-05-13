@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { BaseLoading } from 'vtex.my-account-commons'
+import { DataValue } from 'react-apollo'
 
 import { headerConfig } from '../pages/AddressCreate'
 import FormLoader from './FormLoader'
@@ -13,7 +14,7 @@ const AddressCreateLoading: FunctionComponent<Props> = ({ data }) => {
 }
 
 interface Props {
-  data: any
+  data: DataValue<unknown>
 }
 
 export default AddressCreateLoading

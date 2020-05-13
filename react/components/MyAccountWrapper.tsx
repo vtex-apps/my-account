@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { useMemo, FunctionComponent, ReactElement } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 

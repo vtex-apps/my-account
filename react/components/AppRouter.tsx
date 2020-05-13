@@ -16,7 +16,7 @@ import AddressEdit from './pages/AddressEdit'
 import Menu from './Menu'
 
 class AppRouter extends Component {
-  public state = { defaultPath: null }
+  public state = { defaultPath: '' }
 
   private handleDefaultPath = (defaultPath: string) => {
     this.setState({ defaultPath })
