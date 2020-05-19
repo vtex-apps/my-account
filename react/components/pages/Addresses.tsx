@@ -80,7 +80,7 @@ interface Props {
 }
 
 const enhance = compose<Props, void>(
-  graphql(GET_ADRESSES),
+  graphql(GET_ADRESSES, { options: { fetchPolicy: 'network-only' } }),
   branch(
     ({ data }: { data: Data }) => data.loading,
     renderComponent(AddressesLoading)
