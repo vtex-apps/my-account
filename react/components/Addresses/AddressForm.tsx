@@ -57,7 +57,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
     // if editing an existing address (address id exists), all fields start as valid
     if (addressValues.addressId) {
       AUTO_COMPLETABLE_FIELDS.forEach(field => {
-        if (address[field].value === null) return
+        if (addressWithValidation[field].value === null) return
 
         addressWithValidation[field].geolocationAutoCompleted = true
         addressWithValidation[field].postalCodeAutoCompleted = true
