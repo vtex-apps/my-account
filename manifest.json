@@ -1,7 +1,7 @@
 {
   "name": "my-account",
   "vendor": "vtex",
-  "version": "1.14.0",
+  "version": "1.14.1",
   "title": "My Account",
   "description": "User's my account page.",
   "registries": [
