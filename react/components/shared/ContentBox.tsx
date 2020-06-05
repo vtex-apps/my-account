@@ -1,5 +1,6 @@
 import React, { FunctionComponent, ReactElement } from 'react'
 import { Button } from 'vtex.styleguide'
+import classNames from './styles.css'
 
 const ContentBox: FunctionComponent<Props> = ({
   children,
@@ -11,7 +12,7 @@ const ContentBox: FunctionComponent<Props> = ({
   const widthClass = maxWidthStep ? `mw${maxWidthStep}-ns` : ''
   const flexClass = shouldAllowGrowing ? 'flex-auto' : 'flex-none'
   return (
-    <div className={`pb5 pr5-ns ${flexClass} ${widthClass}`}>
+    <div className={`pb5 pr5-ns ${flexClass} ${widthClass} ${classNames.profileMainContainer}`}>
       <article className="ba bw1 b--muted-4 br2 flex flex-column justify-between">
         <main className="ph7 pv6">{children}</main>
         {lowerButton && (
