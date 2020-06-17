@@ -1,23 +1,27 @@
-#### What did you change? \*
-
-<!--- Describe your changes in detail. -->
-
-#### Why? \*
+#### What problem is this solving?
 
 <!--- What is the motivation and context for this change? -->
 
-#### How to test it? \*
+#### How to test it?
 
-<!--- Link to a running workspace with some steps to reproduce it or even a screenshot of before/after -->
+<!--- Don't forget to add a link to a Workspace where this branch is linked -->
 
-#### Related to / Depends on?
+[Workspace](Link goes here!)
 
-<!--- Link to an issue or clubhouse task that did motivate this PR or even others PRs that this one depends. -->
+#### Screenshots or example usage:
 
-#### Types of changes \*
+<!--- Add some images or gifs to showcase changes in behaviour or layout. Example: before and after images -->
 
-- [ ] Bug fix (a non-breaking change which fixes an issue)
-- [ ] New feature (a non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to change)
-- [ ] Technical improvements
-  <!--- * Required -->
+#### Describe alternatives you've considered, if any.
+
+<!--- Optional -->
+
+#### Related to / Depends on
+
+<!--- Optional -->
+
+#### How does this PR make you feel? [:link:](http://giphy.com/)
+
+<!-- Go to http://giphy.com/ and pick a gif that represents how this PR makes you feel -->
+
+![](put .gif link here - can be found under "advanced" on giphy)
