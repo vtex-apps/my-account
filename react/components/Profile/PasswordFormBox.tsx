@@ -17,6 +17,7 @@ import ContentBox from '../shared/ContentBox'
 import RedefinePasswordForm from './RedefinePassword'
 import SendAccCodeButton from './SendAccCodeButton'
 import PasswordValidator from './PasswordValidator'
+import className from "../../styles/ContentBox.module.css";
 
 const WRONG_CREDENTIALS = 'wrongcredentials'
 const BLOCKED_USER = 'blocked'
@@ -135,6 +136,7 @@ class PasswordFormBox extends Component<Props, State> {
       (currentPassword || !passwordLastUpdate) && newPasswordValid
 
     return (
+      <div className={`${className.passwordBoxContainer}`}>
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
         {error && (
           <div className="mb7">
@@ -234,6 +236,7 @@ class PasswordFormBox extends Component<Props, State> {
           </Fragment>
         )}
       </ContentBox>
+      </div>
     )
   }
 }

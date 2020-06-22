@@ -9,6 +9,7 @@ import {
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
 import styles from '../../styles.css'
+import className from "../../styles/ContentBox.module.css";
 
 const PASSWORD_MASK = '*******************'
 const messages = defineMessages({
@@ -28,6 +29,7 @@ const PasswordBox: FunctionComponent<Props> = ({
     : 'vtex.store-messages@0.x::personalData.definePassword'
 
   return (
+    <div className={`${className.passwordBoxContainer}`}>
     <ContentBox
       shouldAllowGrowing
       lowerButton={<FormattedMessage id={lowerButtonId} />}
@@ -43,6 +45,7 @@ const PasswordBox: FunctionComponent<Props> = ({
         </DataEntry>
       </div>
     </ContentBox>
+    </div>
   )
 }
 
