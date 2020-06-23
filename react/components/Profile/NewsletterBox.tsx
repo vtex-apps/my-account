@@ -8,7 +8,7 @@ import ContentBox from '../shared/ContentBox'
 import GET_NEWSLETTER from '../../graphql/getNewsletterOpt.gql'
 import NEWSLETTER_MUTATION from '../../graphql/setOptInNewsletter.gql'
 import styles from '../../styles.css'
-import className from "../../styles/ContentBox.css";
+import className from '../../styles/ContentBox.css'
 
 const messages = defineMessages({
   optinNewsLetter: {
