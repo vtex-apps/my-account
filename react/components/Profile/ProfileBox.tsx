@@ -5,7 +5,7 @@ import { ProfileRules, ProfileSummary } from 'vtex.profile-form'
 
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
-import className from '../../styles/ContentBox.module.css'
+import className from '../../styles/ContentBox.css'
 
 const ProfileBox: FunctionComponent<Props> = ({
   profile,
