@@ -9,7 +9,7 @@ import { Button } from 'vtex.styleguide'
 import ContentBox from '../shared/ContentBox'
 import UpdateProfile from '../../graphql/updateProfile.gql'
 import { withSettings, Settings } from '../shared/withSettings'
-import className from "../../styles/ContentBox.css";
+import className from '../../styles/ContentBox.css'
 
 class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
   private validatorFunctions: any[]
