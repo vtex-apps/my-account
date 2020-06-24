@@ -17,7 +17,7 @@ import ContentBox from '../shared/ContentBox'
 import RedefinePasswordForm from './RedefinePassword'
 import SendAccCodeButton from './SendAccCodeButton'
 import PasswordValidator from './PasswordValidator'
-import className from "../../styles/ContentBox.css"
+import className from '../../styles/ContentBox.css'
 
 const WRONG_CREDENTIALS = 'wrongcredentials'
 const BLOCKED_USER = 'blocked'

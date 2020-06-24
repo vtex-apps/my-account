@@ -9,7 +9,7 @@ import {
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
 import styles from '../../styles.css'
-import className from "../../styles/ContentBox.css";
+import className from '../../styles/ContentBox.css'
 
 const PASSWORD_MASK = '*******************'
 const messages = defineMessages({
@@ -30,21 +30,21 @@ const PasswordBox: FunctionComponent<Props> = ({
 
   return (
     <div className={`${className.passwordBoxContainer}`}>
-    <ContentBox
-      shouldAllowGrowing
-      lowerButton={<FormattedMessage id={lowerButtonId} />}
-      onLowerButtonClick={onEditClick}
-    >
-      <div className={`${styles.passwordBox} w-100`}>
-        <DataEntry label={intl.formatMessage(messages.password)}>
-          {passwordLastUpdate ? (
-            PASSWORD_MASK
-          ) : (
-            <FormattedMessage id="vtex.store-messages@0.x::personalData.noPassword" />
-          )}
-        </DataEntry>
-      </div>
-    </ContentBox>
+      <ContentBox
+        shouldAllowGrowing
+        lowerButton={<FormattedMessage id={lowerButtonId} />}
+        onLowerButtonClick={onEditClick}
+      >
+        <div className={`${styles.passwordBox} w-100`}>
+          <DataEntry label={intl.formatMessage(messages.password)}>
+            {passwordLastUpdate ? (
+              PASSWORD_MASK
+            ) : (
+                <FormattedMessage id="vtex.store-messages@0.x::personalData.noPassword" />
+              )}
+          </DataEntry>
+        </div>
+      </ContentBox>
     </div>
   )
 }
