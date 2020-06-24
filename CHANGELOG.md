@@ -10,9 +10,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - custom css Handles to profile section 
 
-## [0.32.2] - 2020-06-02
+## [1.14.2] - 2020-06-24
 
-## [0.32.1] - 2020-05-20
+### Changed
+
+- Hide back button on profile.
+
+
+## [1.14.1] - 2020-05-20
 
 ### Fixed
 
