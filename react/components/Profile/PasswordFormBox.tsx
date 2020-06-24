@@ -46,7 +46,7 @@ class PasswordFormBox extends Component<Props, State> {
 
   private handleChange = (
     e: any,
-    setPassword: (args: any) => any = () => { }
+    setPassword: (args: any) => any = () => {}
   ) => {
     const { name, value } = e.target
     this.setState({ [name]: value }, () => setPassword(value))
@@ -60,7 +60,7 @@ class PasswordFormBox extends Component<Props, State> {
     this.setState({ newPasswordValid: valid })
   }
 
-  private handleSubmit = async (setNewPassword = () => { }) => {
+  private handleSubmit = async (setNewPassword = () => {}) => {
     const { newPasswordValid, changeAttempts } = this.state
     if (!newPasswordValid) return
 
@@ -82,10 +82,10 @@ class PasswordFormBox extends Component<Props, State> {
         wrongPassword && prevState.changeAttempts === 3
           ? 'vtex.store-messages@0.x::alert.wrongAndAboutToBlock'
           : wrongPassword
-            ? 'vtex.store-messages@0.x::alert.wrongPassword'
-            : blockedUser
-              ? 'vtex.store-messages@0.x::alert.blockedUser'
-              : 'vtex.store-messages@0.x::alert.unknownError',
+          ? 'vtex.store-messages@0.x::alert.wrongPassword'
+          : blockedUser
+          ? 'vtex.store-messages@0.x::alert.blockedUser'
+          : 'vtex.store-messages@0.x::alert.unknownError',
     }))
   }
 
@@ -140,7 +140,10 @@ class PasswordFormBox extends Component<Props, State> {
         <ContentBox shouldAllowGrowing maxWidthStep={6}>
           {error && (
             <div className="mb7">
-              <GenericError onDismiss={this.handleDismissError} errorId={error} />
+              <GenericError
+                onDismiss={this.handleDismissError}
+                errorId={error}
+              />
             </div>
           )}
 
@@ -164,20 +167,20 @@ class PasswordFormBox extends Component<Props, State> {
               </div>
             </Fragment>
           ) : (
-                <Fragment>
-                  <div className="t-heading-6 tc pb4">
-                    <FormattedMessage id="vtex.store-messages@0.x::personalData.sendAccessCode.title" />
-                  </div>
-                  <div className="pt4 flex justify-center">
-                    <SendAccCodeButton
-                      variation="primary"
-                      onSuccess={this.handleIsCodeSent}
-                    >
-                      <FormattedMessage id="vtex.store-messages@0.x::personalData.sendCode" />
-                    </SendAccCodeButton>
-                  </div>
-                </Fragment>
-              )}
+            <Fragment>
+              <div className="t-heading-6 tc pb4">
+                <FormattedMessage id="vtex.store-messages@0.x::personalData.sendAccessCode.title" />
+              </div>
+              <div className="pt4 flex justify-center">
+                <SendAccCodeButton
+                  variation="primary"
+                  onSuccess={this.handleIsCodeSent}
+                >
+                  <FormattedMessage id="vtex.store-messages@0.x::personalData.sendCode" />
+                </SendAccCodeButton>
+              </div>
+            </Fragment>
+          )}
           {(this.state.isCodeSent || passwordLastUpdate) && (
             <Fragment>
               <AuthState.Password>
@@ -205,7 +208,9 @@ class PasswordFormBox extends Component<Props, State> {
                 )}
               </AuthState.Password>
               <AuthService.SetPassword
-                onSuccess={() => this.handleSetPasswordSuccess(onPasswordChange)}
+                onSuccess={() =>
+                  this.handleSetPasswordSuccess(onPasswordChange)
+                }
                 onFailure={(e: any) => this.handleSetPasswordError(e)}
               >
                 {({ action: setPassword }: any) => {

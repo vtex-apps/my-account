@@ -40,8 +40,8 @@ const PasswordBox: FunctionComponent<Props> = ({
             {passwordLastUpdate ? (
               PASSWORD_MASK
             ) : (
-                <FormattedMessage id="vtex.store-messages@0.x::personalData.noPassword" />
-              )}
+              <FormattedMessage id="vtex.store-messages@0.x::personalData.noPassword" />
+            )}
           </DataEntry>
         </div>
       </ContentBox>

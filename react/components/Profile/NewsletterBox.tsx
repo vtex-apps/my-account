@@ -66,23 +66,25 @@ class NewsletterBox extends Component<Props, State> {
 
     return (
       <div className={`${className.newsletterBoxContainer}`}>
-      <ContentBox shouldAllowGrowing>
-        <div  className={`${className.newsletterContainerTitle}`}>
-          {formatMessage(messages.newsletter)}
-        </div>
-        <div className={`c-muted-2 pt2 pb6 ${className.newsletterContainerMessage}`}>
-          {formatMessage(messages.newsletterQuestion)}
-        </div>
-        <div className={`${styles.passwordBox} w-100`}>
-          <Checkbox
-            checked={checked}
-            id="newsletterOptIn"
-            label={formatMessage(messages.optinNewsLetter)}
-            name="newsletterOptIn"
-            onChange={this.handleCheck}
-          />
-        </div>
-      </ContentBox>
+        <ContentBox shouldAllowGrowing>
+          <div className={`${className.newsletterContainerTitle}`}>
+            {formatMessage(messages.newsletter)}
+          </div>
+          <div
+            className={`c-muted-2 pt2 pb6 ${className.newsletterContainerMessage}`}
+          >
+            {formatMessage(messages.newsletterQuestion)}
+          </div>
+          <div className={`${styles.passwordBox} w-100`}>
+            <Checkbox
+              checked={checked}
+              id="newsletterOptIn"
+              label={formatMessage(messages.optinNewsLetter)}
+              name="newsletterOptIn"
+              onChange={this.handleCheck}
+            />
+          </div>
+        </ContentBox>
       </div>
     )
   }

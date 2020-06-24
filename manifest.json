@@ -4,9 +4,7 @@
   "version": "1.15.0",
   "title": "My Account",
   "description": "User's my account page.",
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "dependencies": {
     "vtex.my-cards": "1.x",
     "vtex.my-orders-app": "3.x",

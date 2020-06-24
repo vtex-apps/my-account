@@ -86,26 +86,26 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
 
     return (
       <div className={`${className.profileFormBoxContainer}`}>
-      <ContentBox shouldAllowGrowing maxWidthStep={6}>
-        <ProfileRules country={runtime.culture.country} shouldUseIOFetching>
-          <ProfileContainer
-            defaultProfile={profile}
-            onSubmit={this.handleSubmit}
-            shouldShowExtendedGenders={showGenders}
-            SubmitButton={
-              <Button type="submit" block size="small" isLoading={isLoading}>
-                <FormattedMessage id="vtex.profile-form@3.x::profile-form.save-changes" />
-              </Button>
-            }
-          >
-            <ExtensionPoint
-              id="profile-input-container"
-              registerValidator={this.registerValidator}
-              registerSubmitter={this.registerSubmitter}
-            />
-          </ProfileContainer>
-        </ProfileRules>
-      </ContentBox>
+        <ContentBox shouldAllowGrowing maxWidthStep={6}>
+          <ProfileRules country={runtime.culture.country} shouldUseIOFetching>
+            <ProfileContainer
+              defaultProfile={profile}
+              onSubmit={this.handleSubmit}
+              shouldShowExtendedGenders={showGenders}
+              SubmitButton={
+                <Button type="submit" block size="small" isLoading={isLoading}>
+                  <FormattedMessage id="vtex.profile-form@3.x::profile-form.save-changes" />
+                </Button>
+              }
+            >
+              <ExtensionPoint
+                id="profile-input-container"
+                registerValidator={this.registerValidator}
+                registerSubmitter={this.registerSubmitter}
+              />
+            </ProfileContainer>
+          </ProfileRules>
+        </ContentBox>
       </div>
     )
   }

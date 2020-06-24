@@ -17,9 +17,6 @@
     ]
   },
   "my-account-pages": {
-    "blocks": [
-      "my-orders",
-      "my-cards"
-    ]
+    "blocks": ["my-orders", "my-cards"]
   }
 }
