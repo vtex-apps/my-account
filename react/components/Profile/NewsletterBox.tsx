@@ -8,6 +8,7 @@ import ContentBox from '../shared/ContentBox'
 import GET_NEWSLETTER from '../../graphql/getNewsletterOpt.gql'
 import NEWSLETTER_MUTATION from '../../graphql/setOptInNewsletter.gql'
 import styles from '../../styles.css'
+import className from '../../styles/ContentBox.css'
 
 const messages = defineMessages({
   optinNewsLetter: {
@@ -64,21 +65,27 @@ class NewsletterBox extends Component<Props, State> {
     } = this.props
 
     return (
-      <ContentBox shouldAllowGrowing>
-        <div>{formatMessage(messages.newsletter)}</div>
-        <div className="c-muted-2 pt2 pb6">
-          {formatMessage(messages.newsletterQuestion)}
-        </div>
-        <div className={`${styles.passwordBox} w-100`}>
-          <Checkbox
-            checked={checked}
-            id="newsletterOptIn"
-            label={formatMessage(messages.optinNewsLetter)}
-            name="newsletterOptIn"
-            onChange={this.handleCheck}
-          />
-        </div>
-      </ContentBox>
+      <div className={`${className.newsletterBoxContainer}`}>
+        <ContentBox shouldAllowGrowing>
+          <div className={`${className.newsletterContainerTitle}`}>
+            {formatMessage(messages.newsletter)}
+          </div>
+          <div
+            className={`c-muted-2 pt2 pb6 ${className.newsletterContainerMessage}`}
+          >
+            {formatMessage(messages.newsletterQuestion)}
+          </div>
+          <div className={`${styles.passwordBox} w-100`}>
+            <Checkbox
+              checked={checked}
+              id="newsletterOptIn"
+              label={formatMessage(messages.optinNewsLetter)}
+              name="newsletterOptIn"
+              onChange={this.handleCheck}
+            />
+          </div>
+        </ContentBox>
+      </div>
     )
   }
 }

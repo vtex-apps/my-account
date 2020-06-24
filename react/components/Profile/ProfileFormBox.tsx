@@ -9,6 +9,7 @@ import { Button } from 'vtex.styleguide'
 import ContentBox from '../shared/ContentBox'
 import UpdateProfile from '../../graphql/updateProfile.gql'
 import { withSettings, Settings } from '../shared/withSettings'
+import className from '../../styles/ContentBox.css'
 
 class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
   private validatorFunctions: any[]
@@ -84,26 +85,28 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
     if (!profile) return null
 
     return (
-      <ContentBox shouldAllowGrowing maxWidthStep={6}>
-        <ProfileRules country={runtime.culture.country} shouldUseIOFetching>
-          <ProfileContainer
-            defaultProfile={profile}
-            onSubmit={this.handleSubmit}
-            shouldShowExtendedGenders={showGenders}
-            SubmitButton={
-              <Button type="submit" block size="small" isLoading={isLoading}>
-                <FormattedMessage id="vtex.profile-form@3.x::profile-form.save-changes" />
-              </Button>
-            }
-          >
-            <ExtensionPoint
-              id="profile-input-container"
-              registerValidator={this.registerValidator}
-              registerSubmitter={this.registerSubmitter}
-            />
-          </ProfileContainer>
-        </ProfileRules>
-      </ContentBox>
+      <div className={`${className.profileFormBoxContainer}`}>
+        <ContentBox shouldAllowGrowing maxWidthStep={6}>
+          <ProfileRules country={runtime.culture.country} shouldUseIOFetching>
+            <ProfileContainer
+              defaultProfile={profile}
+              onSubmit={this.handleSubmit}
+              shouldShowExtendedGenders={showGenders}
+              SubmitButton={
+                <Button type="submit" block size="small" isLoading={isLoading}>
+                  <FormattedMessage id="vtex.profile-form@3.x::profile-form.save-changes" />
+                </Button>
+              }
+            >
+              <ExtensionPoint
+                id="profile-input-container"
+                registerValidator={this.registerValidator}
+                registerSubmitter={this.registerSubmitter}
+              />
+            </ProfileContainer>
+          </ProfileRules>
+        </ContentBox>
+      </div>
     )
   }
 }

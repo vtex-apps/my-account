@@ -17,6 +17,7 @@ import ContentBox from '../shared/ContentBox'
 import RedefinePasswordForm from './RedefinePassword'
 import SendAccCodeButton from './SendAccCodeButton'
 import PasswordValidator from './PasswordValidator'
+import className from '../../styles/ContentBox.css'
 
 const WRONG_CREDENTIALS = 'wrongcredentials'
 const BLOCKED_USER = 'blocked'
@@ -135,105 +136,112 @@ class PasswordFormBox extends Component<Props, State> {
       (currentPassword || !passwordLastUpdate) && newPasswordValid
 
     return (
-      <ContentBox shouldAllowGrowing maxWidthStep={6}>
-        {error && (
-          <div className="mb7">
-            <GenericError onDismiss={this.handleDismissError} errorId={error} />
-          </div>
-        )}
-
-        {passwordLastUpdate ? (
-          <RedefinePasswordForm onChange={this.handleChange} />
-        ) : this.state.isCodeSent ? (
-          <Fragment>
-            <div className="pt4 pb4">
-              <Input
-                value={currentToken ?? ''}
-                onChange={(e: any) => {
-                  setToken(e.target.value)
-                }}
-                label={intl.formatMessage(messages.code)}
+      <div className={`${className.passwordBoxContainer}`}>
+        <ContentBox shouldAllowGrowing maxWidthStep={6}>
+          {error && (
+            <div className="mb7">
+              <GenericError
+                onDismiss={this.handleDismissError}
+                errorId={error}
               />
             </div>
-            <div className="flex justify-end">
-              <SendAccCodeButton variation="tertiary">
-                <FormattedMessage id="vtex.store-messages@0.x::personalData.resendCode" />
-              </SendAccCodeButton>
-            </div>
-          </Fragment>
-        ) : (
-          <Fragment>
-            <div className="t-heading-6 tc pb4">
-              <FormattedMessage id="vtex.store-messages@0.x::personalData.sendAccessCode.title" />
-            </div>
-            <div className="pt4 flex justify-center">
-              <SendAccCodeButton
-                variation="primary"
-                onSuccess={this.handleIsCodeSent}
+          )}
+
+          {passwordLastUpdate ? (
+            <RedefinePasswordForm onChange={this.handleChange} />
+          ) : this.state.isCodeSent ? (
+            <Fragment>
+              <div className="pt4 pb4">
+                <Input
+                  value={currentToken ?? ''}
+                  onChange={(e: any) => {
+                    setToken(e.target.value)
+                  }}
+                  label={intl.formatMessage(messages.code)}
+                />
+              </div>
+              <div className="flex justify-end">
+                <SendAccCodeButton variation="tertiary">
+                  <FormattedMessage id="vtex.store-messages@0.x::personalData.resendCode" />
+                </SendAccCodeButton>
+              </div>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <div className="t-heading-6 tc pb4">
+                <FormattedMessage id="vtex.store-messages@0.x::personalData.sendAccessCode.title" />
+              </div>
+              <div className="pt4 flex justify-center">
+                <SendAccCodeButton
+                  variation="primary"
+                  onSuccess={this.handleIsCodeSent}
+                >
+                  <FormattedMessage id="vtex.store-messages@0.x::personalData.sendCode" />
+                </SendAccCodeButton>
+              </div>
+            </Fragment>
+          )}
+          {(this.state.isCodeSent || passwordLastUpdate) && (
+            <Fragment>
+              <AuthState.Password>
+                {({ value, setValue: setNewPassword }: any) => (
+                  <Fragment>
+                    <div className="mb7 mt4">
+                      <InputPassword
+                        name="newPassword"
+                        value={value || ''}
+                        onChange={(e: any) =>
+                          this.handleChange(e, setNewPassword)
+                        }
+                        onBlur={this.handleTouchField}
+                        type="password"
+                        label={intl.formatMessage(messages.newPassword)}
+                      />
+                    </div>
+                    <div className="mb7">
+                      <PasswordValidator
+                        password={newPassword}
+                        onValidationChange={this.handleValidationChange}
+                      />
+                    </div>
+                  </Fragment>
+                )}
+              </AuthState.Password>
+              <AuthService.SetPassword
+                onSuccess={() =>
+                  this.handleSetPasswordSuccess(onPasswordChange)
+                }
+                onFailure={(e: any) => this.handleSetPasswordError(e)}
               >
-                <FormattedMessage id="vtex.store-messages@0.x::personalData.sendCode" />
-              </SendAccCodeButton>
-            </div>
-          </Fragment>
-        )}
-        {(this.state.isCodeSent || passwordLastUpdate) && (
-          <Fragment>
-            <AuthState.Password>
-              {({ value, setValue: setNewPassword }: any) => (
-                <Fragment>
-                  <div className="mb7 mt4">
-                    <InputPassword
-                      name="newPassword"
-                      value={value || ''}
-                      onChange={(e: any) =>
-                        this.handleChange(e, setNewPassword)
-                      }
-                      onBlur={this.handleTouchField}
-                      type="password"
-                      label={intl.formatMessage(messages.newPassword)}
-                    />
-                  </div>
-                  <div className="mb7">
-                    <PasswordValidator
-                      password={newPassword}
-                      onValidationChange={this.handleValidationChange}
-                    />
-                  </div>
-                </Fragment>
-              )}
-            </AuthState.Password>
-            <AuthService.SetPassword
-              onSuccess={() => this.handleSetPasswordSuccess(onPasswordChange)}
-              onFailure={(e: any) => this.handleSetPasswordError(e)}
-            >
-              {({ action: setPassword }: any) => {
-                return (
-                  <AuthService.StartLoginSession
-                    onSuccess={() => this.handleSubmit(setPassword)}
-                  >
-                    {({
-                      loading: loadingStartSession,
-                      action: startSession,
-                    }: any) => {
-                      return (
-                        <Button
-                          block
-                          size="small"
-                          onClick={() => startSession()}
-                          isLoading={isLoading || loadingStartSession}
-                          disabled={!shouldEnableSubmit}
-                        >
-                          <FormattedMessage id="vtex.store-messages@0.x::personalData.savePassword" />
-                        </Button>
-                      )
-                    }}
-                  </AuthService.StartLoginSession>
-                )
-              }}
-            </AuthService.SetPassword>
-          </Fragment>
-        )}
-      </ContentBox>
+                {({ action: setPassword }: any) => {
+                  return (
+                    <AuthService.StartLoginSession
+                      onSuccess={() => this.handleSubmit(setPassword)}
+                    >
+                      {({
+                        loading: loadingStartSession,
+                        action: startSession,
+                      }: any) => {
+                        return (
+                          <Button
+                            block
+                            size="small"
+                            onClick={() => startSession()}
+                            isLoading={isLoading || loadingStartSession}
+                            disabled={!shouldEnableSubmit}
+                          >
+                            <FormattedMessage id="vtex.store-messages@0.x::personalData.savePassword" />
+                          </Button>
+                        )
+                      }}
+                    </AuthService.StartLoginSession>
+                  )
+                }}
+              </AuthService.SetPassword>
+            </Fragment>
+          )}
+        </ContentBox>
+      </div>
     )
   }
 }
