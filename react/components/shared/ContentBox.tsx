@@ -1,5 +1,6 @@
 import React, { FunctionComponent, ReactElement } from 'react'
 import { Button } from 'vtex.styleguide'
+
 import className from '../../styles/ContentBox.css'
 
 const ContentBox: FunctionComponent<Props> = ({
