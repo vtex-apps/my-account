@@ -8,6 +8,7 @@ import ContentBox from '../shared/ContentBox'
 import GET_NEWSLETTER from '../../graphql/getNewsletterOpt.gql'
 import NEWSLETTER_MUTATION from '../../graphql/setOptInNewsletter.gql'
 import styles from '../../styles.css'
+import className from '../../styles/ContentBox.css'
 
 const messages = defineMessages({
   optinNewsLetter: {
@@ -64,9 +65,12 @@ class NewsletterBox extends Component<Props, State> {
     } = this.props
 
     return (
+      <div className={`${className.newsletterBoxContainer}`}>
       <ContentBox shouldAllowGrowing>
-        <div>{formatMessage(messages.newsletter)}</div>
-        <div className="c-muted-2 pt2 pb6">
+        <div  className={`${className.newsletterContainerTitle}`}>
+          {formatMessage(messages.newsletter)}
+        </div>
+        <div className={`c-muted-2 pt2 pb6 ${className.newsletterContainerMessage}`}>
           {formatMessage(messages.newsletterQuestion)}
         </div>
         <div className={`${styles.passwordBox} w-100`}>
@@ -79,6 +83,7 @@ class NewsletterBox extends Component<Props, State> {
           />
         </div>
       </ContentBox>
+      </div>
     )
   }
 }

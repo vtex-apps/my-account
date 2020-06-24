@@ -9,6 +9,7 @@ import { Button } from 'vtex.styleguide'
 import ContentBox from '../shared/ContentBox'
 import UpdateProfile from '../../graphql/updateProfile.gql'
 import { withSettings, Settings } from '../shared/withSettings'
+import className from '../../styles/ContentBox.css'
 
 class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
   private validatorFunctions: any[]
@@ -84,6 +85,7 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
     if (!profile) return null
 
     return (
+      <div className={`${className.profileFormBoxContainer}`}>
       <ContentBox shouldAllowGrowing maxWidthStep={6}>
         <ProfileRules country={runtime.culture.country} shouldUseIOFetching>
           <ProfileContainer
@@ -104,6 +106,7 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
           </ProfileContainer>
         </ProfileRules>
       </ContentBox>
+      </div>
     )
   }
 }
