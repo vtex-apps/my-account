@@ -5,6 +5,7 @@ import { ProfileRules, ProfileSummary } from 'vtex.profile-form'
 
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
+import className from '../../styles/ContentBox.css'
 
 const ProfileBox: FunctionComponent<Props> = ({
   profile,
@@ -14,6 +15,7 @@ const ProfileBox: FunctionComponent<Props> = ({
   if (!profile) return null
 
   return (
+    <div className={`${className.profileBoxContainer}`}>
     <ContentBox
       shouldAllowGrowing
       lowerButton={
@@ -43,38 +45,38 @@ const ProfileBox: FunctionComponent<Props> = ({
             isCorporate,
           }: any) => (
             <Fragment>
-              <div className="flex-ns flex-wrap">
-                <div className="mb8 flex-auto">
+              <div className={`flex-ns flex-wrap ${className.nameContainer}`}>
+                <div className={`mb8 flex-auto ${className.firstNameSubContainer}`}>
                   <DataEntry label={firstName.label}>
                     {firstName.value}
                   </DataEntry>
                 </div>
-                <div className="mb8 w-50-ns">
+                <div className={`mb8 w-50-ns ${className.lastNameSubContainer}`}>
                   <DataEntry label={lastName.label}>{lastName.value}</DataEntry>
                 </div>
               </div>
-              <div className="mb8">
+              <div className={`mb8 ${className.emailContainer}`}>
                 <DataEntry label={email.label}>{email.value}</DataEntry>
               </div>
-              <div className="flex-ns flex-wrap">
+              <div className={`flex-ns flex-wrap ${className.genderContainer}`}>
                 {document?.label && (
-                  <div className="mb8 flex-auto">
+                  <div className={`mb8 flex-auto ${className.documentsSubContainer}`}>
                     <DataEntry label={document.label}>
                       {document.value}
                     </DataEntry>
                   </div>
                 )}
-                <div className="mb8 w-50-ns">
+                <div className={`mb8 w-50-ns ${className.genderSubContainer}`}>
                   <DataEntry label={gender.label}>{gender.value}</DataEntry>
                 </div>
               </div>
-              <div className="flex-ns flex-wrap">
-                <div className="mb8 flex-auto">
+              <div className={`flex-ns flex-wrap ${className.phoneNumberContainer}`}>
+                <div className={`mb8 flex-auto ${className.dateOfBirthSubContainer}`}>
                   <DataEntry label={birthDate.label}>
                     {birthDate.value}
                   </DataEntry>
                 </div>
-                <div className="mb8 w-50-ns">
+                <div className={`mb8 w-50-ns ${className.phoneNumberSubContainer}`}>
                   <DataEntry label={homePhone.label}>
                     {homePhone.value}
                   </DataEntry>
@@ -136,6 +138,7 @@ const ProfileBox: FunctionComponent<Props> = ({
         )}
       />
     </ContentBox>
+    </div>
   )
 }
 

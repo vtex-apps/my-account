@@ -1,5 +1,7 @@
 import React, { FunctionComponent, ReactElement } from 'react'
 import { Button } from 'vtex.styleguide'
+import className from '../../styles/ContentBox.css'
+
 
 const ContentBox: FunctionComponent<Props> = ({
   children,
@@ -12,10 +14,10 @@ const ContentBox: FunctionComponent<Props> = ({
   const flexClass = shouldAllowGrowing ? 'flex-auto' : 'flex-none'
   return (
     <div className={`pb5 pr5-ns ${flexClass} ${widthClass}`}>
-      <article className="ba bw1 b--muted-4 br2 flex flex-column justify-between">
-        <main className="ph7 pv6">{children}</main>
+      <article className={`ba bw1 b--muted-4 br2 flex flex-column justify-between ${className.boxContainer}`}>
+        <main className={`ph7 pv6 ${className.boxContainerBody}`}>{children}</main>
         {lowerButton && (
-          <footer className="flex justify-end ph3 pb3">
+          <footer className={`flex justify-end ph3 pb3 ${className.boxContainerFooter}`}>
             <Button
               variation="tertiary"
               size="small"
