@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+-  Corporate section data css handles
 -  Data entry custom css handles.
 
 ## [1.15.0] - 2020-06-24
