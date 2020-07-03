@@ -102,33 +102,39 @@ const ProfileBox: FunctionComponent<Props> = ({
                 </div>
                 {isCorporate && (
                   <Fragment>
-                    <div className="mb8">
+                    <div className={`mb8 ${className.corporateName}`}>
                       <DataEntry label={corporateName.label}>
                         {corporateName.value}
                       </DataEntry>
                     </div>
                     {tradeName?.label && (
-                      <div className="mb8">
+                      <div className={`mb8 ${className.tradeName}`}>
                         <DataEntry label={tradeName.label}>
                           {tradeName.value}
                         </DataEntry>
                       </div>
                     )}
                     {corporateDocument?.label && (
-                      <div className="mb8">
+                      <div className={`mb8 ${className.corporateDocument}`}>
                         <DataEntry label={corporateDocument.label}>
                           {corporateDocument.value}
                         </DataEntry>
                       </div>
                     )}
-                    <div className="flex-ns flex-wrap">
-                      <div className="mb8 flex-auto">
+                    <div
+                      className={`flex-ns flex-wrap ${className.businessPhoneContainer}`}
+                    >
+                      <div
+                        className={`mb8 flex-auto ${className.businessPhoneSubContainer}`}
+                      >
                         <DataEntry label={businessPhone.label}>
                           {businessPhone.value}
                         </DataEntry>
                       </div>
                       {stateRegistration?.label && (
-                        <div className="mb8 w-50-ns">
+                        <div
+                          className={`mb8 w-50-ns ${className.stateRegistration}`}
+                        >
                           <DataEntry label={stateRegistration.label}>
                             {stateRegistration.value}
                           </DataEntry>
