@@ -40,7 +40,7 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
         className={`${cssHandles.menu} pv9 pv0-m-2 ph9 ph7-m ph8-l w-20-m w-100`}
       >
         <UserInfo />
-        <nav className={`${cssHandles.menuLinks}`}>
+        <nav className={cssHandles.menuLinks}>
           <ExtensionPoint
             id="my-account-menu"
             render={(links: Link[]) =>
