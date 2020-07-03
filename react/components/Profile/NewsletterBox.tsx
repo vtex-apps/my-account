@@ -72,7 +72,7 @@ class NewsletterBox extends Component<Props, State> {
     } = this.props
 
     return (
-      <div className={`${cssHandles.newsletterBoxContainer}`}>
+      <div className={cssHandles.newsletterBoxContainer}>
         <ContentBox shouldAllowGrowing>
           <div className={`${cssHandles.newsletterContainerTitle}`}>
             {formatMessage(messages.newsletter)}
