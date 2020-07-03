@@ -5,11 +5,12 @@ import {
   FormattedMessage,
   defineMessages,
 } from 'react-intl'
+import { useCssHandles } from 'vtex.css-handles'
 
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
-import styles from '../../styles.css'
-import className from '../../styles/ContentBox.css'
+
+const CSS_HANDLES = ['passwordBoxContainer', 'passwordBox'] as const
 
 const PASSWORD_MASK = '*******************'
 const messages = defineMessages({
@@ -24,18 +25,19 @@ const PasswordBox: FunctionComponent<Props> = ({
   onEditClick,
   intl,
 }) => {
+  const cssHandles = useCssHandles(CSS_HANDLES)
   const lowerButtonId = passwordLastUpdate
     ? 'vtex.store-messages@0.x::personalData.redefinePassword'
     : 'vtex.store-messages@0.x::personalData.definePassword'
 
   return (
-    <div className={`${className.passwordBoxContainer}`}>
+    <div className={`${cssHandles.passwordBoxContainer}`}>
       <ContentBox
         shouldAllowGrowing
         lowerButton={<FormattedMessage id={lowerButtonId} />}
         onLowerButtonClick={onEditClick}
       >
-        <div className={`${styles.passwordBox} w-100`}>
+        <div className={`${cssHandles.passwordBox} w-100`}>
           <DataEntry label={intl.formatMessage(messages.password)}>
             {passwordLastUpdate ? (
               PASSWORD_MASK

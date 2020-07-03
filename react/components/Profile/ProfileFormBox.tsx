@@ -5,11 +5,13 @@ import { compose } from 'recompose'
 import { ExtensionPoint, withRuntimeContext } from 'vtex.render-runtime'
 import { ProfileRules, ProfileContainer } from 'vtex.profile-form'
 import { Button } from 'vtex.styleguide'
+import { withCssHandles } from 'vtex.css-handles'
 
 import ContentBox from '../shared/ContentBox'
 import UpdateProfile from '../../graphql/updateProfile.gql'
 import { withSettings, Settings } from '../shared/withSettings'
-import className from '../../styles/ContentBox.css'
+
+const CSS_HANDLES = ['profileFormBoxContainer'] as const
 
 class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
   private validatorFunctions: any[]
@@ -78,14 +80,14 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
   }
 
   public render() {
-    const { profile, settings, runtime } = this.props
+    const { profile, settings, runtime, cssHandles } = this.props
     const { isLoading } = this.state
     const showGenders = settings?.showGenders
 
     if (!profile) return null
 
     return (
-      <div className={`${className.profileFormBoxContainer}`}>
+      <div className={`${cssHandles.profileFormBoxContainer}`}>
         <ContentBox shouldAllowGrowing maxWidthStep={6}>
           <ProfileRules country={runtime.culture.country} shouldUseIOFetching>
             <ProfileContainer
@@ -120,6 +122,7 @@ interface InnerProps {
   settings?: Settings
   runtime: Runtime
   updateProfile: (args: Variables<UpdateProfileArgs>) => void
+  cssHandles: CssHandles<typeof CSS_HANDLES>
 }
 interface OutterProps {
   onDataSave: () => void
@@ -130,6 +133,7 @@ interface OutterProps {
 const enhance = compose<InnerProps & OutterProps, OutterProps>(
   graphql(UpdateProfile, { name: 'updateProfile' }),
   withRuntimeContext,
-  withSettings
+  withSettings,
+  withCssHandles(CSS_HANDLES)
 )
 export default enhance(ProfileFormBox)

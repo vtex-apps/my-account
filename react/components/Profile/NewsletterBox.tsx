@@ -3,12 +3,18 @@ import { defineMessages, InjectedIntlProps, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
 import { Checkbox } from 'vtex.styleguide'
+import { withCssHandles } from 'vtex.css-handles'
 
 import ContentBox from '../shared/ContentBox'
 import GET_NEWSLETTER from '../../graphql/getNewsletterOpt.gql'
 import NEWSLETTER_MUTATION from '../../graphql/setOptInNewsletter.gql'
-import styles from '../../styles.css'
-import className from '../../styles/ContentBox.css'
+
+const CSS_HANDLES = [
+  'newsletterBoxContainer',
+  'newsletterContainerTitle',
+  'newsletterContainerMessage',
+  'passwordBox',
+] as const
 
 const messages = defineMessages({
   optinNewsLetter: {
@@ -61,21 +67,22 @@ class NewsletterBox extends Component<Props, State> {
   public render() {
     const { checked } = this.state
     const {
+      cssHandles,
       intl: { formatMessage },
     } = this.props
 
     return (
-      <div className={`${className.newsletterBoxContainer}`}>
+      <div className={`${cssHandles.newsletterBoxContainer}`}>
         <ContentBox shouldAllowGrowing>
-          <div className={`${className.newsletterContainerTitle}`}>
+          <div className={`${cssHandles.newsletterContainerTitle}`}>
             {formatMessage(messages.newsletter)}
           </div>
           <div
-            className={`c-muted-2 pt2 pb6 ${className.newsletterContainerMessage}`}
+            className={`c-muted-2 pt2 pb6 ${cssHandles.newsletterContainerMessage}`}
           >
             {formatMessage(messages.newsletterQuestion)}
           </div>
-          <div className={`${styles.passwordBox} w-100`}>
+          <div className={`${cssHandles.passwordBox} w-100`}>
             <Checkbox
               checked={checked}
               id="newsletterOptIn"
@@ -94,12 +101,6 @@ interface State {
   checked: boolean
 }
 
-type Props = ExternalProps & QueryResult & Mutations & InjectedIntlProps
-
-interface ExternalProps {
-  userEmail: string
-}
-
 interface QueryData {
   profile: Pick<Profile, 'customFields'>
 }
@@ -112,7 +113,16 @@ interface Mutations {
   setOptInNewsletter: (args: Variables<SetOptInNewsletterArgs>) => Promise<void>
 }
 
-const enhance = compose<Props, ExternalProps>(
+interface OuterProps {
+  userEmail: string
+}
+interface InnerProps extends InjectedIntlProps, QueryResult, Mutations {
+  cssHandles: CssHandles<typeof CSS_HANDLES>
+}
+
+type Props = OuterProps & InnerProps
+
+const enhance = compose<Props, OuterProps>(
   graphql<Props, QueryData, unknown, QueryResult>(GET_NEWSLETTER, {
     props: ({ data }) => ({
       isNewsletterOptIn: data?.profile?.customFields?.[0].value === 'true',
@@ -124,7 +134,8 @@ const enhance = compose<Props, ExternalProps>(
       refetchQueries: ['NewsletterOpt'],
     },
   }),
-  injectIntl
+  injectIntl,
+  withCssHandles(CSS_HANDLES)
 )
 
 export default enhance(NewsletterBox)

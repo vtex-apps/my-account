@@ -2,20 +2,41 @@ import React, { Fragment, FunctionComponent } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { ExtensionPoint, withRuntimeContext } from 'vtex.render-runtime'
 import { ProfileRules, ProfileSummary } from 'vtex.profile-form'
+import { useCssHandles } from 'vtex.css-handles'
 
 import ContentBox from '../shared/ContentBox'
 import DataEntry from '../shared/DataEntry'
-import className from '../../styles/ContentBox.css'
+
+const CSS_HANDLES = [
+  'profileBoxContainer',
+  'nameContainer',
+  'firstNameSubContainer',
+  'lastNameSubContainer',
+  'emailContainer',
+  'genderContainer',
+  'documentsSubContainer',
+  'genderSubContainer',
+  'phoneNumberContainer',
+  'dateOfBirthSubContainer',
+  'phoneNumberSubContainer',
+  'corporateName',
+  'tradeName',
+  'corporateDocument',
+  'businessPhoneContainer',
+  'businessPhoneSubContainer',
+  'stateRegistration',
+] as const
 
 const ProfileBox: FunctionComponent<Props> = ({
   profile,
   onEditClick,
   runtime,
 }) => {
+  const cssHandles = useCssHandles(CSS_HANDLES)
   if (!profile) return null
 
   return (
-    <div className={`${className.profileBoxContainer}`}>
+    <div className={`${cssHandles.profileBoxContainer}`}>
       <ContentBox
         shouldAllowGrowing
         lowerButton={
@@ -45,31 +66,33 @@ const ProfileBox: FunctionComponent<Props> = ({
               isCorporate,
             }: any) => (
               <Fragment>
-                <div className={`flex-ns flex-wrap ${className.nameContainer}`}>
+                <div
+                  className={`flex-ns flex-wrap ${cssHandles.nameContainer}`}
+                >
                   <div
-                    className={`mb8 flex-auto ${className.firstNameSubContainer}`}
+                    className={`mb8 flex-auto ${cssHandles.firstNameSubContainer}`}
                   >
                     <DataEntry label={firstName.label}>
                       {firstName.value}
                     </DataEntry>
                   </div>
                   <div
-                    className={`mb8 w-50-ns ${className.lastNameSubContainer}`}
+                    className={`mb8 w-50-ns ${cssHandles.lastNameSubContainer}`}
                   >
                     <DataEntry label={lastName.label}>
                       {lastName.value}
                     </DataEntry>
                   </div>
                 </div>
-                <div className={`mb8 ${className.emailContainer}`}>
+                <div className={`mb8 ${cssHandles.emailContainer}`}>
                   <DataEntry label={email.label}>{email.value}</DataEntry>
                 </div>
                 <div
-                  className={`flex-ns flex-wrap ${className.genderContainer}`}
+                  className={`flex-ns flex-wrap ${cssHandles.genderContainer}`}
                 >
                   {document?.label && (
                     <div
-                      className={`mb8 flex-auto ${className.documentsSubContainer}`}
+                      className={`mb8 flex-auto ${cssHandles.documentsSubContainer}`}
                     >
                       <DataEntry label={document.label}>
                         {document.value}
@@ -77,23 +100,23 @@ const ProfileBox: FunctionComponent<Props> = ({
                     </div>
                   )}
                   <div
-                    className={`mb8 w-50-ns ${className.genderSubContainer}`}
+                    className={`mb8 w-50-ns ${cssHandles.genderSubContainer}`}
                   >
                     <DataEntry label={gender.label}>{gender.value}</DataEntry>
                   </div>
                 </div>
                 <div
-                  className={`flex-ns flex-wrap ${className.phoneNumberContainer}`}
+                  className={`flex-ns flex-wrap ${cssHandles.phoneNumberContainer}`}
                 >
                   <div
-                    className={`mb8 flex-auto ${className.dateOfBirthSubContainer}`}
+                    className={`mb8 flex-auto ${cssHandles.dateOfBirthSubContainer}`}
                   >
                     <DataEntry label={birthDate.label}>
                       {birthDate.value}
                     </DataEntry>
                   </div>
                   <div
-                    className={`mb8 w-50-ns ${className.phoneNumberSubContainer}`}
+                    className={`mb8 w-50-ns ${cssHandles.phoneNumberSubContainer}`}
                   >
                     <DataEntry label={homePhone.label}>
                       {homePhone.value}
@@ -102,30 +125,30 @@ const ProfileBox: FunctionComponent<Props> = ({
                 </div>
                 {isCorporate && (
                   <Fragment>
-                    <div className={`mb8 ${className.corporateName}`}>
+                    <div className={`mb8 ${cssHandles.corporateName}`}>
                       <DataEntry label={corporateName.label}>
                         {corporateName.value}
                       </DataEntry>
                     </div>
                     {tradeName?.label && (
-                      <div className={`mb8 ${className.tradeName}`}>
+                      <div className={`mb8 ${cssHandles.tradeName}`}>
                         <DataEntry label={tradeName.label}>
                           {tradeName.value}
                         </DataEntry>
                       </div>
                     )}
                     {corporateDocument?.label && (
-                      <div className={`mb8 ${className.corporateDocument}`}>
+                      <div className={`mb8 ${cssHandles.corporateDocument}`}>
                         <DataEntry label={corporateDocument.label}>
                           {corporateDocument.value}
                         </DataEntry>
                       </div>
                     )}
                     <div
-                      className={`flex-ns flex-wrap ${className.businessPhoneContainer}`}
+                      className={`flex-ns flex-wrap ${cssHandles.businessPhoneContainer}`}
                     >
                       <div
-                        className={`mb8 flex-auto ${className.businessPhoneSubContainer}`}
+                        className={`mb8 flex-auto ${cssHandles.businessPhoneSubContainer}`}
                       >
                         <DataEntry label={businessPhone.label}>
                           {businessPhone.value}
@@ -133,7 +156,7 @@ const ProfileBox: FunctionComponent<Props> = ({
                       </div>
                       {stateRegistration?.label && (
                         <div
-                          className={`mb8 w-50-ns ${className.stateRegistration}`}
+                          className={`mb8 w-50-ns ${cssHandles.stateRegistration}`}
                         >
                           <DataEntry label={stateRegistration.label}>
                             {stateRegistration.value}

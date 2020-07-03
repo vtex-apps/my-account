@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { SkeletonPiece } from 'vtex.my-account-commons'
+import { useCssHandles } from 'vtex.css-handles'
 
-import styles from '../../styles.css'
+const CSS_HANDLES = ['shimmer'] as const
 
-const UserInfoLoading = () => {
+const UserInfoLoading: FC = () => {
+  const cssHandles = useCssHandles(CSS_HANDLES)
   return (
     <div className="flex items-end mb7">
       <div className="mr5 relative">
         <div className="h3 w3 br-100 bg-light-silver">
-          <div className={`${styles.shimmer}`} />
+          <div className={`${cssHandles.shimmer}`} />
         </div>
       </div>
       <div className="flex-auto w3">

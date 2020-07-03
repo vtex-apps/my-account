@@ -1,7 +1,12 @@
 import React, { FunctionComponent, ReactElement } from 'react'
 import { Button } from 'vtex.styleguide'
+import { useCssHandles } from 'vtex.css-handles'
 
-import className from '../../styles/ContentBox.css'
+const CSS_HANDLES = [
+  'boxContainer',
+  'boxContainerBody',
+  'boxContainerFooter',
+] as const
 
 const ContentBox: FunctionComponent<Props> = ({
   children,
@@ -10,19 +15,20 @@ const ContentBox: FunctionComponent<Props> = ({
   lowerButton,
   onLowerButtonClick,
 }) => {
+  const cssHandles = useCssHandles(CSS_HANDLES)
   const widthClass = maxWidthStep ? `mw${maxWidthStep}-ns` : ''
   const flexClass = shouldAllowGrowing ? 'flex-auto' : 'flex-none'
   return (
     <div className={`pb5 pr5-ns ${flexClass} ${widthClass}`}>
       <article
-        className={`ba bw1 b--muted-4 br2 flex flex-column justify-between ${className.boxContainer}`}
+        className={`ba bw1 b--muted-4 br2 flex flex-column justify-between ${cssHandles.boxContainer}`}
       >
-        <main className={`ph7 pv6 ${className.boxContainerBody}`}>
+        <main className={`ph7 pv6 ${cssHandles.boxContainerBody}`}>
           {children}
         </main>
         {lowerButton && (
           <footer
-            className={`flex justify-end ph3 pb3 ${className.boxContainerFooter}`}
+            className={`flex justify-end ph3 pb3 ${cssHandles.boxContainerFooter}`}
           >
             <Button
               variation="tertiary"

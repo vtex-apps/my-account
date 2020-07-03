@@ -4,16 +4,17 @@ import { compose, branch, renderComponent, withProps } from 'recompose'
 import { FormattedMessage } from 'react-intl'
 import { EmptyState, Button } from 'vtex.styleguide'
 import { withRouter, Link } from 'vtex.my-account-commons/Router'
+import { withCssHandles } from 'vtex.css-handles'
 
 import { withContentWrapper } from '../shared/withContentWrapper'
 import AddressesLoading from '../loaders/AddressesLoading'
 import AddressBox from '../Addresses/AddressBox'
 import Toast from '../shared/Toast'
 import GET_ADRESSES from '../../graphql/getAddresses.gql'
-import styles from '../../styles.css'
+
+const CSS_HANDLES = ['addressBox'] as const
 
 export const headerConfig = {
-  namespace: `${styles.addressList}`,
   titleId: 'vtex.store-messages@0.x::pages.addresses',
   headerContent: (
     <Link to="/addresses/new">
@@ -51,9 +52,11 @@ class Addresses extends Component<Props> {
   }
 
   public render() {
+    const { cssHandles } = this.props
+
     return (
       <div
-        className={`${styles.addressBox} flex flex-wrap-ns items-start-ns relative tl`}
+        className={`${cssHandles.addressBox} flex flex-wrap-ns items-start-ns relative tl`}
       >
         {this.props.addresses.map(address => (
           <AddressBox
@@ -85,6 +88,7 @@ interface Props {
   location: any
   history: any
   addresses: Address[]
+  cssHandles: CssHandles<typeof CSS_HANDLES>
 }
 
 const enhance = compose<Props, void>(
@@ -93,7 +97,7 @@ const enhance = compose<Props, void>(
     ({ data }: { data: Data }) => data.loading,
     renderComponent(AddressesLoading)
   ),
-  withContentWrapper(headerConfig),
+  withContentWrapper({ headerConfig, handle: 'addressList' }),
   branch(
     ({ data }: { data: { profile: { addresses: Address[] } } }) =>
       data.profile == null || data.profile.addresses.length === 0,
@@ -102,7 +106,8 @@ const enhance = compose<Props, void>(
   withProps(({ data }: { data: Data }) => ({
     addresses: data.profile && data.profile.addresses,
   })),
-  withRouter
+  withRouter,
+  withCssHandles(CSS_HANDLES)
 )
 
 export default enhance(Addresses)
