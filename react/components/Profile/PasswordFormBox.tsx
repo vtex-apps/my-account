@@ -139,7 +139,7 @@ class PasswordFormBox extends Component<Props, State> {
       (currentPassword || !passwordLastUpdate) && newPasswordValid
 
     return (
-      <div className={`${cssHandles.passwordBoxContainer}`}>
+      <div className={cssHandles.passwordBoxContainer}>
         <ContentBox shouldAllowGrowing maxWidthStep={6}>
           {error && (
             <div className="mb7">

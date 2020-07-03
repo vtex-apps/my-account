@@ -36,7 +36,7 @@ const ProfileBox: FunctionComponent<Props> = ({
   if (!profile) return null
 
   return (
-    <div className={`${cssHandles.profileBoxContainer}`}>
+    <div className={cssHandles.profileBoxContainer}>
       <ContentBox
         shouldAllowGrowing
         lowerButton={

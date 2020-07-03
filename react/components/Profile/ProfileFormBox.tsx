@@ -87,7 +87,7 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
     if (!profile) return null
 
     return (
-      <div className={`${cssHandles.profileFormBoxContainer}`}>
+      <div className={cssHandles.profileFormBoxContainer}>
         <ContentBox shouldAllowGrowing maxWidthStep={6}>
           <ProfileRules country={runtime.culture.country} shouldUseIOFetching>
             <ProfileContainer

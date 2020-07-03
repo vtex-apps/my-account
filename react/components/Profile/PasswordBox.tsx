@@ -31,7 +31,7 @@ const PasswordBox: FunctionComponent<Props> = ({
     : 'vtex.store-messages@0.x::personalData.definePassword'
 
   return (
-    <div className={`${cssHandles.passwordBoxContainer}`}>
+    <div className={cssHandles.passwordBoxContainer}>
       <ContentBox
         shouldAllowGrowing
         lowerButton={<FormattedMessage id={lowerButtonId} />}
