@@ -44,101 +44,107 @@ const ProfileBox: FunctionComponent<Props> = ({
               },
               isCorporate,
             }: any) => (
-                <Fragment>
-                  <div className={`flex-ns flex-wrap ${className.nameContainer}`}>
-                    <div
-                      className={`mb8 flex-auto ${className.firstNameSubContainer}`}
-                    >
-                      <DataEntry label={firstName.label}>
-                        {firstName.value}
-                      </DataEntry>
-                    </div>
-                    <div
-                      className={`mb8 w-50-ns ${className.lastNameSubContainer}`}
-                    >
-                      <DataEntry label={lastName.label}>
-                        {lastName.value}
-                      </DataEntry>
-                    </div>
-                  </div>
-                  <div className={`mb8 ${className.emailContainer}`}>
-                    <DataEntry label={email.label}>{email.value}</DataEntry>
+              <Fragment>
+                <div className={`flex-ns flex-wrap ${className.nameContainer}`}>
+                  <div
+                    className={`mb8 flex-auto ${className.firstNameSubContainer}`}
+                  >
+                    <DataEntry label={firstName.label}>
+                      {firstName.value}
+                    </DataEntry>
                   </div>
                   <div
-                    className={`flex-ns flex-wrap ${className.genderContainer}`}
+                    className={`mb8 w-50-ns ${className.lastNameSubContainer}`}
                   >
-                    {document?.label && (
-                      <div
-                        className={`mb8 flex-auto ${className.documentsSubContainer}`}
-                      >
-                        <DataEntry label={document.label}>
-                          {document.value}
+                    <DataEntry label={lastName.label}>
+                      {lastName.value}
+                    </DataEntry>
+                  </div>
+                </div>
+                <div className={`mb8 ${className.emailContainer}`}>
+                  <DataEntry label={email.label}>{email.value}</DataEntry>
+                </div>
+                <div
+                  className={`flex-ns flex-wrap ${className.genderContainer}`}
+                >
+                  {document?.label && (
+                    <div
+                      className={`mb8 flex-auto ${className.documentsSubContainer}`}
+                    >
+                      <DataEntry label={document.label}>
+                        {document.value}
+                      </DataEntry>
+                    </div>
+                  )}
+                  <div
+                    className={`mb8 w-50-ns ${className.genderSubContainer}`}
+                  >
+                    <DataEntry label={gender.label}>{gender.value}</DataEntry>
+                  </div>
+                </div>
+                <div
+                  className={`flex-ns flex-wrap ${className.phoneNumberContainer}`}
+                >
+                  <div
+                    className={`mb8 flex-auto ${className.dateOfBirthSubContainer}`}
+                  >
+                    <DataEntry label={birthDate.label}>
+                      {birthDate.value}
+                    </DataEntry>
+                  </div>
+                  <div
+                    className={`mb8 w-50-ns ${className.phoneNumberSubContainer}`}
+                  >
+                    <DataEntry label={homePhone.label}>
+                      {homePhone.value}
+                    </DataEntry>
+                  </div>
+                </div>
+                {isCorporate && (
+                  <Fragment>
+                    <div className={`mb8 ${className.corporateName}`}>
+                      <DataEntry label={corporateName.label}>
+                        {corporateName.value}
+                      </DataEntry>
+                    </div>
+                    {tradeName?.label && (
+                      <div className={`mb8 ${className.tradeName}`}>
+                        <DataEntry label={tradeName.label}>
+                          {tradeName.value}
+                        </DataEntry>
+                      </div>
+                    )}
+                    {corporateDocument?.label && (
+                      <div className={`mb8 ${className.corporateDocument}`}>
+                        <DataEntry label={corporateDocument.label}>
+                          {corporateDocument.value}
                         </DataEntry>
                       </div>
                     )}
                     <div
-                      className={`mb8 w-50-ns ${className.genderSubContainer}`}
+                      className={`flex-ns flex-wrap ${className.businessPhoneContainer}`}
                     >
-                      <DataEntry label={gender.label}>{gender.value}</DataEntry>
-                    </div>
-                  </div>
-                  <div
-                    className={`flex-ns flex-wrap ${className.phoneNumberContainer}`}
-                  >
-                    <div
-                      className={`mb8 flex-auto ${className.dateOfBirthSubContainer}`}
-                    >
-                      <DataEntry label={birthDate.label}>
-                        {birthDate.value}
-                      </DataEntry>
-                    </div>
-                    <div
-                      className={`mb8 w-50-ns ${className.phoneNumberSubContainer}`}
-                    >
-                      <DataEntry label={homePhone.label}>
-                        {homePhone.value}
-                      </DataEntry>
-                    </div>
-                  </div>
-                  {isCorporate && (
-                    <Fragment>
-                      <div className={`mb8 ${className.corporateName}`}>
-                        <DataEntry label={corporateName.label}>
-                          {corporateName.value}
+                      <div
+                        className={`mb8 flex-auto ${className.businessPhoneSubContainer}`}
+                      >
+                        <DataEntry label={businessPhone.label}>
+                          {businessPhone.value}
                         </DataEntry>
                       </div>
-                      {tradeName?.label && (
-                        <div className={`mb8 ${className.tradeName}`}>
-                          <DataEntry label={tradeName.label}>
-                            {tradeName.value}
+                      {stateRegistration?.label && (
+                        <div
+                          className={`mb8 w-50-ns ${className.stateRegistration}`}
+                        >
+                          <DataEntry label={stateRegistration.label}>
+                            {stateRegistration.value}
                           </DataEntry>
                         </div>
                       )}
-                      {corporateDocument?.label && (
-                        <div className={`mb8 ${className.corporateDocument}`}>
-                          <DataEntry label={corporateDocument.label}>
-                            {corporateDocument.value}
-                          </DataEntry>
-                        </div>
-                      )}
-                      <div className={`flex-ns flex-wrap ${className.businessPhoneContainer}`}>
-                        <div className={`mb8 flex-auto ${className.businessPhoneSubContainer}`}>
-                          <DataEntry label={businessPhone.label}>
-                            {businessPhone.value}
-                          </DataEntry>
-                        </div>
-                        {stateRegistration?.label && (
-                          <div className={`mb8 w-50-ns ${className.stateRegistration}`}>
-                            <DataEntry label={stateRegistration.label}>
-                              {stateRegistration.value}
-                            </DataEntry>
-                          </div>
-                        )}
-                      </div>
-                    </Fragment>
-                  )}
-                </Fragment>
-              )}
+                    </div>
+                  </Fragment>
+                )}
+              </Fragment>
+            )}
           </ProfileSummary>
         </ProfileRules>
         <ExtensionPoint
