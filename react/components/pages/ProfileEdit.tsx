@@ -7,10 +7,8 @@ import { withContentWrapper } from '../shared/withContentWrapper'
 import ProfileEditLoading from '../loaders/ProfileEditLoading'
 import ProfileFormBox from '../Profile/ProfileFormBox'
 import GET_PROFILE from '../../graphql/getProfile.gql'
-import styles from '../../styles.css'
 
 export const headerConfig = {
-  namespace: `${styles.profileEdit}`,
   titleId: 'vtex.store-messages@0.x::pages.profileEdit',
   backButton: {
     titleId: 'vtex.store-messages@0.x::pages.profile',
@@ -50,6 +48,6 @@ const enhance = compose<Props, void>(
   ),
   withProps(({ data }: Props) => ({ profile: data.profile })),
   withRouter,
-  withContentWrapper(headerConfig)
+  withContentWrapper({ headerConfig, handle: 'profileEdit' })
 )
 export default enhance(ProfileEdit)

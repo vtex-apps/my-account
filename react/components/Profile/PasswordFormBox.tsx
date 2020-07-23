@@ -12,12 +12,14 @@ import { AuthState, AuthService } from 'vtex.react-vtexid'
 import { GenericError } from 'vtex.my-account-commons'
 import { withRuntimeContext } from 'vtex.render-runtime'
 import { withPixel, PixelData } from 'vtex.pixel-manager/PixelContext'
+import { withCssHandles } from 'vtex.css-handles'
 
 import ContentBox from '../shared/ContentBox'
 import RedefinePasswordForm from './RedefinePassword'
 import SendAccCodeButton from './SendAccCodeButton'
 import PasswordValidator from './PasswordValidator'
-import className from '../../styles/ContentBox.css'
+
+const CSS_HANDLES = ['passwordBoxContainer'] as const
 
 const WRONG_CREDENTIALS = 'wrongcredentials'
 const BLOCKED_USER = 'blocked'
@@ -118,6 +120,7 @@ class PasswordFormBox extends Component<Props, State> {
 
   public render() {
     const {
+      cssHandles,
       intl,
       passwordLastUpdate,
       currentToken,
@@ -136,7 +139,7 @@ class PasswordFormBox extends Component<Props, State> {
       (currentPassword || !passwordLastUpdate) && newPasswordValid
 
     return (
-      <div className={`${className.passwordBoxContainer}`}>
+      <div className={cssHandles.passwordBoxContainer}>
         <ContentBox shouldAllowGrowing maxWidthStep={6}>
           {error && (
             <div className="mb7">
@@ -258,18 +261,24 @@ interface State {
   [key: string]: any
 }
 
-interface Props extends InjectedIntlProps {
+interface InnerProps {
+  cssHandles: CssHandles<typeof CSS_HANDLES>
+  runtime: Runtime
+  push: (args: PixelData) => void
+}
+
+interface OuterProps {
   email: string
   onPasswordChange: () => void
   setToken: (value: string) => void
   passwordLastUpdate?: string
   currentToken?: string
-  runtime: Runtime
-  push: (args: PixelData) => void
 }
+type Props = InjectedIntlProps & InnerProps & OuterProps
 
-export default compose<Props, Omit<Props, 'intl' | 'runtime' | 'push'>>(
+export default compose<Props, OuterProps>(
   injectIntl,
   withRuntimeContext,
-  withPixel
+  withPixel,
+  withCssHandles(CSS_HANDLES)
 )(PasswordFormBox)

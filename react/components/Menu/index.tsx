@@ -6,11 +6,13 @@ import { compose } from 'recompose'
 import { ExtensionPoint } from 'vtex.render-runtime'
 import { AuthService, AuthState } from 'vtex.react-vtexid'
 import { ModalDialog } from 'vtex.styleguide'
+import { withCssHandles } from 'vtex.css-handles'
 
 import UserInfo from './UserInfo'
 import MenuLink from './MenuLink'
 import { withSettings, Settings } from '../shared/withSettings'
-import styles from '../../styles.css'
+
+const CSS_HANDLES = ['css', 'menu', 'menuLinks', 'menuLink'] as const
 
 function renderLinks(links: Link[], displayMyCards: boolean | null) {
   let linksToDisplay = links
@@ -31,14 +33,14 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
   }
 
   public render() {
-    const { intl, settings } = this.props
+    const { cssHandles, intl, settings } = this.props
 
     return (
       <aside
-        className={`${styles.menu} pv9 pv0-m-2 ph9 ph7-m ph8-l w-20-m w-100`}
+        className={`${cssHandles.menu} pv9 pv0-m-2 ph9 ph7-m ph8-l w-20-m w-100`}
       >
         <UserInfo />
-        <nav className={`${styles.menuLinks}`}>
+        <nav className={cssHandles.menuLinks}>
           <ExtensionPoint
             id="my-account-menu"
             render={(links: Link[]) =>
@@ -51,7 +53,7 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
                 <Fragment>
                   <div
                     className={`
-                    ${styles.menuLink}
+                    ${cssHandles.menuLink}
                     f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-muted-1 b--transparent pointer
                   `}
                     onClick={this.handleModalToggle}
@@ -96,6 +98,11 @@ interface Link {
 
 interface Props extends InjectedIntlProps {
   settings?: Settings
+  cssHandles: CssHandles<typeof CSS_HANDLES>
 }
 
-export default compose<Props, {}>(injectIntl, withSettings)(Menu)
+export default compose<Props, {}>(
+  injectIntl,
+  withSettings,
+  withCssHandles(CSS_HANDLES)
+)(Menu)

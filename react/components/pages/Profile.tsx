@@ -11,11 +11,9 @@ import PasswordBox from '../Profile/PasswordBox'
 import PasswordFormBox from '../Profile/PasswordFormBox'
 import Toast from '../shared/Toast'
 import GET_PROFILE from '../../graphql/getProfile.gql'
-import styles from '../../styles.css'
 import NewsletterBox from '../Profile/NewsletterBox'
 
 export const headerConfig = {
-  namespace: `${styles.profile}`,
   titleId: 'vtex.store-messages@0.x::pages.profile',
   hideBackButton: true,
 }
@@ -108,7 +106,7 @@ const enhance = compose<Props, void>(
     ({ data }) => data.profile == null,
     renderComponent(ProfileLoading)
   ),
-  withContentWrapper(headerConfig),
+  withContentWrapper({ headerConfig, handle: 'profile' }),
   withProps(({ data }: Props) => ({ profile: data.profile })),
   withRouter
 )

@@ -1,4 +1,8 @@
 declare global {
+  type CssHandlesInput = readonly string[]
+  type ValueOf<T extends readonly any[]> = T[number]
+  type CssHandles<T extends CssHandlesInput> = Record<ValueOf<T>, string>
+
   interface Constructable<T> {
     new (): T
   }
@@ -85,7 +89,7 @@ declare global {
   }
 
   interface ContentWrapperProps {
-    namespace: string
+    namespace?: string
     titleId: string
     backButton?: {
       titleId: string

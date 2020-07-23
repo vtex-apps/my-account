@@ -8,7 +8,6 @@ import { withContentWrapper } from '../shared/withContentWrapper'
 import AddressCreateLoading from '../loaders/AddressCreateLoading'
 import AddressForm from '../Addresses/AddressForm'
 import ContentBox from '../shared/ContentBox'
-import styles from '../../styles.css'
 import SAVE_ADDRESS, {
   Args,
   Result as SaveAddressResult,
@@ -18,7 +17,6 @@ import CREATE_ADDRESS_INFO, {
 } from '../../graphql/customerGreeting.gql'
 
 export const headerConfig = {
-  namespace: `${styles.addressCreate}`,
   titleId: 'vtex.store-messages@0.x::pages.addressCreate',
   backButton: {
     titleId: 'vtex.store-messages@0.x::pages.addresses',
@@ -114,7 +112,7 @@ const enhance = compose<Props, void>(
     renderComponent(AddressCreateLoading)
   ),
   graphql(SAVE_ADDRESS, { name: 'saveAddress' }),
-  withContentWrapper(headerConfig),
+  withContentWrapper({ headerConfig, handle: 'addressCreate' }),
   withRouter
 )
 

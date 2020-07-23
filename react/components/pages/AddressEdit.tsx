@@ -10,10 +10,8 @@ import { withContentWrapper } from '../shared/withContentWrapper'
 import ContentBox from '../shared/ContentBox'
 import GET_ADDRESSES from '../../graphql/getAddresses.gql'
 import UPDATE_ADDRESS from '../../graphql/updateAddress.gql'
-import styles from '../../styles.css'
 
 export const headerConfig = {
-  namespace: `${styles.addressEdit}`,
   titleId: 'vtex.store-messages@0.x::pages.addressEdit',
   backButton: {
     titleId: 'vtex.store-messages@0.x::pages.addresses',
@@ -108,6 +106,6 @@ const enhance = compose<Props, void>(
     addresses: data.profile.addresses,
     addressId: match.params.id,
   })),
-  withContentWrapper(headerConfig)
+  withContentWrapper({ headerConfig, handle: 'addressEdit' })
 )
 export default enhance(AddressEdit)
