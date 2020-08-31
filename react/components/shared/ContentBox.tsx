@@ -12,28 +12,35 @@ const ContentBox: FunctionComponent<Props> = ({
 }) => {
   const widthClass = maxWidthStep ? `mw${maxWidthStep}-ns` : ''
   const flexClass = shouldAllowGrowing ? 'flex-auto' : 'flex-none'
+  const locations = location?.hash?.split("/")
+  const [, firstPath, secondPath, thirdPath] = locations
+  const pageClass = `vtex-${firstPath} ${secondPath ? `vtex-${secondPath}` : ''} ${thirdPath ? `vtex-${thirdPath}` : ''}`
+
+
   return (
-    <div className={`pb5 pr5-ns ${flexClass} ${widthClass}`}>
-      <article
-        className={`ba bw1 b--muted-4 br2 flex flex-column justify-between ${className.boxContainer}`}
-      >
-        <main className={`ph7 pv6 ${className.boxContainerBody}`}>
-          {children}
-        </main>
-        {lowerButton && (
-          <footer
-            className={`flex justify-end ph3 pb3 ${className.boxContainerFooter}`}
-          >
-            <Button
-              variation="tertiary"
-              size="small"
-              onClick={onLowerButtonClick}
+    <div className={`${pageClass}`}>
+      <div className={`pb5 pr5-ns ${flexClass} ${widthClass}`}>
+        <article
+          className={`ba bw1 b--muted-4 br2 flex flex-column justify-between ${className.boxContainer}`}
+        >
+          <main className={`ph7 pv6 ${className.boxContainerBody}`}>
+            {children}
+          </main>
+          {lowerButton && (
+            <footer
+              className={`flex justify-end ph3 pb3 ${className.boxContainerFooter}`}
             >
-              {lowerButton}
-            </Button>
-          </footer>
-        )}
-      </article>
+              <Button
+                variation="tertiary"
+                size="small"
+                onClick={onLowerButtonClick}
+              >
+                {lowerButton}
+              </Button>
+            </footer>
+          )}
+        </article>
+      </div>
     </div>
   )
 }

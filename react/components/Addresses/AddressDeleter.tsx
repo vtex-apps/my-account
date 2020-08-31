@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { Button } from 'vtex.styleguide'
-
+import className from '../../styles/ContentBox.css'
 import MUTATION from '../../graphql/deleteAddress.gql'
 
 class AddressDeleter extends Component<OutterProps & InnerProps> {
@@ -27,7 +27,7 @@ class AddressDeleter extends Component<OutterProps & InnerProps> {
   public render() {
     const { isLoading } = this.state
     return (
-      <div className="mt5">
+      <div className={`mt5 ${className.deleteButton}`}>
         <Button
           type="button"
           variation="danger"
