@@ -6,7 +6,8 @@
     "lint": "cd ./react && yarn lint",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json}\"",
     "test": "cd ./react && yarn test",
-    "verify": "yarn lint  && yarn test"
+    "verify": "yarn lint  && yarn test",
+    "upgrade:all": "yarn upgrade && cd ./react && yarn upgrade && cd ../node && yarn upgrade && cd ../my-account-extension-example/react && yarn upgrade"
   },
   "husky": {
     "hooks": {
