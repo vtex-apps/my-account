@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- i18n BG, DA, EL, FI, KO, NL, PL, RU, SK, Sl, SV & UK.
+
+### Fixed
+
+- i18n CA, DE, FR, IT & Ro.
+
 ## [0.32.5] - 2020-06-30
 
 ### Fixed
