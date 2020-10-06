@@ -37,7 +37,7 @@ class AddressCreate extends Component<Props> {
 
   private handleCreate = (address: Address) => {
     const { saveAddress, handleError, history, location } = this.props
-    const { addressId, addressQuery, receiverName, ...addressFields } = address
+    const { addressId, addressQuery, ...addressFields } = address
 
     this.setState({ isLoading: true })
 
