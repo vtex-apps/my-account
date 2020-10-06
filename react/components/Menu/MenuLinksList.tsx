@@ -25,6 +25,7 @@ const messages = defineMessages({
 
 function renderLinks(links: Link[], displayMyCards: boolean | null) {
   let linksToDisplay = links
+
   if (displayMyCards === false) {
     linksToDisplay = links.filter(link => link.path !== '/cards')
   }
@@ -115,4 +116,7 @@ interface Props extends InjectedIntlProps {
   settings?: Settings
 }
 
-export default compose<Props, {}>(injectIntl, withSettings)(MenuLinksList)
+export default compose<Props, Record<string, unknown>>(
+  injectIntl,
+  withSettings
+)(MenuLinksList)

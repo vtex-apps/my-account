@@ -107,4 +107,5 @@ const enhance = compose<Props, void>(
   })),
   withContentWrapper(headerConfig)
 )
+
 export default enhance(AddressEdit)

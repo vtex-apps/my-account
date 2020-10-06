@@ -27,6 +27,7 @@ class ProfileContainer extends Component<Props> {
 
   public componentDidMount = () => {
     const { location } = this.props
+
     this.setState({ showToast: location.search.indexOf('success=true') > -1 })
   }
 

@@ -8,7 +8,8 @@
     "test": "cd ./react && yarn test",
     "lint:locales": "intl-equalizer",
     "locales:fix": "intl-equalizer --fix",
-    "verify": "yarn lint && yarn lint:locales && yarn test"
+    "verify": "yarn lint && yarn lint:locales && yarn test",
+    "upgrade:all": "yarn upgrade && cd ./react && yarn upgrade && cd ../node && yarn upgrade && cd ../my-account-extension-example/react && yarn upgrade"
   },
   "husky": {
     "hooks": {

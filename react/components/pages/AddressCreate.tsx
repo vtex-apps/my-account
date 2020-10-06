@@ -27,6 +27,7 @@ export const headerConfig = {
 
 function buildReceiverName(profile: CustomerInfo['profile']): string {
   const lastName = profile.lastName ? ` ${profile.lastName}` : ''
+
   return `${profile.firstName ?? ''}${lastName}`
 }
 
@@ -37,7 +38,7 @@ class AddressCreate extends Component<Props> {
 
   private handleCreate = (address: Address) => {
     const { saveAddress, handleError, history, location } = this.props
-    const { addressId, addressQuery, receiverName, ...addressFields } = address
+    const { addressId, addressQuery, ...addressFields } = address
 
     this.setState({ isLoading: true })
 
@@ -99,7 +100,12 @@ type Props = MappedResult &
   }
 
 const enhance = compose<Props, void>(
-  graphql<{}, CustomerInfo, {}, MappedResult>(CREATE_ADDRESS_INFO, {
+  graphql<
+    Record<string, unknown>,
+    CustomerInfo,
+    Record<string, unknown>,
+    MappedResult
+  >(CREATE_ADDRESS_INFO, {
     props: props => ({
       loading: props.data?.loading ?? true,
       data: props.data as DataValue<unknown>,

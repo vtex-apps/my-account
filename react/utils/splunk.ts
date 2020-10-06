@@ -9,6 +9,7 @@ splunkEvents.config({
 
 export function logMyAccountURL() {
   const { account } = window.__RUNTIME__
+
   splunkEvents.logEvent('Important', 'Info', 'MyAccount', 'MyAccountURL', {
     account,
   })
@@ -16,6 +17,7 @@ export function logMyAccountURL() {
 
 export function logGeneralErrors(error: any, info: any) {
   const { account } = window.__RUNTIME__
+
   splunkEvents.logEvent(
     'Critical',
     'Error',

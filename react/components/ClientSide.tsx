@@ -5,6 +5,7 @@ const ClientSide: FunctionComponent<any> = ({ children }) => {
   if (canUseDOM) {
     return children
   }
+
   return null
 }
 
