@@ -38,6 +38,7 @@ class PasswordFormBox extends Component<Props, State> {
     setPassword: (args: any) => any = () => {}
   ) => {
     const { name, value } = e.target
+
     this.setState({ [name]: value }, () => setPassword(value))
   }
 
@@ -51,6 +52,7 @@ class PasswordFormBox extends Component<Props, State> {
 
   private handleSubmit = async (setNewPassword = () => {}) => {
     const { newPasswordValid, changeAttempts } = this.state
+
     if (!newPasswordValid) return
 
     this.setState({
@@ -64,7 +66,9 @@ class PasswordFormBox extends Component<Props, State> {
   private handleSetPasswordError = (error: any) => {
     const wrongPassword =
       error.code.toLowerCase().indexOf(WRONG_CREDENTIALS) > -1
+
     const blockedUser = error.code.toLowerCase().indexOf(BLOCKED_USER) > -1
+
     this.setState((prevState: any) => ({
       isLoading: false,
       error:
@@ -99,6 +103,7 @@ class PasswordFormBox extends Component<Props, State> {
       setToken,
       onPasswordChange,
     } = this.props
+
     const {
       currentPassword,
       newPassword,

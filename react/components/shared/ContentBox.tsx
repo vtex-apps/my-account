@@ -10,6 +10,7 @@ const ContentBox: FunctionComponent<Props> = ({
 }) => {
   const widthClass = maxWidthStep ? `mw${maxWidthStep}-ns` : ''
   const flexClass = shouldAllowGrowing ? 'flex-auto' : 'flex-none'
+
   return (
     <div className={`pb5 pr5-ns ${flexClass} ${widthClass}`}>
       <article className="ba bw1 b--muted-4 br2 flex flex-column justify-between">

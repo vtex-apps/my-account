@@ -51,4 +51,5 @@ const enhance = compose<Props, void>(
   withRouter,
   withContentWrapper(headerConfig)
 )
+
 export default enhance(ProfileEdit)

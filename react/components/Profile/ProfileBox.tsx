@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Fragment, FunctionComponent } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { ExtensionPoint, withRuntimeContext } from 'render'

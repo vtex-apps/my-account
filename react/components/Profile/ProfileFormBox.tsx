@@ -45,6 +45,7 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
 
   private handleSubmit = async ({ valid, profile }: any) => {
     const { onDataSave, onError } = this.props
+
     await this.setStateAsync({ isLoading: true, valid, profile })
     try {
       const validation$ = this.validatorFunctions.map(validator => validator())
@@ -53,12 +54,14 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
 
       if (!isValid) {
         this.setState({ isLoading: false })
+
         return
       }
 
       const submit$ = this.submitterFunctions.map(submitter =>
         submitter(profile)
       )
+
       await Promise.all(submit$)
       this.setState({ isLoading: false })
       onDataSave()
@@ -73,6 +76,7 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
 
   private submit = (profile: ProfileInput) => {
     const { updateProfile } = this.props
+
     return updateProfile({ variables: { profile } })
   }
 
@@ -129,4 +133,5 @@ const enhance = compose<InnerProps & OutterProps, OutterProps>(
   withRuntimeContext,
   withSettings
 )
+
 export default enhance(ProfileFormBox)

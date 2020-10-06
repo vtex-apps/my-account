@@ -32,6 +32,7 @@ class Toast extends Component<Props> {
   public render() {
     const { isClosing } = this.state
     const { onClose, messageId } = this.props
+
     return (
       <div
         className={`animated ${

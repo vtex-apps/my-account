@@ -42,6 +42,7 @@ class NewsletterBox extends Component<Props, State> {
   private handleCheck = () => {
     const { setOptInNewsletter, userEmail } = this.props
     const { checked } = this.state
+
     clearInterval(this.debounceCall as NodeJS.Timeout)
     this.debounceCall = setTimeout(
       () =>
