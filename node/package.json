@@ -7,7 +7,7 @@
     "eslint": "5.x",
     "eslint-config-vtex": "10.x",
     "prettier": "^1.18.2",
-    "typescript": "3.8.3",
+    "typescript": "3.9.7",
     "vtex.address-form": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.6.2/public/_types/react",
     "vtex.country-codes": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.country-codes@2.0.1/public/_types/react",
     "vtex.my-account": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-account@1.15.0/public/@types/vtex.my-account",
