@@ -108,4 +108,5 @@ const enhance = compose<Props, void>(
   })),
   withContentWrapper({ headerConfig, handle: 'addressEdit' })
 )
+
 export default enhance(AddressEdit)

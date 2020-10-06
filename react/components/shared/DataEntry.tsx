@@ -5,6 +5,7 @@ const CSS_HANDLES = ['dataEntryLabel', 'dataEntryChildren'] as const
 
 const DataEntry: FunctionComponent<Props> = ({ label, children }) => {
   const cssHandles = useCssHandles(CSS_HANDLES)
+
   return (
     <>
       <label className={`db c-on-base mb3 ${cssHandles.dataEntryLabel}`}>

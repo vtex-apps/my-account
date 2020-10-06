@@ -37,6 +37,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
     super(props)
 
     let address: Address
+
     if (props.address === undefined) {
       const { runtime, shipsTo, receiverName } = props
 
@@ -47,6 +48,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
       address = props.address
     }
 
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     const { __typename, addressName, ...addressValues } = address
 
     const addressWithValidation = addValidation({
@@ -92,11 +94,13 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
     }
 
     const address = { ...curAddress, ...newAddress }
+
     this.setState({ address })
   }
 
   private hasGeoCoords() {
     const { address } = this.state
+
     return (
       address.geoCoordinates.geolocationAutoCompleted ||
       (Array.isArray(address.geoCoordinates.value) &&
@@ -106,6 +110,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
 
   private hasValidPostalCode() {
     const { address } = this.state
+
     return (
       address.postalCode.geolocationAutoCompleted ?? address.postalCode.valid
     )
@@ -113,6 +118,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
 
   private hasAutoCompletedFields() {
     const { address } = this.state
+
     return AUTO_COMPLETABLE_FIELDS.some(
       fieldName =>
         address?.[fieldName].geolocationAutoCompleted ??
@@ -122,6 +128,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
 
   private translateCountries() {
     const { shipsTo, intl } = this.props
+
     return shipsTo.map(code => ({
       label: intl.formatMessage({ id: `country.${code}` }),
       value: code,
@@ -255,7 +262,12 @@ interface State {
 }
 
 export default compose<Props, OuterProps>(
-  graphql<{}, Result, {}, MappedResult>(STORE_CONFIGS, {
+  graphql<
+    Record<string, unknown>,
+    Result,
+    Record<string, unknown>,
+    MappedResult
+  >(STORE_CONFIGS, {
     props: ({ data }) => ({
       loading: data?.loading ?? false,
       googleMapsApiKey: data?.configs?.googleMapsApiKey,

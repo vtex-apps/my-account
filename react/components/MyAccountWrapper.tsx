@@ -13,6 +13,7 @@ const MyAccountWrapper: FunctionComponent<{ children: ReactElement }> = ({
     if (typeof document === 'undefined') {
       return null
     }
+
     return [
       {
         event: 'pageView',

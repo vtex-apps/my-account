@@ -18,6 +18,7 @@ const useDataPixel = (
       if (!data || isEmpty(data)) {
         return
       }
+
       if (Array.isArray(data)) {
         data.forEach(push)
       } else {

@@ -18,6 +18,7 @@ const CSS_HANDLES = [
 
 const UserInfo: FunctionComponent<Props> = ({ profilePicture, firstName }) => {
   const cssHandles = useCssHandles(CSS_HANDLES)
+
   return (
     <div className={`${cssHandles.userInfo} flex flex-wrap items-end mb7`}>
       <div className={`${cssHandles.userImage} relative mr5 h3 w3`}>
@@ -52,14 +53,17 @@ interface Props {
   loading: boolean
 }
 
-const enhance = compose<Props, {}>(
-  graphql<{}, Result, {}, Props>(GREETING, {
-    props: ({ data }) => ({
-      firstName: data?.profile?.firstName ?? '',
-      profilePicture: data?.profile?.profilePicture ?? undefined,
-      loading: data ? data.loading : false,
-    }),
-  }),
+const enhance = compose<Props, Record<string, unknown>>(
+  graphql<Record<string, unknown>, Result, Record<string, unknown>, Props>(
+    GREETING,
+    {
+      props: ({ data }) => ({
+        firstName: data?.profile?.firstName ?? '',
+        profilePicture: data?.profile?.profilePicture ?? undefined,
+        loading: data ? data.loading : false,
+      }),
+    }
+  ),
   branch<Props>(({ loading }) => loading, renderComponent(Loading))
 )
 
