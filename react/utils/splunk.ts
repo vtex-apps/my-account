@@ -9,6 +9,7 @@ splunkEvents.config({
 
 export function logGeneralErrors(error: unknown, info: unknown) {
   const { account } = window.__RUNTIME__
+
   splunkEvents.logEvent(
     'Critical',
     'Error',

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Fragment, FunctionComponent } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { ExtensionPoint, withRuntimeContext } from 'vtex.render-runtime'
@@ -33,6 +34,7 @@ const ProfileBox: FunctionComponent<Props> = ({
   runtime,
 }) => {
   const cssHandles = useCssHandles(CSS_HANDLES)
+
   if (!profile) return null
 
   return (

@@ -12,6 +12,7 @@ class PasswordValidator extends Component<Props> {
 
   public componentDidUpdate(prevProps: Props) {
     const { password, onValidationChange } = this.props
+
     if (password === prevProps.password) return
 
     const has8chars = password.length >= 8
@@ -25,6 +26,7 @@ class PasswordValidator extends Component<Props> {
       this.state.hasNumber &&
       this.state.hasCaps &&
       this.state.hasLow
+
     this.setState({ has8chars, hasNumber, hasCaps, hasLow })
 
     if (isValid !== wasValid) {

@@ -18,6 +18,7 @@ const ContentBox: FunctionComponent<Props> = ({
   const cssHandles = useCssHandles(CSS_HANDLES)
   const widthClass = maxWidthStep ? `mw${maxWidthStep}-ns` : ''
   const flexClass = shouldAllowGrowing ? 'flex-auto' : 'flex-none'
+
   return (
     <div className={`pb5 pr5-ns ${flexClass} ${widthClass}`}>
       <article

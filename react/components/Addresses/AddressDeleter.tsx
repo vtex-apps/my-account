@@ -12,6 +12,7 @@ class AddressDeleter extends Component<OutterProps & InnerProps> {
 
   private handleDeleteClick = async () => {
     const { addressId, onAddressDeleted, deleteAddress, onError } = this.props
+
     if (this.state.isLoading) return
 
     try {
@@ -26,6 +27,7 @@ class AddressDeleter extends Component<OutterProps & InnerProps> {
 
   public render() {
     const { isLoading } = this.state
+
     return (
       <div className="mt5">
         <Button
@@ -57,6 +59,11 @@ interface InnerProps {
   deleteAddress: (args: Variables<DeleteAddressArgs>) => void
 }
 
-export default graphql<OutterProps, {}, {}, InnerProps>(MUTATION, {
+export default graphql<
+  OutterProps,
+  Record<string, unknown>,
+  Record<string, unknown>,
+  InnerProps
+>(MUTATION, {
   name: 'deleteAddress',
 })(AddressDeleter)

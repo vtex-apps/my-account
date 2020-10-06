@@ -40,6 +40,7 @@ class Addresses extends Component<Props> {
 
   public componentDidMount = () => {
     const { location } = this.props
+
     this.setState({ showToast: location.search.indexOf('success=true') > -1 })
   }
 
@@ -47,7 +48,7 @@ class Addresses extends Component<Props> {
     this.setState({ showToast: false })
   }
 
-  private startEditing = (address: Address) => {
+  private handleStartEditing = (address: Address) => {
     this.props.history.push(`/addresses/edit/${address.addressId}`)
   }
 
@@ -62,7 +63,7 @@ class Addresses extends Component<Props> {
           <AddressBox
             key={address.addressId}
             address={address}
-            onEditClick={() => this.startEditing(address)}
+            onEditClick={() => this.handleStartEditing(address)}
           />
         ))}
 

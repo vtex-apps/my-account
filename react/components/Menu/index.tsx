@@ -16,6 +16,7 @@ const CSS_HANDLES = ['css', 'menu', 'menuLinks', 'menuLink'] as const
 
 function renderLinks(links: Link[], displayMyCards: boolean | null) {
   let linksToDisplay = links
+
   if (displayMyCards === false) {
     linksToDisplay = links.filter(link => link.path !== '/cards')
   }
@@ -101,7 +102,7 @@ interface Props extends InjectedIntlProps {
   cssHandles: CssHandles<typeof CSS_HANDLES>
 }
 
-export default compose<Props, {}>(
+export default compose<Props, Record<string, unknown>>(
   injectIntl,
   withSettings,
   withCssHandles(CSS_HANDLES)

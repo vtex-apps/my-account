@@ -6,6 +6,7 @@ const CSS_HANDLES = ['shimmer'] as const
 
 const UserInfoLoading: FC = () => {
   const cssHandles = useCssHandles(CSS_HANDLES)
+
   return (
     <div className="flex items-end mb7">
       <div className="mr5 relative">

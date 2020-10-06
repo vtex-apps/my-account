@@ -19,6 +19,7 @@ export const withContentWrapper = ({
       handle ? cssHandles[handle] : ''
     }`,
   }
+
   return (
     <ContentWrapper {...configs}>
       {({ handleError }: InjectedContentWrapperProps) => (
