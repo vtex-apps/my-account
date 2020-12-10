@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Route } from 'react-router-dom'
+import { Route } from 'vtex.my-account-commons/Router'
 // Your component pages
 import UserSupport from './components/UserSupport'
 
