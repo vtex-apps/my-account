@@ -9,7 +9,7 @@
     "my-account-portal/routes/my-new-page": {
       "component": "ExtensionRouter"
     },
-    "my-account-portal/menu-links-after/my-orders": {
+    "my-account-portal/menu-links-after/my-new-page": {
       "component": "ExtensionLinks"
     },
     "my-account-portal/profile/display": {
