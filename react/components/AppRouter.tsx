@@ -1,4 +1,4 @@
-import React, { Component, Fragment, ComponentClass } from 'react'
+import React, { Component, Fragment, FC, ComponentClass   } from 'react'
 import Media from 'react-media'
 import {
   Route,
@@ -15,7 +15,14 @@ import AddressCreate from './pages/AddressCreate'
 import AddressEdit from './pages/AddressEdit'
 import Menu from './Menu'
 
-class AppRouter extends Component {
+interface AppRouterProps {
+  blockDocument?: boolean
+}
+
+class AppRouter extends Component<AppRouterProps> {
+  constructor(props: AppRouterProps) {
+    super(props)
+  }
   public state = { defaultPath: '' }
 
   private handleDefaultPath = (defaultPath: string) => {
@@ -39,11 +46,14 @@ class AppRouter extends Component {
 
   public mapRouteComponent = ({
     path,
-    component,
+    component
   }: {
     path: string
-    component: ComponentClass<void, unknown>
-  }) => <Route exact key={path} path={path} component={component} />
+    component: ComponentClass<void, unknown> | FC
+    
+  }) => {
+    return <Route exact key={path} path={path} component={component}/>
+  }
 
   public render() {
     const routes = [
@@ -51,8 +61,10 @@ class AppRouter extends Component {
       { path: '/addresses/new', component: AddressCreate },
       { path: '/addresses/edit/:id', component: AddressEdit },
       { path: '/profile', component: Profile },
-      { path: '/profile/edit', component: ProfileEdit },
+      { path: '/profile/edit', component: ()=><ProfileEdit blockDocument={this.props.blockDocument}/> },
     ]
+
+
 
     return (
       <div className="w-100 mw9 pv7-m pv9-l flex">
@@ -74,7 +86,7 @@ class AppRouter extends Component {
                 ) : (
                   <Fragment>
                     <Menu />
-                    <Switch>
+                    <Switch  >
                       {routes.map(this.mapRouteComponent)}
                       <Redirect exact from="/" to={this.state.defaultPath} />
                       <ExtensionPoint id="my-account-pages" />
