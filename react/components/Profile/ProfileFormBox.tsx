@@ -84,7 +84,7 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
   }
 
   public render() {
-    const { profile, settings, runtime, cssHandles } = this.props
+    const { profile, settings, runtime, cssHandles, blockDocument } = this.props
     const { isLoading } = this.state
     const showGenders = settings?.showGenders
 
@@ -98,6 +98,7 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
               defaultProfile={profile}
               onSubmit={this.handleSubmit}
               shouldShowExtendedGenders={showGenders}
+              blockDocument={blockDocument}
               SubmitButton={
                 <Button type="submit" block size="small" isLoading={isLoading}>
                   <FormattedMessage id="vtex.profile-form@3.x::profile-form.save-changes" />
@@ -131,7 +132,8 @@ interface InnerProps {
 interface OutterProps {
   onDataSave: () => void
   onError: (error: any) => void
-  profile: Profile
+  profile: Profile,
+  blockDocument?: boolean
 }
 
 const enhance = compose<InnerProps & OutterProps, OutterProps>(

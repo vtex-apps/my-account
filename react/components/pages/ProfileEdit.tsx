@@ -22,13 +22,14 @@ class ProfileEdit extends Component<Props> {
   }
 
   public render() {
-    const { profile, handleError } = this.props
+    const { profile, handleError, blockDocument } = this.props
 
     return (
       <ProfileFormBox
         profile={profile}
         onDataSave={this.handleGoBack}
         onError={handleError}
+        blockDocument={blockDocument}
       />
     )
   }
@@ -38,15 +39,18 @@ interface Props extends InjectedContentWrapperProps {
   data: { profile: Profile }
   profile: Profile
   history: any
+  blockDocument?: boolean
 }
 
-const enhance = compose<Props, void>(
+const enhance = compose<Props, { blockDocument?: boolean}>(
   graphql(GET_PROFILE),
   branch<Props>(
     ({ data }) => data.profile == null,
     renderComponent(ProfileEditLoading)
   ),
-  withProps(({ data }: Props) => ({ profile: data.profile })),
+  withProps(({ data, blockDocument }: Props) => {
+    return { profile: data.profile, blockDocument }
+  }),
   withRouter,
   withContentWrapper({ headerConfig, handle: 'profileEdit' })
 )

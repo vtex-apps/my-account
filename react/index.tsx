@@ -5,7 +5,14 @@ import AppRouter from './components/AppRouter'
 import Wrapper from './components/MyAccountWrapper'
 import { logGeneralErrors } from './utils/splunk'
 
-class MyAccount extends Component {
+interface MyAccountProps {
+  blockDocument?: boolean
+}
+
+class MyAccount extends Component<MyAccountProps> {
+  constructor(props: MyAccountProps) {
+    super(props)
+  }
   public componentDidCatch(error: unknown, info: unknown) {
     if (window.__RUNTIME__.workspace === 'master') {
       logGeneralErrors(error, info)
@@ -16,7 +23,7 @@ class MyAccount extends Component {
     return (
       <Wrapper>
         <div className="vtex-account helvetica flex justify-around">
-          <AppRouter />
+          <AppRouter blockDocument={this.props.blockDocument} />
         </div>
       </Wrapper>
     )
