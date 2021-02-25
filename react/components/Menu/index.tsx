@@ -6,7 +6,7 @@ import { compose } from 'recompose'
 import { ExtensionPoint } from 'vtex.render-runtime'
 import { AuthService, AuthState } from 'vtex.react-vtexid'
 import { ModalDialog } from 'vtex.styleguide'
-import { withCssHandles } from 'vtex.css-handles'
+import { withCssHandles, applyModifiers } from 'vtex.css-handles'
 
 import UserInfo from './UserInfo'
 import MenuLink from './MenuLink'
@@ -14,7 +14,7 @@ import { withSettings, Settings } from '../shared/withSettings'
 
 const CSS_HANDLES = ['css', 'menu', 'menuLinks', 'menuLink'] as const
 
-function renderLinks(links: Link[], displayMyCards: boolean | null) {
+function renderLinks(links: Link[], displayMyCards: boolean | null, className: string, classNameActive: string) {
   let linksToDisplay = links
 
   if (displayMyCards === false) {
@@ -22,9 +22,10 @@ function renderLinks(links: Link[], displayMyCards: boolean | null) {
   }
 
   return linksToDisplay.map(({ name, path }) => (
-    <MenuLink path={path} name={name} key={name} />
+    <MenuLink classNameActive={classNameActive} className={className} path={path} name={name} key={name} />
   ))
 }
+
 
 class Menu extends Component<Props, { isModalOpen: boolean }> {
   public state = { isModalOpen: false }
@@ -45,7 +46,7 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
           <ExtensionPoint
             id="my-account-menu"
             render={(links: Link[]) =>
-              renderLinks(links, settings ? settings.showMyCards : false)
+              renderLinks(links, settings ? settings.showMyCards : false, cssHandles.menuLink, applyModifiers(cssHandles.menuLink, 'active'))
             }
           />
           <AuthState skip scope="STORE">

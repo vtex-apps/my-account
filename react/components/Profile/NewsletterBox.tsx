@@ -13,7 +13,7 @@ const CSS_HANDLES = [
   'newsletterBoxContainer',
   'newsletterContainerTitle',
   'newsletterContainerMessage',
-  'passwordBox',
+  'newsletterBox',
 ] as const
 
 const messages = defineMessages({
@@ -83,7 +83,7 @@ class NewsletterBox extends Component<Props, State> {
           >
             {formatMessage(messages.newsletterQuestion)}
           </div>
-          <div className={`${cssHandles.passwordBox} w-100`}>
+          <div className={`${cssHandles.newsletterBox} w-100`}>
             <Checkbox
               checked={checked}
               id="newsletterOptIn"
