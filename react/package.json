@@ -22,7 +22,7 @@
     "@types/react-router-dom": "4.x",
     "@types/recompose": "^0.30.7",
     "@vtex/test-tools": "^0.3.2",
-    "typescript": "3.8.3",
+    "typescript": "3.9.7",
     "vtex.address-form": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@3.12.3/public/_types/react",
     "vtex.country-codes": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.country-codes@1.1.2/public/_types/react",
     "vtex.my-account-commons": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-account-commons@0.11.1/public/@types/vtex.my-account-commons",

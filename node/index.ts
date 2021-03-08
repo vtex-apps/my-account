@@ -1,4 +1,4 @@
-import { Service, IOClients, ServiceContext } from '@vtex/api'
+import { Service, IOClients, ServiceContext, RecorderState } from '@vtex/api'
 
 import settingsResolver from './resolvers/settings'
 
@@ -12,7 +12,7 @@ declare global {
   type Context = ServiceContext
 }
 
-export default new Service<IOClients>({
+export default new Service<IOClients, RecorderState, Context>({
   graphql: {
     resolvers: {
       Query: {

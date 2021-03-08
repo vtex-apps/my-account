@@ -7,7 +7,7 @@
     "eslint": "5.x",
     "eslint-config-vtex": "10.x",
     "prettier": "^1.18.2",
-    "typescript": "3.8.3",
+    "typescript": "3.9.7",
     "vtex.address-form": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@3.12.3/public/_types/react",
     "vtex.country-codes": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.country-codes@1.1.2/public/_types/react",
     "vtex.my-account": "https://profile--storecomponents.myvtex.com/_v/private/typings/linked/v1/vtex.my-account@0.32.2+build1592936717/public/@types/vtex.my-account",
@@ -20,7 +20,7 @@
     "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@8.73.11/public/@types/vtex.styleguide"
   },
   "dependencies": {
-    "@vtex/api": "^3.48.2"
+    "@vtex/api": "6.40.0"
   },
   "version": "0.33.1"
 }
