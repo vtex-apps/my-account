@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **/\_v/myorders/enabled** route.
+
+### Changed
+
+- Tune node server.
+- Node builder to 6.
+
 ## [0.33.1] - 2020-10-06
 
 ### Fixed

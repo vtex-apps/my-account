@@ -1,4 +1,4 @@
-import { Service, IOClients, ServiceContext } from '@vtex/api'
+import { Service, IOClients, ServiceContext, RecorderState } from '@vtex/api'
 
 import settingsResolver from './resolvers/settings'
 
@@ -12,7 +12,7 @@ declare global {
   type Context = ServiceContext
 }
 
-export default new Service<IOClients>({
+export default new Service<IOClients, RecorderState, Context>({
   graphql: {
     resolvers: {
       Query: {
@@ -26,9 +26,13 @@ export default new Service<IOClients>({
   /* This is necessary for sustaining compatibility with the environment `vtexcommerce`.
   It checks if the app is installed or not through this endpoint. DO NOT REMOVE IT! */
   routes: {
+    // 'My Account app is installed in this Store.'
     enabled: (ctx: Context) => {
       ctx.response.status = 204
-      ctx.response.body = 'My Account app is installed in this Store.'
+    },
+    // 'My Orders app is installed in this Store.'
+    enabledMyOrders: (ctx: Context) => {
+      ctx.response.status = 204
     },
   },
 })
