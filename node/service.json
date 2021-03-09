@@ -9,15 +9,5 @@
     "type": "shared",
     "value": 5,
     "scalingPercentage": 50
-  },
-  "routes": {
-    "enabled": {
-      "path": "/_v/account/enabled",
-      "public": true
-    },
-    "enabledMyOrders": {
-      "path": "/_v/myorders/enabled",
-      "public": true
-    }
   }
 }
