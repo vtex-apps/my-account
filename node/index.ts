@@ -32,7 +32,7 @@ export default new Service<IOClients, RecorderState, Context>({
     },
     enabledMyOrders: (ctx: Context) => {
       ctx.response.status = 204
-      ctx.response.body = 'My Account app is installed in this Store.'
+      ctx.response.body = 'My Orders app is installed in this Store.'
     },
   },
 })
