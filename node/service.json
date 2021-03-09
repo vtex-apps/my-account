@@ -5,6 +5,10 @@
     "enabled": {
       "path": "/_v/account/enabled",
       "public": true
+    },
+    "enabledMyOrders": {
+      "path": "/_v/myorders/enabled",
+      "public": true
     }
   }
 }
