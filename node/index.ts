@@ -26,13 +26,13 @@ export default new Service<IOClients, RecorderState, Context>({
   /* This is necessary for sustaining compatibility with the environment `vtexcommerce`.
   It checks if the app is installed or not through this endpoint. DO NOT REMOVE IT! */
   routes: {
+    // 'My Account app is installed in this Store.'
     enabled: (ctx: Context) => {
       ctx.response.status = 204
-      ctx.response.body = 'My Account app is installed in this Store.'
     },
+    // 'My Orders app is installed in this Store.'
     enabledMyOrders: (ctx: Context) => {
       ctx.response.status = 204
-      ctx.response.body = 'My Orders app is installed in this Store.'
     },
   },
 })
