@@ -1,0 +1,13 @@
+{
+  "stack": "nodejs",
+  "memory": 150,
+  "ttl": 60,
+  "timeout": 5,
+  "minReplicas": 2,
+  "maxReplicas": 4,
+  "cpu": {
+    "type": "shared",
+    "value": 5,
+    "scalingPercentage": 50
+  }
+}

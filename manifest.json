@@ -1,7 +1,7 @@
 {
   "name": "my-account",
   "vendor": "vtex",
-  "version": "1.17.1",
+  "version": "1.18.0",
   "title": "My Account",
   "description": "User's my account page.",
   "registries": [
@@ -24,7 +24,7 @@
   "builders": {
     "react": "3.x",
     "store": "0.x",
-    "node": "4.x",
+    "node": "6.x",
     "graphql": "1.x",
     "docs": "0.x",
     "messages": "1.x"
