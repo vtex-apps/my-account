@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Prop `blockDocument` to Enables or disables editing the document field in MyAccount
+- Prop `blockDocument` to Enables or disables editing the document field in My account
 
 ## [1.17.1] - 2020-10-06
 
