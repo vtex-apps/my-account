@@ -5,14 +5,11 @@ import AppRouter from './components/AppRouter'
 import Wrapper from './components/MyAccountWrapper'
 import { logGeneralErrors } from './utils/splunk'
 
-interface MyAccountProps {
+interface Props {
   blockDocument?: boolean
 }
 
-class MyAccount extends Component<MyAccountProps> {
-  constructor(props: MyAccountProps) {
-    super(props)
-  }
+class MyAccount extends Component<Props> {
   public componentDidCatch(error: unknown, info: unknown) {
     if (window.__RUNTIME__.workspace === 'master') {
       logGeneralErrors(error, info)

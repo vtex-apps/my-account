@@ -132,7 +132,7 @@ interface InnerProps {
 interface OutterProps {
   onDataSave: () => void
   onError: (error: any) => void
-  profile: Profile,
+  profile: Profile
   blockDocument?: boolean
 }
 

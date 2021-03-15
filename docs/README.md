@@ -40,6 +40,7 @@ Now, create the file `store/interfaces.json` and define some interfaces:
 ```
 
 If you want to block the editing of the document in the my account form, use the props `blockDocument`
+
 ```json
 "my-account": {
     "props": { "blockDocument": true },
@@ -47,28 +48,30 @@ If you want to block the editing of the document in the my account form, use the
     ]
   }
 ```
-| Prop name              | Type             | Description                                                                                                                                                                                           | Default value     |
-| ---------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| `blockDocument` | `boolean` | Enables or disables editing the document field in my account  | `underfid` |
+
+| Prop name       | Type      | Description                                                 | Default value |
+| --------------- | --------- | ----------------------------------------------------------- | ------------- |
+| `blockDocument` | `boolean` | Enables or disables editing the document field in MyAccount | `undefined`   |
 
 ---
+
 **Usage:** To block the document field, follow these steps:
 
 1. In the index.tsx in /react file, the `blockDocument` property is received from the main store. Pass this property on to AppRouter
 
 ```js
-   <Wrapper>
-        <div className="vtex-account helvetica flex justify-around">
-          <AppRouter blockDocument={this.props.blockDocument} />
-        </div>
-  </Wrapper>
+<Wrapper>
+  <div className="vtex-account helvetica flex justify-around">
+    <AppRouter blockDocument={this.props.blockDocument} />
+  </div>
+</Wrapper>
 ```
 
 2. Pass the property to the `ProfileEdit` component
 
 ```js
    component: ComponentClass<void, unknown> | FC
-    
+
   }) => {
     return <Route exact key={path} path={path} component={component}/>
   }
@@ -81,7 +84,9 @@ If you want to block the editing of the document in the my account form, use the
       { path: '/profile/edit', component: ()=><ProfileEdit blockDocument={this.props.blockDocument}/> },
     ]
 ```
-3. In the `ProfileEdit` component, pass the property to the` ProfileFormBox` component
+
+3. In the `ProfileEdit` component, pass the property to the`ProfileFormBox` component
+
 ```js
   const { profile, handleError, blockDocument } = this.props
     return (
@@ -94,8 +99,9 @@ If you want to block the editing of the document in the my account form, use the
     )
   }
 ```
-4. In the `ProfileFormBox` component, pass the property to the` ProfileContainer` component.
-Just remembering that this component is imported from the **vtex.profile-form** app
+
+4. In the `ProfileFormBox` component, pass the property to the`ProfileContainer` component.
+   Just remembering that this component is imported from the **vtex.profile-form** app
 
 ```js
     <ProfileContainer
@@ -105,6 +111,7 @@ Just remembering that this component is imported from the **vtex.profile-form** 
       blockDocument={blockDocument}
     >
 ```
+
 5. Follow the steps below in the app ** vtex.profile-form **
 
 The names `my-app-link`, `my-app-page`, `MyAppLink` and `MyAppPage` may be whatever it makes more sense for you app.

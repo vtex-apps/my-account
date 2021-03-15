@@ -42,14 +42,14 @@ interface Props extends InjectedContentWrapperProps {
   blockDocument?: boolean
 }
 
-const enhance = compose<Props, { blockDocument?: boolean}>(
+const enhance = compose<Props, { blockDocument?: boolean }>(
   graphql(GET_PROFILE),
   branch<Props>(
     ({ data }) => data.profile == null,
     renderComponent(ProfileEditLoading)
   ),
-  withProps(({ data, blockDocument }: Props) => {
-    return { profile: data.profile, blockDocument }
+  withProps(({ data }: Props) => {
+    return { profile: data.profile }
   }),
   withRouter,
   withContentWrapper({ headerConfig, handle: 'profileEdit' })
