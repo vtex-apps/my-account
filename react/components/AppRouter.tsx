@@ -1,4 +1,4 @@
-import React, { Component, Fragment, ComponentClass } from 'react'
+import React, { Component, Fragment, FC, ComponentClass } from 'react'
 import Media from 'react-media'
 import {
   Route,
@@ -15,7 +15,11 @@ import AddressCreate from './pages/AddressCreate'
 import AddressEdit from './pages/AddressEdit'
 import Menu from './Menu'
 
-class AppRouter extends Component {
+interface Props {
+  blockDocument?: boolean
+}
+
+class AppRouter extends Component<Props> {
   public state = { defaultPath: '' }
 
   private handleDefaultPath = (defaultPath: string) => {
@@ -42,7 +46,7 @@ class AppRouter extends Component {
     component,
   }: {
     path: string
-    component: ComponentClass<void, unknown>
+    component: ComponentClass<void, unknown> | FC
   }) => <Route exact key={path} path={path} component={component} />
 
   public render() {
@@ -51,7 +55,12 @@ class AppRouter extends Component {
       { path: '/addresses/new', component: AddressCreate },
       { path: '/addresses/edit/:id', component: AddressEdit },
       { path: '/profile', component: Profile },
-      { path: '/profile/edit', component: ProfileEdit },
+      {
+        path: '/profile/edit',
+        component: () => (
+          <ProfileEdit blockDocument={this.props.blockDocument} />
+        ),
+      },
     ]
 
     return (

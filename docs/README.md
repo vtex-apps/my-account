@@ -39,6 +39,81 @@ Now, create the file `store/interfaces.json` and define some interfaces:
 }
 ```
 
+If you want to block the editing of the document in the my account form, use the props `blockDocument`
+
+```json
+"my-account": {
+    "props": { "blockDocument": true },
+    "blocks": [
+    ]
+  }
+```
+
+| Prop name       | Type      | Description                                                 | Default value |
+| --------------- | --------- | ----------------------------------------------------------- | ------------- |
+| `blockDocument` | `boolean` | Enables or disables editing the document field in MyAccount | `undefined`   |
+
+---
+
+**Usage:** To block the document field, follow these steps:
+
+1. In the index.tsx in /react file, the `blockDocument` property is received from the main store. Pass this property on to AppRouter
+
+```js
+<Wrapper>
+  <div className="vtex-account helvetica flex justify-around">
+    <AppRouter blockDocument={this.props.blockDocument} />
+  </div>
+</Wrapper>
+```
+
+2. Pass the property to the `ProfileEdit` component
+
+```js
+   component: ComponentClass<void, unknown> | FC
+
+  }) => {
+    return <Route exact key={path} path={path} component={component}/>
+  }
+  public render() {
+    const routes = [
+      { path: '/addresses', component: Addresses },
+      { path: '/addresses/new', component: AddressCreate },
+      { path: '/addresses/edit/:id', component: AddressEdit },
+      { path: '/profile', component: Profile },
+      { path: '/profile/edit', component: ()=><ProfileEdit blockDocument={this.props.blockDocument}/> },
+    ]
+```
+
+3. In the `ProfileEdit` component, pass the property to the`ProfileFormBox` component
+
+```js
+  const { profile, handleError, blockDocument } = this.props
+    return (
+      <ProfileFormBox
+        profile={profile}
+        onDataSave={this.handleGoBack}
+        onError={handleError}
+        blockDocument={blockDocument}
+      />
+    )
+  }
+```
+
+4. In the `ProfileFormBox` component, pass the property to the`ProfileContainer` component.
+   Just remembering that this component is imported from the **vtex.profile-form** app
+
+```js
+    <ProfileContainer
+      defaultProfile={profile}
+      onSubmit={this.handleSubmit}
+      shouldShowExtendedGenders={showGenders}
+      blockDocument={blockDocument}
+    >
+```
+
+5. Follow the steps below in the app ** vtex.profile-form **
+
 The names `my-app-link`, `my-app-page`, `MyAppLink` and `MyAppPage` may be whatever it makes more sense for you app.
 
 Lastly, create a `store/plugins.json` file like so:
