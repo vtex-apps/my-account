@@ -220,6 +220,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
                 <Button
                   onClick={handleSubmit}
                   block
+                  variation="inverted-primary"
                   size="small"
                   isLoading={isLoading}
                   disabled={!hasGeoCoords && !hasValidPostalCode}

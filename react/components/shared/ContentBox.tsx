@@ -32,8 +32,7 @@ const ContentBox: FunctionComponent<Props> = ({
             className={`flex justify-end ph3 pb3 ${cssHandles.boxContainerFooter}`}
           >
             <Button
-              variation="tertiary"
-              size="small"
+              variation="inverted-primary"
               onClick={onLowerButtonClick}
             >
               {lowerButton}
