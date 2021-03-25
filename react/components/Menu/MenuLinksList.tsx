@@ -25,7 +25,7 @@ const messages = defineMessages({
 
 interface RenderLinksOptions {
   showMyCards: boolean | null
-  showMyAuthentication?: boolean | null
+  showMyAuthentication: boolean | null
 }
 
 function renderLinks(links: Link[], { showMyCards, showMyAuthentication }: RenderLinksOptions) {
@@ -56,7 +56,8 @@ class MenuLinksList extends Component<Props> {
   public render() {
     const { intl, settings } = this.props
     const {
-      showMyCards = false
+      showMyCards = false,
+      showMyAuthentication = false,
     } = settings || {}
 
     const defaultLinks = [
@@ -75,14 +76,14 @@ class MenuLinksList extends Component<Props> {
         <ExtensionPoint
           id="menu-links-before"
           render={(links: Link[]) =>
-            renderLinks(links, { showMyCards })
+            renderLinks(links, { showMyCards, showMyAuthentication })
           }
         />
-        {renderLinks(defaultLinks, { showMyCards })}
+        {renderLinks(defaultLinks, { showMyCards, showMyAuthentication })}
         <ExtensionPoint
           id="menu-links-after"
           render={(links: Link[]) =>
-            renderLinks(links, { showMyCards })
+            renderLinks(links, { showMyCards, showMyAuthentication })
           }
         />
         <AuthService.RedirectLogout returnUrl="/">
