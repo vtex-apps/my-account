@@ -46,6 +46,9 @@ class MenuLinksList extends Component<Props> {
 
   public render() {
     const { intl, settings } = this.props
+    const {
+      showMyCards = false
+    } = settings || {}
 
     const defaultLinks = [
       {
@@ -63,14 +66,14 @@ class MenuLinksList extends Component<Props> {
         <ExtensionPoint
           id="menu-links-before"
           render={(links: Link[]) =>
-            renderLinks(links, settings ? settings.showMyCards : false)
+            renderLinks(links, showMyCards)
           }
         />
-        {renderLinks(defaultLinks, settings ? settings.showMyCards : false)}
+        {renderLinks(defaultLinks, showMyCards)}
         <ExtensionPoint
           id="menu-links-after"
           render={(links: Link[]) =>
-            renderLinks(links, settings ? settings.showMyCards : false)
+            renderLinks(links, showMyCards)
           }
         />
         <AuthService.RedirectLogout returnUrl="/">
