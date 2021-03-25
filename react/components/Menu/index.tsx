@@ -45,7 +45,8 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
   public render() {
     const { cssHandles, intl, settings } = this.props
     const {
-      showMyCards = false
+      showMyCards = false,
+      showMyAuthentication = false,
     } = settings || {}
 
     return (
@@ -57,7 +58,7 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
           <ExtensionPoint
             id="my-account-menu"
             render={(links: Link[]) =>
-              renderLinks(links, { showMyCards })
+              renderLinks(links, { showMyCards, showMyAuthentication })
             }
           />
           <AuthState skip scope="STORE">
