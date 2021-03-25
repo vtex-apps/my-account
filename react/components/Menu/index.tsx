@@ -14,12 +14,21 @@ import { withSettings, Settings } from '../shared/withSettings'
 
 const CSS_HANDLES = ['css', 'menu', 'menuLinks', 'menuLink'] as const
 
-function renderLinks(links: Link[], displayMyCards: boolean | null) {
-  let linksToDisplay = links
+interface RenderLinksOptions {
+  showMyCards: boolean | null
+  showMyAuthentication?: boolean | null
+}
 
-  if (displayMyCards === false) {
-    linksToDisplay = links.filter(link => link.path !== '/cards')
-  }
+function renderLinks(links: Link[], { showMyCards, showMyAuthentication }: RenderLinksOptions) {
+  const linksToDisplay = links.filter(link => {
+    if (showMyCards === false && link.path === '/cards') {
+      return false
+    }
+    if (showMyAuthentication === false && link.path === '/authentication') {
+      return false
+    }
+    return true
+  })
 
   return linksToDisplay.map(({ name, path }) => (
     <MenuLink path={path} name={name} key={name} />
@@ -48,7 +57,7 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
           <ExtensionPoint
             id="my-account-menu"
             render={(links: Link[]) =>
-              renderLinks(links, showMyCards)
+              renderLinks(links, { showMyCards })
             }
           />
           <AuthState skip scope="STORE">
