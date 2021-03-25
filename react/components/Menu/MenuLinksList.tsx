@@ -23,12 +23,21 @@ const messages = defineMessages({
   cancel: { id: 'logoutModal.cancel', defaultMessage: '' },
 })
 
-function renderLinks(links: Link[], displayMyCards: boolean | null) {
-  let linksToDisplay = links
+interface RenderLinksOptions {
+  showMyCards: boolean | null
+  showMyAuthentication?: boolean | null
+}
 
-  if (displayMyCards === false) {
-    linksToDisplay = links.filter(link => link.path !== '/cards')
-  }
+function renderLinks(links: Link[], { showMyCards, showMyAuthentication }: RenderLinksOptions) {
+  const linksToDisplay = links.filter(link => {
+    if (showMyCards === false && link.path === '/cards') {
+      return false
+    }
+    if (showMyAuthentication === false && link.path === '/authentication') {
+      return false
+    }
+    return true
+  })
 
   return linksToDisplay.map(({ name, path }) => (
     <MenuLink path={path} name={name} key={name} />
@@ -66,14 +75,14 @@ class MenuLinksList extends Component<Props> {
         <ExtensionPoint
           id="menu-links-before"
           render={(links: Link[]) =>
-            renderLinks(links, showMyCards)
+            renderLinks(links, { showMyCards })
           }
         />
-        {renderLinks(defaultLinks, showMyCards)}
+        {renderLinks(defaultLinks, { showMyCards })}
         <ExtensionPoint
           id="menu-links-after"
           render={(links: Link[]) =>
-            renderLinks(links, showMyCards)
+            renderLinks(links, { showMyCards })
           }
         />
         <AuthService.RedirectLogout returnUrl="/">
