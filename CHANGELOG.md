@@ -7,12 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [1.19.0] - 2021-03-17
+### Fixed
 
+- Geolocation field cleaning condition.
+
+## [1.19.0] - 2021-03-17
 
 ### Added
 
-- Prop `blockDocument` to Enables or disables editing the document field in My account
+- Prop `blockDocument` to Enables or disables editing the document field in My account.
 
 ## [1.18.0] - 2021-03-10
 
