@@ -85,7 +85,9 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
     if (
       this.props.useGeolocation &&
       newAddress.addressQuery &&
-      !AUTO_COMPLETABLE_FIELDS.some(field => newAddress[field]?.geolocationAutoCompleted)
+      !AUTO_COMPLETABLE_FIELDS.some(
+        field => newAddress[field]?.geolocationAutoCompleted
+      )
     ) {
       AUTO_COMPLETABLE_FIELDS.forEach(field => {
         newAddress[field].value = null
