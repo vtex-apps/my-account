@@ -15,7 +15,7 @@ async function settings(_: unknown, __: unknown, ctx: ServiceContext) {
     useMap: result.addresses && result.addresses.useMap,
     showGenders: result.profile && result.profile.showGenders,
     showMyCards: result.cards && result.cards.showMyCards,
-    showMyAuthentication: result.authentication && result.authentication.showMyAuthentication,
+    showMyAuthentication: (result.authentication && result.authentication.showMyAuthentication) || false,
   }
 }
 
