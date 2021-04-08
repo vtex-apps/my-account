@@ -7,4 +7,5 @@ type AppSettings {
   useMap: Boolean
   showGenders: Boolean
   showMyCards: Boolean
+  showMyAuthentication: Boolean
 }

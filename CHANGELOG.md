@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **authentication.showMyAuthentication** app setting.
+
 ## [1.19.1] - 2021-04-07
 
 ### Fixed
