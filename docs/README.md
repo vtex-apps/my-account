@@ -302,7 +302,7 @@ You can see these features in action by running `vtex link` on the `my-account-e
 
 | APP              | URL                                                        | Description                                                                   |
 | ---------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| vtex.my-cards        | [v0](https://github.com/vtex/my-cards)              | Responsible for displaying the user's cards.                                            |
+| vtex.my-cards        | [v0](https://github.com/vtex/my-cards)              | Responsible for the CRUD the user's cards.                                            |
 | vtex.my-orders-app | [v2](https://github.com/vtex/my-orders)      | Responsible for the My Orders page. All things since the listing until the cancellation of an order are handled by this app.     |
 | Styleguide       | [v8](https://github.com/vtex/styleguide)                   | The VTEX Design System and React component library.                           |
 | AddressForm      | [v3](https://github.com/vtex/address-form)                 | Used to render and validate the user's addresses. |
