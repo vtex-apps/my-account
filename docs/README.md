@@ -1,6 +1,7 @@
+
 # MyAccount - Portal version
 
-> Notice: React: 2.x | Pages: 0.x
+> Notice that we use the following IO builders: React: 2.x | Pages: 0.x
 
 [Store v2](https://github.com/vtex-apps/my-account/tree/1.x 'StoreV2 version')
 
@@ -8,7 +9,7 @@
 
 MyAccount is a canonical app built in all VTEX stores. This app serves as a hub of apps, meaning that it is the entry point for all apps that want to be available for the store's customers.
 
-The app is responsible for handling customer's personal data such as: profile info, passwords, addresses, orders and credit cards. Orders and credit cards are responsibilities of other two apps that come per default with the MyAccount, respectively, these apps are: `vtex.my-orders-app` and `vtex.my-cards`.
+The app is responsible for handling customer's personal data such as: profile info, passwords, addresses, orders and credit cards. Orders and credit cards are responsibilities of other two apps that come per default with the MyAccount, respectively, these apps are: `vtex.my-orders-app` and `vtex.my-cards`. Also, the `vtex.react-vtexid` app is used to execute authentication related tasks, such as logging the user out.
 
 ## Features
 
@@ -296,6 +297,21 @@ class FavColor extends Component {
 ### Example
 
 You can see these features in action by running `vtex link` on the `my-account-extension-example` folder.
+
+## Dependencies
+
+| APP              | URL                                                        | Description                                                                   |
+| ---------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| vtex.my-cards        | [v0](https://github.com/vtex/my-cards)              | Responsible for displaying the user's cards.                                            |
+| vtex.my-orders-app | [v2](https://github.com/vtex/my-orders)      | Responsible for the My Orders page. All things since the listing until the cancellation of an order are handled by this app.     |
+| Styleguide       | [v8](https://github.com/vtex/styleguide)                   | The VTEX Design System and React component library.                           |
+| AddressForm      | [v3](https://github.com/vtex/address-form)                 | Used to render and validate the user's addresses. |
+| vtex.store-graphql     | [v1](https://github.com/vtex-apps/store-graphql)                | Queries and mutations related to the profile personal data and addresses.                      |
+| vtex.country-codes   | [v1](https://github.com/vtex/country-codes)             | Logic related to country codes translations and utilities.    |
+| vtex.profile-form     | [v2](https://github.com/vtex/profile-form)           | Provides components and validations to forms that handle profile information.            |
+| vtex.react-vtexid        | [v0](https://github.com/gtw-vtex/new-card-ui)              | Form used to capture the credit card data.                                    |
+| Render           | [v7](https://github.com/vtex-apps/render-runtime/tree/7.x) | The VTEX Render framework runtime.                                            |
+
 
 ## Author
 
