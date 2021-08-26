@@ -1,4 +1,5 @@
-import React, { FC } from 'react'
+import type { FC } from 'react';
+import React from 'react'
 import { SkeletonPiece } from 'vtex.my-account-commons'
 import { useCssHandles } from 'vtex.css-handles'
 

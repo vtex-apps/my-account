@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-globals */
-import { useMemo, FunctionComponent, ReactElement } from 'react'
+import type { FunctionComponent, ReactElement } from 'react';
+import { useMemo } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 
 import useDataPixel from '../hooks/useDataPixel'

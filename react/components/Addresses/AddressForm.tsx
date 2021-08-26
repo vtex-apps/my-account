@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl'
+import type { InjectedIntlProps } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl'
 import { compose, branch, renderComponent } from 'recompose'
 import { graphql } from 'react-apollo'
 import {
@@ -18,7 +19,8 @@ import { addValidation } from 'vtex.address-form/helpers'
 import { StyleguideInput, GeolocationInput } from 'vtex.address-form/inputs'
 import { withRuntimeContext } from 'vtex.render-runtime'
 
-import STORE_CONFIGS, { Result } from '../../graphql/storeConfigs.gql'
+import type { Result } from '../../graphql/storeConfigs.gql';
+import STORE_CONFIGS from '../../graphql/storeConfigs.gql'
 import Loading from '../loaders/FormContent'
 import getEmptyAddress from './emptyAddress'
 

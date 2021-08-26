@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react'
+import type { FunctionComponent } from 'react';
+import React from 'react'
 import { BaseLoading } from 'vtex.my-account-commons'
 
 import { headerConfig } from '../pages/ProfileEdit'
