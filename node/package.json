@@ -23,7 +23,7 @@
     "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.138.0/public/@types/vtex.styleguide"
   },
   "dependencies": {
-    "@vtex/api": "6.41.0"
+    "@vtex/api": "6.45.0"
   },
   "version": "1.20.0"
 }

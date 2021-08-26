@@ -118,7 +118,10 @@ const enhance = compose<Props, void>(
     renderComponent(AddressCreateLoading)
   ),
   graphql(SAVE_ADDRESS, { name: 'saveAddress' }),
-  withContentWrapper({ headerConfig, handle: 'addressCreate' }),
+  withContentWrapper({
+    headerConfig,
+    handle: { configHandle: 'addressCreate', contentHandle: '' },
+  }),
   withRouter
 )
 

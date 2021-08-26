@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.20.1] - 2021-08-26
+
+### Added
+
+- CSS handle for `New Address` button
+
 ## [1.20.0] - 2021-04-08
 
 ### Added

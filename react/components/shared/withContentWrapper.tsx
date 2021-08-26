@@ -7,16 +7,20 @@ export const withContentWrapper = ({
   handle,
 }: {
   headerConfig: ContentWrapperProps
-  handle?: string
+  handle?: { contentHandle: string; configHandle: string }
 }) => (
   WrappedComponent: ComponentType<InjectedContentWrapperProps>
   // eslint-disable-next-line react/display-name
 ) => (props: { [key: string]: unknown }) => {
-  const cssHandles = useCssHandles([handle] as const)
+  const cssHandles = useCssHandles([
+    handle?.configHandle,
+    handle?.contentHandle,
+  ] as const)
   const configs = {
     ...headerConfig,
+    headerContent: headerConfig?.headerContent?.(handle?.contentHandle),
     namespace: `${headerConfig.namespace ?? ''} ${
-      handle ? cssHandles[handle] : ''
+      handle ? cssHandles[handle.configHandle] : ''
     }`,
   }
 

@@ -95,7 +95,7 @@ declare global {
       titleId: string
       path: string
     }
-    headerContent?: JSX.Element
+    headerContent?: (handle: any) => JSX.Element
   }
 
   interface Profile {
