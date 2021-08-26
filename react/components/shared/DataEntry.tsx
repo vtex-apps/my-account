@@ -1,4 +1,5 @@
-import React, { FunctionComponent } from 'react'
+import type { FunctionComponent } from 'react';
+import React from 'react'
 import { useCssHandles } from 'vtex.css-handles'
 
 const CSS_HANDLES = ['dataEntryLabel', 'dataEntryChildren'] as const

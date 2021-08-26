@@ -1,5 +1,6 @@
-import { FunctionComponent } from 'react'
-import { InjectedIntlProps, injectIntl } from 'react-intl'
+import type { FunctionComponent } from 'react'
+import type { InjectedIntlProps} from 'react-intl';
+import { injectIntl } from 'react-intl'
 
 const MyAddressesLink: FunctionComponent<Props> = ({ render, intl }) => {
   return render([

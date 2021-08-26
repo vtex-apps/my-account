@@ -1,20 +1,24 @@
 import React, { Component } from 'react'
-import { graphql, MutationResult, DataValue } from 'react-apollo'
+import type { MutationResult, DataValue } from 'react-apollo';
+import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent } from 'recompose'
 import queryString from 'query-string'
-import { withRouter, RouteComponentProps } from 'vtex.my-account-commons/Router'
+import type { RouteComponentProps } from 'vtex.my-account-commons/Router';
+import { withRouter } from 'vtex.my-account-commons/Router'
 
 import { withContentWrapper } from '../shared/withContentWrapper'
 import AddressCreateLoading from '../loaders/AddressCreateLoading'
 import AddressForm from '../Addresses/AddressForm'
 import ContentBox from '../shared/ContentBox'
-import SAVE_ADDRESS, {
+import type {
   Args,
   Result as SaveAddressResult,
-} from '../../graphql/saveAddress.gql'
-import CREATE_ADDRESS_INFO, {
+} from '../../graphql/saveAddress.gql';
+import SAVE_ADDRESS from '../../graphql/saveAddress.gql'
+import type {
   Result as CustomerInfo,
-} from '../../graphql/customerGreeting.gql'
+} from '../../graphql/customerGreeting.gql';
+import CREATE_ADDRESS_INFO from '../../graphql/customerGreeting.gql'
 
 export const headerConfig = {
   titleId: 'vtex.store-messages@0.x::pages.addressCreate',

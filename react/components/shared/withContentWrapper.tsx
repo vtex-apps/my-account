@@ -1,4 +1,5 @@
-import React, { ComponentType } from 'react'
+import type { ComponentType } from 'react';
+import React from 'react'
 import { ContentWrapper } from 'vtex.my-account-commons'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -16,6 +17,7 @@ export const withContentWrapper = ({
     handle?.configHandle,
     handle?.contentHandle,
   ] as const)
+
   const configs = {
     ...headerConfig,
     headerContent: headerConfig?.headerContent?.(handle?.contentHandle),

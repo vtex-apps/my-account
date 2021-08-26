@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { Component, Fragment } from 'react'
-import { injectIntl, FormattedMessage, InjectedIntlProps } from 'react-intl'
+import type { InjectedIntlProps } from 'react-intl';
+import { injectIntl, FormattedMessage } from 'react-intl'
 import { compose } from 'recompose'
 import { ExtensionPoint } from 'vtex.render-runtime'
 import { AuthService, AuthState } from 'vtex.react-vtexid'
@@ -10,7 +11,8 @@ import { withCssHandles } from 'vtex.css-handles'
 
 import UserInfo from './UserInfo'
 import MenuLink from './MenuLink'
-import { withSettings, Settings } from '../shared/withSettings'
+import type { Settings } from '../shared/withSettings';
+import { withSettings } from '../shared/withSettings'
 
 const CSS_HANDLES = ['css', 'menu', 'menuLinks', 'menuLink'] as const
 
@@ -27,9 +29,11 @@ function renderLinks(
     if (showMyCards === false && link.path === '/cards') {
       return false
     }
+
     if (showMyAuthentication === false && link.path === '/authentication') {
       return false
     }
+
     return true
   })
 

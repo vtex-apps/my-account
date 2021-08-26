@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { defineMessages, InjectedIntlProps, injectIntl } from 'react-intl'
+import type { InjectedIntlProps} from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
 import { Checkbox } from 'vtex.styleguide'

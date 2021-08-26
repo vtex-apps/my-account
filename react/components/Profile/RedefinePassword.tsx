@@ -1,5 +1,7 @@
-import React, { FunctionComponent } from 'react'
-import { injectIntl, defineMessages, InjectedIntlProps } from 'react-intl'
+import type { FunctionComponent } from 'react';
+import React from 'react'
+import type { InjectedIntlProps } from 'react-intl';
+import { injectIntl, defineMessages } from 'react-intl'
 import { AuthState } from 'vtex.react-vtexid'
 import { InputPassword } from 'vtex.styleguide'
 

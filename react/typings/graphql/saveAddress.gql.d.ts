@@ -1,6 +1,7 @@
 declare module '*/saveAddress.gql' {
-  import { DocumentNode } from 'graphql'
-  import { MutationSaveAddressArgs as Args, Address } from 'vtex.store-graphql'
+  import type { DocumentNode } from 'graphql'
+  import type { Address } from 'vtex.store-graphql';
+import { MutationSaveAddressArgs as Args } from 'vtex.store-graphql'
 
   interface Result {
     saveAddress: Pick<Address, 'id' | 'cacheId'>

@@ -1,6 +1,6 @@
 declare module '*/customerGreeting.gql' {
-  import { DocumentNode } from 'graphql'
-  import { Profile } from 'vtex.store-graphql'
+  import type { DocumentNode } from 'graphql'
+  import type { Profile } from 'vtex.store-graphql'
 
   export interface Result {
     profile: Pick<
