@@ -106,7 +106,10 @@ const enhance = compose<Props, void>(
     addresses: data.profile.addresses,
     addressId: match.params.id,
   })),
-  withContentWrapper({ headerConfig, handle: 'addressEdit' })
+  withContentWrapper({
+    headerConfig,
+    handle: { contentHandle: '', configHandle: 'addressEdit' },
+  })
 )
 
 export default enhance(AddressEdit)
