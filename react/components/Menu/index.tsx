@@ -19,7 +19,10 @@ interface RenderLinksOptions {
   showMyAuthentication?: boolean | null
 }
 
-function renderLinks(links: Link[], { showMyCards, showMyAuthentication }: RenderLinksOptions) {
+function renderLinks(
+  links: Link[],
+  { showMyCards, showMyAuthentication }: RenderLinksOptions
+) {
   const linksToDisplay = links.filter(link => {
     if (showMyCards === false && link.path === '/cards') {
       return false
@@ -44,10 +47,7 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
 
   public render() {
     const { cssHandles, intl, settings } = this.props
-    const {
-      showMyCards = false,
-      showMyAuthentication = false,
-    } = settings || {}
+    const { showMyCards = false, showMyAuthentication = false } = settings || {}
 
     return (
       <aside
