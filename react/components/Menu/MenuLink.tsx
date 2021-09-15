@@ -1,11 +1,7 @@
-import type { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react'
 import React from 'react'
-import type {
-  RouteComponentProps} from 'vtex.my-account-commons/Router';
-import {
-  Link,
-  withRouter
-} from 'vtex.my-account-commons/Router'
+import type { RouteComponentProps } from 'vtex.my-account-commons/Router'
+import { Link, withRouter } from 'vtex.my-account-commons/Router'
 
 const MenuLink: FunctionComponent<Props> = ({ path, name, location }) => {
   return (

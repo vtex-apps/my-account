@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import type { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react'
 import React, { Fragment } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { ExtensionPoint, withRuntimeContext } from 'vtex.render-runtime'

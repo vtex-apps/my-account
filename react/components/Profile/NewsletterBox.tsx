@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import type { InjectedIntlProps} from 'react-intl';
+import type { InjectedIntlProps } from 'react-intl'
 import { defineMessages, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { compose } from 'recompose'

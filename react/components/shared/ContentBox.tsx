@@ -1,4 +1,4 @@
-import type { FunctionComponent, ReactElement } from 'react';
+import type { FunctionComponent, ReactElement } from 'react'
 import React from 'react'
 import { Button } from 'vtex.styleguide'
 import { useCssHandles } from 'vtex.css-handles'

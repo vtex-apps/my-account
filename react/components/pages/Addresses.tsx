@@ -26,7 +26,7 @@ export const headerConfig = {
     )
   },
 }
-console.log(headerConfig)
+
 function EmptyAddresses() {
   const title = (
     <FormattedMessage id="vtex.store-messages@0.x::addresses.notFound" />

@@ -1,4 +1,4 @@
-import type { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react'
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { AddressSummary, AddressRules } from 'vtex.address-form'

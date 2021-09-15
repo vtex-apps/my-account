@@ -1,4 +1,4 @@
-import type { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react'
 import React from 'react'
 import { injectIntl } from 'react-intl'
 import { AuthService } from 'vtex.react-vtexid'

@@ -1,4 +1,4 @@
-import type { FC, ComponentClass } from 'react';
+import type { FC, ComponentClass } from 'react'
 import React, { Component, Fragment } from 'react'
 import Media from 'react-media'
 import {

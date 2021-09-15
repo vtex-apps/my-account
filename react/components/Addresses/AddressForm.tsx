@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import type { InjectedIntlProps } from 'react-intl';
+import type { InjectedIntlProps } from 'react-intl'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { compose, branch, renderComponent } from 'recompose'
 import { graphql } from 'react-apollo'
@@ -19,7 +19,7 @@ import { addValidation } from 'vtex.address-form/helpers'
 import { StyleguideInput, GeolocationInput } from 'vtex.address-form/inputs'
 import { withRuntimeContext } from 'vtex.render-runtime'
 
-import type { Result } from '../../graphql/storeConfigs.gql';
+import type { Result } from '../../graphql/storeConfigs.gql'
 import STORE_CONFIGS from '../../graphql/storeConfigs.gql'
 import Loading from '../loaders/FormContent'
 import getEmptyAddress from './emptyAddress'
@@ -141,13 +141,8 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
 
   public render() {
     const { address } = this.state
-    const {
-      intl,
-      submitLabelId,
-      isLoading,
-      googleMapsApiKey,
-      useGeolocation,
-    } = this.props
+    const { intl, submitLabelId, isLoading, googleMapsApiKey, useGeolocation } =
+      this.props
 
     const shipCountries = this.translateCountries()
     const hasGeoCoords = this.hasGeoCoords()

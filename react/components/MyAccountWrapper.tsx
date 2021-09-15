@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import type { FunctionComponent, ReactElement } from 'react';
+import type { FunctionComponent, ReactElement } from 'react'
 import { useMemo } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 

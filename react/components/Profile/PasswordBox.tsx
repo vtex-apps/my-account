@@ -1,12 +1,7 @@
-import type { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react'
 import React from 'react'
-import type {
-  InjectedIntlProps} from 'react-intl';
-import {
-  injectIntl,
-  FormattedMessage,
-  defineMessages,
-} from 'react-intl'
+import type { InjectedIntlProps } from 'react-intl'
+import { injectIntl, FormattedMessage, defineMessages } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 
 import ContentBox from '../shared/ContentBox'

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import type { MutationResult, DataValue } from 'react-apollo';
+import type { MutationResult, DataValue } from 'react-apollo'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent } from 'recompose'
 import queryString from 'query-string'
-import type { RouteComponentProps } from 'vtex.my-account-commons/Router';
+import type { RouteComponentProps } from 'vtex.my-account-commons/Router'
 import { withRouter } from 'vtex.my-account-commons/Router'
 
 import { withContentWrapper } from '../shared/withContentWrapper'
@@ -13,11 +13,9 @@ import ContentBox from '../shared/ContentBox'
 import type {
   Args,
   Result as SaveAddressResult,
-} from '../../graphql/saveAddress.gql';
+} from '../../graphql/saveAddress.gql'
 import SAVE_ADDRESS from '../../graphql/saveAddress.gql'
-import type {
-  Result as CustomerInfo,
-} from '../../graphql/customerGreeting.gql';
+import type { Result as CustomerInfo } from '../../graphql/customerGreeting.gql'
 import CREATE_ADDRESS_INFO from '../../graphql/customerGreeting.gql'
 
 export const headerConfig = {

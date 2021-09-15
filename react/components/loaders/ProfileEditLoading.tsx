@@ -1,4 +1,4 @@
-import type { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react'
 import React from 'react'
 import { BaseLoading } from 'vtex.my-account-commons'
 

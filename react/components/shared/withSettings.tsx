@@ -1,4 +1,4 @@
-import type { ComponentType } from 'react';
+import type { ComponentType } from 'react'
 import React from 'react'
 import { Query } from 'react-apollo'
 

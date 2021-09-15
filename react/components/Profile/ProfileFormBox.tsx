@@ -9,7 +9,7 @@ import { withCssHandles } from 'vtex.css-handles'
 
 import ContentBox from '../shared/ContentBox'
 import UpdateProfile from '../../graphql/updateProfile.gql'
-import type { Settings } from '../shared/withSettings';
+import type { Settings } from '../shared/withSettings'
 import { withSettings } from '../shared/withSettings'
 
 const CSS_HANDLES = ['profileFormBoxContainer'] as const
