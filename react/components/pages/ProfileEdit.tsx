@@ -52,7 +52,10 @@ const enhance = compose<Props, { blockDocument?: boolean }>(
     return { profile: data.profile }
   }),
   withRouter,
-  withContentWrapper({ headerConfig, handle: 'profileEdit' })
+  withContentWrapper({
+    headerConfig,
+    handle: { configHandle: 'profileEdit', contentHandle: '' },
+  })
 )
 
 export default enhance(ProfileEdit)

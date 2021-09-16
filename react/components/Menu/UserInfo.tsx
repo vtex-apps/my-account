@@ -1,10 +1,12 @@
-import React, { FunctionComponent } from 'react'
+import type { FunctionComponent } from 'react'
+import React from 'react'
 import { graphql } from 'react-apollo'
 import { compose, branch, renderComponent } from 'recompose'
 import { FormattedMessage } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 
-import GREETING, { Result } from '../../graphql/customerGreeting.gql'
+import type { Result } from '../../graphql/customerGreeting.gql'
+import GREETING from '../../graphql/customerGreeting.gql'
 import Loading from './UserInfoLoading'
 import PictureRenderer from './ProfilePicture/PictureRenderer'
 

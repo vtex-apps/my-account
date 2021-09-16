@@ -1,17 +1,14 @@
 /* eslint-disable no-restricted-globals */
 import React, { Component, Fragment } from 'react'
-import {
-  InjectedIntlProps,
-  injectIntl,
-  FormattedMessage,
-  defineMessages,
-} from 'react-intl'
+import type { InjectedIntlProps } from 'react-intl'
+import { injectIntl, FormattedMessage, defineMessages } from 'react-intl'
 import { compose } from 'recompose'
 import { Button, InputPassword, Input } from 'vtex.styleguide'
 import { AuthState, AuthService } from 'vtex.react-vtexid'
 import { GenericError } from 'vtex.my-account-commons'
 import { withRuntimeContext } from 'vtex.render-runtime'
-import { withPixel, PixelData } from 'vtex.pixel-manager/PixelContext'
+import type { PixelData } from 'vtex.pixel-manager/PixelContext'
+import { withPixel } from 'vtex.pixel-manager/PixelContext'
 import { withCssHandles } from 'vtex.css-handles'
 
 import ContentBox from '../shared/ContentBox'
@@ -132,13 +129,8 @@ class PasswordFormBox extends Component<Props, State> {
       onPasswordChange,
     } = this.props
 
-    const {
-      currentPassword,
-      newPassword,
-      newPasswordValid,
-      isLoading,
-      error,
-    } = this.state
+    const { currentPassword, newPassword, newPasswordValid, isLoading, error } =
+      this.state
 
     const shouldEnableSubmit =
       (currentPassword || !passwordLastUpdate) && newPasswordValid

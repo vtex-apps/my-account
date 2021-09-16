@@ -1,5 +1,5 @@
 declare module '*/storeConfigs.gql' {
-  import { DocumentNode } from 'graphql'
+  import type { DocumentNode } from 'graphql'
 
   export interface Result {
     configs: {

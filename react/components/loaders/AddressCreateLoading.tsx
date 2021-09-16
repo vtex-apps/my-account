@@ -1,6 +1,7 @@
-import React, { FunctionComponent } from 'react'
+import type { FunctionComponent } from 'react'
+import React from 'react'
 import { BaseLoading } from 'vtex.my-account-commons'
-import { DataValue } from 'react-apollo'
+import type { DataValue } from 'react-apollo'
 
 import { headerConfig } from '../pages/AddressCreate'
 import FormLoader from './FormLoader'

@@ -107,7 +107,10 @@ const enhance = compose<Props, void>(
     ({ data }) => data.profile == null,
     renderComponent(ProfileLoading)
   ),
-  withContentWrapper({ headerConfig, handle: 'profile' }),
+  withContentWrapper({
+    headerConfig,
+    handle: { configHandle: 'profile', contentHandle: '' },
+  }),
   withProps(({ data }: Props) => ({ profile: data.profile })),
   withRouter
 )

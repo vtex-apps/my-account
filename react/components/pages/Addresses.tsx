@@ -16,13 +16,15 @@ const CSS_HANDLES = ['addressBox'] as const
 
 export const headerConfig = {
   titleId: 'vtex.store-messages@0.x::pages.addresses',
-  headerContent: (
-    <Link to="/addresses/new">
-      <Button variation="primary" block size="small">
-        <FormattedMessage id="vtex.store-messages@0.x::addresses.addAddress" />
-      </Button>
-    </Link>
-  ),
+  headerContent(handle: any) {
+    return (
+      <Link className={handle} to="/addresses/new">
+        <Button variation="primary" block size="small">
+          <FormattedMessage id="vtex.store-messages@0.x::addresses.addAddress" />
+        </Button>
+      </Link>
+    )
+  },
 }
 
 function EmptyAddresses() {
@@ -98,7 +100,10 @@ const enhance = compose<Props, void>(
     ({ data }: { data: Data }) => data.loading,
     renderComponent(AddressesLoading)
   ),
-  withContentWrapper({ headerConfig, handle: 'addressList' }),
+  withContentWrapper({
+    headerConfig,
+    handle: { configHandle: 'addressList', contentHandle: 'newAddressButton' },
+  }),
   branch(
     ({ data }: { data: { profile: { addresses: Address[] } } }) =>
       data.profile == null || data.profile.addresses.length === 0,
