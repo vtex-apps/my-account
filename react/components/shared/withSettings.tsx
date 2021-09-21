@@ -22,6 +22,6 @@ export function withSettings(
 export interface Settings {
   showGenders: boolean
   showMyCards: boolean | null
-  showMyAuthentication: boolean | null
+  hideMyAuthentication: boolean | null
   useMap: boolean
 }
