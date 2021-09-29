@@ -25,15 +25,15 @@ const messages = defineMessages({
 
 interface RenderLinksOptions {
   showMyCards: boolean | null
-  showMyAuthentication: boolean | null
+  hideMyAuthentication: boolean | null
 }
 
-function renderLinks(links: Link[], { showMyCards, showMyAuthentication }: RenderLinksOptions) {
+function renderLinks(links: Link[], { showMyCards, hideMyAuthentication }: RenderLinksOptions) {
   const linksToDisplay = links.filter(link => {
     if (showMyCards === false && link.path === '/cards') {
       return false
     }
-    if (showMyAuthentication === false && link.path === '/authentication') {
+    if (hideMyAuthentication === true && link.path === '/authentication') {
       return false
     }
     return true
@@ -57,7 +57,7 @@ class MenuLinksList extends Component<Props> {
     const { intl, settings } = this.props
     const {
       showMyCards = false,
-      showMyAuthentication = false,
+      hideMyAuthentication = false,
     } = settings || {}
 
     const defaultLinks = [
@@ -76,14 +76,14 @@ class MenuLinksList extends Component<Props> {
         <ExtensionPoint
           id="menu-links-before"
           render={(links: Link[]) =>
-            renderLinks(links, { showMyCards, showMyAuthentication })
+            renderLinks(links, { showMyCards, hideMyAuthentication })
           }
         />
-        {renderLinks(defaultLinks, { showMyCards, showMyAuthentication })}
+        {renderLinks(defaultLinks, { showMyCards, hideMyAuthentication })}
         <ExtensionPoint
           id="menu-links-after"
           render={(links: Link[]) =>
-            renderLinks(links, { showMyCards, showMyAuthentication })
+            renderLinks(links, { showMyCards, hideMyAuthentication })
           }
         />
         <AuthService.RedirectLogout returnUrl="/">

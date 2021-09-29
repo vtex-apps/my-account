@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Removed
+
+- **authentication.showMyAuthentication** app setting.
+
+### Added
+
+- **authentication.hideMyAuthentication** app setting (hidden from UI).
+
 ## [0.36.0] - 2021-08-26
 
 ### Added
