@@ -108,7 +108,6 @@ declare global {
     corporateDocument: string
     stateRegistration: string
     isCorporate: string
-    passwordLastUpdate?: string
     customFields?: CustomFields[]
   }
 
