@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Removed
+
+- All unused messages from project
+- **authentication.hideMyAuthentication** app setting
+- "Redefine Password" feature from "Profile" tab
+
 ## [0.37.0] - 2021-09-29
 
 ### Removed
