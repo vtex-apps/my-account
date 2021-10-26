@@ -4,7 +4,6 @@ query MyAccountSettings {
     showGenders
     showMyCards
     showMyOrders
-    hideMyAuthentication
     useMap
   }
 }
