@@ -59,7 +59,7 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
     const {
       showMyCards = false,
       showMyOrders = false,
-      hideMyAuthentication = false
+      hideMyAuthentication = false,
     } = settings || {}
 
     return (
@@ -74,7 +74,7 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
               renderLinks(links, {
                 showMyCards,
                 showMyOrders,
-                hideMyAuthentication
+                hideMyAuthentication,
               })
             }
           />
