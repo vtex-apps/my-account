@@ -17,7 +17,6 @@
     "vtex.my-orders-app": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-orders-app@3.13.1/public/@types/vtex.my-orders-app",
     "vtex.pixel-manager": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.pixel-manager@1.7.0/public/@types/vtex.pixel-manager",
     "vtex.profile-form": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.profile-form@3.5.1/public/@types/vtex.profile-form",
-    "vtex.react-vtexid": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.react-vtexid@4.44.2/public/_types/react",
     "vtex.store-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.139.1/public/@types/vtex.store-graphql",
     "vtex.store-messages": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-messages@0.3.2/public/_types/react",
     "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.138.0/public/@types/vtex.styleguide"

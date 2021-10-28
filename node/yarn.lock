@@ -2118,10 +2118,6 @@ vary@^1.1.2:
   version "3.5.1"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.profile-form@3.5.1/public/@types/vtex.profile-form#1f8ff9d2bc39422731ad2a6a5c9054a1d0264ee4"
 
-"vtex.react-vtexid@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.react-vtexid@4.44.2/public/_types/react":
-  version "0.0.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.react-vtexid@4.44.2/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
-
 "vtex.store-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.139.1/public/@types/vtex.store-graphql":
   version "2.139.1"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.139.1/public/@types/vtex.store-graphql#d22e5c587ca917149430e5fce733a04f7a40aa33"
