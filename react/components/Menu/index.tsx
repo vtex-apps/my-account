@@ -56,7 +56,11 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
 
   public render() {
     const { cssHandles, intl, settings } = this.props
-    const { showMyCards = false, showMyOrders = false, hideMyAuthentication = false } = settings || {}
+    const {
+      showMyCards = false,
+      showMyOrders = false,
+      hideMyAuthentication = false
+    } = settings || {}
 
     return (
       <aside
@@ -67,7 +71,11 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
           <ExtensionPoint
             id="my-account-menu"
             render={(links: Link[]) =>
-              renderLinks(links, { showMyCards, showMyOrders, hideMyAuthentication })
+              renderLinks(links, {
+                showMyCards,
+                showMyOrders,
+                hideMyAuthentication
+              })
             }
           />
           <AuthState skip scope="STORE">
