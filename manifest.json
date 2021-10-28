@@ -57,6 +57,17 @@
             "default": true
           }
         }
+      },
+      "orders": {
+        "type": "object",
+        "title": "Orders",
+        "properties": {
+          "showMyOrders": {
+            "type": "boolean",
+            "title": "Visible",
+            "default": true
+          }
+        }
       }
     }
   },
