@@ -3,6 +3,7 @@ query MyAccountSettings {
     cacheId
     showGenders
     showMyCards
+    showMyOrders
     hideMyAuthentication
     useMap
   }

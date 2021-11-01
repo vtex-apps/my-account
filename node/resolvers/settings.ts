@@ -15,6 +15,7 @@ async function settings(_: unknown, __: unknown, ctx: ServiceContext) {
     useMap: result.addresses && result.addresses.useMap,
     showGenders: result.profile && result.profile.showGenders,
     showMyCards: result.cards && result.cards.showMyCards,
+    showMyOrders: result.orders && result.orders.showMyOrders,
     hideMyAuthentication: (result.authentication && result.authentication.hideMyAuthentication) || false,
   }
 }
@@ -23,6 +24,7 @@ interface Settings {
   addresses?: { useMap: boolean }
   profile?: { showGenders: boolean }
   cards?: { showMyCards: boolean }
+  orders?: { showMyOrders: boolean }
   authentication?: { hideMyAuthentication: boolean }
 }
 

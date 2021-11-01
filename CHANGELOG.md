@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **orders.showMyOrders** app setting.
+
 ## [1.22.0] - 2021-09-29
 
 ### Removed

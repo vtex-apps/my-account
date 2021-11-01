@@ -18,15 +18,20 @@ const CSS_HANDLES = ['css', 'menu', 'menuLinks', 'menuLink'] as const
 
 interface RenderLinksOptions {
   showMyCards: boolean | null
+  showMyOrders: boolean | null
   hideMyAuthentication?: boolean | null
 }
 
 function renderLinks(
   links: Link[],
-  { showMyCards, hideMyAuthentication }: RenderLinksOptions
+  { showMyCards, showMyOrders, hideMyAuthentication }: RenderLinksOptions
 ) {
   const linksToDisplay = links.filter(link => {
     if (showMyCards === false && link.path === '/cards') {
+      return false
+    }
+
+    if (showMyOrders === false && link.path === '/orders') {
       return false
     }
 
@@ -51,7 +56,11 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
 
   public render() {
     const { cssHandles, intl, settings } = this.props
-    const { showMyCards = false, hideMyAuthentication = false } = settings || {}
+    const {
+      showMyCards = false,
+      showMyOrders = false,
+      hideMyAuthentication = false,
+    } = settings || {}
 
     return (
       <aside
@@ -62,7 +71,11 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
           <ExtensionPoint
             id="my-account-menu"
             render={(links: Link[]) =>
-              renderLinks(links, { showMyCards, hideMyAuthentication })
+              renderLinks(links, {
+                showMyCards,
+                showMyOrders,
+                hideMyAuthentication,
+              })
             }
           />
           <AuthState skip scope="STORE">
