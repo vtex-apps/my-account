@@ -8,5 +8,4 @@ type AppSettings {
   showGenders: Boolean
   showMyCards: Boolean
   showMyOrders: Boolean
-  hideMyAuthentication: Boolean
 }
