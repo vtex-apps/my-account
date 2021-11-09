@@ -25,19 +25,12 @@ const messages = defineMessages({
 
 interface RenderLinksOptions {
   showMyCards: boolean | null
-  hideMyAuthentication: boolean | null
 }
 
-function renderLinks(links: Link[], { showMyCards, hideMyAuthentication }: RenderLinksOptions) {
-  const linksToDisplay = links.filter(link => {
-    if (showMyCards === false && link.path === '/cards') {
-      return false
-    }
-    if (hideMyAuthentication === true && link.path === '/authentication') {
-      return false
-    }
-    return true
-  })
+function renderLinks(links: Link[], { showMyCards }: RenderLinksOptions) {
+  const linksToDisplay = links.filter(
+    link => showMyCards !== false || link.path !== '/cards'
+  )
 
   return linksToDisplay.map(({ name, path }) => (
     <MenuLink path={path} name={name} key={name} />
@@ -55,10 +48,7 @@ class MenuLinksList extends Component<Props> {
 
   public render() {
     const { intl, settings } = this.props
-    const {
-      showMyCards = false,
-      hideMyAuthentication = false,
-    } = settings || {}
+    const { showMyCards = false } = settings || {}
 
     const defaultLinks = [
       {
@@ -75,16 +65,12 @@ class MenuLinksList extends Component<Props> {
       <nav className="vtex-account__menu-links">
         <ExtensionPoint
           id="menu-links-before"
-          render={(links: Link[]) =>
-            renderLinks(links, { showMyCards, hideMyAuthentication })
-          }
+          render={(links: Link[]) => renderLinks(links, { showMyCards })}
         />
-        {renderLinks(defaultLinks, { showMyCards, hideMyAuthentication })}
+        {renderLinks(defaultLinks, { showMyCards })}
         <ExtensionPoint
           id="menu-links-after"
-          render={(links: Link[]) =>
-            renderLinks(links, { showMyCards, hideMyAuthentication })
-          }
+          render={(links: Link[]) => renderLinks(links, { showMyCards })}
         />
         <AuthService.RedirectLogout returnUrl="/">
           {({ action: logout }: any) => (

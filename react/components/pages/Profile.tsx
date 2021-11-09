@@ -2,13 +2,10 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'vtex.my-account-commons/Router'
 import { compose, branch, renderComponent, withProps } from 'recompose'
-import { AuthState } from 'vtex.react-vtexid'
 
 import { withContentWrapper } from '../shared/withContentWrapper'
 import ProfileLoading from '../loaders/ProfileLoading'
 import ProfileBox from '../Profile/ProfileBox'
-import PasswordBox from '../Profile/PasswordBox'
-import PasswordFormBox from '../Profile/PasswordFormBox'
 import Toast from '../shared/Toast'
 import GET_PROFILE from '../../graphql/getProfile.gql'
 import NewsletterBox from '../Profile/NewsletterBox'
@@ -21,7 +18,6 @@ export const headerConfig = {
 
 class ProfileContainer extends Component<Props> {
   public state = {
-    isEditingPassword: false,
     showToast: false,
   }
 
@@ -39,19 +35,9 @@ class ProfileContainer extends Component<Props> {
     this.props.history.push('/profile/edit')
   }
 
-  private handleEditingPassword = () => {
-    this.setState({ isEditingPassword: true })
-  }
-
-  private handleFinishEditingPassword = () => {
-    this.setState({ isEditingPassword: false, showToast: true }, () =>
-      this.props.data.refetch()
-    )
-  }
-
   public render() {
     const { profile } = this.props
-    const { isEditingPassword, showToast } = this.state
+    const { showToast } = this.state
 
     return (
       <main className="flex flex-column-s flex-row-ns">
@@ -59,26 +45,6 @@ class ProfileContainer extends Component<Props> {
           <ProfileBox profile={profile} onEditClick={this.handleGoToEdit} />
         </div>
         <div className="w-40-ns w-100-s">
-          {isEditingPassword ? (
-            <AuthState email={profile.email}>
-              <AuthState.Token>
-                {({ value, setValue }: any) => (
-                  <PasswordFormBox
-                    email={profile.email}
-                    passwordLastUpdate={profile.passwordLastUpdate}
-                    onPasswordChange={this.handleFinishEditingPassword}
-                    currentToken={value}
-                    setToken={setValue}
-                  />
-                )}
-              </AuthState.Token>
-            </AuthState>
-          ) : (
-            <PasswordBox
-              passwordLastUpdate={profile.passwordLastUpdate}
-              onEditClick={this.handleEditingPassword}
-            />
-          )}
           <NewsletterBox userEmail={profile.email} />
         </div>
         {showToast && (
@@ -95,7 +61,6 @@ interface Props {
   profile: Profile
   data: {
     profile: Profile
-    refetch: () => void
   }
 }
 
