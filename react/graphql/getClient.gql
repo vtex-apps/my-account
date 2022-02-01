@@ -1,0 +1,9 @@
+query GET_CLIENTS($where: String) {
+  documents(acronym: "CL", fields: "firstName,document,email", where: $where) {
+    id
+    fields {
+      key
+      value
+    }
+  }
+}

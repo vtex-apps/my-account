@@ -18,6 +18,8 @@ import Menu from './Menu'
 
 interface Props {
   blockDocument?: boolean
+  validateUniqueDocument?: boolean
+  cleanMaskDocument?: boolean
 }
 
 class AppRouter extends Component<Props> {
@@ -59,7 +61,7 @@ class AppRouter extends Component<Props> {
       {
         path: '/profile/edit',
         component: () => (
-          <ProfileEdit blockDocument={this.props.blockDocument} />
+          <ProfileEdit blockDocument={this.props.blockDocument} validateUniqueDocument={this.props.validateUniqueDocument} cleanMaskDocument={this.props.cleanMaskDocument} />
         ),
       },
     ]

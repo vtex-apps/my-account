@@ -7,6 +7,8 @@ import { logGeneralErrors } from './utils/splunk'
 
 interface Props {
   blockDocument?: boolean
+  validateUniqueDocument?: boolean
+  cleanMaskDocument?: boolean
 }
 
 class MyAccount extends Component<Props> {
@@ -20,7 +22,7 @@ class MyAccount extends Component<Props> {
     return (
       <Wrapper>
         <div className="vtex-account helvetica flex justify-around">
-          <AppRouter blockDocument={this.props.blockDocument} />
+          <AppRouter blockDocument={this.props.blockDocument} validateUniqueDocument={this.props.validateUniqueDocument} cleanMaskDocument={this.props.cleanMaskDocument} />
         </div>
       </Wrapper>
     )

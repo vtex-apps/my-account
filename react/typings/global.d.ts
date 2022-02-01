@@ -144,6 +144,20 @@ declare global {
       orderListRendered?: boolean
     }
   }
+
+  interface DocumentsResponse {
+    documents: DocumentsResponseData[]
+  }
+
+  interface DocumentsResponseData {
+    fields: DocumentsResponseDataFields[]
+    id: string
+  }
+
+  interface DocumentsResponseDataFields {
+    key: string
+    value: string
+  }
 }
 
 export {}

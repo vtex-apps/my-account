@@ -1,16 +1,10 @@
 import React, { Component } from 'react'
-import { FormattedMessage } from 'react-intl'
-import { graphql } from 'react-apollo'
 import { compose } from 'recompose'
-import { ExtensionPoint, withRuntimeContext } from 'vtex.render-runtime'
-import { ProfileRules, ProfileContainer } from 'vtex.profile-form'
-import { Button } from 'vtex.styleguide'
+import { withRuntimeContext } from 'vtex.render-runtime'
 import { withCssHandles } from 'vtex.css-handles'
-
-import ContentBox from '../shared/ContentBox'
-import UpdateProfile from '../../graphql/updateProfile.gql'
 import type { Settings } from '../shared/withSettings'
 import { withSettings } from '../shared/withSettings'
+import ProfileFormContainer from './ProfileFormContainer'
 
 const CSS_HANDLES = ['profileFormBoxContainer'] as const
 
@@ -30,7 +24,6 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
 
   public componentDidMount() {
     this.registerValidator(this.validate)
-    this.registerSubmitter(this.submit)
   }
 
   private setStateAsync(state: any) {
@@ -51,6 +44,7 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
     const { onDataSave, onError } = this.props
 
     await this.setStateAsync({ isLoading: true, valid, profile })
+
     try {
       const validation$ = this.validatorFunctions.map(validator => validator())
       const validationResults = await Promise.all(validation$)
@@ -70,6 +64,7 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
       this.setState({ isLoading: false })
       onDataSave()
     } catch (error) {
+      this.setState({ isLoading: false })
       onError(error)
     }
   }
@@ -78,43 +73,27 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
     return this.state.valid
   }
 
-  private submit = (profile: ProfileInput) => {
-    const { updateProfile } = this.props
-
-    return updateProfile({ variables: { profile } })
-  }
-
   public render() {
-    const { profile, settings, runtime, cssHandles, blockDocument } = this.props
+    const { profile, settings, runtime, cssHandles, blockDocument, cleanMaskDocument, validateUniqueDocument } = this.props
     const { isLoading } = this.state
     const showGenders = settings?.showGenders
 
     if (!profile) return null
 
     return (
-      <div className={cssHandles.profileFormBoxContainer}>
-        <ContentBox shouldAllowGrowing maxWidthStep={6}>
-          <ProfileRules country={runtime.culture.country} shouldUseIOFetching>
-            <ProfileContainer
-              defaultProfile={profile}
-              onSubmit={this.handleSubmit}
-              shouldShowExtendedGenders={showGenders}
-              blockDocument={blockDocument}
-              SubmitButton={
-                <Button type="submit" block size="small" isLoading={isLoading}>
-                  <FormattedMessage id="vtex.profile-form@3.x::profile-form.save-changes" />
-                </Button>
-              }
-            >
-              <ExtensionPoint
-                id="profile-input-container"
-                registerValidator={this.registerValidator}
-                registerSubmitter={this.registerSubmitter}
-              />
-            </ProfileContainer>
-          </ProfileRules>
-        </ContentBox>
-      </div>
+          <ProfileFormContainer
+            profile={profile}
+            showGenders={showGenders}
+            blockDocument={blockDocument}
+            validateUniqueDocument={validateUniqueDocument}
+            cleanMaskDocument={cleanMaskDocument}
+            registerValidator={this.registerValidator}
+            registerSubmitter={this.registerSubmitter}
+            isLoading={isLoading}
+            handleSubmit={this.handleSubmit}
+            runtime={runtime}
+            cssHandles={cssHandles}
+          />
     )
   }
 }
@@ -127,7 +106,6 @@ interface State {
 interface InnerProps {
   settings?: Settings
   runtime: Runtime
-  updateProfile: (args: Variables<UpdateProfileArgs>) => void
   cssHandles: CssHandles<typeof CSS_HANDLES>
 }
 interface OutterProps {
@@ -135,10 +113,11 @@ interface OutterProps {
   onError: (error: any) => void
   profile: Profile
   blockDocument?: boolean
+  validateUniqueDocument?: boolean
+  cleanMaskDocument?: boolean
 }
 
 const enhance = compose<InnerProps & OutterProps, OutterProps>(
-  graphql(UpdateProfile, { name: 'updateProfile' }),
   withRuntimeContext,
   withSettings,
   withCssHandles(CSS_HANDLES)

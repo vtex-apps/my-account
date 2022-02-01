@@ -1,5 +1,5 @@
-mutation UpdateProfile($profile: ProfileInput) {
-  updateProfile(fields: $profile) {
+mutation UpdateProfile($newProfile: ProfileInput) {
+  updateProfile(fields: $newProfile) {
     cacheId
     firstName
     lastName
