@@ -48,7 +48,7 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
   }
 
   private handleSubmit = async ({ valid, profile }: any) => {
-    const { onDataSave, onError } = this.props
+    const { onDataSave, onError, customErrorMessage } = this.props
 
     await this.setStateAsync({ isLoading: true, valid, profile })
     try {
@@ -70,7 +70,8 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
       this.setState({ isLoading: false })
       onDataSave()
     } catch (error) {
-      onError(error)
+      console.log(error)
+      onError(customErrorMessage)
     }
   }
 
@@ -132,9 +133,10 @@ interface InnerProps {
 }
 interface OutterProps {
   onDataSave: () => void
-  onError: (error: any) => void
+  onError: (customErrorMessage?: string) => void
   profile: Profile
   blockDocument?: boolean
+  customErrorMessage?: string
 }
 
 const enhance = compose<InnerProps & OutterProps, OutterProps>(
