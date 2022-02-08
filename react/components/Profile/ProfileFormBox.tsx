@@ -70,7 +70,8 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
       this.setState({ isLoading: false })
       onDataSave()
     } catch (error) {
-      console.log(error)
+      console.error(error)
+      this.setState({ isLoading: false })
       onError(customErrorMessage)
     }
   }
@@ -137,6 +138,7 @@ interface OutterProps {
   profile: Profile
   blockDocument?: boolean
   customErrorMessage?: string
+  removeMaskDocument: boolean
 }
 
 const enhance = compose<InnerProps & OutterProps, OutterProps>(

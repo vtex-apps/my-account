@@ -22,7 +22,7 @@ class ProfileEdit extends Component<Props> {
   }
 
   public render() {
-    const { profile, handleError, blockDocument, customErrorMessage } = this.props
+    const { profile, handleError, blockDocument, customErrorMessage, removeMaskDocument } = this.props
 
     return (
       <ProfileFormBox
@@ -31,6 +31,7 @@ class ProfileEdit extends Component<Props> {
         onError={handleError}
         blockDocument={blockDocument}
         customErrorMessage={customErrorMessage}
+        removeMaskDocument={removeMaskDocument}
       />
     )
   }
@@ -42,9 +43,10 @@ interface Props extends InjectedContentWrapperProps {
   history: any
   blockDocument?: boolean
   customErrorMessage?: string
+  removeMaskDocument: boolean
 }
 
-const enhance = compose<Props, { blockDocument?: boolean, customErrorMessage?: string }>(
+const enhance = compose<Props, { blockDocument?: boolean, customErrorMessage?: string, removeMaskDocument: boolean }>(
   graphql(GET_PROFILE),
   branch<Props>(
     ({ data }) => data.profile == null,
