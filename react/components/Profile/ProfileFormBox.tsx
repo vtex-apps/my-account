@@ -81,7 +81,10 @@ class ProfileFormBox extends Component<InnerProps & OutterProps, State> {
   }
 
   private submit = (profile: ProfileInput) => {
-    const { updateProfile } = this.props
+    const { updateProfile, removeMaskDocument } = this.props
+
+    if (removeMaskDocument && profile?.document)
+      profile.document = profile.document.replace(/\D/g, '')
 
     return updateProfile({ variables: { profile } })
   }
