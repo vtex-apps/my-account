@@ -82,6 +82,8 @@ declare global {
     culture: {
       country: string
     }
+    query: Record<string, string> | undefined
+    rootPath: string | undefined
   }
 
   interface InjectedContentWrapperProps {

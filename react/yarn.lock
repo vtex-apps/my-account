@@ -4712,10 +4712,6 @@ verror@1.10.0:
   version "3.5.1"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.profile-form@3.5.1/public/@types/vtex.profile-form#1f8ff9d2bc39422731ad2a6a5c9054a1d0264ee4"
 
-"vtex.react-vtexid@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.react-vtexid@4.44.2/public/_types/react":
-  version "0.0.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.react-vtexid@4.44.2/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
-
 "vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.128.2/public/@types/vtex.render-runtime":
   version "8.128.2"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.128.2/public/@types/vtex.render-runtime#67f5975f7edd73c9afa7bee57734540c0ead5428"
