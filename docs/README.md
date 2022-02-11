@@ -38,6 +38,36 @@ Now, create the file `store/interfaces.json` and define some interfaces:
   }
 }
 ```
+If you want to change the default alert message in MyAccount, use prop `customErrorMessage`
+
+```json
+"my-account": {
+    "props": { "customErrorMessage": "My custom error message" },
+    "blocks": [
+    ]
+  }
+```
+
+| Prop name       | Type      | Description                                                 | Default value |
+| --------------- | --------- | ----------------------------------------------------------- | ------------- |
+| `customErrorMessage` | `string` | Change the default generic error message in MyAccount | `undefined`   |
+
+---
+If you want to remove the mask from the document when saving the document in MyAccount, use prop `removeMaskDocument`
+
+```json
+"my-account": {
+    "props": { "removeMaskDocument": true },
+    "blocks": [
+    ]
+  }
+```
+
+| Prop name       | Type      | Description                                                 | Default value |
+| --------------- | --------- | ----------------------------------------------------------- | ------------- |
+| `removeMaskDocument` | `boolean` | Remove mask in document field in MyAccount | `undefined`   |
+
+---
 
 If you want to block the editing of the document in the my account form, use the props `blockDocument`
 
