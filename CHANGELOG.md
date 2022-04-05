@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- "store" domain to my-account-extension-example messages (#258)
+
 ## [1.25.0] - 2022-02-10
 
 ### Removed
