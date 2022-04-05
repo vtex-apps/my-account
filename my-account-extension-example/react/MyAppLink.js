@@ -4,7 +4,7 @@ import { intlShape, injectIntl } from 'react-intl'
 const MyAppLink = ({ render, intl }) => {
   return render([
     {
-      name: intl.formatMessage({ id: 'userSupport.link' }),
+      name: intl.formatMessage({ id: 'store/userSupport.link' }),
       path: '/support',
     },
   ])
