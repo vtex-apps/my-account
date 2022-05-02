@@ -16,11 +16,15 @@ async function settings(_: unknown, __: unknown, ctx: ServiceContext) {
     showGenders: result.profile && result.profile.showGenders,
     showMyCards: result.cards && result.cards.showMyCards,
     showMyOrders: result.orders && result.orders.showMyOrders,
+    showMyAddresses: result.addresses && result.addresses.showMyAddresses,
   }
 }
 
 interface Settings {
-  addresses?: { useMap: boolean }
+  addresses?: {
+    useMap: boolean
+    showMyAddresses: boolean
+  }
   profile?: { showGenders: boolean }
   cards?: { showMyCards: boolean }
   orders?: { showMyOrders: boolean }

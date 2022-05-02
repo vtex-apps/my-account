@@ -4,6 +4,7 @@ query MyAccountSettings {
     showGenders
     showMyCards
     showMyOrders
+    showMyAddresses
     useMap
   }
 }

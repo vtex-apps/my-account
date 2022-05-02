@@ -19,11 +19,12 @@ const CSS_HANDLES = ['css', 'menu', 'menuLinks', 'menuLink'] as const
 interface RenderLinksOptions {
   showMyCards: boolean | null
   showMyOrders: boolean | null
+  showMyAddresses: boolean | null
 }
 
 function renderLinks(
   links: Link[],
-  { showMyCards, showMyOrders }: RenderLinksOptions
+  { showMyCards, showMyOrders, showMyAddresses }: RenderLinksOptions
 ) {
   const linksToDisplay = links.filter(link => {
     if (showMyCards === false && link.path === '/cards') {
@@ -31,6 +32,10 @@ function renderLinks(
     }
 
     if (showMyOrders === false && link.path === '/orders') {
+      return false
+    }
+
+    if (showMyAddresses === false && link.path === '/addresses') {
       return false
     }
 
@@ -51,7 +56,7 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
 
   public render() {
     const { cssHandles, intl, settings, runtime } = this.props
-    const { showMyCards = false, showMyOrders = false } = settings || {}
+    const { showMyCards = false, showMyOrders = false, showMyAddresses = false } = settings || {}
 
     return (
       <aside
@@ -65,6 +70,7 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
               renderLinks(links, {
                 showMyCards,
                 showMyOrders,
+                showMyAddresses,
               })
             }
           />

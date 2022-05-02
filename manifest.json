@@ -67,6 +67,17 @@
             "default": true
           }
         }
+      },
+      "addresses": {
+        "type": "object",
+        "title": "Addresses",
+        "properties": {
+          "showMyAddresses": {
+            "type": "boolean",
+            "title": "Visible",
+            "default": true
+          }
+        }
       }
     }
   },

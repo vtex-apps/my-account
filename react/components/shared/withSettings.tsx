@@ -24,5 +24,6 @@ export interface Settings {
   showGenders: boolean
   showMyCards: boolean | null
   showMyOrders: boolean | null
+  showMyAddresses: boolean | null
   useMap: boolean
 }
