@@ -56,7 +56,11 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
 
   public render() {
     const { cssHandles, intl, settings, runtime } = this.props
-    const { showMyCards = false, showMyOrders = false, showMyAddresses = false } = settings || {}
+    const {
+      showMyCards = false,
+      showMyOrders = false,
+      showMyAddresses = false,
+    } = settings || {}
 
     return (
       <aside

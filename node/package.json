@@ -22,7 +22,8 @@
     "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.138.0/public/@types/vtex.styleguide"
   },
   "dependencies": {
-    "@vtex/api": "6.45.12"
+    "@vtex/api": "6.45.12",
+    "jwt-decode": "^3.1.2"
   },
   "version": "1.26.0"
 }

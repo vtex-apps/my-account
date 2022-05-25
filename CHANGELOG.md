@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **getProcurator** query.
+- The Buyer Organization's procurator info to the ProfileBox when dealing with B2B case.
+
 ## [1.26.0] - 2022-05-02
 
 ## [1.25.0] - 2022-02-10
