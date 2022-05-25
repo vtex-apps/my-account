@@ -1,0 +1,5 @@
+type ProcuratorDataEntity {
+  name: String
+  procurator_email: String
+  procurator_id: String
+}

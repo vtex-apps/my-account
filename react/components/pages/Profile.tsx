@@ -7,7 +7,7 @@ import { withContentWrapper } from '../shared/withContentWrapper'
 import ProfileLoading from '../loaders/ProfileLoading'
 import ProfileBox from '../Profile/ProfileBox'
 import Toast from '../shared/Toast'
-import GET_PROFILE from '../../graphql/getProfile.gql'
+import GET_B2BPROFILE from '../../graphql/getB2bProfile.gql'
 import NewsletterBox from '../Profile/NewsletterBox'
 
 export const headerConfig = {
@@ -35,13 +35,13 @@ class ProfileContainer extends Component<Props> {
   }
 
   public render() {
-    const { profile } = this.props
+    const { profile, procurator } = this.props
     const { showToast } = this.state
 
     return (
       <main className="flex flex-column-s flex-row-ns">
         <div className="w-60-ns w-100-s">
-          <ProfileBox profile={profile} onEditClick={this.handleGoToEdit} />
+          <ProfileBox profile={profile} onEditClick={this.handleGoToEdit} procurator={procurator} />
         </div>
         <div className="w-40-ns w-100-s">
           <NewsletterBox userEmail={profile.email} />
@@ -61,13 +61,15 @@ interface Props {
   location: any
   history: any
   profile: Profile
+  procurator: ProcuratorData
   data: {
     profile: Profile
+    getProcuratorData: ProcuratorData
   }
 }
 
 const enhance = compose<Props, void>(
-  graphql(GET_PROFILE),
+  graphql(GET_B2BPROFILE),
   branch<Props>(
     ({ data }) => data.profile == null,
     renderComponent(ProfileLoading)
@@ -76,7 +78,7 @@ const enhance = compose<Props, void>(
     headerConfig,
     handle: { configHandle: 'profile', contentHandle: '' },
   }),
-  withProps(({ data }: Props) => ({ profile: data.profile })),
+  withProps(({ data }: Props) => ({ profile: data.profile, procurator: data.getProcuratorData })),
   withRouter
 )
 

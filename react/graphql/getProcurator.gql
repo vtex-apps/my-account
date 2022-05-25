@@ -1,0 +1,7 @@
+query Procurator @context(scope: "private") {
+  getProcuratorData {
+    procurator_email
+    procurator_id
+    name
+  }
+}

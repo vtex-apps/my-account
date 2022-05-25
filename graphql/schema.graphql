@@ -1,5 +1,6 @@
 type Query {
   appSettings: AppSettings
+  getProcuratorData: ProcuratorDataEntity
 }
 
 type AppSettings {

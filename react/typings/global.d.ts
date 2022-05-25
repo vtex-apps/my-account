@@ -117,6 +117,12 @@ declare global {
     customFields?: CustomFields[]
   }
 
+  interface ProcuratorData {
+    name: string
+    procurator_id: string
+    procurator_email: string
+  }
+
   interface CustomFields {
     key: string
     value: string

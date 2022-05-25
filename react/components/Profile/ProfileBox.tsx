@@ -32,11 +32,23 @@ const CSS_HANDLES = [
 const ProfileBox: FunctionComponent<Props> = ({
   profile,
   onEditClick,
+  procurator,
   runtime,
 }) => {
   const cssHandles = useCssHandles(CSS_HANDLES)
 
   if (!profile) return null
+
+  let compoundProfile = null
+
+  if (procurator) {
+
+    const fullName = procurator.name.split(' ')
+    const procuratorFirstName = fullName[0]
+    const procuratorLastName = fullName.length > 1 ? fullName[fullName.length - 1] : ''
+
+    compoundProfile = {...profile, firstName: procuratorFirstName, lastName: procuratorLastName, email: procurator.procurator_email}
+  }
 
   return (
     <div className={cssHandles.profileBoxContainer}>
@@ -48,7 +60,7 @@ const ProfileBox: FunctionComponent<Props> = ({
         onLowerButtonClick={onEditClick}
       >
         <ProfileRules country={runtime.culture.country} shouldUseIOFetching>
-          <ProfileSummary profile={profile}>
+          <ProfileSummary profile={procurator ? compoundProfile : profile}>
             {({
               personalData: {
                 firstName,
@@ -90,34 +102,38 @@ const ProfileBox: FunctionComponent<Props> = ({
                 <div className={`mb8 ${cssHandles.emailContainer}`}>
                   <DataEntry label={email.label}>{email.value}</DataEntry>
                 </div>
-                <div
-                  className={`flex-ns flex-wrap ${cssHandles.genderContainer}`}
-                >
-                  {document?.label && (
-                    <div
-                      className={`mb8 flex-auto ${cssHandles.documentsSubContainer}`}
-                    >
-                      <DataEntry label={document.label}>
-                        {document.value}
-                      </DataEntry>
-                    </div>
-                  )}
+                {!procurator && (
                   <div
-                    className={`mb8 w-50-ns ${cssHandles.genderSubContainer}`}
+                    className={`flex-ns flex-wrap ${cssHandles.genderContainer}`}
                   >
-                    <DataEntry label={gender.label}>{gender.value}</DataEntry>
+                    {document?.label && (
+                      <div
+                        className={`mb8 flex-auto ${cssHandles.documentsSubContainer}`}
+                      >
+                        <DataEntry label={document.label}>
+                          {document.value}
+                        </DataEntry>
+                      </div>
+                    )}
+                    <div
+                      className={`mb8 w-50-ns ${cssHandles.genderSubContainer}`}
+                    >
+                      <DataEntry label={gender.label}>{gender.value}</DataEntry>
+                    </div>
                   </div>
-                </div>
+                )}
                 <div
                   className={`flex-ns flex-wrap ${cssHandles.phoneNumberContainer}`}
                 >
-                  <div
-                    className={`mb8 flex-auto ${cssHandles.dateOfBirthSubContainer}`}
-                  >
-                    <DataEntry label={birthDate.label}>
-                      {birthDate.value}
-                    </DataEntry>
-                  </div>
+                  {!procurator && (
+                    <div
+                      className={`mb8 flex-auto ${cssHandles.dateOfBirthSubContainer}`}
+                    >
+                      <DataEntry label={birthDate.label}>
+                        {birthDate.value}
+                      </DataEntry>
+                    </div>
+                  )}
                   <div
                     className={`mb8 w-50-ns ${cssHandles.phoneNumberSubContainer}`}
                   >
@@ -195,6 +211,7 @@ const ProfileBox: FunctionComponent<Props> = ({
 interface Props {
   profile: Profile
   runtime: Runtime
+  procurator: ProcuratorData
   onEditClick: () => void
 }
 
