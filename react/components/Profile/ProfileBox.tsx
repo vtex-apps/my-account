@@ -44,8 +44,8 @@ const ProfileBox: FunctionComponent<Props> = ({
   if (procurator) {
     const fullName = procurator.name.split(' ')
     const procuratorFirstName = fullName[0]
-
-    const procuratorLastName = fullName.length > 1 ? fullName[fullName.length - 1] : ''
+    const procuratorLastName =
+      fullName.length > 1 ? fullName[fullName.length - 1] : ''
 
     compoundProfile = {
       ...profile,
