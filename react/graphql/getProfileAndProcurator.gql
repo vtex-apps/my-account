@@ -1,4 +1,4 @@
-query B2bProfile @context(scope: "private") {
+query ProfileAndProcurator @context(scope: "private") {
   profile {
     cacheId
     firstName

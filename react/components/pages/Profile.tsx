@@ -7,7 +7,7 @@ import { withContentWrapper } from '../shared/withContentWrapper'
 import ProfileLoading from '../loaders/ProfileLoading'
 import ProfileBox from '../Profile/ProfileBox'
 import Toast from '../shared/Toast'
-import GET_B2BPROFILE from '../../graphql/getB2bProfile.gql'
+import GET_PROFILE from '../../graphql/getProfileAndProcurator.gql'
 import NewsletterBox from '../Profile/NewsletterBox'
 
 export const headerConfig = {
@@ -69,7 +69,7 @@ interface Props {
 }
 
 const enhance = compose<Props, void>(
-  graphql(GET_B2BPROFILE),
+  graphql(GET_PROFILE),
   branch<Props>(
     ({ data }) => data.profile == null,
     renderComponent(ProfileLoading)
