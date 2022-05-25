@@ -41,7 +41,11 @@ class ProfileContainer extends Component<Props> {
     return (
       <main className="flex flex-column-s flex-row-ns">
         <div className="w-60-ns w-100-s">
-          <ProfileBox profile={profile} onEditClick={this.handleGoToEdit} procurator={procurator} />
+          <ProfileBox
+            profile={profile}
+            onEditClick={this.handleGoToEdit}
+            procurator={procurator}
+          />
         </div>
         <div className="w-40-ns w-100-s">
           <NewsletterBox userEmail={profile.email} />
@@ -78,7 +82,10 @@ const enhance = compose<Props, void>(
     headerConfig,
     handle: { configHandle: 'profile', contentHandle: '' },
   }),
-  withProps(({ data }: Props) => ({ profile: data.profile, procurator: data.getProcuratorData })),
+  withProps(({ data }: Props) => ({
+    profile: data.profile,
+    procurator: data.getProcuratorData,
+  })),
   withRouter
 )
 

@@ -1,6 +1,6 @@
 declare module '*/getProfileAndProcurator.gql' {
-    import type { DocumentNode } from 'graphql'
+  import type { DocumentNode } from 'graphql'
 
-    const value: DocumentNode
-    export default value
+  const value: DocumentNode
+  export default value
 }
