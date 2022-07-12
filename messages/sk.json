@@ -14,7 +14,7 @@
   "addresses.addAddress": "Pridať adresu",
   "addresses.saveAddress": "Uložiť adresu",
   "addresses.deleteAddress": "Odstrániť adresu",
-  "addresses.notFound": "Zatiaľ nemáte žiadne adresy.",
+  "addresses.notFound": "Zatiaľ nemáte žiadne adresy!",
   "addresses.notApplicable": "Nevzťahuje sa",
   "commons.edit": "Upraviť",
   "alert.addressNotFound": "Vybratá adresa sa nenašla.",
