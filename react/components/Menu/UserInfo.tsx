@@ -37,7 +37,7 @@ const UserInfo: FunctionComponent<Props> = ({ profilePicture, firstName }) => {
             ,
           </div>
           <div className={`${cssHandles.userName} f4 c-on-base fw3 nowrap`}>
-            {firstName}!
+            {firstName}<span>!</span>
           </div>
         </div>
       ) : (
