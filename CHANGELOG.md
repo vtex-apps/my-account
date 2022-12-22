@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Scroll to top when user edits an address
+
 ## [1.26.0] - 2022-05-02
 
 ## [1.25.0] - 2022-02-10
@@ -40,7 +44,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **authentication.hideMyAuthentication** app setting (hidden from UI).
 
 ## [1.21.0] - 2021-09-16
-
 
 ### Added
 

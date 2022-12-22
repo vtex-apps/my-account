@@ -51,6 +51,7 @@ class Addresses extends Component<Props> {
   }
 
   private handleStartEditing = (address: Address) => {
+    window.scroll({ top: 0, left: 0, behavior: 'auto' })
     this.props.history.push(`/addresses/edit/${address.addressId}`)
   }
 
