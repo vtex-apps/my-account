@@ -14,7 +14,7 @@
   "addresses.addAddress": "Añadir dirección",
   "addresses.saveAddress": "Guardar dirección",
   "addresses.deleteAddress": "Borrar dirección",
-  "addresses.notFound": "Usted no tiene ninguna de las direcciones registrado.",
+  "addresses.notFound": "No tienes ninguna dirección registrada.",
   "addresses.notApplicable": "S/N",
   "commons.edit": "Editar",
   "alert.addressNotFound": "La dirección seleccionada no fue encontrada.",
