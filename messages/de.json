@@ -15,7 +15,7 @@
   "addresses.saveAddress": "Adresse speichern",
   "addresses.deleteAddress": "Adresse löschen",
   "addresses.notFound": "Sie haben noch keine Adresse!",
-  "addresses.notApplicable": "N/A",
+  "addresses.notApplicable": "N/V",
   "commons.edit": "Bearbeiten",
   "alert.addressNotFound": "Die ausgewählte Adresse wurde nicht gefunden.",
   "alert.success": "Ihre Angaben wurden erfolgreich gespeichert.",
