@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import AppRouter from './components/AppRouter'
 import ClientSide from './components/ClientSide'
-import { logMyAccountURL, logGeneralErrors } from './utils/splunk'
+import { logMyAccountURL, logGeneralErrors } from './utils/logger'
 
 import 'vtex.country-codes/locales'
 import './style.global.css'
