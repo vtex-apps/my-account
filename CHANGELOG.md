@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.43.0] - 2023-06-28
+
 ### Removed
 
 - Logs to Splunk.
