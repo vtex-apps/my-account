@@ -4340,11 +4340,6 @@ split-string@^3.0.1, split-string@^3.0.2:
   dependencies:
     extend-shallow "^3.0.0"
 
-splunk-events@^1.3.0:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/splunk-events/-/splunk-events-1.4.1.tgz#8e3b55fda415ee6df7d0bd6ce22e92757681d121"
-  integrity sha512-jiIuHdxNnLi/J3xr72AnZDGwMqoYTK0CWu2mPzrwPRol2txrKhRCcaSdWRmyfYFMLwWHLIgOL16JgY/TPnkUtA==
-
 sshpk@^1.7.0:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.16.1.tgz#fb661c0bef29b39db40769ee39fa70093d6f6877"

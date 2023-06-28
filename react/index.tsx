@@ -3,7 +3,7 @@ import 'vtex.country-codes/locales'
 
 import AppRouter from './components/AppRouter'
 import Wrapper from './components/MyAccountWrapper'
-import { logGeneralErrors } from './utils/splunk'
+import { logGeneralErrors } from './utils/logger'
 
 interface Props {
   blockDocument?: boolean

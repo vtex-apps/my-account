@@ -210,10 +210,10 @@
     lodash.unescape "4.0.1"
     semver "5.5.0"
 
-"@vtex/api@6.45.13":
-  version "6.45.13"
-  resolved "https://registry.yarnpkg.com/@vtex/api/-/api-6.45.13.tgz#836c392fa9567009e34559f08698f6efc95e88cc"
-  integrity sha512-P22/ObNdsgLvagetcDrovFfSXHe8Jb4yHud4U0rXHfIYEIMSnEdQ/QHujF3CEa5AiZnvbR/5W5ynGtWHYHOv9A==
+"@vtex/api@6.45.15":
+  version "6.45.15"
+  resolved "https://registry.yarnpkg.com/@vtex/api/-/api-6.45.15.tgz#aa987d22f7df16ce2861130deda6ffd63156817b"
+  integrity sha512-Rg1VGDzJ4hHUNp1vSidMdGGPojr1PikMTptlZsJ3oNZVdEo4cPx2l8ZcAEwHWORL7QjPjXaEgmeA5ZOSf+boCQ==
   dependencies:
     "@types/koa" "^2.11.0"
     "@types/koa-compose" "^3.2.3"
