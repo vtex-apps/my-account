@@ -41,9 +41,15 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
     let address: Address
 
     if (props.address === undefined) {
-      const { runtime, shipsTo, receiverName } = props
+      const { runtime, shipsTo, receiverName, useGeolocation } = props
 
-      const country = shipsTo.length > 0 ? shipsTo[0] : runtime.culture.country
+      let country
+
+      if (useGeolocation) {
+        country = runtime.culture.country;
+      } else {
+        country = shipsTo.length > 0 ? shipsTo[0] : runtime.culture.country;
+      }
 
       address = getEmptyAddress(country, receiverName ?? '')
     } else {
