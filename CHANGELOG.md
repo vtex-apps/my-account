@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Fix address form logic of default country with geo location
 
+## [1.27.0] - 2023-06-28
+
+### Removed
+
+- Logs to Splunk.
+
 ## [1.26.1] - 2022-12-22
 
 ### Changed
