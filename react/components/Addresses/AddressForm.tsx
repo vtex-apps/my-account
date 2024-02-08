@@ -46,9 +46,9 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
       let country
 
       if (useGeolocation) {
-        country = runtime.culture.country;
+        country = runtime.culture.country
       } else {
-        country = shipsTo.length > 0 ? shipsTo[0] : runtime.culture.country;
+        country = shipsTo.length > 0 ? shipsTo[0] : runtime.culture.country
       }
 
       address = getEmptyAddress(country, receiverName ?? '')
