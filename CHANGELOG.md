@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix address form logic of default country with geo location
+
 ## [0.43.0] - 2023-06-28
 
 ### Removed
@@ -16,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.42.2] - 2023-03-28
 
 ### Fixed
+
 - German translation.
 
 ## [0.42.1] - 2023-01-26
