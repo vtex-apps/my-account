@@ -4,7 +4,19 @@ import type { RouteComponentProps } from 'vtex.my-account-commons/Router'
 import { Link, withRouter } from 'vtex.my-account-commons/Router'
 
 const MenuLink: FunctionComponent<Props> = ({ path, name, location }) => {
-  return (
+  console.log("bibi 2", path, location.pathname.indexOf(path))
+  const isExternal = path.startsWith('http://') || path.startsWith('https://');
+
+  return isExternal ? (
+    <a
+      href={path}
+      className="vtex-account_menu-link f6 no-underline db hover-near-black pv5 mv3 pl5 bl bw2 nowrap c-on-base b b--action-primary"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {name}
+    </a>
+  ) : (
     <Link
       to={path}
       className={`
@@ -16,8 +28,8 @@ const MenuLink: FunctionComponent<Props> = ({ path, name, location }) => {
     >
       {name}
     </Link>
-  )
-}
+  );
+};
 
 interface Props extends RouteComponentProps {
   path: string
