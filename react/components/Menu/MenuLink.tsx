@@ -4,7 +4,7 @@ import type { RouteComponentProps } from 'vtex.my-account-commons/Router'
 import { Link, withRouter } from 'vtex.my-account-commons/Router'
 
 const MenuLink: FunctionComponent<Props> = ({ path, name, location }) => {
-  console.log("bibi 2", path, location.pathname.indexOf(path))
+
   const isExternal = path.startsWith('http://') || path.startsWith('https://');
 
   return isExternal ? (
