@@ -62,13 +62,20 @@ class Addresses extends Component<Props> {
       <div
         className={`${cssHandles.addressBox} flex flex-wrap-ns items-start-ns relative tl`}
       >
-        {this.props.addresses.map(address => (
-          <AddressBox
-            key={address.addressId}
-            address={address}
-            onEditClick={() => this.handleStartEditing(address)}
-          />
-        ))}
+        {this.props.addresses.map(address => {
+          // Filter out temporarily addresses with addressType "pickup" because its also saved at Profile V2
+          if (address.addressType !== 'pickup') {
+            return (
+              <AddressBox
+                key={address.addressId}
+                address={address}
+                onEditClick={() => this.handleStartEditing(address)}
+              />
+            )
+          }
+
+          return null
+        })}
 
         {this.state.showToast && (
           <Toast
