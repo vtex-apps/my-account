@@ -70,6 +70,7 @@ declare global {
 
   interface AddressFormFields {
     [key: string]: {
+      disabled: boolean
       value: null | string | number | number[]
       valid?: boolean
       geolocationAutoCompleted?: boolean
