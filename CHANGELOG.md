@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.28.0] - 2024-07-09
+
+- Disable country edition for addresses saved at the profile
+
 ## [1.27.1] - 2024-02-15
 
 ### Fixed

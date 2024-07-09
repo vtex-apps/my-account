@@ -68,6 +68,7 @@ class AddressEdit extends Component<Props> {
           isLoading={isLoading}
           submitLabelId="vtex.store-messages@0.x::addresses.saveAddress"
           address={normalizedAddress}
+          isExistingAddress={!!addressId}
           onSubmit={this.handleSave}
           onError={this.props.handleError}
         />

@@ -147,13 +147,27 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
 
   public render() {
     const { address } = this.state
-    const { intl, submitLabelId, isLoading, googleMapsApiKey, useGeolocation } =
-      this.props
+    const {
+      intl,
+      submitLabelId,
+      isLoading,
+      googleMapsApiKey,
+      useGeolocation,
+      isExistingAddress,
+    } = this.props
 
     const shipCountries = this.translateCountries()
     const hasGeoCoords = this.hasGeoCoords()
     const hasValidPostalCode = this.hasValidPostalCode()
     const hasAutoCompletedFields = this.hasAutoCompletedFields()
+
+    const enhancedAddress = {
+      ...address,
+      country: {
+        ...address.country,
+        disabled: !!isExistingAddress,
+      },
+    }
 
     return (
       <AddressRules
@@ -162,7 +176,7 @@ class AddressForm extends Component<InnerProps & OuterProps, State> {
         useGeolocation={useGeolocation}
       >
         <AddressContainer
-          address={address}
+          address={enhancedAddress}
           Input={StyleguideInput}
           onChangeAddress={this.handleAddressChange}
           autoCompletePostalCode
@@ -258,6 +272,7 @@ interface OuterProps {
   receiverName?: string
   onError: () => void
   onSubmit: (address: Address) => void
+  isExistingAddress?: boolean
 }
 
 type Props = InnerProps & OuterProps
