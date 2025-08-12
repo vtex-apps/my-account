@@ -78,6 +78,17 @@
             "default": true
           }
         }
+      },
+      "authentication": {
+        "type": "object",
+        "title": "Authentication",
+        "properties": {
+          "showMyAuthentication": {
+            "type": "boolean",
+            "title": "Visible",
+            "default": true
+          }
+        }
       }
     }
   },

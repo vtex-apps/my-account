@@ -9,4 +9,5 @@ type AppSettings {
   showMyCards: Boolean
   showMyOrders: Boolean
   showMyAddresses: Boolean
+  showMyAuthentication: Boolean
 }
