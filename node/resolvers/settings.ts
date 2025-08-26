@@ -17,6 +17,7 @@ async function settings(_: unknown, __: unknown, ctx: ServiceContext) {
     showMyCards: result.cards && result.cards.showMyCards,
     showMyOrders: result.orders && result.orders.showMyOrders,
     showMyAddresses: result.addresses && result.addresses.showMyAddresses,
+    showMyAuthentication: result.authentication && result.authentication.showMyAuthentication,
   }
 }
 
@@ -28,6 +29,7 @@ interface Settings {
   profile?: { showGenders: boolean }
   cards?: { showMyCards: boolean }
   orders?: { showMyOrders: boolean }
+  authentication?: { showMyAuthentication: boolean }
 }
 
 export default settings

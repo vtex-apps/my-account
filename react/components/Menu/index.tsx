@@ -20,11 +20,17 @@ interface RenderLinksOptions {
   showMyCards: boolean | null
   showMyOrders: boolean | null
   showMyAddresses: boolean | null
+  showMyAuthentication: boolean | null
 }
 
 function renderLinks(
   links: Link[],
-  { showMyCards, showMyOrders, showMyAddresses }: RenderLinksOptions
+  {
+    showMyCards,
+    showMyOrders,
+    showMyAddresses,
+    showMyAuthentication,
+  }: RenderLinksOptions
 ) {
   const linksToDisplay = links.filter(link => {
     if (showMyCards === false && link.path === '/cards') {
@@ -36,6 +42,10 @@ function renderLinks(
     }
 
     if (showMyAddresses === false && link.path === '/addresses') {
+      return false
+    }
+
+    if (showMyAuthentication === false && link.path === '/authentication') {
       return false
     }
 
@@ -60,6 +70,7 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
       showMyCards = false,
       showMyOrders = false,
       showMyAddresses = false,
+      showMyAuthentication = false,
     } = settings || {}
 
     return (
@@ -75,6 +86,7 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
                 showMyCards,
                 showMyOrders,
                 showMyAddresses,
+                showMyAuthentication,
               })
             }
           />
