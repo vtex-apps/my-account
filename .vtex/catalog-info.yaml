@@ -12,7 +12,7 @@ metadata:
     github.com/project-slug: vtex-apps/my-account
     vtex.com/platform-flow-id: ""
     backstage.io/techdocs-ref: dir:../
-    vtex.com/application-id: JNMKHHLJ
+    vtex.com/application-id: ATMCJN60
 spec:
   lifecycle: stable
   owner: te-0020
