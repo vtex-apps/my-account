@@ -9,6 +9,7 @@ const UserPlaceholderPicture = () => {
       viewBox="0 0 110 110"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
       <rect width="110" height="110" fill="black" fillOpacity="0" />
       <rect width="110" height="110" fill="black" fillOpacity="0" />
