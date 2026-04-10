@@ -13,6 +13,7 @@ metadata:
     vtex.com/platform-flow-id: ""
     backstage.io/techdocs-ref: dir:../
     vtex.com/application-id: ATMCJN60
+    vtex.com/platform-flow-id: Merch#6
 spec:
   lifecycle: stable
   owner: te-0020
