@@ -1,6 +1,7 @@
 {
   "my-account": {
     "component": "index",
+    "composition": "children",
     "required": [
       "my-account-pages",
       "my-account-defaultPage",

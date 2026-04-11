@@ -1,11 +1,11 @@
 /* eslint-disable no-restricted-globals */
-import type { FunctionComponent, ReactElement } from 'react'
-import { useMemo } from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
+import React, { useMemo } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 
 import useDataPixel from '../hooks/useDataPixel'
 
-const MyAccountWrapper: FunctionComponent<{ children: ReactElement }> = ({
+const MyAccountWrapper: FunctionComponent<{ children: ReactNode }> = ({
   children,
 }) => {
   const { account } = useRuntime()
@@ -39,7 +39,7 @@ const MyAccountWrapper: FunctionComponent<{ children: ReactElement }> = ({
 
   useDataPixel(pixelEvents, 'MyAccount')
 
-  return children
+  return <>{children}</>
 }
 
 export default MyAccountWrapper
