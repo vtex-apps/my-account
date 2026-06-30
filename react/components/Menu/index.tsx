@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { Component, Fragment } from 'react'
+import type { ReactNode } from 'react'
+import React, { Component, Fragment, isValidElement } from 'react'
 import type { InjectedIntlProps } from 'react-intl'
 import { injectIntl, FormattedMessage } from 'react-intl'
 import { compose } from 'recompose'
@@ -23,8 +24,12 @@ interface RenderLinksOptions {
   showMyAuthentication: boolean | null
 }
 
+function isReactLink(link: Link | ReactNode): link is ReactNode {
+  return isValidElement(link)
+}
+
 function renderLinks(
-  links: Link[],
+  links: Array<Link | ReactNode>,
   {
     showMyCards,
     showMyOrders,
@@ -33,28 +38,39 @@ function renderLinks(
   }: RenderLinksOptions
 ) {
   const linksToDisplay = links.filter(link => {
-    if (showMyCards === false && link.path === '/cards') {
+    if (isReactLink(link)) return true
+
+    const typed = link as Link
+
+    if (showMyCards === false && typed.path === '/cards') {
       return false
     }
 
-    if (showMyOrders === false && link.path === '/orders') {
+    if (showMyOrders === false && typed.path === '/orders') {
       return false
     }
 
-    if (showMyAddresses === false && link.path === '/addresses') {
+    if (showMyAddresses === false && typed.path === '/addresses') {
       return false
     }
 
-    if (showMyAuthentication === false && link.path === '/authentication') {
+    if (showMyAuthentication === false && typed.path === '/authentication') {
       return false
     }
 
     return true
   })
 
-  return linksToDisplay.map(({ name, path }) => (
-    <MenuLink path={path} name={name} key={name} />
-  ))
+  return linksToDisplay.map((link, index) => {
+    if (isReactLink(link)) {
+      const element = link as React.ReactElement
+      const key = element.key != null ? element.key : `custom-link-${index}`
+      return React.cloneElement(element, { key })
+    }
+
+    const { name, path } = link as Link
+    return <MenuLink path={path} name={name} key={name} />
+  })
 }
 
 class Menu extends Component<Props, { isModalOpen: boolean }> {
@@ -81,7 +97,7 @@ class Menu extends Component<Props, { isModalOpen: boolean }> {
         <nav className={cssHandles.menuLinks}>
           <ExtensionPoint
             id="my-account-menu"
-            render={(links: Link[]) =>
+            render={(links: Array<Link | ReactNode>) =>
               renderLinks(links, {
                 showMyCards,
                 showMyOrders,

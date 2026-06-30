@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import type { ReactNode } from 'react'
+import React, { Children, Component } from 'react'
 import 'vtex.country-codes/locales'
 
 import AppRouter from './components/AppRouter'
@@ -7,6 +8,7 @@ import { logGeneralErrors } from './utils/logger'
 
 interface Props {
   blockDocument?: boolean
+  children?: ReactNode
 }
 
 class MyAccount extends Component<Props> {
@@ -17,11 +19,18 @@ class MyAccount extends Component<Props> {
   }
 
   public render() {
+    const { children, blockDocument } = this.props
+    const hasChildren = Children.count(children) > 0
+
     return (
       <Wrapper>
-        <div className="vtex-account helvetica flex justify-around">
-          <AppRouter blockDocument={this.props.blockDocument} />
-        </div>
+        {hasChildren ? (
+          children
+        ) : (
+          <div className="vtex-account helvetica flex justify-around">
+            <AppRouter blockDocument={blockDocument} />
+          </div>
+        )}
       </Wrapper>
     )
   }

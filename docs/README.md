@@ -151,9 +151,14 @@ In this example you will have two new pages `/account/#/support` and `/account/#
 
 #### Creating a `my-account-link` component
 
-This component will receive a prop called `render`. You **must** call it with an array of objects with the properties `name` and `path`. This will create the link given the `name` and the `path` provided.
+This component will receive a prop called `render`. You **must** call it with an array of items. Each item can be either:
 
-Example of an MyAppLink implementation:
+1. An object with `name` and `path` properties — the default menu link style will be applied.
+2. A React element — it will be rendered as-is, allowing full visual customization.
+
+You can mix both shapes in the same array.
+
+**Example 1: default style (backwards compatible)**
 
 ```jsx
 import PropTypes from 'prop-types'
@@ -179,6 +184,44 @@ MyAppLink.propTypes = {
 
 export default injectIntl(MyAppLink)
 ```
+
+**Example 2: fully styled link (since v1.31.0)**
+
+```jsx
+import React from 'react'
+import { Link } from 'vtex.render-runtime'
+
+const HeartIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+    {/* ... */}
+  </svg>
+)
+
+const StyledLink = ({ href, children }) => (
+  <Link
+    to={href}
+    className="flex items-center gap-2 py-3 text-sm hover-opacity-70"
+    style={{ color: '#0B0D0D' }}
+  >
+    <HeartIcon />
+    {children}
+  </Link>
+)
+
+const MyAppLink = ({ render }) => {
+  return render([
+    <StyledLink key="favorites" href="/wishlist">
+      Favoritos
+    </StyledLink>,
+  ])
+}
+
+export default MyAppLink
+```
+
+In Example 2, the `my-account` menu will render your `<StyledLink>` as-is, without wrapping it in the default `MenuLink` component. You can apply your own typography, colors, icons, and hover states freely.
+
+The `showMyCards`, `showMyOrders`, `showMyAddresses`, and `showMyAuthentication` app settings still filter default links (by `path` match), but they do **not** apply to custom React elements — your plugin is responsible for filtering them if needed.
 
 ### Defining the default home page of My Account
 
@@ -276,6 +319,64 @@ class FavColor extends Component {
 
 export default FavColor
 ```
+
+### Fully replacing the my-account layout
+
+The extension points above are the preferred way to customize My Account in most cases, since they preserve the default shell (menu, routing, breadcrumbs) while letting you add or tweak individual pieces.
+
+However, some stores need a **completely custom my-account experience** — different menu, different routing, different typography, rendered inside a fully branded shell. Until now, that required either forking this app or working around the `vtex.store@2.x:store.account` interface requirement (which mandates that `store.account` contains a block implementing `vtex.my-account@1.x:my-account`).
+
+Starting from version `1.31.0`, the `my-account` block supports `children` composition. When children are provided, they **fully replace** the default `<Menu />` + `<AppRouter />` layout, while still satisfying the interface requirement so the builder doesn't error out.
+
+**When no children are passed, the default layout renders as before — this change is fully backwards compatible.**
+
+#### Usage
+
+In your store-theme, declare a custom block that implements your layout and pass it as a child of `my-account`:
+
+```jsonc
+// store/interfaces.json
+{
+  "my-custom-account": {
+    "component": "MyCustomAccount"
+  }
+}
+```
+
+```jsonc
+// store/blocks.jsonc
+{
+  "store.account": {
+    "blocks": ["my-account"],
+    "parent": {
+      "challenge": "challenge.profile"
+    }
+  },
+
+  "my-account": {
+    "children": ["my-custom-account"]
+  }
+}
+```
+
+```tsx
+// react/MyCustomAccount.tsx
+import React from 'react'
+
+const MyCustomAccount: React.FC = () => {
+  return (
+    <div className="my-custom-account">
+      {/* your fully custom layout: sidebar, routing, pages, etc. */}
+    </div>
+  )
+}
+
+export default MyCustomAccount
+```
+
+Accessing `/account` will now render `MyCustomAccount` inside `MyAccountWrapper` (which still takes care of the default pixel tracking), bypassing the built-in menu, hash router, and all default pages.
+
+You are responsible for implementing your own navigation, routing (if any), and data fetching inside the custom component. The `my-account-pages`, `my-account-menu`, `profile-display-container`, and `profile-input-container` extension points are **not** rendered when children are used — if you need plugin support in your custom layout, you can still use `<ExtensionPoint id="..." />` from `vtex.render-runtime` inside your component.
 
 ## Author
 

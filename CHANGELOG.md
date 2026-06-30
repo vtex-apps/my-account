@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Support for `children` composition in the `my-account` block. When children are provided, they fully replace the default `<Menu />` + `<AppRouter />` layout, allowing stores to render a completely custom my-account experience while still satisfying the `vtex.store@2.x:store.account` interface requirement. When no children are passed, the default layout renders as before — fully backwards compatible.
+- `my-account-menu` plugins can now return React elements directly inside the array passed to `render`, in addition to the existing `{ name, path }` object shape. This lets stores fully customize the visual appearance of sidebar links (icons, typography, hover states, etc.) without replacing the entire menu. Plugins that continue to pass `{ name, path }` objects keep rendering with the default `MenuLink` component — backwards compatible.
+
 ## [1.30.2] - 2026-04-10
 
 ## [1.30.1] - 2026-02-27
