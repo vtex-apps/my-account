@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Documentation in `docs/README.md` to follow the VTEX Content Style Guide.
+
 ## [1.30.2] - 2026-04-10
 
 ## [1.30.1] - 2026-02-27
